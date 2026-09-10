@@ -1,0 +1,217 @@
+{
+  "finished_utc": "2026-09-09T00:31:48.308698+00:00",
+  "unit_tests": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "passed": 66,
+    "codex_test_sha256": "e4987a0074d9fcc1eade520258f9c78800aecc2eaa000dfce8437b016b49b337"
+  },
+  "live_codex_call_tested": true,
+  "direct_api_calls_tested": false,
+  "generator": {
+    "provider": "codex",
+    "model": "gpt-6-astra",
+    "timeout_s": 300,
+    "executable": "codex",
+    "reasoning_effort": "medium",
+    "authentication": "saved ChatGPT login",
+    "codex_version": "codex-cli 0.153.4",
+    "transport": "codex_exec"
+  },
+  "directory": "datasets/codex_verified_test",
+  "manifest_sha256": "cc962ed5136026e1999906ec38d237c1b3654788cac53269e648db074c449620",
+  "template": "autockt_two_stage",
+  "source_ids": [
+    "circuit_source",
+    "circuit_netlist",
+    "circuit_parameters"
+  ],
+  "task": {
+    "id": "autockt_two_stage_ai_19cc8504ebbab0637ae9",
+    "path": "tasks/autockt_two_stage_ai_19cc8504ebbab0637ae9.json",
+    "sha256": "41e0e1574597887d57633dda83ce9d553124ad04a39c5d4117f1c39f212c06cc",
+    "fingerprint": "19cc8504ebbab0637ae9923765905f83e53620068375b4a24b137e183c9edc2d",
+    "requirement_group": "e892140607455d47746e31e6d4894b4f543d1643a6e83cf566f16fc7813b0333",
+    "attempt": 2,
+    "initial_parameters": {
+      "CCOMP": 2e-11,
+      "IBIAS": 3e-05,
+      "W_GM": 70
+    },
+    "constraints": {
+      "gain_db": {
+        "min": 50
+      },
+      "unity_gain_hz": {
+        "min": 1000000
+      },
+      "phase_margin_deg": {
+        "min": 60
+      },
+      "power_w": {
+        "max": 0.001
+      },
+      "dc_error_v": {
+        "max": 0.00045
+      },
+      "max_tracking_error_v": {
+        "max": 0.002
+      },
+      "settling_rise_s": {
+        "max": 2e-06
+      },
+      "settling_fall_s": {
+        "max": 2e-06
+      }
+    }
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "usage": {
+        "input_tokens": 13254,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 743,
+        "reasoning_output_tokens": 29
+      },
+      "outcome": {
+        "status": "rejected",
+        "error": "Starting design must produce valid measurements; a simulator/verifier error is not an accepted failing start.",
+        "reference": {
+          "status": "ok",
+          "success": true,
+          "metrics": {
+            "output_dc_v": 0.8995838265396,
+            "dc_error_v": 0.00041617346040001557,
+            "supply_current_a": 0.000234917704792,
+            "power_w": 0.0004228518686256,
+            "gain_db": 78.41666559488,
+            "unity_gain_hz": 2804238.4716260233,
+            "phase_margin_deg": 64.96473081013983,
+            "settling_rise_s": 1.424999999999999e-07,
+            "settling_fall_s": 1.3249999999999577e-07,
+            "max_tracking_error_v": 0.0004931565235000157,
+            "output_min_v": 0.8386715618824,
+            "output_max_v": 0.9621554715769
+          },
+          "checks": {
+            "gain_db": true,
+            "unity_gain_hz": true,
+            "phase_margin_deg": true,
+            "power_w": true,
+            "dc_error_v": true,
+            "max_tracking_error_v": true,
+            "settling_rise_s": true,
+            "settling_fall_s": true
+          }
+        },
+        "initial": {
+          "status": "failed",
+          "success": false,
+          "metrics": {
+            "output_dc_v": 0.8982637045241,
+            "dc_error_v": 0.0017362954759000404,
+            "supply_current_a": 0.0002347644822775,
+            "power_w": 0.00042257606809949997,
+            "gain_db": 72.33167386411,
+            "unity_gain_hz": 13046187.43161026,
+            "phase_margin_deg": 27.75155762358648
+          },
+          "checks": {},
+          "error": "Transient response does not settle within the observation window."
+        }
+      }
+    },
+    {
+      "attempt": 2,
+      "usage": {
+        "input_tokens": 14519,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 924,
+        "reasoning_output_tokens": 172
+      },
+      "outcome": {
+        "status": "accepted",
+        "task_id": "autockt_two_stage_ai_19cc8504ebbab0637ae9",
+        "reference": {
+          "status": "ok",
+          "success": true,
+          "metrics": {
+            "output_dc_v": 0.8995838265396,
+            "dc_error_v": 0.00041617346040001557,
+            "supply_current_a": 0.000234917704792,
+            "power_w": 0.0004228518686256,
+            "gain_db": 78.41666559488,
+            "unity_gain_hz": 2804238.4716260233,
+            "phase_margin_deg": 64.96473081013983,
+            "settling_rise_s": 1.424999999999999e-07,
+            "settling_fall_s": 1.3249999999999577e-07,
+            "max_tracking_error_v": 0.0004931565235000157,
+            "output_min_v": 0.8386715618824,
+            "output_max_v": 0.9621554715769
+          },
+          "checks": {
+            "gain_db": true,
+            "unity_gain_hz": true,
+            "phase_margin_deg": true,
+            "power_w": true,
+            "dc_error_v": true,
+            "max_tracking_error_v": true,
+            "settling_rise_s": true,
+            "settling_fall_s": true
+          }
+        },
+        "initial": {
+          "status": "ok",
+          "success": false,
+          "metrics": {
+            "output_dc_v": 0.899389786342,
+            "dc_error_v": 0.0006102136580000694,
+            "supply_current_a": 0.0002348955417234,
+            "power_w": 0.00042281197510211997,
+            "gain_db": 77.50827781747,
+            "unity_gain_hz": 2809526.757497431,
+            "phase_margin_deg": 63.52762903193184,
+            "settling_rise_s": 1.3749999999999995e-07,
+            "settling_fall_s": 1.2249999999999756e-07,
+            "max_tracking_error_v": 0.0006632176054000016,
+            "output_min_v": 0.8378062083167,
+            "output_max_v": 0.9630229726501
+          },
+          "checks": {
+            "gain_db": true,
+            "unity_gain_hz": true,
+            "phase_margin_deg": true,
+            "power_w": true,
+            "dc_error_v": false,
+            "max_tracking_error_v": true,
+            "settling_rise_s": true,
+            "settling_fall_s": true
+          }
+        }
+      }
+    }
+  ],
+  "code_and_inputs_sha256": {
+    "analog_design/model_clients.py": "0b69948f7530204a646dc7d0d9076963aa95d87a285e6a42ded0d1cd0916c6ca",
+    "analog_design/codex_client.py": "ca8df54f4d2a522b79c0af093d62843ae27b583ced0ccd9ac3a89086451a40ee",
+    "analog_design/generation_sources.py": "6f6afe8676ddb11b2cc23afea5a1b38953cd12e0792c5d1468768cb5c913531f",
+    "analog_design/task_generation.py": "f00445416bdf854ab01b482303e3142abc07e8b6e3efaff2260983d804152a0a",
+    "analog_design/task_proposals.py": "d54c537fa68926882cbe8b07b2f13870440ab7af17f77e279b0f0c0a31e2e61d",
+    "generation/prompt.txt": "1c39fb860582a01f120056daace3709eb78dc9d1de0f90cb0f5eb53fe66c3695",
+    "scripts/generate_tasks.py": "3c25bc2d8f762e31f01bd754df2fffe90d02a0a5a33b23142af9c0f463ab25f7",
+    "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+    "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+    "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+    "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+    "tasks/autockt_two_stage_sizing.json": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+    "tasks/autockt_two_stage_nominal.json": "99286b6f35baee978cadc6c54851ac6fd26d0c715b05e3f970f2e65d40864351",
+    "circuits/autockt_two_stage/netlist.spice": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+    "circuits/autockt_two_stage/reference.params": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+    "circuits/autockt_two_stage/source.json": "7aa25a19a7368084de4a69713a075c68be976e644b59aa52a02e6378b0097151"
+  },
+  "training_approved": false,
+  "production_ready": false,
+  "scope": "One live Codex sizing-task generation test using supplied circuit files and the existing seed reference. No paper PDF was added to this test. Acceptance does not measure task difficulty, diversity, or training benefit."
+}

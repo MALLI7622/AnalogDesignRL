@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "split_policy": "topology",
+  "tasks": [
+    {
+      "id": "fan_smc_sizing_v1",
+      "path": "tasks/fan_smc_sizing.json",
+      "sha256": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+      "group": "a04a33b380246630e0a23df10e7cb32771f6bf5c8a43586eef5e11d2fc2ca11a",
+      "split": "smoke"
+    },
+    {
+      "id": "autockt_two_stage_sizing_v1",
+      "path": "tasks/autockt_two_stage_sizing.json",
+      "sha256": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+      "group": "1054a801d675c28f5ea32569afa9999ea2b545ea03f8574e87055e92c052f150",
+      "split": "smoke"
+    }
+  ]
+}

@@ -1,0 +1,224 @@
+{
+  "collection": "datasets/pilot_20260909",
+  "created_utc": "2026-09-09T17:42:46.350229+00:00",
+  "index_sha256": "d43040350df9f29972c72c013283b3aba6835ddc34f6e5868aa2c535409ca69d",
+  "task_count": 6,
+  "topology_count": 2,
+  "requirement_group_count": 5,
+  "unit_tests": {
+    "command": "python3 -m unittest discover -s tests -q",
+    "passed": 68
+  },
+  "codex_requests": 11,
+  "completed_responses": 9,
+  "rejected_proposals": 3,
+  "timed_out_requests": 2,
+  "usage_from_completed_responses_only": {
+    "input_tokens": 173184,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 6893,
+    "reasoning_output_tokens": 571
+  },
+  "batches": [
+    {
+      "directory": "autockt_two_stage",
+      "status": "provider_error",
+      "accepted": 2,
+      "attempts": 5,
+      "requested": 3,
+      "manifest_sha256": "b2e096acbf81a8ea99c7dd962ce9f153a41983c30263299b75c65bbcbbff2fed",
+      "error": "Codex exceeded 300 seconds. Increase --request-timeout if needed.",
+      "generator": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "timeout_s": 300,
+        "executable": "codex",
+        "reasoning_effort": "medium",
+        "authentication": "saved ChatGPT login",
+        "codex_version": "codex-cli 0.153.4",
+        "transport": "codex_exec"
+      },
+      "rejected": [
+        {
+          "attempt": 1,
+          "reason": "Starting design must produce valid measurements; a simulator/verifier error is not an accepted failing start."
+        },
+        {
+          "attempt": 3,
+          "reason": "Starting design must produce valid measurements; a simulator/verifier error is not an accepted failing start."
+        }
+      ],
+      "code_and_inputs_sha256": {
+        "analog_design/model_clients.py": "0b69948f7530204a646dc7d0d9076963aa95d87a285e6a42ded0d1cd0916c6ca",
+        "analog_design/codex_client.py": "ca8df54f4d2a522b79c0af093d62843ae27b583ced0ccd9ac3a89086451a40ee",
+        "analog_design/generation_sources.py": "6f6afe8676ddb11b2cc23afea5a1b38953cd12e0792c5d1468768cb5c913531f",
+        "analog_design/task_generation.py": "f00445416bdf854ab01b482303e3142abc07e8b6e3efaff2260983d804152a0a",
+        "analog_design/task_proposals.py": "d54c537fa68926882cbe8b07b2f13870440ab7af17f77e279b0f0c0a31e2e61d",
+        "generation/prompt.txt": "1c39fb860582a01f120056daace3709eb78dc9d1de0f90cb0f5eb53fe66c3695",
+        "scripts/generate_tasks.py": "3c25bc2d8f762e31f01bd754df2fffe90d02a0a5a33b23142af9c0f463ab25f7",
+        "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+        "tasks/autockt_two_stage_sizing.json": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+        "tasks/autockt_two_stage_nominal.json": "99286b6f35baee978cadc6c54851ac6fd26d0c715b05e3f970f2e65d40864351",
+        "circuits/autockt_two_stage/netlist.spice": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "circuits/autockt_two_stage/reference.params": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "circuits/autockt_two_stage/source.json": "7aa25a19a7368084de4a69713a075c68be976e644b59aa52a02e6378b0097151"
+      },
+      "generation_files_updated_after_run": [
+        "analog_design/task_generation.py",
+        "scripts/generate_tasks.py"
+      ]
+    },
+    {
+      "directory": "autockt_two_stage_retry",
+      "status": "complete",
+      "accepted": 1,
+      "attempts": 2,
+      "requested": 1,
+      "manifest_sha256": "97426a61c810a928862f55e088d765ca3cf579ac6aed931203ccdb756001b2ac",
+      "error": null,
+      "generator": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "timeout_s": 600.0,
+        "executable": "codex",
+        "reasoning_effort": "medium",
+        "authentication": "saved ChatGPT login",
+        "codex_version": "codex-cli 0.153.4",
+        "transport": "codex_exec"
+      },
+      "rejected": [
+        {
+          "attempt": 1,
+          "reason": "Starting design must produce valid measurements; a simulator/verifier error is not an accepted failing start."
+        }
+      ],
+      "code_and_inputs_sha256": {
+        "analog_design/model_clients.py": "0b69948f7530204a646dc7d0d9076963aa95d87a285e6a42ded0d1cd0916c6ca",
+        "analog_design/codex_client.py": "ca8df54f4d2a522b79c0af093d62843ae27b583ced0ccd9ac3a89086451a40ee",
+        "analog_design/generation_sources.py": "6f6afe8676ddb11b2cc23afea5a1b38953cd12e0792c5d1468768cb5c913531f",
+        "analog_design/task_generation.py": "f00445416bdf854ab01b482303e3142abc07e8b6e3efaff2260983d804152a0a",
+        "analog_design/task_proposals.py": "d54c537fa68926882cbe8b07b2f13870440ab7af17f77e279b0f0c0a31e2e61d",
+        "generation/prompt.txt": "1c39fb860582a01f120056daace3709eb78dc9d1de0f90cb0f5eb53fe66c3695",
+        "scripts/generate_tasks.py": "3c25bc2d8f762e31f01bd754df2fffe90d02a0a5a33b23142af9c0f463ab25f7",
+        "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+        "tasks/autockt_two_stage_sizing.json": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+        "tasks/autockt_two_stage_nominal.json": "99286b6f35baee978cadc6c54851ac6fd26d0c715b05e3f970f2e65d40864351",
+        "circuits/autockt_two_stage/netlist.spice": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "circuits/autockt_two_stage/reference.params": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "circuits/autockt_two_stage/source.json": "7aa25a19a7368084de4a69713a075c68be976e644b59aa52a02e6378b0097151"
+      },
+      "generation_files_updated_after_run": [
+        "analog_design/task_generation.py",
+        "scripts/generate_tasks.py"
+      ]
+    },
+    {
+      "directory": "fan_smc",
+      "status": "provider_error",
+      "accepted": 2,
+      "attempts": 3,
+      "requested": 3,
+      "manifest_sha256": "ed8d249fa93841f47c203b884850ffbb6a23a06ef94c76dd96fdd0f6e23cadf3",
+      "error": "Codex exceeded 300 seconds. Increase --request-timeout if needed.",
+      "generator": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "timeout_s": 300,
+        "executable": "codex",
+        "reasoning_effort": "medium",
+        "authentication": "saved ChatGPT login",
+        "codex_version": "codex-cli 0.153.4",
+        "transport": "codex_exec"
+      },
+      "rejected": [],
+      "code_and_inputs_sha256": {
+        "analog_design/model_clients.py": "0b69948f7530204a646dc7d0d9076963aa95d87a285e6a42ded0d1cd0916c6ca",
+        "analog_design/codex_client.py": "ca8df54f4d2a522b79c0af093d62843ae27b583ced0ccd9ac3a89086451a40ee",
+        "analog_design/generation_sources.py": "6f6afe8676ddb11b2cc23afea5a1b38953cd12e0792c5d1468768cb5c913531f",
+        "analog_design/task_generation.py": "f00445416bdf854ab01b482303e3142abc07e8b6e3efaff2260983d804152a0a",
+        "analog_design/task_proposals.py": "d54c537fa68926882cbe8b07b2f13870440ab7af17f77e279b0f0c0a31e2e61d",
+        "generation/prompt.txt": "1c39fb860582a01f120056daace3709eb78dc9d1de0f90cb0f5eb53fe66c3695",
+        "scripts/generate_tasks.py": "3c25bc2d8f762e31f01bd754df2fffe90d02a0a5a33b23142af9c0f463ab25f7",
+        "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+        "tasks/fan_smc_sizing.json": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+        "tasks/fan_smc_nominal.json": "47b2d4907fdf0dd051dea1afb2d9fe617c7055edcba44044a855dbeefa5603d8",
+        "circuits/fan_smc/netlist.spice": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "circuits/fan_smc/reference.params": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "circuits/fan_smc/source.json": "47f0d86631801d5d93e76c50169cc5df12064896a317410f4d5ab75082e82350"
+      },
+      "generation_files_updated_after_run": [
+        "analog_design/task_generation.py",
+        "scripts/generate_tasks.py"
+      ]
+    },
+    {
+      "directory": "fan_smc_retry",
+      "status": "complete",
+      "accepted": 1,
+      "attempts": 1,
+      "requested": 1,
+      "manifest_sha256": "f22417d8325811ba8f6d94db00f366e335731691778dab0eff37c54b71e0e8e4",
+      "error": null,
+      "generator": {
+        "provider": "codex",
+        "model": "gpt-6-astra",
+        "timeout_s": 600.0,
+        "executable": "codex",
+        "reasoning_effort": "medium",
+        "authentication": "saved ChatGPT login",
+        "codex_version": "codex-cli 0.153.4",
+        "transport": "codex_exec"
+      },
+      "rejected": [],
+      "code_and_inputs_sha256": {
+        "analog_design/model_clients.py": "0b69948f7530204a646dc7d0d9076963aa95d87a285e6a42ded0d1cd0916c6ca",
+        "analog_design/codex_client.py": "ca8df54f4d2a522b79c0af093d62843ae27b583ced0ccd9ac3a89086451a40ee",
+        "analog_design/generation_sources.py": "6f6afe8676ddb11b2cc23afea5a1b38953cd12e0792c5d1468768cb5c913531f",
+        "analog_design/task_generation.py": "195e3836c76e0435639a7d87291de8568b54521deb8d1440346b4dea052d90ec",
+        "analog_design/task_proposals.py": "d54c537fa68926882cbe8b07b2f13870440ab7af17f77e279b0f0c0a31e2e61d",
+        "generation/prompt.txt": "1c39fb860582a01f120056daace3709eb78dc9d1de0f90cb0f5eb53fe66c3695",
+        "scripts/generate_tasks.py": "e990217cef7446a4ba9846356daffc84f996ed0c0f6977a3701b45190d574a12",
+        "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+        "tasks/fan_smc_sizing.json": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+        "tasks/fan_smc_nominal.json": "47b2d4907fdf0dd051dea1afb2d9fe617c7055edcba44044a855dbeefa5603d8",
+        "circuits/fan_smc/netlist.spice": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "circuits/fan_smc/reference.params": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "circuits/fan_smc/source.json": "47f0d86631801d5d93e76c50169cc5df12064896a317410f4d5ab75082e82350"
+      },
+      "generation_files_updated_after_run": []
+    }
+  ],
+  "episode_checks_passed": 6,
+  "episode_simulator_invocations": 24,
+  "current_code_sha256": {
+    "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+    "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+    "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+    "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+    "analog_design/task_generation.py": "195e3836c76e0435639a7d87291de8568b54521deb8d1440346b4dea052d90ec",
+    "scripts/generate_tasks.py": "e990217cef7446a4ba9846356daffc84f996ed0c0f6977a3701b45190d574a12",
+    "tests/test_task_generation.py": "92243ee2d86beadfe0762104c86bfe72a7a3bef2cb8d17bd539a2b82e4c23d52"
+  },
+  "training_approved": false,
+  "production_ready": false,
+  "limitations": [
+    "Two fixed circuit structures; task difficulty and training benefit have not been measured.",
+    "All references reuse the existing seed designs; the tasks are pilot sizing exercises.",
+    "AutoCkt paper text was supplied; accepted proposals cite circuit files rather than passages from the paper.",
+    "No paper performance reproduction, frozen evaluation split, or independent training review is claimed.",
+    "Token usage for the two timed-out requests is unavailable."
+  ]
+}

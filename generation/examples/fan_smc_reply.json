@@ -1,0 +1,25 @@
+{
+  "rationale": "Offline test fixture: recover bandwidth from a starting design with excessive compensation capacitance while preserving gain and phase margin.",
+  "initial_parameters": {"CAPACITOR_0": 2e-11, "CURRENT_0_BIAS": 6e-5, "MOSFET_23_1_M_gm3_NMOS": 16},
+  "reference_parameters": {"CAPACITOR_0": 5e-12, "CURRENT_0_BIAS": 6e-5, "MOSFET_23_1_M_gm3_NMOS": 16},
+  "constraints": {
+    "gain_db": {"min": 55},
+    "unity_gain_hz": {"min": 1500000},
+    "phase_margin_deg": {"min": 80},
+    "power_w": {"max": 0.0018},
+    "dc_error_v": {"max": 0.02},
+    "max_tracking_error_v": {"max": 0.02},
+    "settling_rise_s": {"max": 2e-6},
+    "settling_fall_s": {"max": 2e-6}
+  },
+  "source_evidence": [{
+    "source_id": "circuit_source",
+    "quote": "Netlist and reference parameters copied unchanged.",
+    "relevance": "The task uses the published netlist with bounded edits to the supported parameters."
+  }],
+  "assumptions": [
+    "This is a manually authored replay fixture, not an AI-generated research result.",
+    "The stricter requirements are project-selected; they do not reproduce a published measured result.",
+    "The testbench, nominal conditions, and measurement methods remain fixed."
+  ]
+}

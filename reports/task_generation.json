@@ -1,0 +1,278 @@
+{
+  "timestamp_utc": "2026-09-09T00:15:52.132921+00:00",
+  "unit_tests": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "passed": 55,
+    "new_test_files_sha256": {
+      "tests/test_model_clients.py": "c0c810b53a306e76e1247c233aaf4b33820749282bcff0c002ede11831fec875",
+      "tests/test_task_generation.py": "26f9fd2d1f48609bf6ef903f45175d913e9c68aa5e9673567a0fcf07151940e5"
+    }
+  },
+  "live_api_calls_tested": false,
+  "provider_contract_tests": "mocked HTTP responses",
+  "previews_with_pdf_text": {
+    "openai": {
+      "status": "dry_run",
+      "source_count": 4,
+      "directory": "runs/generation_previews/openai"
+    },
+    "gemini": {
+      "status": "dry_run",
+      "source_count": 4,
+      "directory": "runs/generation_previews/gemini"
+    },
+    "deepseek": {
+      "status": "dry_run",
+      "source_count": 4,
+      "directory": "runs/generation_previews/deepseek"
+    },
+    "zai": {
+      "status": "dry_run",
+      "source_count": 4,
+      "directory": "runs/generation_previews/zai"
+    },
+    "local": {
+      "status": "dry_run",
+      "source_count": 4,
+      "directory": "runs/generation_previews/local"
+    }
+  },
+  "simulator_checks": [
+    {
+      "template": "autockt_two_stage",
+      "directory": "runs/generation_final/autockt_two_stage",
+      "task": {
+        "id": "autockt_two_stage_ai_d6115727322081bea37d",
+        "path": "tasks/autockt_two_stage_ai_d6115727322081bea37d.json",
+        "sha256": "13c4bf8374d2f2073b4afe1a88aaf76794a2da61ecb4c32beb14f16bd3d188d7",
+        "fingerprint": "d6115727322081bea37dbb1281a78cc1ad2f4a45c6df0d44708195f278526e1a",
+        "requirement_group": "dfb0077c47d6d07f24bc42aa60dd99b1bfc2aa82f63c7bd7f8b8c5fef4e39789",
+        "attempt": 1,
+        "initial_parameters": {
+          "CCOMP": 1e-11,
+          "IBIAS": 3e-05,
+          "W_GM": 80
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 60
+          },
+          "unity_gain_hz": {
+            "min": 1500000
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.0006
+          },
+          "dc_error_v": {
+            "max": 0.002
+          },
+          "max_tracking_error_v": {
+            "max": 0.002
+          },
+          "settling_rise_s": {
+            "max": 2e-06
+          },
+          "settling_fall_s": {
+            "max": 2e-06
+          }
+        }
+      },
+      "manifest_sha256": "94c377e01cb02a5b8e525ca44d60e468c88df77fce26f4a1c07ae14a75f5deb6",
+      "reference": {
+        "status": "ok",
+        "success": true,
+        "metrics": {
+          "output_dc_v": 0.8995838265396,
+          "dc_error_v": 0.00041617346040001557,
+          "supply_current_a": 0.000234917704792,
+          "power_w": 0.0004228518686256,
+          "gain_db": 78.41666559488,
+          "unity_gain_hz": 2804238.4716260233,
+          "phase_margin_deg": 64.96473081013983,
+          "settling_rise_s": 1.424999999999999e-07,
+          "settling_fall_s": 1.3249999999999577e-07,
+          "max_tracking_error_v": 0.0004931565235000157,
+          "output_min_v": 0.8386715618824,
+          "output_max_v": 0.9621554715769
+        },
+        "checks": {
+          "gain_db": true,
+          "unity_gain_hz": true,
+          "phase_margin_deg": true,
+          "power_w": true,
+          "dc_error_v": true,
+          "max_tracking_error_v": true,
+          "settling_rise_s": true,
+          "settling_fall_s": true
+        }
+      },
+      "initial": {
+        "status": "ok",
+        "success": false,
+        "metrics": {
+          "output_dc_v": 0.8995838265396,
+          "dc_error_v": 0.00041617346040001557,
+          "supply_current_a": 0.000234917704792,
+          "power_w": 0.0004228518686256,
+          "gain_db": 78.41666589946,
+          "unity_gain_hz": 5418889.993185813,
+          "phase_margin_deg": 57.09695331317029,
+          "settling_rise_s": 1.074999999999994e-07,
+          "settling_fall_s": 1.2249999999999756e-07,
+          "max_tracking_error_v": 0.0004931565235999358,
+          "output_min_v": 0.839941365958,
+          "output_max_v": 0.9566149870276
+        },
+        "checks": {
+          "gain_db": true,
+          "unity_gain_hz": true,
+          "phase_margin_deg": false,
+          "power_w": true,
+          "dc_error_v": true,
+          "max_tracking_error_v": true,
+          "settling_rise_s": true,
+          "settling_fall_s": true
+        }
+      },
+      "code_and_inputs_sha256": {
+        "analog_design/model_clients.py": "0b69948f7530204a646dc7d0d9076963aa95d87a285e6a42ded0d1cd0916c6ca",
+        "analog_design/generation_sources.py": "6f6afe8676ddb11b2cc23afea5a1b38953cd12e0792c5d1468768cb5c913531f",
+        "analog_design/task_generation.py": "78983c82a8f32221f7e9980e41eb9a73e7cdc4f1a566d93e81575c38971d694f",
+        "analog_design/task_proposals.py": "d54c537fa68926882cbe8b07b2f13870440ab7af17f77e279b0f0c0a31e2e61d",
+        "generation/prompt.txt": "1c39fb860582a01f120056daace3709eb78dc9d1de0f90cb0f5eb53fe66c3695",
+        "scripts/generate_tasks.py": "9e5018ce7824b6d3fb859e0b4a815e9c5dc1f3501d1e0e84b410db9236911c44",
+        "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+        "tasks/autockt_two_stage_sizing.json": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+        "tasks/autockt_two_stage_nominal.json": "99286b6f35baee978cadc6c54851ac6fd26d0c715b05e3f970f2e65d40864351",
+        "circuits/autockt_two_stage/netlist.spice": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "circuits/autockt_two_stage/reference.params": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "circuits/autockt_two_stage/source.json": "7aa25a19a7368084de4a69713a075c68be976e644b59aa52a02e6378b0097151"
+      }
+    },
+    {
+      "template": "fan_smc",
+      "directory": "runs/generation_final/fan_smc",
+      "task": {
+        "id": "fan_smc_ai_2b8535ea18d24ea93433",
+        "path": "tasks/fan_smc_ai_2b8535ea18d24ea93433.json",
+        "sha256": "3d77ad658d4ea7be4de1e4a52e2609950144644663a606d94df998584fc534f4",
+        "fingerprint": "2b8535ea18d24ea934333e0a2bc9fd0a2eb62602a9537bf82d2931f7bcc709f9",
+        "requirement_group": "8e712c64ae34d5d3ee919e3f3faf28989cb9584798f7cbd14d181e2894f9b986",
+        "attempt": 1,
+        "initial_parameters": {
+          "CAPACITOR_0": 2e-11,
+          "CURRENT_0_BIAS": 6e-05,
+          "MOSFET_23_1_M_gm3_NMOS": 16
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 55
+          },
+          "unity_gain_hz": {
+            "min": 1500000
+          },
+          "phase_margin_deg": {
+            "min": 80
+          },
+          "power_w": {
+            "max": 0.0018
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 2e-06
+          },
+          "settling_fall_s": {
+            "max": 2e-06
+          }
+        }
+      },
+      "manifest_sha256": "a182bd5d41f8be1d38f07b8d12d4564b139e8a24f101bac560c97de3f2221b35",
+      "reference": {
+        "status": "ok",
+        "success": true,
+        "metrics": {
+          "output_dc_v": 0.2891614774344,
+          "dc_error_v": 0.010838522565599973,
+          "supply_current_a": 0.0008188196273797,
+          "power_w": 0.00147387532928346,
+          "gain_db": 58.80007207749,
+          "unity_gain_hz": 2675322.2769059944,
+          "phase_margin_deg": 89.21259559337052,
+          "settling_rise_s": 2.9749999999999927e-07,
+          "settling_fall_s": 1.2249999999999756e-07,
+          "max_tracking_error_v": 0.014826166450999989,
+          "output_min_v": 0.2891328335096,
+          "output_max_v": 0.4851753272458
+        },
+        "checks": {
+          "gain_db": true,
+          "unity_gain_hz": true,
+          "phase_margin_deg": true,
+          "power_w": true,
+          "dc_error_v": true,
+          "max_tracking_error_v": true,
+          "settling_rise_s": true,
+          "settling_fall_s": true
+        }
+      },
+      "initial": {
+        "status": "ok",
+        "success": false,
+        "metrics": {
+          "output_dc_v": 0.2891614774344,
+          "dc_error_v": 0.010838522565599973,
+          "supply_current_a": 0.0008188196273797,
+          "power_w": 0.00147387532928346,
+          "gain_db": 58.80007200858,
+          "unity_gain_hz": 669324.9753674505,
+          "phase_margin_deg": 89.77078028238417,
+          "settling_rise_s": 1.1724999999999994e-06,
+          "settling_fall_s": 4.724999999999959e-07,
+          "max_tracking_error_v": 0.014826166450900014,
+          "output_min_v": 0.2891081708136,
+          "output_max_v": 0.4851884483744
+        },
+        "checks": {
+          "gain_db": true,
+          "unity_gain_hz": false,
+          "phase_margin_deg": true,
+          "power_w": true,
+          "dc_error_v": true,
+          "max_tracking_error_v": true,
+          "settling_rise_s": true,
+          "settling_fall_s": true
+        }
+      },
+      "code_and_inputs_sha256": {
+        "analog_design/model_clients.py": "0b69948f7530204a646dc7d0d9076963aa95d87a285e6a42ded0d1cd0916c6ca",
+        "analog_design/generation_sources.py": "6f6afe8676ddb11b2cc23afea5a1b38953cd12e0792c5d1468768cb5c913531f",
+        "analog_design/task_generation.py": "78983c82a8f32221f7e9980e41eb9a73e7cdc4f1a566d93e81575c38971d694f",
+        "analog_design/task_proposals.py": "d54c537fa68926882cbe8b07b2f13870440ab7af17f77e279b0f0c0a31e2e61d",
+        "generation/prompt.txt": "1c39fb860582a01f120056daace3709eb78dc9d1de0f90cb0f5eb53fe66c3695",
+        "scripts/generate_tasks.py": "9e5018ce7824b6d3fb859e0b4a815e9c5dc1f3501d1e0e84b410db9236911c44",
+        "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+        "tasks/fan_smc_sizing.json": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+        "tasks/fan_smc_nominal.json": "47b2d4907fdf0dd051dea1afb2d9fe617c7055edcba44044a855dbeefa5603d8",
+        "circuits/fan_smc/netlist.spice": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "circuits/fan_smc/reference.params": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "circuits/fan_smc/source.json": "47f0d86631801d5d93e76c50169cc5df12064896a317410f4d5ab75082e82350"
+      }
+    }
+  ],
+  "training_approved": false,
+  "production_ready": false
+}

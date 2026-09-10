@@ -1,0 +1,79 @@
+{
+  "id": "autockt_two_stage_ai_25dc76754631cb20fde9",
+  "purpose": "Adjust the permitted circuit parameters to meet every listed simulation requirement.",
+  "circuit_directory": "circuits/autockt_two_stage",
+  "subcircuit": "autockt_two_stage",
+  "conditions": {
+    "corner": "tt",
+    "supply_v": 1.8,
+    "temperature_c": 27,
+    "common_mode_v": 0.9,
+    "load_f": 1e-11
+  },
+  "initial_parameters": {
+    "CCOMP": 2e-11,
+    "IBIAS": 3e-05,
+    "W_GM": 60
+  },
+  "parameters": {
+    "CCOMP": {
+      "min": 1e-12,
+      "max": 2e-11,
+      "unit": "F"
+    },
+    "IBIAS": {
+      "min": 1e-05,
+      "max": 0.0001,
+      "unit": "A"
+    },
+    "W_GM": {
+      "min": 10,
+      "max": 100,
+      "unit": "um"
+    }
+  },
+  "ac": {
+    "points_per_decade": 100,
+    "start_hz": 0.1,
+    "stop_hz": 1000000000
+  },
+  "transient": {
+    "low_v": 0.85,
+    "high_v": 0.95,
+    "rise_start_s": 5e-06,
+    "edge_s": 1e-08,
+    "high_duration_s": 2e-05,
+    "period_s": 6e-05,
+    "stop_s": 5e-05,
+    "max_step_s": 5e-09,
+    "settling_tolerance_v": 0.002,
+    "minimum_hold_s": 2e-06
+  },
+  "constraints": {
+    "gain_db": {
+      "min": 50
+    },
+    "unity_gain_hz": {
+      "min": 1000000
+    },
+    "phase_margin_deg": {
+      "min": 60
+    },
+    "power_w": {
+      "max": 0.001
+    },
+    "dc_error_v": {
+      "max": 0.0006
+    },
+    "max_tracking_error_v": {
+      "max": 0.002
+    },
+    "settling_rise_s": {
+      "max": 2e-06
+    },
+    "settling_fall_s": {
+      "max": 2e-06
+    }
+  },
+  "max_evaluations": 30
+}

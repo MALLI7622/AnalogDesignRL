@@ -1,0 +1,6 @@
+# Compatibility anchors, not a fully resolved lock. bootstrap.sh saves pip freeze.
+# APIs inspected at Tunix tag v0.1.7, commit ce63a9fd65f02c4c398e74f000f98371c1575eb6.
+google-tunix[prod]==0.1.7
+qwix==0.1.6
+transformers==4.57.1
+safetensors<0.8

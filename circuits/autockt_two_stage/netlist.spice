@@ -1,0 +1,15 @@
+* Manual reconstruction of AutoCkt (arXiv:2001.01808v2), Figure 6.
+* Port order chosen to match the project's common amplifier interface.
+* Adapted to SKY130 1.8 V devices; dimensions are project choices.
+.subckt autockt_two_stage gnda vdda vinn vinp vout
+Iref vdda bias 'IBIAS'
+Xmir bias bias gnda gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_MIR'
+Xtail tail bias gnda gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_TAIL'
+Xin_left mirror vinn tail gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_IN'
+Xin_right stage1 vinp tail gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_IN'
+Xload_left mirror mirror vdda vdda sky130_fd_pr__pfet_01v8 l='L_DEVICE' w='W_LOAD'
+Xload_right stage1 mirror vdda vdda sky130_fd_pr__pfet_01v8 l='L_DEVICE' w='W_LOAD'
+Xgm vout stage1 vdda vdda sky130_fd_pr__pfet_01v8 l='L_DEVICE' w='W_GM'
+Xload2 vout bias gnda gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_LOAD2'
+Cc stage1 vout 'CCOMP'
+.ends autockt_two_stage

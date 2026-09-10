@@ -1,0 +1,100 @@
+{
+  "task_id": "autockt_two_stage_ai_be3ba7a2a09ba7b53a12",
+  "max_evaluations": 30,
+  "evaluations_used": 2,
+  "simulator_invocations": 4,
+  "success": true,
+  "done": true,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": {},
+      "run_directory": "evaluation_001",
+      "task_id": "autockt_two_stage_ai_be3ba7a2a09ba7b53a12",
+      "status": "ok",
+      "success": false,
+      "reward": -0.009175113054250018,
+      "metrics": {
+        "output_dc_v": 0.8994739900946,
+        "dc_error_v": 0.0005260099053999712,
+        "supply_current_a": 0.0002683502261085,
+        "power_w": 0.00048303040699530005,
+        "gain_db": 77.28508965287,
+        "unity_gain_hz": 2961847.902697686,
+        "phase_margin_deg": 65.51902181415409,
+        "settling_rise_s": 1.3749999999999995e-07,
+        "settling_fall_s": 1.2749999999999836e-07,
+        "max_tracking_error_v": 0.0006084412510999337,
+        "output_min_v": 0.8386519288276,
+        "output_max_v": 0.9614995932915
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": false,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 1.0045813750002708,
+      "parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3.5e-05,
+        "W_GM": 80
+      },
+      "evaluations_remaining": 29,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "evaluation": 2,
+      "action": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "run_directory": "evaluation_002",
+      "task_id": "autockt_two_stage_ai_be3ba7a2a09ba7b53a12",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8995838265396,
+        "dc_error_v": 0.00041617346040001557,
+        "supply_current_a": 0.000234917704792,
+        "power_w": 0.0004228518686256,
+        "gain_db": 78.41666559488,
+        "unity_gain_hz": 2804238.4716260233,
+        "phase_margin_deg": 64.96473081013983,
+        "settling_rise_s": 1.424999999999999e-07,
+        "settling_fall_s": 1.3249999999999577e-07,
+        "max_tracking_error_v": 0.0004931565235000157,
+        "output_min_v": 0.8386715618824,
+        "output_max_v": 0.9621554715769
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 0.9849127500019677,
+      "parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "evaluations_remaining": 28,
+      "terminated": true,
+      "truncated": false
+    }
+  ]
+}

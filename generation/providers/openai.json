@@ -1,0 +1,10 @@
+{
+  "provider": "openai",
+  "model": "gpt-6-astra",
+  "api_key_env": "OPENAI_API_KEY",
+  "json_mode": "schema",
+  "max_output_tokens": 8192,
+  "timeout_s": 120,
+  "retries": 2,
+  "options": {}
+}

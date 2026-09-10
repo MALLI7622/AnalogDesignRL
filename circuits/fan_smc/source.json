@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/CODA-Team/AnalogGym",
+  "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+  "circuit": "Fan_SMC_Pin_3",
+  "files": {
+    "netlist.spice": {
+      "upstream_path": "AnalogGym/Amplifier/spice_netlist/Fan_SMC_Pin_3",
+      "sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec"
+    },
+    "reference.params": {
+      "upstream_path": "AnalogGym/Amplifier/design_variables/Fan_SMC_Pin_3",
+      "sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247"
+    },
+    "schematic.png": {
+      "upstream_path": "AnalogGym/Amplifier/schematic/Fan_SMC_Pin_3.png",
+      "sha256": "5e286bcdab3562ae17e1b80d243a1a266a3f1aa355b6ec586e2f0bedecc5bd48"
+    }
+  },
+  "adaptations": [
+    "Netlist and reference parameters copied unchanged.",
+    "Testbench is project-authored; conditions use CLOAD=10p and VCM=300m from the circuit parameter file, 1.8 V supply, 27 C and TT models."
+  ],
+  "limitations": [
+    "Repository schematic was visually inspected; full independent connection-by-connection schematic audit remains pending.",
+    "This reproduces the public netlist, not the original 2005 chip or every AnalogGym benchmark metric."
+  ]
+}

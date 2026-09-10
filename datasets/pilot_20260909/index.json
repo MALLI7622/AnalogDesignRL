@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "collection": "pilot_20260909",
+  "created_utc": "2026-09-09T17:42:46.350229+00:00",
+  "status": "complete",
+  "model": "gpt-6-astra",
+  "task_count": 6,
+  "topology_count": 2,
+  "requirement_group_count": 5,
+  "simulation_and_episode_checks_passed": 6,
+  "training_approved": false,
+  "split_status": "unassigned",
+  "tasks": [
+    {
+      "id": "autockt_two_stage_ai_be3ba7a2a09ba7b53a12",
+      "template": "autockt_two_stage",
+      "path": "tasks/autockt_two_stage_ai_be3ba7a2a09ba7b53a12.json",
+      "sha256": "1040a464552ab5e6befeacf9ea69368137b57e04e613b74108c0e3f17416ef51",
+      "requirement_group": "4c7136ee0615a15454252cf68d53c7d7c7ccde743711cb293d8bf8fb6081d610",
+      "source_batch": "autockt_two_stage",
+      "source_attempt": 2,
+      "episode_check": "episode_checks/autockt_two_stage_ai_be3ba7a2a09ba7b53a12/episode.json",
+      "episode_check_sha256": "a507fbe1f4d9b0d12a92f55cac7b9828ba0f65ba23c98fcf70bf05c1b2c81211",
+      "initial_failed_requirements": [
+        "power_w"
+      ],
+      "initial_reward": -0.009175113054250018,
+      "reference_reward": 1.0,
+      "initial_parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3.5e-05,
+        "W_GM": 80
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 50
+        },
+        "unity_gain_hz": {
+          "min": 1000000
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "power_w": {
+          "max": 0.00045
+        },
+        "dc_error_v": {
+          "max": 0.002
+        },
+        "max_tracking_error_v": {
+          "max": 0.002
+        },
+        "settling_rise_s": {
+          "max": 2e-06
+        },
+        "settling_fall_s": {
+          "max": 2e-06
+        }
+      },
+      "initial_metrics": {
+        "output_dc_v": 0.8994739900946,
+        "dc_error_v": 0.0005260099053999712,
+        "supply_current_a": 0.0002683502261085,
+        "power_w": 0.00048303040699530005,
+        "gain_db": 77.28508965287,
+        "unity_gain_hz": 2961847.902697686,
+        "phase_margin_deg": 65.51902181415409,
+        "settling_rise_s": 1.3749999999999995e-07,
+        "settling_fall_s": 1.2749999999999836e-07,
+        "max_tracking_error_v": 0.0006084412510999337,
+        "output_min_v": 0.8386519288276,
+        "output_max_v": 0.9614995932915
+      },
+      "sources": [
+        "source.json",
+        "netlist.spice",
+        "reference.params",
+        "AutoCkt-2001.01808v2.pdf"
+      ],
+      "cited_source_ids": [
+        "circuit_netlist",
+        "circuit_netlist",
+        "circuit_parameters",
+        "circuit_source"
+      ]
+    },
+    {
+      "id": "autockt_two_stage_ai_08d66fb05268aa47aa94",
+      "template": "autockt_two_stage",
+      "path": "tasks/autockt_two_stage_ai_08d66fb05268aa47aa94.json",
+      "sha256": "64fe8ebd21ab0b5ddfaa245577f6d0840c79e735abbf2dbc878ab4c571e9803d",
+      "requirement_group": "cd42dbce91f718fa020ceb70eb26801d5307cd241496885f8f84e0e31cea8669",
+      "source_batch": "autockt_two_stage",
+      "source_attempt": 4,
+      "episode_check": "episode_checks/autockt_two_stage_ai_08d66fb05268aa47aa94/episode.json",
+      "episode_check_sha256": "f3187150ddbc1b6fc94da9675e7432644f6d4b73a5a2526821062a09208ebba7",
+      "initial_failed_requirements": [
+        "power_w"
+      ],
+      "initial_reward": -0.01032984977810501,
+      "reference_reward": 1.0,
+      "initial_parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 4e-05,
+        "W_GM": 80
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 50
+        },
+        "unity_gain_hz": {
+          "min": 1000000
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "power_w": {
+          "max": 0.0005
+        },
+        "dc_error_v": {
+          "max": 0.002
+        },
+        "max_tracking_error_v": {
+          "max": 0.002
+        },
+        "settling_rise_s": {
+          "max": 2e-06
+        },
+        "settling_fall_s": {
+          "max": 2e-06
+        }
+      },
+      "initial_metrics": {
+        "output_dc_v": 0.8993509444685,
+        "dc_error_v": 0.0006490555315000757,
+        "supply_current_a": 0.0003007329995069,
+        "power_w": 0.00054131939911242,
+        "gain_db": 76.20597885875,
+        "unity_gain_hz": 3088611.602978648,
+        "phase_margin_deg": 66.07531586873947,
+        "settling_rise_s": 1.325e-07,
+        "settling_fall_s": 1.2749999999999836e-07,
+        "max_tracking_error_v": 0.0007299985422000166,
+        "output_min_v": 0.8387410933961,
+        "output_max_v": 0.9611629694779
+      },
+      "sources": [
+        "source.json",
+        "netlist.spice",
+        "reference.params",
+        "AutoCkt-2001.01808v2.pdf"
+      ],
+      "cited_source_ids": [
+        "circuit_netlist",
+        "circuit_netlist",
+        "circuit_parameters",
+        "circuit_source"
+      ]
+    },
+    {
+      "id": "autockt_two_stage_ai_25dc76754631cb20fde9",
+      "template": "autockt_two_stage",
+      "path": "tasks/autockt_two_stage_ai_25dc76754631cb20fde9.json",
+      "sha256": "a081b9e1cb14e752b920fffcc007e9bc41928ed7c97d2739c8dfa1131fb36a87",
+      "requirement_group": "a8e12dc219c0a150c375ae04ed13b936d9ab55c3f36db73e9ee03aa9f2a4146a",
+      "source_batch": "autockt_two_stage_retry",
+      "source_attempt": 2,
+      "episode_check": "episode_checks/autockt_two_stage_ai_25dc76754631cb20fde9/episode.json",
+      "episode_check_sha256": "b649a11b432534d7677b2396fc082e638a8856510a452a9a716ade48d5ba32a8",
+      "initial_failed_requirements": [
+        "dc_error_v"
+      ],
+      "initial_reward": -0.05450775272917997,
+      "reference_reward": 1.0,
+      "initial_parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 60
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 50
+        },
+        "unity_gain_hz": {
+          "min": 1000000
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "power_w": {
+          "max": 0.001
+        },
+        "dc_error_v": {
+          "max": 0.0006
+        },
+        "max_tracking_error_v": {
+          "max": 0.002
+        },
+        "settling_rise_s": {
+          "max": 2e-06
+        },
+        "settling_fall_s": {
+          "max": 2e-06
+        }
+      },
+      "initial_metrics": {
+        "output_dc_v": 0.8991383627869,
+        "dc_error_v": 0.0008616372131000638,
+        "supply_current_a": 0.0002348666386563,
+        "power_w": 0.00042275994958134,
+        "gain_db": 76.34032553097,
+        "unity_gain_hz": 2816453.613244941,
+        "phase_margin_deg": 61.70150460302189,
+        "settling_rise_s": 1.325e-07,
+        "settling_fall_s": 1.6749999999999797e-07,
+        "max_tracking_error_v": 0.0008996146747999312,
+        "output_min_v": 0.8362839330362,
+        "output_max_v": 0.9640282731337
+      },
+      "sources": [
+        "source.json",
+        "netlist.spice",
+        "reference.params",
+        "AutoCkt-2001.01808v2.pdf"
+      ],
+      "cited_source_ids": [
+        "circuit_netlist",
+        "circuit_netlist",
+        "circuit_parameters",
+        "circuit_source"
+      ]
+    },
+    {
+      "id": "fan_smc_ai_61388fb8190db374fd0d",
+      "template": "fan_smc",
+      "path": "tasks/fan_smc_ai_61388fb8190db374fd0d.json",
+      "sha256": "e51b794ff7a18577969fce281922ea4246a771349adb699699ff7e35c6c208e9",
+      "requirement_group": "33d890ba91e8e6aa89b9bfba2405198c7616e48a9b88d7847a817f3d729d1fa5",
+      "source_batch": "fan_smc",
+      "source_attempt": 1,
+      "episode_check": "episode_checks/fan_smc_ai_61388fb8190db374fd0d/episode.json",
+      "episode_check_sha256": "97ffb2cd5bcf5d049591d9a0bb26eb75f8a6621904bec4bab641231a5d0660ca",
+      "initial_failed_requirements": [
+        "unity_gain_hz"
+      ],
+      "initial_reward": -0.04133437807906869,
+      "reference_reward": 1.0,
+      "initial_parameters": {
+        "CAPACITOR_0": 2e-11,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 50
+        },
+        "unity_gain_hz": {
+          "min": 1000000
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "power_w": {
+          "max": 0.002
+        },
+        "dc_error_v": {
+          "max": 0.02
+        },
+        "max_tracking_error_v": {
+          "max": 0.02
+        },
+        "settling_rise_s": {
+          "max": 2e-06
+        },
+        "settling_fall_s": {
+          "max": 2e-06
+        }
+      },
+      "initial_metrics": {
+        "output_dc_v": 0.2891614774344,
+        "dc_error_v": 0.010838522565599973,
+        "supply_current_a": 0.0008188196273797,
+        "power_w": 0.00147387532928346,
+        "gain_db": 58.80007200858,
+        "unity_gain_hz": 669324.9753674505,
+        "phase_margin_deg": 89.77078028238417,
+        "settling_rise_s": 1.1724999999999994e-06,
+        "settling_fall_s": 4.724999999999959e-07,
+        "max_tracking_error_v": 0.014826166450900014,
+        "output_min_v": 0.2891081708136,
+        "output_max_v": 0.4851884483744
+      },
+      "sources": [
+        "source.json",
+        "netlist.spice",
+        "reference.params"
+      ],
+      "cited_source_ids": [
+        "circuit_netlist",
+        "circuit_parameters",
+        "circuit_parameters",
+        "circuit_source"
+      ]
+    },
+    {
+      "id": "fan_smc_ai_16e3eda1f2026fda020f",
+      "template": "fan_smc",
+      "path": "tasks/fan_smc_ai_16e3eda1f2026fda020f.json",
+      "sha256": "d36b1fcbf5f766ee533a5909d4de24c6e41b205665ea94c6aaf1d154d538dbfa",
+      "requirement_group": "33d890ba91e8e6aa89b9bfba2405198c7616e48a9b88d7847a817f3d729d1fa5",
+      "source_batch": "fan_smc",
+      "source_attempt": 2,
+      "episode_check": "episode_checks/fan_smc_ai_16e3eda1f2026fda020f/episode.json",
+      "episode_check_sha256": "405dfc60952c3890f396c83fdd30577f3464d02e1f97e71b9308f8bc377a04f7",
+      "initial_failed_requirements": [
+        "unity_gain_hz"
+      ],
+      "initial_reward": -0.03288736930603345,
+      "reference_reward": 1.0,
+      "initial_parameters": {
+        "CAPACITOR_0": 1.8e-11,
+        "CURRENT_0_BIAS": 3e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 50
+        },
+        "unity_gain_hz": {
+          "min": 1000000
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "power_w": {
+          "max": 0.002
+        },
+        "dc_error_v": {
+          "max": 0.02
+        },
+        "max_tracking_error_v": {
+          "max": 0.02
+        },
+        "settling_rise_s": {
+          "max": 2e-06
+        },
+        "settling_fall_s": {
+          "max": 2e-06
+        }
+      },
+      "initial_metrics": {
+        "output_dc_v": 0.2975821685127,
+        "dc_error_v": 0.002417831487300015,
+        "supply_current_a": 0.0004204771406452,
+        "power_w": 0.00075685885316136,
+        "gain_db": 90.21681482606,
+        "unity_gain_hz": 736901.0455517324,
+        "phase_margin_deg": 89.70179599398433,
+        "settling_rise_s": 7.274999999999994e-07,
+        "settling_fall_s": 5.074999999999981e-07,
+        "max_tracking_error_v": 0.003173414518099993,
+        "output_min_v": 0.2975171816922,
+        "output_max_v": 0.4968496197057
+      },
+      "sources": [
+        "source.json",
+        "netlist.spice",
+        "reference.params"
+      ],
+      "cited_source_ids": [
+        "circuit_netlist",
+        "circuit_netlist",
+        "circuit_parameters",
+        "circuit_source"
+      ]
+    },
+    {
+      "id": "fan_smc_ai_31ebf548f07da8f454ae",
+      "template": "fan_smc",
+      "path": "tasks/fan_smc_ai_31ebf548f07da8f454ae.json",
+      "sha256": "f178d90a104080d8a4ef785f39d6519a23a0d41d587b987a22c3096a738cbefd",
+      "requirement_group": "0770b9a17b313a5905f23464444a0163ef5ee60ef8d8a84e4c426704e503401c",
+      "source_batch": "fan_smc_retry",
+      "source_attempt": 1,
+      "episode_check": "episode_checks/fan_smc_ai_31ebf548f07da8f454ae/episode.json",
+      "episode_check_sha256": "11cd3237bd10fa586f09fc491b26b8781e10a1718de486f88ccd349d9b11eafe",
+      "initial_failed_requirements": [
+        "unity_gain_hz"
+      ],
+      "initial_reward": -0.044882924213238376,
+      "reference_reward": 1.0,
+      "initial_parameters": {
+        "CAPACITOR_0": 1.9e-11,
+        "CURRENT_0_BIAS": 4e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 50
+        },
+        "unity_gain_hz": {
+          "min": 1100000
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "power_w": {
+          "max": 0.002
+        },
+        "dc_error_v": {
+          "max": 0.02
+        },
+        "max_tracking_error_v": {
+          "max": 0.02
+        },
+        "settling_rise_s": {
+          "max": 2e-06
+        },
+        "settling_fall_s": {
+          "max": 2e-06
+        }
+      },
+      "initial_metrics": {
+        "output_dc_v": 0.2961417488566,
+        "dc_error_v": 0.0038582511433999933,
+        "supply_current_a": 0.0005539654399218,
+        "power_w": 0.00099713779185924,
+        "gain_db": 79.91213834627,
+        "unity_gain_hz": 705030.2669235023,
+        "phase_margin_deg": 89.72761982953362,
+        "settling_rise_s": 7.974999999999996e-07,
+        "settling_fall_s": 5.174999999999963e-07,
+        "max_tracking_error_v": 0.00501791220629999,
+        "output_min_v": 0.2960945109027,
+        "output_max_v": 0.4950020821124
+      },
+      "sources": [
+        "source.json",
+        "netlist.spice",
+        "reference.params"
+      ],
+      "cited_source_ids": [
+        "circuit_netlist",
+        "circuit_netlist",
+        "circuit_parameters",
+        "circuit_source"
+      ]
+    }
+  ]
+}

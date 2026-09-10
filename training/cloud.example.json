@@ -1,0 +1,12 @@
+{
+  "project": "YOUR_TPU_BUILDERS_PROJECT",
+  "zone": "YOUR_ALLOCATED_ZONE",
+  "region": "YOUR_BUCKET_REGION",
+  "instance": "analog-rl-dev",
+  "machine_type": "ct6e-standard-1t",
+  "image_project": "ubuntu-os-accelerator-images",
+  "image_family": "ubuntu-accel-2204-amd64-tpu-v5e-v5p-v6e",
+  "boot_disk_gb": 200,
+  "bucket": "YOUR_UNIQUE_PRIVATE_BUCKET",
+  "service_account": "YOUR_TPU_SERVICE_ACCOUNT_EMAIL"
+}

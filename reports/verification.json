@@ -1,0 +1,3726 @@
+{
+  "timestamp_utc": "2026-09-08T23:47:01.860785+00:00",
+  "raw_directory": "/Users/cheriearjun/Documents/AnalogDesignRL/runs/verification_final",
+  "automated_checks_passed": true,
+  "checks": {
+    "unit_tests": true,
+    "analytic_fixtures": true,
+    "author_fixture_outcomes": true,
+    "released_deck_preserved": true,
+    "numerical_convergence": true,
+    "existing_pilot_regression": true,
+    "boundary_disagreement_handling": true,
+    "prior_passing_solutions": true
+  },
+  "training_ready": false,
+  "production_ready": false,
+  "remaining_reviews": [
+    "Independent analog-engineer review of circuit and testbench semantics",
+    "Qualified operating envelope and supported device-model limits",
+    "Agent/evaluator isolation and held-out task protocol"
+  ],
+  "code_sha256": {
+    "analog_design/author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+    "analog_design/crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+    "analog_design/metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+    "analog_design/simulator.py": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+    "analog_design/verification.py": "5f21ba89637428e178963f9be633b603a4cfb0a97882ab5c1eab777c99388b9b",
+    "analog_design/episode.py": "2a457038edf249d3951c12f68d594ca27839a8a0cb48f80c8e97865c92551718",
+    "analog_design/qualification.py": "3e9b16750f48c704bdd57e7332f3c0e30b6025f767006c6660aeb4515385d51b",
+    "dependencies.lock.json": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a",
+    "verification/autockt_cases.json": "f99ee9f4741ec9f3213541d151ce0225488b1fa5c479bed0e964a9053c7e3129",
+    "verification/qualification.json": "cda37957470fc8d4abc095ca7d32144fc39ea0698e653dd73171ddfc91001222",
+    "scripts/verify.py": "7d2f47886e0c1d45da2357155eeebc8fffa6ca9785c4e306a92264ed3d3905dc",
+    "tests/test_crosscheck.py": "4cb56e6288862e8b3b54012f28c90746f3f9cd759b2cc8b69e5243aa049eeb29",
+    "tests/test_evaluator.py": "b3f59c6ad097e3711b188b93489a0a6309939195cb053a7e7945cd1b6bbae903",
+    "tests/test_episode.py": "c18f03c3f7582bcddb6f500ffe75d22d3ced94c1720774b69bbc3352c2299f74",
+    "reports/baseline.json": "2ab601cec968dd14313d4d9b6ca122e41ca2fdca09fb90be1a5581a36a45aef5"
+  },
+  "analytic_fixtures": [
+    {
+      "id": "analytic_one_pole",
+      "poles_hz": [
+        1000.0
+      ],
+      "metrics": {
+        "gain_db": 59.999995657057354,
+        "unity_gain_hz": 999999.4999998629,
+        "phase_margin_deg": 90.05729578939474
+      },
+      "theoretical": {
+        "gain_db": 59.999995657057354,
+        "unity_gain_hz": 999999.499999875,
+        "phase_margin_deg": 90.05729578906238
+      },
+      "native_comparison": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 59.999995657057354,
+            "independent": 60.0,
+            "absolute_difference": 4.342942645507719e-06,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 999999.4999998629,
+            "independent": 1000000.0,
+            "absolute_difference": 0.5000001371372491,
+            "tolerance": 2001.0,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 90.05729578939474,
+            "independent": 90.0573,
+            "absolute_difference": 4.2106052546841966e-06,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "theory_comparison": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 59.999995657057354,
+            "independent": 59.999995657057354,
+            "absolute_difference": 0.0,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 999999.4999998629,
+            "independent": 999999.499999875,
+            "absolute_difference": 1.210719347000122e-08,
+            "tolerance": 2000.99899999975,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 90.05729578939474,
+            "independent": 90.05729578906238,
+            "absolute_difference": 3.3236347007914446e-10,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "success": true,
+      "expected_success": true,
+      "audit_passed": true
+    },
+    {
+      "id": "analytic_two_poles",
+      "poles_hz": [
+        1000.0,
+        10000000.0
+      ],
+      "metrics": {
+        "gain_db": 59.99999565705731,
+        "unity_gain_hz": 995084.1481050599,
+        "phase_margin_deg": 84.3746306955019
+      },
+      "theoretical": {
+        "gain_db": 59.99999565705731,
+        "unity_gain_hz": 995084.9941776384,
+        "phase_margin_deg": 84.37486906547909
+      },
+      "native_comparison": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 59.99999565705731,
+            "independent": 60.0,
+            "absolute_difference": 4.342942688140283e-06,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 995084.1481050599,
+            "independent": 995173.0,
+            "absolute_difference": 88.8518949401332,
+            "tolerance": 1991.346,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 84.3746306955019,
+            "independent": 84.3744,
+            "absolute_difference": 0.00023069550191223698,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "theory_comparison": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 59.99999565705731,
+            "independent": 59.99999565705731,
+            "absolute_difference": 0.0,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 995084.1481050599,
+            "independent": 995084.9941776384,
+            "absolute_difference": 0.8460725785698742,
+            "tolerance": 1991.169988355277,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 84.3746306955019,
+            "independent": 84.37486906547909,
+            "absolute_difference": 0.00023836997718262865,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "success": true,
+      "expected_success": true,
+      "audit_passed": true
+    },
+    {
+      "id": "analytic_unstable_three_poles",
+      "poles_hz": [
+        1000.0,
+        1000.0,
+        1000.0
+      ],
+      "metrics": {
+        "gain_db": 59.99998697117206,
+        "unity_gain_hz": 9949.865292539556,
+        "phase_margin_deg": -72.78171172167109
+      },
+      "theoretical": {
+        "gain_db": 59.999986971172056,
+        "unity_gain_hz": 9949.8743710662,
+        "phase_margin_deg": -72.78248856819965
+      },
+      "native_comparison": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 59.99998697117206,
+            "independent": 60.0,
+            "absolute_difference": 1.3028827936523157e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 9949.865292539556,
+            "independent": 9951.63,
+            "absolute_difference": 1.764707460442878,
+            "tolerance": 20.90326,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": -72.78171172167109,
+            "independent": -72.784,
+            "absolute_difference": 0.002288278328919091,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "theory_comparison": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 59.99998697117206,
+            "independent": 59.999986971172056,
+            "absolute_difference": 7.105427357601002e-15,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 9949.865292539556,
+            "independent": 9949.8743710662,
+            "absolute_difference": 0.00907852664386155,
+            "tolerance": 20.899748742132402,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": -72.78171172167109,
+            "independent": -72.78248856819965,
+            "absolute_difference": 0.0007768465285664661,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "success": false,
+      "expected_success": false,
+      "audit_passed": true
+    },
+    {
+      "id": "analytic_rc_settling",
+      "tau_s": 1e-07,
+      "test": {
+        "low_v": 0.3,
+        "high_v": 0.5,
+        "rise_start_s": 1e-06,
+        "edge_s": 1e-08,
+        "high_duration_s": 5e-06,
+        "period_s": 2e-05,
+        "stop_s": 1.2e-05,
+        "max_step_s": 1e-09,
+        "settling_tolerance_v": 0.002,
+        "minimum_hold_s": 2e-06
+      },
+      "metrics": {
+        "settling_rise_s": 4.66500000000034e-07,
+        "settling_fall_s": 4.664999999998396e-07,
+        "max_tracking_error_v": 1.2378986724570495e-14,
+        "output_min_v": 0.3,
+        "output_max_v": 0.4999999999999878
+      },
+      "theoretical": {
+        "settling_rise_s": 4.655586817938046e-07,
+        "settling_fall_s": 4.655586817938046e-07
+      },
+      "native_comparison": {
+        "agrees": true,
+        "metrics": {
+          "settling_rise_s": {
+            "primary": 4.66500000000034e-07,
+            "independent": 4.6556e-07,
+            "absolute_difference": 9.400000000339943e-10,
+            "tolerance": 1.1010000000000002e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 4.664999999998396e-07,
+            "independent": 4.6556e-07,
+            "absolute_difference": 9.399999998396002e-10,
+            "tolerance": 1.1010000000000002e-09,
+            "agrees": true
+          }
+        }
+      },
+      "theory_comparison": {
+        "agrees": true,
+        "metrics": {
+          "settling_rise_s": {
+            "primary": 4.66500000000034e-07,
+            "independent": 4.655586817938046e-07,
+            "absolute_difference": 9.413182062294116e-10,
+            "tolerance": 1.1010000000000002e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 4.664999999998396e-07,
+            "independent": 4.655586817938046e-07,
+            "absolute_difference": 9.413182060350176e-10,
+            "tolerance": 1.1010000000000002e-09,
+            "agrees": true
+          }
+        }
+      },
+      "audit_passed": true
+    }
+  ],
+  "author_fixtures": [
+    {
+      "id": "release_default_exact",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "gain_db": -4.005566558990346,
+        "gain_vv": 0.6305531100025472,
+        "supply_current_a": 4.7153105e-05,
+        "power_w": 5.6583725999999996e-05
+      },
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": false,
+        "phase_margin_deg": false,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "release_default_exact",
+        "exact_release": true,
+        "expected_success": false
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.397561+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.",
+        "warning, can't find model 'cc' from line",
+        "warning, can't find model 'cload' from line"
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "error": "Expected positive low-frequency gain and non-inverting phase.",
+      "elapsed_s": 0.021327583001038874,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "238f9366ac9f4aca7eaf0bcd378fa9cf769b96093a5d1f10e34900c1930d60e9",
+        "design.cir": "90ac846f325ba6bab572253022ced46f182e9e889ea74cfa940467b9494513ab",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "068583c790db7e363fecd00b274541202d4a3d0e488f1564c13ce9b35070d580",
+        "simulation.log": "7df45fb0d9aec636450d9dad94e357269cc077f22ab7c79c02e0e66a7ab966f7"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    },
+    {
+      "id": "release_default_instrumented",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "gain_db": -4.005566599944037,
+        "gain_vv": 0.6305531070295096,
+        "supply_current_a": 4.715310512721346e-05,
+        "power_w": 5.658372615265615e-05
+      },
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": false,
+        "phase_margin_deg": false,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "release_default_instrumented",
+        "points_per_decade": 10,
+        "expected_success": false
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.419419+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "error": "Expected positive low-frequency gain and non-inverting phase.",
+      "elapsed_s": 0.02207329200064123,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "f67cbc2f30a03d1fe02fe1cd9dbae36cabf851ae98664a65745d2b394d328908",
+        "design.cir": "8fbc2ced727f9fcbda96a44067aba6ad4f25b3a8f6f0ba895ed8999a0ab23ae0",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "15c2be6cb7494db14e43430bde236ac42c6f4e434c5a3409519b02d19ec5ef2d",
+        "simulation.log": "b71f01cb35c8ca291bbdf778bb4e31ab1c9d5e6c15836e99daeb8b4cc8df3b5b"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    },
+    {
+      "id": "verified_candidate",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "gain_db": 49.09311165449551,
+        "gain_vv": 284.87581635345043,
+        "supply_current_a": 7.850650900148928e-05,
+        "power_w": 9.420781080178713e-05,
+        "unity_gain_hz": 2627590.4449952277,
+        "phase_margin_deg": 60.80244756720447
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "verified_candidate",
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        },
+        "expected_success": true
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.442041+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 49.0931,
+        "unity_gain_hz": 2627650.0,
+        "phase_margin_deg": 60.8021,
+        "supply_current_a": 7.850650900148928e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 49.09311165449551,
+            "independent": 49.0931,
+            "absolute_difference": 1.16544955091058e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2627590.4449952277,
+            "independent": 2627650.0,
+            "absolute_difference": 59.55500477226451,
+            "tolerance": 5256.3,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 60.80244756720447,
+            "independent": 60.8021,
+            "absolute_difference": 0.00034756720446438294,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.023411500000293017,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "fe018cd507960f44aec69725722aac7b4394cf41080c6dacd0140f01d4e98979",
+        "design.cir": "c14c878533b1c018438fc8a283b9732d8280082ecf0aaace1445ddb94770106a",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "d1003229cd01cc947287d028fcf98736c27d1902e6d18db9c7a80ee0f5b1c06d",
+        "simulation.log": "f3c49b0363ff0a937e339a268fd1dfb14328881d1b1ea10aa6ee322e34c0a8a5"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    },
+    {
+      "id": "candidate_fine",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "gain_db": 49.09311050517394,
+        "gain_vv": 284.8757786585323,
+        "supply_current_a": 7.850651332894315e-05,
+        "power_w": 9.420781599473177e-05,
+        "unity_gain_hz": 2627589.0005467865,
+        "phase_margin_deg": 60.802695463482905
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "candidate_fine",
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        },
+        "points_per_decade": 500,
+        "tight_tolerances": true,
+        "expected_success": true
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.466017+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 49.0931,
+        "unity_gain_hz": 2627600.0,
+        "phase_margin_deg": 60.8026,
+        "supply_current_a": 7.850651332894315e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 49.09311050517394,
+            "independent": 49.0931,
+            "absolute_difference": 1.050517393963446e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2627589.0005467865,
+            "independent": 2627600.0,
+            "absolute_difference": 10.999453213531524,
+            "tolerance": 5256.2,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 60.802695463482905,
+            "independent": 60.8026,
+            "absolute_difference": 9.546348290712103e-05,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.053916374999971595,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "1dd24a346cbee69f86620a2b7c586ed007803d0fefb6c7cabd4737abf621818f",
+        "design.cir": "d0ab54d32554f3cd148a82926bfb72ef08808c8a5ec04999b48ad46f715953e8",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "0f7b7dc898505e56c51c33c7cfaf3ab12ac022457154b46fb9683abb65669741",
+        "simulation.log": "3611f11e7a5551cc8f31487d81744d065abf9f5fbb0d1a8d453f811b3017149a"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    },
+    {
+      "id": "insufficient_compensation",
+      "status": "ok",
+      "success": false,
+      "reward": -0.07525818795193509,
+      "metrics": {
+        "gain_db": 49.09311170032139,
+        "gain_vv": 284.8758178564265,
+        "supply_current_a": 7.850650900148928e-05,
+        "power_w": 9.420781080178713e-05,
+        "unity_gain_hz": 6964010.957315851,
+        "phase_margin_deg": 41.93803489153558
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": false,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "insufficient_compensation",
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 3e-12
+        },
+        "expected_success": false
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.520883+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 49.0931,
+        "unity_gain_hz": 6964880.0,
+        "phase_margin_deg": 41.9352,
+        "supply_current_a": 7.850650900148928e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 49.09311170032139,
+            "independent": 49.0931,
+            "absolute_difference": 1.1700321387309032e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 6964010.957315851,
+            "independent": 6964880.0,
+            "absolute_difference": 869.0426841489971,
+            "tolerance": 13930.76,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 41.93803489153558,
+            "independent": 41.9352,
+            "absolute_difference": 0.0028348915355778104,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.0228638749995298,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "fe018cd507960f44aec69725722aac7b4394cf41080c6dacd0140f01d4e98979",
+        "design.cir": "8d7cb94cae199025a57085359829ef6e8efc63643e7fedc2e34e895aa454894f",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "55730f25121ee978affbe6596af656878d3bbc269141a16ad4abd85ee9a77b6e",
+        "simulation.log": "dab20fc706c5b8b39050750bbb4c814e48327c22f03891b2b18fff48a0b1c2e3"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    },
+    {
+      "id": "reversed_inputs",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "gain_db": 49.09311165449551,
+        "gain_vv": 284.87581635345043,
+        "supply_current_a": 7.850650900148928e-05,
+        "power_w": 9.420781080178713e-05
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": false,
+        "phase_margin_deg": false,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "reversed_inputs",
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        },
+        "fault": "reverse_input_polarity",
+        "expected_success": false
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.544348+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "error": "Expected positive low-frequency gain and non-inverting phase.",
+      "elapsed_s": 0.023269167000762536,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "fe018cd507960f44aec69725722aac7b4394cf41080c6dacd0140f01d4e98979",
+        "design.cir": "85fc61a2e2e542c1ed2acea57632853584da2da4d122f8e8f9146fce45c9cf7b",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "4c897df1fb7c6441aad94be55cf6c6cb2274dcadfea2a076cd92f66bc493a609",
+        "simulation.log": "94d5c4bd636d095f370f2666f099bfcface70e487cc82e52162b38f924487668"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    },
+    {
+      "id": "shorted_output",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "gain_db": -93.8686122772643,
+        "gain_vv": 2.0256732176868783e-05,
+        "supply_current_a": 0.0001145885734332895,
+        "power_w": 0.00013750628811994738
+      },
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": false,
+        "phase_margin_deg": false,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "shorted_output",
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        },
+        "fault": "short_output",
+        "expected_success": false
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.568188+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "error": "Expected positive low-frequency gain and non-inverting phase.",
+      "elapsed_s": 0.03251879199888208,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "e62f23544fd7fba146501c3c60fe46c5244d255713bb7cdadbbcb418930d7096",
+        "design.cir": "8a6aaaba39af156b1bc6eecf708b581ddfec228ce8a9415198a3e8246234dfba",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "0427b46ff032fe5565f69e04cdc4341f152f02a6a44a9f445fe1e4d1a363c2eb",
+        "simulation.log": "bb07409c470a1f0bf0c2721a2ffbb00b2cfc47e3a4de8e8313a1ac0d2c0032a2"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    },
+    {
+      "id": "missing_model",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": false,
+        "phase_margin_deg": false,
+        "supply_current_a": false
+      },
+      "case": {
+        "id": "missing_model",
+        "fault": "missing_model",
+        "expected_success": false
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.601417+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "error": "Simulator exited with code 1.",
+      "elapsed_s": 0.016927915999986,
+      "files_sha256": {
+        "design.cir": "ab4c5b2ceba973f9b566090e5c536f6b4346a78651c150230dec13fa0896d7f2",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "simulation.log": "a924c74b1440f0d18c38032d6efd81f5996cb8e28a8c5baee6a1398d1c3c75cd"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      },
+      "audit_passed": true
+    }
+  ],
+  "released_deck_comparison": {
+    "agrees": true,
+    "maximum_relative_transfer_difference": 3.17873416343432e-08,
+    "relative_current_difference": 2.6978808547608054e-09,
+    "relative_tolerance": 1e-06,
+    "scope": "Confirms explicit capacitor syntax and measurement instrumentation preserve the released circuit's response."
+  },
+  "numerical_convergence": {
+    "agrees": true,
+    "metrics": {
+      "gain_db": {
+        "primary": 49.09311165449551,
+        "independent": 49.09311050517394,
+        "absolute_difference": 1.14932156947134e-06,
+        "tolerance": 0.01,
+        "agrees": true
+      },
+      "unity_gain_hz": {
+        "primary": 2627590.4449952277,
+        "independent": 2627589.0005467865,
+        "absolute_difference": 1.4444484412670135,
+        "tolerance": 5256.178001093573,
+        "agrees": true
+      },
+      "phase_margin_deg": {
+        "primary": 60.80244756720447,
+        "independent": 60.802695463482905,
+        "absolute_difference": 0.0002478962784380201,
+        "tolerance": 0.05,
+        "agrees": true
+      }
+    }
+  },
+  "characterization": [
+    {
+      "id": "load_20pf",
+      "status": "ok",
+      "success": false,
+      "reward": -0.03360414829387525,
+      "metrics": {
+        "gain_db": 49.09311165311885,
+        "gain_vv": 284.87581630829936,
+        "supply_current_a": 7.850650900148928e-05,
+        "power_w": 9.420781080178713e-05,
+        "unity_gain_hz": 2426728.891449335,
+        "phase_margin_deg": 51.93500440946994
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": false,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "load_20pf",
+        "load_f": 2e-11,
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        }
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.619153+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 49.0931,
+        "unity_gain_hz": 2427070.0,
+        "phase_margin_deg": 51.9324,
+        "supply_current_a": 7.850650900148928e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 49.09311165311885,
+            "independent": 49.0931,
+            "absolute_difference": 1.165311884676612e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2426728.891449335,
+            "independent": 2427070.0,
+            "absolute_difference": 341.1085506649688,
+            "tolerance": 4855.14,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 51.93500440946994,
+            "independent": 51.9324,
+            "absolute_difference": 0.0026044094699386733,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.023600832999363774,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "fe018cd507960f44aec69725722aac7b4394cf41080c6dacd0140f01d4e98979",
+        "design.cir": "276cec0c874030b349d4ad1d5d5c64657dbe8f1f8028bb446b4e55e9ae46997b",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "14dce9e4a37fc68e6862a9122323efd29ccaef3d7938ba8b8535079d8a72c87b",
+        "simulation.log": "13dc2ad065830c9ecfc7c4b2d5f8dd2262a7899e518389a5eebcf7aa87b89dc5"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      }
+    },
+    {
+      "id": "supply_1p1v",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "gain_db": 49.34961220705867,
+        "gain_vv": 293.4138502567729,
+        "supply_current_a": 7.72118111738334e-05,
+        "power_w": 8.493299229121674e-05,
+        "unity_gain_hz": 2609963.396618064,
+        "phase_margin_deg": 60.09443475150131
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "supply_1p1v",
+        "supply_v": 1.1,
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        }
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.643514+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 49.3496,
+        "unity_gain_hz": 2610270.0,
+        "phase_margin_deg": 60.0927,
+        "supply_current_a": 7.72118111738334e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 49.34961220705867,
+            "independent": 49.3496,
+            "absolute_difference": 1.2207058667002002e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2609963.396618064,
+            "independent": 2610270.0,
+            "absolute_difference": 306.6033819359727,
+            "tolerance": 5221.54,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 60.09443475150131,
+            "independent": 60.0927,
+            "absolute_difference": 0.0017347515013099724,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.023497624999436084,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "bd6bde0efc44859657174a059d68b5275782385dbb0218377be0cbd2173cded8",
+        "design.cir": "1357536f2e29619dd570c4dd0221904d6859573c88858e75aed92e470315ac4f",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "2a36eb77c418c5ce9763a324acf0f271187dd5756542edea7ed5b1ff83b937eb",
+        "simulation.log": "1b6067e24ccd5e2e5cee0a421287e7a639c4ae1f56ff996b1ff8b27edd15ae50"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      }
+    },
+    {
+      "id": "supply_1p3v",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "gain_db": 48.568612222197096,
+        "gain_vv": 268.18260877667524,
+        "supply_current_a": 8.006332818362006e-05,
+        "power_w": 0.00010408232663870608,
+        "unity_gain_hz": 2637512.8476176397,
+        "phase_margin_deg": 61.68277187636532
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "supply_1p3v",
+        "supply_v": 1.3,
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        }
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.667592+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 48.5686,
+        "unity_gain_hz": 2637660.0,
+        "phase_margin_deg": 61.682,
+        "supply_current_a": 8.006332818362006e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 48.568612222197096,
+            "independent": 48.5686,
+            "absolute_difference": 1.2222197092626175e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2637512.8476176397,
+            "independent": 2637660.0,
+            "absolute_difference": 147.15238236030564,
+            "tolerance": 5276.32,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 61.68277187636532,
+            "independent": 61.682,
+            "absolute_difference": 0.0007718763653201677,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.03270312499989814,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "351bf426d267e4bdd92e2bb7dfedfc990059a43847c304c286bb880b856da4c0",
+        "design.cir": "7fec3291d72f14ef2e744886c48d0ea6b4296300d386ee3adcc50b6a6c37572a",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "8c2c5f5678382a355e10369f76397709a7984869b3c8871d0405d5776e45da4a",
+        "simulation.log": "03f6eec6a76deee8d6620734ed168f7449679464e0d5498babf2386f2427d443"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      }
+    },
+    {
+      "id": "temperature_0c",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "gain_db": 49.0833263297087,
+        "gain_vv": 284.5550624793009,
+        "supply_current_a": 7.555811048494567e-05,
+        "power_w": 9.06697325819348e-05,
+        "unity_gain_hz": 2561798.01538662,
+        "phase_margin_deg": 61.126781874783134
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "temperature_0c",
+        "temperature_c": 0,
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        }
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.700975+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 49.0833,
+        "unity_gain_hz": 2561970.0,
+        "phase_margin_deg": 61.1259,
+        "supply_current_a": 7.555811048494567e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 49.0833263297087,
+            "independent": 49.0833,
+            "absolute_difference": 2.632970869598239e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2561798.01538662,
+            "independent": 2561970.0,
+            "absolute_difference": 171.98461337992921,
+            "tolerance": 5124.9400000000005,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 61.126781874783134,
+            "independent": 61.1259,
+            "absolute_difference": 0.00088187478313273,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.022572625000975677,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "3fb75b563c0adde8dac62ad536ed153feb4051711276854a4e93ec8359d066f3",
+        "design.cir": "800ea41ea60cc075dc2fdfd7c0c21236b16216f92ffb4b684dfcf0418da1a1f2",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "2810dbe8d0c700b49e24df00314c1df955ce1bf0209db5d4b49333951817edf8",
+        "simulation.log": "f3e68aefc20d0f54718dd8c191dfa93514915d9c8eea4fdaf751b7440d6f2260"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      }
+    },
+    {
+      "id": "temperature_85c",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "gain_db": 48.18512078227445,
+        "gain_vv": 256.5996378574939,
+        "supply_current_a": 8.459721795395776e-05,
+        "power_w": 0.0001015166615447493,
+        "unity_gain_hz": 2663828.532845528,
+        "phase_margin_deg": 60.96480653829906
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "supply_current_a": true
+      },
+      "case": {
+        "id": "temperature_85c",
+        "temperature_c": 85,
+        "parameters": {
+          "mp1": 25,
+          "mn1": 50,
+          "mp3": 90,
+          "mn3": 25,
+          "mn4": 50,
+          "mn5": 45,
+          "cc": 9.9e-12
+        }
+      },
+      "timestamp_utc": "2026-09-08T23:46:47.724153+00:00",
+      "dependency": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      },
+      "constraints": {
+        "gain_db": {
+          "min": 46.020599913279625
+        },
+        "unity_gain_hz": {
+          "min": 1000000.0
+        },
+        "phase_margin_deg": {
+          "min": 60
+        },
+        "supply_current_a": {
+          "max": 0.001
+        }
+      },
+      "warnings": [
+        "Warning: ckappad = 0.01 is too small.",
+        "Warning: ckappas = 0.01 is too small.",
+        "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+      ],
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "command": [
+        "/opt/homebrew/bin/ngspice",
+        "-n",
+        "-D",
+        "num_threads=1",
+        "-b",
+        "-o",
+        "simulation.log",
+        "design.cir"
+      ],
+      "independent_metrics": {
+        "gain_db": 48.1851,
+        "unity_gain_hz": 2664180.0,
+        "phase_margin_deg": 60.9629,
+        "supply_current_a": 8.459721795395776e-05
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 48.18512078227445,
+            "independent": 48.1851,
+            "absolute_difference": 2.0782274454234084e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2663828.532845528,
+            "independent": 2664180.0,
+            "absolute_difference": 351.467154472135,
+            "tolerance": 5329.36,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 60.96480653829906,
+            "independent": 60.9629,
+            "absolute_difference": 0.0019065382990604007,
+            "tolerance": 0.05,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 0.022537249999004416,
+      "files_sha256": {
+        "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+        "dc.csv": "7fdeeece0e142dd7d03bb85904c60b158c1e84c5c94cfc41bbe1f1efe11eb643",
+        "design.cir": "e2f3d4ea6a458663cb358b1a9fce1a92b8caa939ca8f2bd9c57f43eeb15a1f0e",
+        "console.txt": "3881114a775ffc8fe860db769a085cbcfa2553ff7cc9c96789f3b41196d927cb",
+        "ac.csv": "681513b8bb652f6a7f092150331fb8d25d783a5be23a7ce630f36d170cb6166a",
+        "simulation.log": "f524fca0a3e5bb4f8ca2e2e389f16a69c14fc24515d31aac1f468efd50715ddd"
+      },
+      "code_sha256": {
+        "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+        "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+      }
+    }
+  ],
+  "characterization_scope": "Exploratory single-axis sweeps; no expected outcomes are prescribed. They do not establish a qualified operating range, PVT corners, or mismatch yield for the predictive model.",
+  "pilot_regressions": [
+    {
+      "task_id": "fan_smc_nominal_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.2891614774344,
+        "dc_error_v": 0.010838522565599973,
+        "supply_current_a": 0.0008188196273797,
+        "power_w": 0.00147387532928346,
+        "gain_db": 58.80007207749,
+        "unity_gain_hz": 2675322.2769059944,
+        "phase_margin_deg": 89.21259559337052,
+        "settling_rise_s": 2.9749999999999927e-07,
+        "settling_fall_s": 1.2249999999999756e-07,
+        "max_tracking_error_v": 0.014826166450999989,
+        "output_min_v": 0.2891328335096,
+        "output_max_v": 0.4851753272458
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:47.747290+00:00",
+      "task_sha256": "47b2d4907fdf0dd051dea1afb2d9fe617c7055edcba44044a855dbeefa5603d8",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CAPACITOR_0": 5e-12,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "reference_parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "parameters_sha256": "a01b4c76327fd19fd650410bb2a9ab4e0359d1be4cfaf7fa77cc93527ec606fa",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "c5a992b14c5912da27074c57ac2193f61ed950cc72a72b4e8fc6e2e8b8f6425c",
+        "transient_testbench_sha256": "f9ee34ecb05623b77d17eb5282039866e49ed892602d108e19e8c51145dba212"
+      },
+      "independent_metrics": {
+        "gain_db": 58.8001,
+        "unity_gain_hz": 2675600.0,
+        "phase_margin_deg": 89.2125,
+        "power_w": 0.001473875329283,
+        "dc_error_v": 0.01083852256564,
+        "max_tracking_error_v": 0.0148262,
+        "settling_rise_s": 2.945699999999993e-07,
+        "settling_fall_s": 1.2049999999999656e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 58.80007207749,
+            "independent": 58.8001,
+            "absolute_difference": 2.7922510000166767e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2675322.2769059944,
+            "independent": 2675600.0,
+            "absolute_difference": 277.72309400560334,
+            "tolerance": 5352.2,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 89.21259559337052,
+            "independent": 89.2125,
+            "absolute_difference": 9.559337051712191e-05,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.00147387532928346,
+            "independent": 0.001473875329283,
+            "absolute_difference": 4.59918561568351e-16,
+            "tolerance": 1.483875329283e-07,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.010838522565599973,
+            "independent": 0.01083852256564,
+            "absolute_difference": 4.002700948468885e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.014826166450999989,
+            "independent": 0.0148262,
+            "absolute_difference": 3.354900001036054e-08,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 2.9749999999999927e-07,
+            "independent": 2.945699999999993e-07,
+            "absolute_difference": 2.929999999999987e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 1.2249999999999756e-07,
+            "independent": 1.2049999999999656e-07,
+            "absolute_difference": 2.0000000000009973e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.3179015419991629,
+      "audit_passed": true
+    },
+    {
+      "task_id": "fan_smc_sizing_v1",
+      "status": "ok",
+      "success": false,
+      "reward": -0.04133437807906869,
+      "metrics": {
+        "output_dc_v": 0.2891614774344,
+        "dc_error_v": 0.010838522565599973,
+        "supply_current_a": 0.0008188196273797,
+        "power_w": 0.00147387532928346,
+        "gain_db": 58.80007200858,
+        "unity_gain_hz": 669324.9753674505,
+        "phase_margin_deg": 89.77078028238417,
+        "settling_rise_s": 1.1724999999999994e-06,
+        "settling_fall_s": 4.724999999999959e-07,
+        "max_tracking_error_v": 0.014826166450900014,
+        "output_min_v": 0.2891081708136,
+        "output_max_v": 0.4851884483744
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": false,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:49.065645+00:00",
+      "task_sha256": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CAPACITOR_0": 2e-11,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "reference_parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "parameters_sha256": "80ebba9d81505bc3ba1d0a7bd7f6c5e69ede7b60c384449e4286ae46691be7d4",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "8ee623745c6a5ae1723edb579b23cf5786cce87b66e2084494ce616ae2af2895",
+        "transient_testbench_sha256": "924ae61f9d5249850e8e0bea142d8d90dbcb44f6ed292189f9193277a852f0d2"
+      },
+      "independent_metrics": {
+        "gain_db": 58.8001,
+        "unity_gain_hz": 669412.0,
+        "phase_margin_deg": 89.7708,
+        "power_w": 0.001473875329283,
+        "dc_error_v": 0.01083852256564,
+        "max_tracking_error_v": 0.0148262,
+        "settling_rise_s": 1.17074e-06,
+        "settling_fall_s": 4.6879999999999795e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 58.80007200858,
+            "independent": 58.8001,
+            "absolute_difference": 2.79914199978748e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 669324.9753674505,
+            "independent": 669412.0,
+            "absolute_difference": 87.02463254949544,
+            "tolerance": 1339.824,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 89.77078028238417,
+            "independent": 89.7708,
+            "absolute_difference": 1.97176158280854e-05,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.00147387532928346,
+            "independent": 0.001473875329283,
+            "absolute_difference": 4.59918561568351e-16,
+            "tolerance": 1.483875329283e-07,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.010838522565599973,
+            "independent": 0.01083852256564,
+            "absolute_difference": 4.002700948468885e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.014826166450900014,
+            "independent": 0.0148262,
+            "absolute_difference": 3.354909998594391e-08,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 1.1724999999999994e-06,
+            "independent": 1.17074e-06,
+            "absolute_difference": 1.7599999999994546e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 4.724999999999959e-07,
+            "independent": 4.6879999999999795e-07,
+            "absolute_difference": 3.6999999999979486e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.3646481249998033,
+      "audit_passed": true
+    },
+    {
+      "task_id": "autockt_two_stage_nominal_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8995838265396,
+        "dc_error_v": 0.00041617346040001557,
+        "supply_current_a": 0.000234917704792,
+        "power_w": 0.0004228518686256,
+        "gain_db": 78.41666559488,
+        "unity_gain_hz": 2804238.4716260233,
+        "phase_margin_deg": 64.96473081013983,
+        "settling_rise_s": 1.424999999999999e-07,
+        "settling_fall_s": 1.3249999999999577e-07,
+        "max_tracking_error_v": 0.0004931565235000157,
+        "output_min_v": 0.8386715618824,
+        "output_max_v": 0.9621554715769
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:50.430773+00:00",
+      "task_sha256": "99286b6f35baee978cadc6c54851ac6fd26d0c715b05e3f970f2e65d40864351",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "f42afeb1a3360348b92a163d9bb6d31b4995bc4b0a385b1fc93bb3df1a6d5b5b",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "34c3bf99e2ed0bc5ae75da0341ea87111d84bbc197dd722a084e46be87551a7d",
+        "transient_testbench_sha256": "dd8497101ebe8d8eece9cd8b7a99a28e58269be45ed23e82468f51ae84c91e97"
+      },
+      "independent_metrics": {
+        "gain_db": 78.4167,
+        "unity_gain_hz": 2804480.0,
+        "phase_margin_deg": 64.9637,
+        "power_w": 0.0004228518686256,
+        "dc_error_v": 0.000416173460449,
+        "max_tracking_error_v": 0.000493157,
+        "settling_rise_s": 1.3933999999999992e-07,
+        "settling_fall_s": 1.296999999999964e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 78.41666559488,
+            "independent": 78.4167,
+            "absolute_difference": 3.440512000452145e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2804238.4716260233,
+            "independent": 2804480.0,
+            "absolute_difference": 241.52837397670373,
+            "tolerance": 5609.96,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 64.96473081013983,
+            "independent": 64.9637,
+            "absolute_difference": 0.0010308101398237568,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.0004228518686256,
+            "independent": 0.0004228518686256,
+            "absolute_difference": 0.0,
+            "tolerance": 4.328518686256001e-08,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.00041617346040001557,
+            "independent": 0.000416173460449,
+            "absolute_difference": 4.898441678322096e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0004931565235000157,
+            "independent": 0.000493157,
+            "absolute_difference": 4.764999843266324e-10,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 1.424999999999999e-07,
+            "independent": 1.3933999999999992e-07,
+            "absolute_difference": 3.1599999999999833e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 1.3249999999999577e-07,
+            "independent": 1.296999999999964e-07,
+            "absolute_difference": 2.7999999999993633e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.049559875000341,
+      "audit_passed": true
+    },
+    {
+      "task_id": "autockt_two_stage_sizing_v1",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "output_dc_v": 0.8982637045241,
+        "dc_error_v": 0.0017362954759000404,
+        "supply_current_a": 0.0002347644822775,
+        "power_w": 0.00042257606809949997,
+        "gain_db": 72.33167385995,
+        "unity_gain_hz": 9264475.163700523,
+        "phase_margin_deg": 35.874300619605634
+      },
+      "checks": {},
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:51.480789+00:00",
+      "task_sha256": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 5e-12,
+        "IBIAS": 3e-05,
+        "W_GM": 40
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "a0eaf988e8c58e96e3635e67166dbb4d8a7d398c95a455fe32e3750ee6267b24",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "456d726eb12c76d08cd3a1cdf22a650341a3c38d417609db64e77b07c84dd9cd",
+        "transient_testbench_sha256": "337da375f4176efb287662893989a9748d377e6eeb2a299fe86b4dbc85fb95d1"
+      },
+      "error": "Transient response does not settle within the observation window.",
+      "elapsed_s": 1.0394266660005087,
+      "audit_passed": true
+    }
+  ],
+  "boundary_regressions": [
+    {
+      "task_id": "ambiguous_boundary",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "output_dc_v": 0.8995838265396,
+        "dc_error_v": 0.00041617346040001557,
+        "supply_current_a": 0.000234917704792,
+        "power_w": 0.0004228518686256,
+        "gain_db": 78.41666559488,
+        "unity_gain_hz": 2804238.4716260233,
+        "phase_margin_deg": 64.96473081013983,
+        "settling_rise_s": 1.424999999999999e-07,
+        "settling_fall_s": 1.3249999999999577e-07,
+        "max_tracking_error_v": 0.0004931565235000157,
+        "output_min_v": 0.8386715618824,
+        "output_max_v": 0.9621554715769
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:59.775643+00:00",
+      "task_sha256": "793828bb4d1edfe0649b38cbf135e4b6770fb898e3038db88ca1df381b95dfb8",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "f42afeb1a3360348b92a163d9bb6d31b4995bc4b0a385b1fc93bb3df1a6d5b5b",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "bb60c893e8e05683ac63076a5051bc5c51d108cc72f1201e0816a7a888c34873",
+        "transient_testbench_sha256": "48de656237a4132ad1111baa064fc42d9e2531504b0484365b7e20a6c5ce1c11"
+      },
+      "independent_metrics": {
+        "gain_db": 78.4167,
+        "unity_gain_hz": 2804480.0,
+        "phase_margin_deg": 64.9637,
+        "power_w": 0.0004228518686256,
+        "dc_error_v": 0.000416173460449,
+        "max_tracking_error_v": 0.000493157,
+        "settling_rise_s": 1.3933999999999992e-07,
+        "settling_fall_s": 1.296999999999964e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 78.41666559488,
+            "independent": 78.4167,
+            "absolute_difference": 3.440512000452145e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2804238.4716260233,
+            "independent": 2804480.0,
+            "absolute_difference": 241.52837397670373,
+            "tolerance": 5609.96,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 64.96473081013983,
+            "independent": 64.9637,
+            "absolute_difference": 0.0010308101398237568,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.0004228518686256,
+            "independent": 0.0004228518686256,
+            "absolute_difference": 0.0,
+            "tolerance": 4.328518686256001e-08,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.00041617346040001557,
+            "independent": 0.000416173460449,
+            "absolute_difference": 4.898441678322096e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0004931565235000157,
+            "independent": 0.000493157,
+            "absolute_difference": 4.764999843266324e-10,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 1.424999999999999e-07,
+            "independent": 1.3933999999999992e-07,
+            "absolute_difference": 3.1599999999999833e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 1.3249999999999577e-07,
+            "independent": 1.296999999999964e-07,
+            "absolute_difference": 2.7999999999993633e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "error": "The two measurement paths disagree on pass/fail.",
+      "elapsed_s": 1.0354609999994864,
+      "audit_passed": true
+    },
+    {
+      "task_id": "resolved_boundary",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8995838265396,
+        "dc_error_v": 0.00041617346040001557,
+        "supply_current_a": 0.000234917704792,
+        "power_w": 0.0004228518686256,
+        "gain_db": 78.41666559488,
+        "unity_gain_hz": 2804225.2533092992,
+        "phase_margin_deg": 64.96578631661005,
+        "settling_rise_s": 1.424999999999999e-07,
+        "settling_fall_s": 1.3249999999999577e-07,
+        "max_tracking_error_v": 0.0004931565235000157,
+        "output_min_v": 0.8386715618824,
+        "output_max_v": 0.9621554715769
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:47:00.811680+00:00",
+      "task_sha256": "f0fe6621bd109629b2ff61a8b6c194c90f81e8bd15d00b83db57acae297293b6",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "f42afeb1a3360348b92a163d9bb6d31b4995bc4b0a385b1fc93bb3df1a6d5b5b",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "a6c46843a245dd20cbc7d25559f90dde318917f4ee8376e6676b1feedd3ad8b6",
+        "transient_testbench_sha256": "0bebde9cd8890b26f007c9d7e5c6085ebf065f137b9f037e0c42cc1fc31c3302"
+      },
+      "independent_metrics": {
+        "gain_db": 78.4167,
+        "unity_gain_hz": 2804230.0,
+        "phase_margin_deg": 64.9658,
+        "power_w": 0.0004228518686256,
+        "dc_error_v": 0.000416173460449,
+        "max_tracking_error_v": 0.000493157,
+        "settling_rise_s": 1.3933999999999992e-07,
+        "settling_fall_s": 1.296999999999964e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 78.41666559488,
+            "independent": 78.4167,
+            "absolute_difference": 3.440512000452145e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2804225.2533092992,
+            "independent": 2804230.0,
+            "absolute_difference": 4.746690700761974,
+            "tolerance": 5609.46,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 64.96578631661005,
+            "independent": 64.9658,
+            "absolute_difference": 1.3683389951779645e-05,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.0004228518686256,
+            "independent": 0.0004228518686256,
+            "absolute_difference": 0.0,
+            "tolerance": 4.328518686256001e-08,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.00041617346040001557,
+            "independent": 0.000416173460449,
+            "absolute_difference": 4.898441678322096e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0004931565235000157,
+            "independent": 0.000493157,
+            "absolute_difference": 4.764999843266324e-10,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 1.424999999999999e-07,
+            "independent": 1.3933999999999992e-07,
+            "absolute_difference": 3.1599999999999833e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 1.3249999999999577e-07,
+            "independent": 1.296999999999964e-07,
+            "absolute_difference": 2.7999999999993633e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.0486945000011474,
+      "audit_passed": true
+    }
+  ],
+  "prior_passing_solutions": [
+    {
+      "task_id": "autockt_two_stage_sizing_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8992953857611,
+        "dc_error_v": 0.0007046142389000032,
+        "supply_current_a": 0.0003378436186579,
+        "power_w": 0.00060811851358422,
+        "gain_db": 75.42934137086,
+        "unity_gain_hz": 4335924.514637392,
+        "phase_margin_deg": 64.43876038599247,
+        "settling_rise_s": 8.749999999999959e-08,
+        "settling_fall_s": 8.249999999999794e-08,
+        "max_tracking_error_v": 0.0007929960083999932,
+        "output_min_v": 0.8416064014354,
+        "output_max_v": 0.9578201309329
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:52.521169+00:00",
+      "task_sha256": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 1.467438904167513e-11,
+        "IBIAS": 4.5894118800184186e-05,
+        "W_GM": 84.23604794334098
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "aa0ed8f70e88ca4cf179373edc06caf7342aadb6adfed6562dcdf7d46b878291",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "13740e59aa516409af3d432d9ff5c9d84a9c059927ccd9e3377928deb90ca2ca",
+        "transient_testbench_sha256": "efd1d5728426860c4c874f88d88fc23f3c55b3408fcbbc81bd24f2d32ad6082c"
+      },
+      "independent_metrics": {
+        "gain_db": 75.4293,
+        "unity_gain_hz": 4336390.0,
+        "phase_margin_deg": 64.4375,
+        "power_w": 0.0006081185135842,
+        "dc_error_v": 0.000704614238869,
+        "max_tracking_error_v": 0.000792996,
+        "settling_rise_s": 8.43399999999996e-08,
+        "settling_fall_s": 7.959999999999836e-08
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 75.42934137086,
+            "independent": 75.4293,
+            "absolute_difference": 4.137086000355339e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 4335924.514637392,
+            "independent": 4336390.0,
+            "absolute_difference": 465.48536260798573,
+            "tolerance": 8673.78,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 64.43876038599247,
+            "independent": 64.4375,
+            "absolute_difference": 0.001260385992466695,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.00060811851358422,
+            "independent": 0.0006081185135842,
+            "absolute_difference": 2.0057740190981832e-17,
+            "tolerance": 6.181185135841999e-08,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.0007046142389000032,
+            "independent": 0.000704614238869,
+            "absolute_difference": 3.1003194803091993e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0007929960083999932,
+            "independent": 0.000792996,
+            "absolute_difference": 8.399993157645613e-12,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 8.749999999999959e-08,
+            "independent": 8.43399999999996e-08,
+            "absolute_difference": 3.1599999999999833e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 8.249999999999794e-08,
+            "independent": 7.959999999999836e-08,
+            "absolute_difference": 2.8999999999995826e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.0411477919988101,
+      "seed": 0,
+      "audit_passed": true
+    },
+    {
+      "task_id": "autockt_two_stage_sizing_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8997999305474,
+        "dc_error_v": 0.00020006945259998243,
+        "supply_current_a": 0.0002389424460484,
+        "power_w": 0.00043009640288712,
+        "gain_db": 79.35203761888,
+        "unity_gain_hz": 3798572.6501850607,
+        "phase_margin_deg": 63.86126824398248,
+        "settling_rise_s": 9.749999999999949e-08,
+        "settling_fall_s": 9.249999999999615e-08,
+        "max_tracking_error_v": 0.0003045662846999919,
+        "output_min_v": 0.8419229461048,
+        "output_max_v": 0.9589780334066
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:53.563014+00:00",
+      "task_sha256": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 1.470926061447487e-11,
+        "IBIAS": 3.058859991434074e-05,
+        "W_GM": 95.074362599853
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "5f9af82785eb3f5303fe33d606e2dc5547cfec6e6be2809f5b36138ac21caf7a",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "66a1f8022dedc49dfbc842b249c047676ea7ee3186b81b3c1c5e5939c0547099",
+        "transient_testbench_sha256": "e9812f717aca6ede507d00745c7f0f50482fe49c0e894f6ce3534a77c5ecbac8"
+      },
+      "independent_metrics": {
+        "gain_db": 79.352,
+        "unity_gain_hz": 3798640.0,
+        "phase_margin_deg": 63.861,
+        "power_w": 0.000430096402887,
+        "dc_error_v": 0.0002000694525758,
+        "max_tracking_error_v": 0.000304566,
+        "settling_rise_s": 9.550999999999919e-08,
+        "settling_fall_s": 8.909999999999886e-08
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 79.35203761888,
+            "independent": 79.352,
+            "absolute_difference": 3.7618880000422905e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 3798572.6501850607,
+            "independent": 3798640.0,
+            "absolute_difference": 67.34981493931264,
+            "tolerance": 7598.28,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 63.86126824398248,
+            "independent": 63.861,
+            "absolute_difference": 0.0002682439824823746,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.00043009640288712,
+            "independent": 0.000430096402887,
+            "absolute_difference": 1.2002118049414534e-16,
+            "tolerance": 4.40096402887e-08,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.00020006945259998243,
+            "independent": 0.0002000694525758,
+            "absolute_difference": 2.418242472587706e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0003045662846999919,
+            "independent": 0.000304566,
+            "absolute_difference": 2.8469999193434306e-10,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 9.749999999999949e-08,
+            "independent": 9.550999999999919e-08,
+            "absolute_difference": 1.9900000000002977e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 9.249999999999615e-08,
+            "independent": 8.909999999999886e-08,
+            "absolute_difference": 3.399999999997291e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.0423141669998586,
+      "seed": 1,
+      "audit_passed": true
+    },
+    {
+      "task_id": "autockt_two_stage_sizing_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8990566743212,
+        "dc_error_v": 0.0009433256788000666,
+        "supply_current_a": 0.0003938032346958,
+        "power_w": 0.00070884582245244,
+        "gain_db": 73.73175524577,
+        "unity_gain_hz": 3608819.3187700906,
+        "phase_margin_deg": 67.61008770564158,
+        "settling_rise_s": 1.2249999999999925e-07,
+        "settling_fall_s": 1.1249999999999596e-07,
+        "max_tracking_error_v": 0.0010099921203999829,
+        "output_min_v": 0.840327806478,
+        "output_max_v": 0.9587093100509
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:54.605799+00:00",
+      "task_sha256": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 1.8571809369796835e-11,
+        "IBIAS": 5.507569563675894e-05,
+        "W_GM": 84.83720408126311
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "45d0f2e6115e936eff3b785b1e57200077c76cb1f29a2c9c15e7c7e7da2b3ef2",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "c986ff886a3f9fbedf3c2765fc92fb75cc619fab994f8a014161b449408f6626",
+        "transient_testbench_sha256": "704712630f54a514777104a4bd4f9b5eaa67567b68895110010b514bcc92820a"
+      },
+      "independent_metrics": {
+        "gain_db": 73.7318,
+        "unity_gain_hz": 3609180.0,
+        "phase_margin_deg": 67.609,
+        "power_w": 0.0007088458224525,
+        "dc_error_v": 0.0009433256787867,
+        "max_tracking_error_v": 0.00100999,
+        "settling_rise_s": 1.1879999999999961e-07,
+        "settling_fall_s": 1.1079999999999562e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 73.73175524577,
+            "independent": 73.7318,
+            "absolute_difference": 4.4754230003718476e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 3608819.3187700906,
+            "independent": 3609180.0,
+            "absolute_difference": 360.6812299094163,
+            "tolerance": 7219.360000000001,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 67.61008770564158,
+            "independent": 67.609,
+            "absolute_difference": 0.0010877056415807829,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.00070884582245244,
+            "independent": 0.0007088458224525,
+            "absolute_difference": 6.006480035569695e-17,
+            "tolerance": 7.188458224525e-08,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.0009433256788000666,
+            "independent": 0.0009433256787867,
+            "absolute_difference": 1.3366586483487541e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0010099921203999829,
+            "independent": 0.00100999,
+            "absolute_difference": 2.120399982766946e-09,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 1.2249999999999925e-07,
+            "independent": 1.1879999999999961e-07,
+            "absolute_difference": 3.6999999999996427e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 1.1249999999999596e-07,
+            "independent": 1.1079999999999562e-07,
+            "absolute_difference": 1.7000000000003395e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.033387749999747,
+      "seed": 2,
+      "audit_passed": true
+    },
+    {
+      "task_id": "fan_smc_sizing_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.2987954536363,
+        "dc_error_v": 0.0012045463636999876,
+        "supply_current_a": 0.0002668931990329,
+        "power_w": 0.00048040775825922003,
+        "gain_db": 110.5269146997,
+        "unity_gain_hz": 3576065.5353524853,
+        "phase_margin_deg": 88.48951752943667,
+        "settling_rise_s": 1.6249999999999971e-07,
+        "settling_fall_s": 1.1249999999999596e-07,
+        "max_tracking_error_v": 0.0017936998061999776,
+        "output_min_v": 0.295056187697,
+        "output_max_v": 0.4990826703062
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:55.639581+00:00",
+      "task_sha256": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CAPACITOR_0": 3.655169914366899e-12,
+        "CURRENT_0_BIAS": 1.8534768712917033e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 55
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "reference_parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "parameters_sha256": "83ee585f6a1e0214ffa067a4ff717dab37be1529e609137c51570628eeabe89b",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "134d579b99d9f0b43daac6f9558add9240de984ab7c4de5fdea73553f368dbf9",
+        "transient_testbench_sha256": "014c48539c27bd2ebd3657d68aad37ab2f111a96224cf5f24e573146785c30c2"
+      },
+      "independent_metrics": {
+        "gain_db": 110.527,
+        "unity_gain_hz": 3576490.0,
+        "phase_margin_deg": 88.4894,
+        "power_w": 0.0004804077582592,
+        "dc_error_v": 0.001204546363656,
+        "max_tracking_error_v": 0.0017937,
+        "settling_rise_s": 1.6162e-07,
+        "settling_fall_s": 1.111999999999965e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 110.5269146997,
+            "independent": 110.527,
+            "absolute_difference": 8.530030000031275e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 3576065.5353524853,
+            "independent": 3576490.0,
+            "absolute_difference": 424.4646475147456,
+            "tolerance": 7153.9800000000005,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 88.48951752943667,
+            "independent": 88.4894,
+            "absolute_difference": 0.00011752943666465399,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.00048040775825922003,
+            "independent": 0.0004804077582592,
+            "absolute_difference": 2.0057740190981832e-17,
+            "tolerance": 4.904077582592e-08,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.0012045463636999876,
+            "independent": 0.001204546363656,
+            "absolute_difference": 4.3987600020778395e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0017936998061999776,
+            "independent": 0.0017937,
+            "absolute_difference": 1.93800022470908e-10,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 1.6249999999999971e-07,
+            "independent": 1.6162e-07,
+            "absolute_difference": 8.799999999997273e-10,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 1.1249999999999596e-07,
+            "independent": 1.111999999999965e-07,
+            "absolute_difference": 1.2999999999994624e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.4055001249998895,
+      "seed": 0,
+      "audit_passed": true
+    },
+    {
+      "task_id": "fan_smc_sizing_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.2919929122984,
+        "dc_error_v": 0.008007087701599969,
+        "supply_current_a": 0.0007440673435091,
+        "power_w": 0.00133932121831638,
+        "gain_db": 81.73997853331,
+        "unity_gain_hz": 2706122.096458155,
+        "phase_margin_deg": 89.38546099642325,
+        "settling_rise_s": 2.524999999999997e-07,
+        "settling_fall_s": 1.2749999999999836e-07,
+        "max_tracking_error_v": 0.010882686749799975,
+        "output_min_v": 0.2919427120239,
+        "output_max_v": 0.48914655039
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:57.045551+00:00",
+      "task_sha256": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CAPACITOR_0": 4.989141321058065e-12,
+        "CURRENT_0_BIAS": 5.3907099087173285e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 61
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "reference_parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "parameters_sha256": "62a488c336d577702e0b5cbc65c69a41ba71984fa27cb23521126fd7ec987054",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "645c66662ee385a1896ad8ce83b524f4d6cec806e320c8fbf2923d29e43dce1f",
+        "transient_testbench_sha256": "1a642da71156eb4e89b0e34f7d0e6766dfdccb129e723d23bda36641df9fc4b9"
+      },
+      "independent_metrics": {
+        "gain_db": 81.74,
+        "unity_gain_hz": 2706380.0,
+        "phase_margin_deg": 89.3854,
+        "power_w": 0.001339321218316,
+        "dc_error_v": 0.008007087701647,
+        "max_tracking_error_v": 0.0108827,
+        "settling_rise_s": 2.4892999999999983e-07,
+        "settling_fall_s": 1.2549999999999736e-07
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 81.73997853331,
+            "independent": 81.74,
+            "absolute_difference": 2.1466690000693234e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 2706122.096458155,
+            "independent": 2706380.0,
+            "absolute_difference": 257.90354184480384,
+            "tolerance": 5413.76,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 89.38546099642325,
+            "independent": 89.3854,
+            "absolute_difference": 6.099642324386423e-05,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.00133932121831638,
+            "independent": 0.001339321218316,
+            "absolute_difference": 3.8012128167341785e-16,
+            "tolerance": 1.349321218316e-07,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.008007087701599969,
+            "independent": 0.008007087701647,
+            "absolute_difference": 4.7031822880683194e-14,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.010882686749799975,
+            "independent": 0.0108827,
+            "absolute_difference": 1.3250200025724523e-08,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 2.524999999999997e-07,
+            "independent": 2.4892999999999983e-07,
+            "absolute_difference": 3.569999999999866e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 1.2749999999999836e-07,
+            "independent": 1.2549999999999736e-07,
+            "absolute_difference": 2.0000000000009973e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.3707224579993635,
+      "seed": 1,
+      "audit_passed": true
+    },
+    {
+      "task_id": "fan_smc_sizing_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.2957039152011,
+        "dc_error_v": 0.0042960847988999795,
+        "supply_current_a": 0.0005865977267445,
+        "power_w": 0.0010558759081401,
+        "gain_db": 75.22322171234,
+        "unity_gain_hz": 4904300.344895377,
+        "phase_margin_deg": 88.57048038269437,
+        "settling_rise_s": 1.274999999999992e-07,
+        "settling_fall_s": 7.646152427999585e-08,
+        "max_tracking_error_v": 0.0055925168272000225,
+        "output_min_v": 0.295590798581,
+        "output_max_v": 0.4944795765367
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T23:46:58.416700+00:00",
+      "task_sha256": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CAPACITOR_0": 2.740110960696398e-12,
+        "CURRENT_0_BIAS": 4.249517265852465e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 14
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10",
+          "autockt": {
+            "url": "https://github.com/ksettaluri6/AutoCkt.git",
+            "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+            "files_sha256": {
+              "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+              "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+              "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+            }
+          }
+        },
+        "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "reference_parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "parameters_sha256": "f2a2b305be7fb51a94faf4ec6e3118501dbabbe563cac17e06e50b6fc72e59e7",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5b4aa0b78228ffea08ac901b4761819f88ce798a6cda19c12ba06c6e06381fc0",
+        "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+        "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+        "ac_testbench_sha256": "f887dcbf1a0535ad12112de1562128a7e603f7c99eca0263ad6abd33a57f6fee",
+        "transient_testbench_sha256": "a76c51900d29bc8713227a1eff81260146f523292e7cf0d68af7a0a4474c74b2"
+      },
+      "independent_metrics": {
+        "gain_db": 75.2232,
+        "unity_gain_hz": 4904440.0,
+        "phase_margin_deg": 88.5705,
+        "power_w": 0.00105587590814,
+        "dc_error_v": 0.004296084798897,
+        "max_tracking_error_v": 0.00559252,
+        "settling_rise_s": 1.2284999999999917e-07,
+        "settling_fall_s": 7.4799999999998e-08
+      },
+      "crosscheck": {
+        "agrees": true,
+        "metrics": {
+          "gain_db": {
+            "primary": 75.22322171234,
+            "independent": 75.2232,
+            "absolute_difference": 2.1712340000590302e-05,
+            "tolerance": 0.01,
+            "agrees": true
+          },
+          "unity_gain_hz": {
+            "primary": 4904300.344895377,
+            "independent": 4904440.0,
+            "absolute_difference": 139.65510462317616,
+            "tolerance": 9809.880000000001,
+            "agrees": true
+          },
+          "phase_margin_deg": {
+            "primary": 88.57048038269437,
+            "independent": 88.5705,
+            "absolute_difference": 1.961730562527464e-05,
+            "tolerance": 0.05,
+            "agrees": true
+          },
+          "power_w": {
+            "primary": 0.0010558759081401,
+            "independent": 0.00105587590814,
+            "absolute_difference": 9.996344030316351e-17,
+            "tolerance": 1.06587590814e-07,
+            "agrees": true
+          },
+          "dc_error_v": {
+            "primary": 0.0042960847988999795,
+            "independent": 0.004296084798897,
+            "absolute_difference": 2.979387569990166e-15,
+            "tolerance": 1e-06,
+            "agrees": true
+          },
+          "max_tracking_error_v": {
+            "primary": 0.0055925168272000225,
+            "independent": 0.00559252,
+            "absolute_difference": 3.1727999776076654e-09,
+            "tolerance": 2e-06,
+            "agrees": true
+          },
+          "settling_rise_s": {
+            "primary": 1.274999999999992e-07,
+            "independent": 1.2284999999999917e-07,
+            "absolute_difference": 4.650000000000032e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          },
+          "settling_fall_s": {
+            "primary": 7.646152427999585e-08,
+            "independent": 7.4799999999998e-08,
+            "absolute_difference": 1.661524279997857e-09,
+            "tolerance": 5.501000000000001e-09,
+            "agrees": true
+          }
+        }
+      },
+      "elapsed_s": 1.358380000001489,
+      "seed": 2,
+      "audit_passed": true
+    }
+  ]
+}

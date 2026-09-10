@@ -1,0 +1,7 @@
+{
+  "provider": "codex",
+  "model": "gpt-6-astra",
+  "timeout_s": 300,
+  "executable": "codex",
+  "reasoning_effort": "medium"
+}

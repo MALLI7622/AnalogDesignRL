@@ -1,0 +1,100 @@
+{
+  "task_id": "fan_smc_ai_16e3eda1f2026fda020f",
+  "max_evaluations": 30,
+  "evaluations_used": 2,
+  "simulator_invocations": 4,
+  "success": true,
+  "done": true,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": {},
+      "run_directory": "evaluation_001",
+      "task_id": "fan_smc_ai_16e3eda1f2026fda020f",
+      "status": "ok",
+      "success": false,
+      "reward": -0.03288736930603345,
+      "metrics": {
+        "output_dc_v": 0.2975821685127,
+        "dc_error_v": 0.002417831487300015,
+        "supply_current_a": 0.0004204771406452,
+        "power_w": 0.00075685885316136,
+        "gain_db": 90.21681482606,
+        "unity_gain_hz": 736901.0455517324,
+        "phase_margin_deg": 89.70179599398433,
+        "settling_rise_s": 7.274999999999994e-07,
+        "settling_fall_s": 5.074999999999981e-07,
+        "max_tracking_error_v": 0.003173414518099993,
+        "output_min_v": 0.2975171816922,
+        "output_max_v": 0.4968496197057
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": false,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 1.3061186669983726,
+      "parameters": {
+        "CAPACITOR_0": 1.8e-11,
+        "CURRENT_0_BIAS": 3e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "evaluations_remaining": 29,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "evaluation": 2,
+      "action": {
+        "CAPACITOR_0": 5e-12,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "run_directory": "evaluation_002",
+      "task_id": "fan_smc_ai_16e3eda1f2026fda020f",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.2891614774344,
+        "dc_error_v": 0.010838522565599973,
+        "supply_current_a": 0.0008188196273797,
+        "power_w": 0.00147387532928346,
+        "gain_db": 58.80007207749,
+        "unity_gain_hz": 2675322.2769059944,
+        "phase_margin_deg": 89.21259559337052,
+        "settling_rise_s": 2.9749999999999927e-07,
+        "settling_fall_s": 1.2249999999999756e-07,
+        "max_tracking_error_v": 0.014826166450999989,
+        "output_min_v": 0.2891328335096,
+        "output_max_v": 0.4851753272458
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 1.2994583750005404,
+      "parameters": {
+        "CAPACITOR_0": 5e-12,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "evaluations_remaining": 28,
+      "terminated": true,
+      "truncated": false
+    }
+  ]
+}

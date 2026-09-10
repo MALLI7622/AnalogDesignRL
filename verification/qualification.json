@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "approved_tasks": {},
+  "pending_reviews": [
+    "Independent analog-engineer review of circuit and measurement semantics",
+    "Documented operating envelope and device-model validity limits for each training task",
+    "Enforced separation of agent access from evaluator files and reference solutions",
+    "Frozen training/evaluation split and assessment of task difficulty"
+  ],
+  "note": "Automated test success does not create a training approval. Approvals must identify a reviewer and bind the task and evaluator files to the reviewed hashes. No production qualification is recorded."
+}

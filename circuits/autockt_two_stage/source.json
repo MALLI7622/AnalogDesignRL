@@ -1,0 +1,35 @@
+{
+  "source_url": "https://arxiv.org/pdf/2001.01808v2",
+  "paper": "AutoCkt: Deep Reinforcement Learning of Analog Circuit Designs",
+  "figure": "6",
+  "pdf_page": 4,
+  "pdf_sha256": "b5bafa5dc5fdc5620f4bdaec76861674a75aaeee1cb0a6f644898280ac13f627",
+  "method": "Manually transcribed the eight MOS devices, bias source, and compensation capacitor after rendering and inspecting Figure 6. The load capacitor is supplied by the testbench.",
+  "known_from_figure": [
+    "NMOS differential pair with PMOS current-mirror load",
+    "NMOS tail current mirror and diode-connected reference",
+    "PMOS second-stage device with NMOS current-source load",
+    "Miller capacitor between stage-one output and final output",
+    "30 uA reference current"
+  ],
+  "engineering_choices": [
+    "SKY130 nfet_01v8 and pfet_01v8 replace the paper's 45 nm predictive devices.",
+    "Supply is 1.8 V, common mode 0.9 V, load 10 pF and temperature 27 C.",
+    "All device lengths are 1 um; widths and compensation value are project choices.",
+    "NMOS bodies connect to ground, PMOS bodies to supply; input labels are assigned for positive forward gain."
+  ],
+  "limitations": [
+    "No recovery of original transistor sizes or reported performance.",
+    "No layout, mismatch, process-corner, noise, CMRR or PSRR validation yet."
+  ],
+  "reference_design": {
+    "method": "Manual sizing with the fixed pilot tests; no RL training.",
+    "parameters": {
+      "CCOMP": 2e-11,
+      "IBIAS": 3e-05,
+      "W_GM": 80
+    },
+    "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+    "parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424"
+  }
+}

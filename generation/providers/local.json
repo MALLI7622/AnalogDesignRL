@@ -1,0 +1,10 @@
+{
+  "provider": "openai-compatible",
+  "model": "REPLACE_WITH_MODEL_ID",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "json_mode": "prompt",
+  "max_output_tokens": 8192,
+  "timeout_s": 120,
+  "retries": 2,
+  "options": {}
+}

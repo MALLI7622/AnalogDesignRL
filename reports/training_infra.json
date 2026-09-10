@@ -1,0 +1,41 @@
+{
+  "status": "passed",
+  "scope": "CPU HTTP integration using known public solutions; no model training",
+  "environment": {
+    "python": "3.13.7",
+    "ngspice": "47",
+    "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+    "dependency_lock_sha256": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a"
+  },
+  "concurrent_episodes": 2,
+  "wall_seconds": 3.334389290999752,
+  "mean_evaluation_seconds": 1.2474991874996704,
+  "artifact_bytes": 3554535,
+  "tasks": [
+    {
+      "task_id": "fan_smc_sizing_v1",
+      "initial_reward": -0.04133437807906869,
+      "final_reward": 1.0,
+      "episode_reward": 1.0,
+      "retry_did_not_spend_budget": true,
+      "evaluation_seconds": [
+        1.477053040998726,
+        1.349332042000242
+      ],
+      "simulator_invocations": 4
+    },
+    {
+      "task_id": "autockt_two_stage_sizing_v1",
+      "initial_reward": -1.0,
+      "final_reward": 1.0,
+      "episode_reward": 1.0,
+      "retry_did_not_spend_budget": true,
+      "evaluation_seconds": [
+        1.1349087500002497,
+        1.028702916999464
+      ],
+      "simulator_invocations": 4
+    }
+  ],
+  "tpu_runtime_tested": false
+}

@@ -1,0 +1,23 @@
+{
+  "scope": "Verification fixtures for the released 45 nm circuit; these are not additional training tasks or a reproduction of the paper's aggregate success rate.",
+  "source_default": "Unchanged author sizing, 1.2 V, 27 C, 10 pF. Expected to fail the published gain target range; preserve this result.",
+  "project_reference": "A manually sized candidate within the released action ranges. It is an independently measured positive fixture, not a published author solution.",
+  "cases": [
+    {"id": "release_default_exact", "exact_release": true, "expected_success": false},
+    {"id": "release_default_instrumented", "points_per_decade": 10, "expected_success": false},
+    {"id": "verified_candidate", "parameters": {"mp1": 25, "mn1": 50, "mp3": 90, "mn3": 25, "mn4": 50, "mn5": 45, "cc": 9.9e-12}, "expected_success": true},
+    {"id": "candidate_fine", "parameters": {"mp1": 25, "mn1": 50, "mp3": 90, "mn3": 25, "mn4": 50, "mn5": 45, "cc": 9.9e-12}, "points_per_decade": 500, "tight_tolerances": true, "expected_success": true},
+    {"id": "insufficient_compensation", "parameters": {"mp1": 25, "mn1": 50, "mp3": 90, "mn3": 25, "mn4": 50, "mn5": 45, "cc": 3e-12}, "expected_success": false},
+    {"id": "reversed_inputs", "parameters": {"mp1": 25, "mn1": 50, "mp3": 90, "mn3": 25, "mn4": 50, "mn5": 45, "cc": 9.9e-12}, "fault": "reverse_input_polarity", "expected_success": false},
+    {"id": "shorted_output", "parameters": {"mp1": 25, "mn1": 50, "mp3": 90, "mn3": 25, "mn4": 50, "mn5": 45, "cc": 9.9e-12}, "fault": "short_output", "expected_success": false},
+    {"id": "missing_model", "fault": "missing_model", "expected_success": false}
+  ],
+  "characterization": [
+    {"id": "load_20pf", "load_f": 2e-11},
+    {"id": "supply_1p1v", "supply_v": 1.1},
+    {"id": "supply_1p3v", "supply_v": 1.3},
+    {"id": "temperature_0c", "temperature_c": 0},
+    {"id": "temperature_85c", "temperature_c": 85}
+  ],
+  "characterization_note": "Exploratory single-axis sweeps; no expected outcomes are prescribed. They do not establish a qualified operating range, PVT corners, or mismatch yield for the predictive model."
+}

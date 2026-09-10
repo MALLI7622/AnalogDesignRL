@@ -1,0 +1,562 @@
+{
+  "snapshot_created_utc": "2026-09-08T22:27:01.202770+00:00",
+  "scope": "Pilot validation and random search only; no held-out model evaluation or RL training.",
+  "dependencies": {
+    "analoggym": {
+      "url": "https://github.com/CODA-Team/AnalogGym.git",
+      "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+      "pdk_archive": "PDK/sky130_pdk.zip",
+      "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+    },
+    "ngspice_validated_version": "47",
+    "python_minimum": "3.10"
+  },
+  "code_sha256": {
+    "analog_design/metrics.py": "a1a75522e36382d09e00618997fae835d5f05d12e442ea93e488a19f3a97e298",
+    "analog_design/simulator.py": "5cd8403a59a1d561d6aaa34121ed4ea176df593db22b9db7837cffaa50b2af5c",
+    "analog_design/episode.py": "7b74569db7d38928da914cb06dfdc5241fdc927bdb08a9289cd191bb56467257",
+    "scripts/random_search.py": "fb5f729ba1a739d5a46f1423a074cb6319fdb773abcb599bed0c13a1b4e925c3"
+  },
+  "unit_tests_passed": 16,
+  "reference_and_starting_designs": {
+    "autockt_two_stage_nominal": {
+      "task_id": "autockt_two_stage_nominal_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8995838265396,
+        "dc_error_v": 0.00041617346040001557,
+        "supply_current_a": 0.000234917704792,
+        "power_w": 0.0004228518686256,
+        "gain_db": 78.41666559488,
+        "unity_gain_hz": 2804238.4716260233,
+        "phase_margin_deg": 64.96473081013983,
+        "settling_rise_s": 1.424999999999999e-07,
+        "settling_fall_s": 1.3249999999999577e-07,
+        "max_tracking_error_v": 0.0004931565235000157,
+        "output_min_v": 0.8386715618824,
+        "output_max_v": 0.9621554715769
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T22:24:48.960887+00:00",
+      "task_sha256": "99286b6f35baee978cadc6c54851ac6fd26d0c715b05e3f970f2e65d40864351",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10"
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "f42afeb1a3360348b92a163d9bb6d31b4995bc4b0a385b1fc93bb3df1a6d5b5b",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5cd8403a59a1d561d6aaa34121ed4ea176df593db22b9db7837cffaa50b2af5c",
+        "metrics_code_sha256": "a1a75522e36382d09e00618997fae835d5f05d12e442ea93e488a19f3a97e298",
+        "ac_testbench_sha256": "a0b8a04df5d7190af801186cf5c2adad822d007173a5687def4464d3e08556be",
+        "transient_testbench_sha256": "90388fd0aa320afb32aa3add654dd4164053b2874dbb9363e3816fb4daf2215f"
+      },
+      "elapsed_s": 0.9349535829987872
+    },
+    "autockt_two_stage_sizing": {
+      "task_id": "autockt_two_stage_sizing_v1",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "output_dc_v": 0.8982637045241,
+        "dc_error_v": 0.0017362954759000404,
+        "supply_current_a": 0.0002347644822775,
+        "power_w": 0.00042257606809949997,
+        "gain_db": 72.33167385995,
+        "unity_gain_hz": 9264475.163700523,
+        "phase_margin_deg": 35.874300619605634
+      },
+      "checks": {},
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T22:24:49.896379+00:00",
+      "task_sha256": "042d418ef435f95e2dee392a1b70080c1b016a602a19c38c0c4701b11ed49f5b",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CCOMP": 5e-12,
+        "IBIAS": 3e-05,
+        "W_GM": 40
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10"
+        },
+        "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+        "reference_parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424",
+        "parameters_sha256": "a0eaf988e8c58e96e3635e67166dbb4d8a7d398c95a455fe32e3750ee6267b24",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5cd8403a59a1d561d6aaa34121ed4ea176df593db22b9db7837cffaa50b2af5c",
+        "metrics_code_sha256": "a1a75522e36382d09e00618997fae835d5f05d12e442ea93e488a19f3a97e298",
+        "ac_testbench_sha256": "eec33f6d9f6ceb29c3dc86f6e1347e1251a8e27b5dabb84a6399df47f9ab0dec",
+        "transient_testbench_sha256": "062ff7f1903ef5023e1b4aec742f8b70f28cbb551a5b2331807ec1445c2144d6"
+      },
+      "error": "Transient response does not settle within the observation window.",
+      "elapsed_s": 0.8886797089999163
+    },
+    "fan_smc_nominal": {
+      "task_id": "fan_smc_nominal_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.2891614774344,
+        "dc_error_v": 0.010838522565599973,
+        "supply_current_a": 0.0008188196273797,
+        "power_w": 0.00147387532928346,
+        "gain_db": 58.80007207749,
+        "unity_gain_hz": 2675322.2769059944,
+        "phase_margin_deg": 89.21259559337052,
+        "settling_rise_s": 2.9749999999999927e-07,
+        "settling_fall_s": 1.2249999999999756e-07,
+        "max_tracking_error_v": 0.014826166450999989,
+        "output_min_v": 0.2891328335096,
+        "output_max_v": 0.4851753272458
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T22:24:46.506024+00:00",
+      "task_sha256": "47b2d4907fdf0dd051dea1afb2d9fe617c7055edcba44044a855dbeefa5603d8",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CAPACITOR_0": 5e-12,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10"
+        },
+        "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "reference_parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "parameters_sha256": "a01b4c76327fd19fd650410bb2a9ab4e0359d1be4cfaf7fa77cc93527ec606fa",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5cd8403a59a1d561d6aaa34121ed4ea176df593db22b9db7837cffaa50b2af5c",
+        "metrics_code_sha256": "a1a75522e36382d09e00618997fae835d5f05d12e442ea93e488a19f3a97e298",
+        "ac_testbench_sha256": "8aa71106df2335bd0623c4520703af837407d9b2be74094624bba45c464941b4",
+        "transient_testbench_sha256": "2b101098682c7200196169be4972ce680d55c64ec74b1860e3ca4ca25aa60eb2"
+      },
+      "elapsed_s": 1.2313572080001904
+    },
+    "fan_smc_sizing": {
+      "task_id": "fan_smc_sizing_v1",
+      "status": "ok",
+      "success": false,
+      "reward": -0.04133437807906869,
+      "metrics": {
+        "output_dc_v": 0.2891614774344,
+        "dc_error_v": 0.010838522565599973,
+        "supply_current_a": 0.0008188196273797,
+        "power_w": 0.00147387532928346,
+        "gain_db": 58.80007200858,
+        "unity_gain_hz": 669324.9753674505,
+        "phase_margin_deg": 89.77078028238417,
+        "settling_rise_s": 1.1724999999999994e-06,
+        "settling_fall_s": 4.724999999999959e-07,
+        "max_tracking_error_v": 0.014826166450900014,
+        "output_min_v": 0.2891081708136,
+        "output_max_v": 0.4851884483744
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": false,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "timestamp_utc": "2026-09-08T22:24:47.738403+00:00",
+      "task_sha256": "5067bfae861b01cb4184204f2ef854ec7bbf66d438d08db32c8480a25a7b38ef",
+      "host": "macOS-15.5-arm64-arm-64bit-Mach-O",
+      "python_version": "3.13.7",
+      "commands": [
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "ac.log",
+          "ac.cir"
+        ],
+        [
+          "/opt/homebrew/bin/ngspice",
+          "-n",
+          "-D",
+          "ngbehavior=hsa",
+          "-D",
+          "num_threads=1",
+          "-b",
+          "-o",
+          "transient.log",
+          "transient.cir"
+        ]
+      ],
+      "warnings": [
+        "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+      ],
+      "parameters": {
+        "CAPACITOR_0": 2e-11,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 16
+      },
+      "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n******",
+      "provenance": {
+        "dependencies": {
+          "analoggym": {
+            "url": "https://github.com/CODA-Team/AnalogGym.git",
+            "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+            "pdk_archive": "PDK/sky130_pdk.zip",
+            "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+          },
+          "ngspice_validated_version": "47",
+          "python_minimum": "3.10"
+        },
+        "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+        "reference_parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+        "parameters_sha256": "80ebba9d81505bc3ba1d0a7bd7f6c5e69ede7b60c384449e4286ae46691be7d4",
+        "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+        "evaluator_sha256": "5cd8403a59a1d561d6aaa34121ed4ea176df593db22b9db7837cffaa50b2af5c",
+        "metrics_code_sha256": "a1a75522e36382d09e00618997fae835d5f05d12e442ea93e488a19f3a97e298",
+        "ac_testbench_sha256": "fd84b2e7c3a44ab319fcda90bfdd675cf840f09e5ad0208e92bb845bb3ee23e6",
+        "transient_testbench_sha256": "f25173a10d3a8d64f0d55d81e72c733e1611695595949b25b503420c50c62fc8"
+      },
+      "elapsed_s": 1.2220346659996721
+    }
+  },
+  "random_search": [
+    {
+      "method": "uniform random search over linear parameter ranges",
+      "seed": 0,
+      "task_id": "autockt_two_stage_sizing_v1",
+      "success": true,
+      "max_evaluations": 30,
+      "evaluations_used": 14,
+      "simulator_invocations": 28,
+      "failed_evaluations": 9,
+      "elapsed_s": 12.333403289998387,
+      "final_parameters": {
+        "CCOMP": 1.467438904167513e-11,
+        "IBIAS": 4.5894118800184186e-05,
+        "W_GM": 84.23604794334098
+      },
+      "final_metrics": {
+        "output_dc_v": 0.8992953857611,
+        "dc_error_v": 0.0007046142389000032,
+        "supply_current_a": 0.0003378436186579,
+        "power_w": 0.00060811851358422,
+        "gain_db": 75.42934137086,
+        "unity_gain_hz": 4335924.514637392,
+        "phase_margin_deg": 64.43876038599247,
+        "settling_rise_s": 8.749999999999959e-08,
+        "settling_fall_s": 8.249999999999794e-08,
+        "max_tracking_error_v": 0.0007929960083999932,
+        "output_min_v": 0.8416064014354,
+        "output_max_v": 0.9578201309329
+      },
+      "run_directory": "runs/random_baseline/autockt_two_stage_sizing_seed0"
+    },
+    {
+      "method": "uniform random search over linear parameter ranges",
+      "seed": 1,
+      "task_id": "autockt_two_stage_sizing_v1",
+      "success": true,
+      "max_evaluations": 30,
+      "evaluations_used": 7,
+      "simulator_invocations": 14,
+      "failed_evaluations": 5,
+      "elapsed_s": 6.218265541001529,
+      "final_parameters": {
+        "CCOMP": 1.470926061447487e-11,
+        "IBIAS": 3.058859991434074e-05,
+        "W_GM": 95.074362599853
+      },
+      "final_metrics": {
+        "output_dc_v": 0.8997999305474,
+        "dc_error_v": 0.00020006945259998243,
+        "supply_current_a": 0.0002389424460484,
+        "power_w": 0.00043009640288712,
+        "gain_db": 79.35203761888,
+        "unity_gain_hz": 3798572.6501850607,
+        "phase_margin_deg": 63.86126824398248,
+        "settling_rise_s": 9.749999999999949e-08,
+        "settling_fall_s": 9.249999999999615e-08,
+        "max_tracking_error_v": 0.0003045662846999919,
+        "output_min_v": 0.8419229461048,
+        "output_max_v": 0.9589780334066
+      },
+      "run_directory": "runs/random_baseline/autockt_two_stage_sizing_seed1"
+    },
+    {
+      "method": "uniform random search over linear parameter ranges",
+      "seed": 2,
+      "task_id": "autockt_two_stage_sizing_v1",
+      "success": true,
+      "max_evaluations": 30,
+      "evaluations_used": 19,
+      "simulator_invocations": 38,
+      "failed_evaluations": 15,
+      "elapsed_s": 16.910893415999453,
+      "final_parameters": {
+        "CCOMP": 1.8571809369796835e-11,
+        "IBIAS": 5.507569563675894e-05,
+        "W_GM": 84.83720408126311
+      },
+      "final_metrics": {
+        "output_dc_v": 0.8990566743212,
+        "dc_error_v": 0.0009433256788000666,
+        "supply_current_a": 0.0003938032346958,
+        "power_w": 0.00070884582245244,
+        "gain_db": 73.73175524577,
+        "unity_gain_hz": 3608819.3187700906,
+        "phase_margin_deg": 67.61008770564158,
+        "settling_rise_s": 1.2249999999999925e-07,
+        "settling_fall_s": 1.1249999999999596e-07,
+        "max_tracking_error_v": 0.0010099921203999829,
+        "output_min_v": 0.840327806478,
+        "output_max_v": 0.9587093100509
+      },
+      "run_directory": "runs/random_baseline/autockt_two_stage_sizing_seed2"
+    },
+    {
+      "method": "uniform random search over linear parameter ranges",
+      "seed": 0,
+      "task_id": "fan_smc_sizing_v1",
+      "success": true,
+      "max_evaluations": 30,
+      "evaluations_used": 7,
+      "simulator_invocations": 14,
+      "failed_evaluations": 3,
+      "elapsed_s": 8.687131124999723,
+      "final_parameters": {
+        "CAPACITOR_0": 3.655169914366899e-12,
+        "CURRENT_0_BIAS": 1.8534768712917033e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 55
+      },
+      "final_metrics": {
+        "output_dc_v": 0.2987954536363,
+        "dc_error_v": 0.0012045463636999876,
+        "supply_current_a": 0.0002668931990329,
+        "power_w": 0.00048040775825922003,
+        "gain_db": 110.5269146997,
+        "unity_gain_hz": 3576065.5353524853,
+        "phase_margin_deg": 88.48951752943667,
+        "settling_rise_s": 1.6249999999999971e-07,
+        "settling_fall_s": 1.1249999999999596e-07,
+        "max_tracking_error_v": 0.0017936998061999776,
+        "output_min_v": 0.295056187697,
+        "output_max_v": 0.4990826703062
+      },
+      "run_directory": "runs/random_baseline/fan_smc_sizing_seed0"
+    },
+    {
+      "method": "uniform random search over linear parameter ranges",
+      "seed": 1,
+      "task_id": "fan_smc_sizing_v1",
+      "success": true,
+      "max_evaluations": 30,
+      "evaluations_used": 5,
+      "simulator_invocations": 10,
+      "failed_evaluations": 3,
+      "elapsed_s": 6.212172916000782,
+      "final_parameters": {
+        "CAPACITOR_0": 4.989141321058065e-12,
+        "CURRENT_0_BIAS": 5.3907099087173285e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 61
+      },
+      "final_metrics": {
+        "output_dc_v": 0.2919929122984,
+        "dc_error_v": 0.008007087701599969,
+        "supply_current_a": 0.0007440673435091,
+        "power_w": 0.00133932121831638,
+        "gain_db": 81.73997853331,
+        "unity_gain_hz": 2706122.096458155,
+        "phase_margin_deg": 89.38546099642325,
+        "settling_rise_s": 2.524999999999997e-07,
+        "settling_fall_s": 1.2749999999999836e-07,
+        "max_tracking_error_v": 0.010882686749799975,
+        "output_min_v": 0.2919427120239,
+        "output_max_v": 0.48914655039
+      },
+      "run_directory": "runs/random_baseline/fan_smc_sizing_seed1"
+    },
+    {
+      "method": "uniform random search over linear parameter ranges",
+      "seed": 2,
+      "task_id": "fan_smc_sizing_v1",
+      "success": true,
+      "max_evaluations": 30,
+      "evaluations_used": 3,
+      "simulator_invocations": 6,
+      "failed_evaluations": 1,
+      "elapsed_s": 3.6651276259999577,
+      "final_parameters": {
+        "CAPACITOR_0": 2.740110960696398e-12,
+        "CURRENT_0_BIAS": 4.249517265852465e-05,
+        "MOSFET_23_1_M_gm3_NMOS": 14
+      },
+      "final_metrics": {
+        "output_dc_v": 0.2957039152011,
+        "dc_error_v": 0.0042960847988999795,
+        "supply_current_a": 0.0005865977267445,
+        "power_w": 0.0010558759081401,
+        "gain_db": 75.22322171234,
+        "unity_gain_hz": 4904300.344895377,
+        "phase_margin_deg": 88.57048038269437,
+        "settling_rise_s": 1.274999999999992e-07,
+        "settling_fall_s": 7.646152427999585e-08,
+        "max_tracking_error_v": 0.0055925168272000225,
+        "output_min_v": 0.295590798581,
+        "output_max_v": 0.4944795765367
+      },
+      "run_directory": "runs/random_baseline/fan_smc_sizing_seed2"
+    }
+  ]
+}
