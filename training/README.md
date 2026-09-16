@@ -1,8 +1,10 @@
 # TPU training setup
 
-Status, 2026-09-10: CPU service and real ngspice integration tested locally. TPU trainer and Ubuntu bootstrap are implemented but have not run on a TPU. No cloud resources or paid training runs have been started. Current tasks still need training approval.
+Status, 2026-09-16: Ubuntu bootstrap, simulator verification, HTTP smoke tests, and JAX detection of four v5e devices passed on the existing TPU VM. Gemma weights are downloaded. Model rollout, optimizer updates, and real checkpoint restoration remain unverified. Current tasks still need independent training approval.
 
-For the completed 250-task dataset, use the [training-to-AnalogGym experiment guide](../TRAINING_ANALOGGYM_README.md) alongside this infrastructure guide. It specifies the 174/21/55 split, circuit overlap, matched evaluation, and the current initial-step and checkpoint-loading gaps.
+For the prepared two-update implementation on the existing VM, follow the [research-pilot launch guide](RESEARCH_PILOT_README.md). Its separately authorized mode preserves the ordinary training qualification gate. The provisioning examples below describe the original v6e plan, not the existing v5e allocation.
+
+For the completed 250-task dataset, use the [training-to-AnalogGym experiment guide](../TRAINING_ANALOGGYM_README.md) alongside this infrastructure guide. It specifies the 174/21/55 split, circuit overlap, matched evaluation, and remaining integration work. Checkpoint loading for rollout is now implemented with provenance/hash checks; actual hardware validation remains pending.
 
 ## Starting choice
 

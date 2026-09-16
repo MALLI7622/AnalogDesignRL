@@ -216,14 +216,14 @@ The following gaps remain as of the review date:
 | Component | Current state | Work needed for this experiment |
 |---|---|---|
 | Catalog routing | The trainer gets tasks from the HTTP worker; the model config has no catalog path | Explicitly bind the worker to an experiment catalog derived from the release, preserving task hashes and family splits. The starter's smoke catalog is not this dataset |
-| Training/test access | Released `worker_catalog.json` contains all 250 tasks | Prepare a separate train/validation runtime catalog without the 55 final-test entries; retain the original release unchanged |
+| Training/test access | Released `worker_catalog.json` contains all 250 tasks; `scripts/prepare_training_bundle.py` stages the 174/21 subset | Use the filtered `train_validation_catalog.json` for training; retain the original release unchanged |
 | Attempt limit | `max_episode_steps` is **4** | Choose and document the training horizon; final comparisons against the saved calibration need the full 30-call convention |
 | Initial observation | Worker/client construction does not evaluate the start automatically | Implement the charged initial evaluation, returned feedback, step numbering, remaining budget, and reward accounting consistently |
 | Circuit information | Worker uses base `Episode`, exposing numeric specifications | Use the same observation contract for all model comparisons. Integrate `BenchmarkEpisode` if symbolic netlists and circuit context are needed; exporting a catalog does not activate it |
-| Trained-checkpoint evaluation | Current rollout reloads the original model and creates fresh LoRA parameters | Implement and test trained-checkpoint loading before using rollout as an after-training evaluation |
+| Trained-checkpoint evaluation | Rollout supports `--restore-checkpoint` with `--restore-run`, checking model/checkpoint provenance and final adapter hashes | Validate the real TPU save/reload path before treating restored rollout as an after-training evaluation; training resume remains unsupported |
 | Context capacity | Default prompt limit is **3,072 tokens** | Check complete requirements, any circuit context, and longer feedback histories fit; simply increasing attempts is insufficient |
-| Training qualification | Existing qualification file has no approvals | Complete the real review required by the existing gate for tasks served in training mode; this README grants no approval |
-| Hardware | TPU training runtime has not been validated on hardware | Complete a small approved run and verify changed weights, checkpoint restore, and matched before/after evaluation before scaling |
+| Training qualification | Existing qualification file has no approvals; a separately authorized bounded research-pilot mode is implemented | Follow the [pilot guide](training/RESEARCH_PILOT_README.md) for that experiment; ordinary training mode still requires real review records |
+| Hardware | Ubuntu setup, simulator checks, and JAX detection of four v5e devices passed; actual model training remains unverified | Complete a small authorized run and verify changed weights, checkpoint restore, and matched before/after evaluation before scaling |
 
 A short training horizon can be a deliberate warm-up, but its scores must not be
 compared directly with methods given more attempts. Validation selects a
