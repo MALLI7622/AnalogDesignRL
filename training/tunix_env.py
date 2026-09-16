@@ -6,10 +6,12 @@ from training.client import RemoteEpisode, WorkerClient
 
 
 class CircuitEnvironment(BaseTaskEnv):
-    def __init__(self, task, *, endpoint, max_steps, **kwargs):
+    def __init__(self, task, *, endpoint, max_steps, required_mode="training", **kwargs):
+        if required_mode not in {"training", "research-pilot"}:
+            raise ValueError("Optimizer environments require training or explicitly authorized research-pilot mode")
         super().__init__(task, max_steps=max_steps, **kwargs)
         client = WorkerClient(endpoint, os.environ.get("ANALOG_WORKER_TOKEN"))
-        self.remote = RemoteEpisode(client, task["task_id"], max_steps=max_steps, required_mode="training")
+        self.remote = RemoteEpisode(client, task["task_id"], max_steps=max_steps, required_mode=required_mode)
 
     def _initial_observation(self):
         return {"question": self.remote.reset()}
