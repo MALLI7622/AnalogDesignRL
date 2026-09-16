@@ -1,0 +1,383 @@
+{
+  "status": "proposed_not_applied",
+  "catalog_sha256_before": "0de38857961a21b04a14f8d2dc43849f0b954b198a074ff07e57ba8ba93f1e87",
+  "application_boundary": "Apply only after active start characterization finishes and before final candidate creation/calibration. Validate every old string before replacing. These edits change only role and circuit-description metadata; preserve all physical fields and source.json files.",
+  "edits": [
+    {
+      "topology": "Fan_SMC_Pin_3",
+      "path": "/entries/1/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "outer Miller capacitance, net050 to VOUT",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Fan_SMC_Pin_3",
+      "path": "/entries/1/task/parameters/MOSFET_10_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Fan_SMC_Pin_3",
+      "path": "/entries/1/task/parameters/MOSFET_23_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Fan_SMC_Pin_3",
+      "path": "/entries/1/task/parameters/MOSFET_8_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "path": "/entries/2/task/design_context/circuit_description",
+      "old": "Two nested compensation capacitors share node net044, connected through RESISTOR_0 to VOUT. No independent feedforward output PMOS parameter. Distinct nulling-resistor mechanism. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+      "new": "Two nested compensation capacitors share node net044, connected through RESISTOR_0 to VOUT. No independent feedforward output PMOS parameter. Distinct nulling-resistor mechanism. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split.",
+      "reason": "The cited DFC-specific robustness discussion does not describe the NMCNR topology.",
+      "priority": "recommended_correction"
+    },
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "path": "/entries/2/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "outer nested compensation capacitance, net050 to shared return net044",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "path": "/entries/2/task/parameters/CAPACITOR_1/role",
+      "old": "compensation capacitance",
+      "new": "inner nested compensation capacitance, net049 to shared return net044",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "path": "/entries/2/task/parameters/MOSFET_10_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "path": "/entries/2/task/parameters/MOSFET_23_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "path": "/entries/2/task/parameters/MOSFET_8_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC1_Pin_3",
+      "path": "/entries/3/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "outer Miller capacitance, net050 to VOUT",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC1_Pin_3",
+      "path": "/entries/3/task/parameters/CAPACITOR_1/role",
+      "old": "compensation capacitance",
+      "new": "local damping-control capacitance across auxiliary NMOS xm24, net049 to net1",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC1_Pin_3",
+      "path": "/entries/3/task/parameters/MOSFET_11_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC1_Pin_3",
+      "path": "/entries/3/task/parameters/MOSFET_25_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC1_Pin_3",
+      "path": "/entries/3/task/parameters/MOSFET_9_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC2_Pin_3",
+      "path": "/entries/4/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "outer Miller capacitance in C1, net050 to VOUT",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC2_Pin_3",
+      "path": "/entries/4/task/parameters/CAPACITOR_1/role",
+      "old": "compensation capacitance",
+      "new": "local damping-control capacitance in C2 across auxiliary PMOS xm10, net050 to net2",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC2_Pin_3",
+      "path": "/entries/4/task/parameters/MOSFET_11_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC2_Pin_3",
+      "path": "/entries/4/task/parameters/MOSFET_25_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Leung_DFCFC2_Pin_3",
+      "path": "/entries/4/task/parameters/MOSFET_8_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "HoiLee_AFFC_Pin_3",
+      "path": "/entries/5/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "inner output-stage compensation capacitance, net049 to VOUT",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "HoiLee_AFFC_Pin_3",
+      "path": "/entries/5/task/parameters/CAPACITOR_1/role",
+      "old": "compensation capacitance",
+      "new": "active-feedback capacitance, VOUT to common-gate source node net1",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "HoiLee_AFFC_Pin_3",
+      "path": "/entries/5/task/parameters/MOSFET_11_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "HoiLee_AFFC_Pin_3",
+      "path": "/entries/5/task/parameters/MOSFET_25_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "HoiLee_AFFC_Pin_3",
+      "path": "/entries/5/task/parameters/MOSFET_9_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Peng_ACBC_Pin_3",
+      "path": "/entries/6/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "outer Miller capacitance, net050 to VOUT",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Peng_ACBC_Pin_3",
+      "path": "/entries/6/task/parameters/CAPACITOR_1/role",
+      "old": "compensation capacitance",
+      "new": "AC-boosting capacitance, intermediate output net049 to auxiliary node net1",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Peng_ACBC_Pin_3",
+      "path": "/entries/6/task/parameters/MOSFET_11_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Peng_ACBC_Pin_3",
+      "path": "/entries/6/task/parameters/MOSFET_25_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Peng_ACBC_Pin_3",
+      "path": "/entries/6/task/parameters/MOSFET_9_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Peng_IAC_Pin_3",
+      "path": "/entries/7/task/parameters/CAPACITOR_0/role",
+      "old": "Miller compensation capacitance Cm",
+      "new": "outer Miller capacitance Cm, VOUTP to VOUT",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Peng_IAC_Pin_3",
+      "path": "/entries/7/task/parameters/CAPACITOR_1/role",
+      "old": "impedance-adapting capacitance Ca",
+      "new": "impedance-adapting capacitance Ca, net10 to net4, in series with Ra to ground",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Peng_IAC_Pin_3",
+      "path": "/entries/7/task/parameters/RESISTOR_0/role",
+      "old": "compensation impedance Ra",
+      "new": "impedance-adapting resistance Ra, net4 to ground, in series with Ca from net10",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Peng_IAC_Pin_3",
+      "path": "/entries/7/task/parameters/MOSFET_10_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Peng_IAC_Pin_3",
+      "path": "/entries/7/task/parameters/MOSFET_23_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Peng_IAC_Pin_3",
+      "path": "/entries/7/task/parameters/MOSFET_8_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Ramos_PFC_Pin_3",
+      "path": "/entries/8/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "outer Miller capacitance, net050 to VOUT",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Ramos_PFC_Pin_3",
+      "path": "/entries/8/task/parameters/CAPACITOR_1/role",
+      "old": "compensation capacitance",
+      "new": "local positive-feedback capacitance across intermediate stage, net050 to net049",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Ramos_PFC_Pin_3",
+      "path": "/entries/8/task/parameters/MOSFET_10_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Ramos_PFC_Pin_3",
+      "path": "/entries/8/task/parameters/MOSFET_23_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Ramos_PFC_Pin_3",
+      "path": "/entries/8/task/parameters/MOSFET_8_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "path": "/entries/9/task/design_context/circuit_description",
+      "old": "Dual active feedback branches, two capacitors, auxiliary PMOS gma1/gma2 groups; one capacitor is shunt net4 to ground. PMOS gmf1 pair supplements main input stage.",
+      "new": "Dual active feedback branches, two capacitors, auxiliary PMOS gma1/gma2 groups; one capacitor is shunt net4 to ground. PMOS gmf1 pair supplements main input stage. These circuit roles follow the released AnalogGym schematic and netlist. Original-paper review was limited to the abstract and author bibliography; the original full text and original schematic were unavailable.",
+      "reason": "Keep the recorded source-review limit visible when the learner sees the original-paper citation.",
+      "priority": "recommended_provenance_clarification"
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "path": "/entries/9/task/parameters/CAPACITOR_0/role",
+      "old": "compensation capacitance",
+      "new": "active-feedback capacitance, VOUT to internal feedback node net70",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "path": "/entries/9/task/parameters/CAPACITOR_1/role",
+      "old": "compensation capacitance",
+      "new": "first-stage shunt capacitance in C2, net4 to ground",
+      "reason": "Identify the exact physical branch rather than treating compensation capacitors as interchangeable.",
+      "priority": "recommended_role_clarification"
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "path": "/entries/9/task/parameters/MOSFET_10_1_M_gm2_PMOS/role",
+      "old": "gm2 stage transistor multiplicity",
+      "new": "integer multiplicity of the PMOS intermediate-stage signal device; operating point and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "path": "/entries/9/task/parameters/MOSFET_23_1_M_gm3_NMOS/role",
+      "old": "gm3 stage transistor multiplicity",
+      "new": "integer multiplicity of the NMOS output gain device; output drive and parasitics are coupled",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "path": "/entries/9/task/parameters/MOSFET_8_2_M_gm1_PMOS/role",
+      "old": "gm1 stage transistor multiplicity",
+      "new": "shared integer multiplicity of the matched PMOS input pair at fixed individual width and length",
+      "reason": "The gm label names a transistor group; the editable quantity is multiplicity, not transconductance.",
+      "priority": "optional_educational_clarification"
+    }
+  ]
+}

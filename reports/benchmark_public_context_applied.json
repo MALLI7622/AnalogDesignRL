@@ -1,0 +1,26 @@
+{
+  "status": "two_description_corrections_applied",
+  "catalog_before_sha256": "0de38857961a21b04a14f8d2dc43849f0b954b198a074ff07e57ba8ba93f1e87",
+  "catalog_after_sha256": "cdb554495fe33e5f474714dd8f236ad890f18d9797a8a280e89989e3bc479f30",
+  "physical_task_fields_unchanged": true,
+  "parameter_rules_unchanged": true,
+  "applied": [
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "path": "/entries/2/task/design_context/circuit_description",
+      "old": "Two nested compensation capacitors share node net044, connected through RESISTOR_0 to VOUT. No independent feedforward output PMOS parameter. Distinct nulling-resistor mechanism. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+      "new": "Two nested compensation capacitors share node net044, connected through RESISTOR_0 to VOUT. No independent feedforward output PMOS parameter. Distinct nulling-resistor mechanism. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split.",
+      "reason": "The cited DFC-specific robustness discussion does not describe the NMCNR topology.",
+      "priority": "recommended_correction"
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "path": "/entries/9/task/design_context/circuit_description",
+      "old": "Dual active feedback branches, two capacitors, auxiliary PMOS gma1/gma2 groups; one capacitor is shunt net4 to ground. PMOS gmf1 pair supplements main input stage.",
+      "new": "Dual active feedback branches, two capacitors, auxiliary PMOS gma1/gma2 groups; one capacitor is shunt net4 to ground. PMOS gmf1 pair supplements main input stage. These circuit roles follow the released AnalogGym schematic and netlist. Original-paper review was limited to the abstract and author bibliography; the original full text and original schematic were unavailable.",
+      "reason": "Keep the recorded source-review limit visible when the learner sees the original-paper citation.",
+      "priority": "recommended_provenance_clarification"
+    }
+  ],
+  "unapplied_role_clarifications": "Available in benchmark/DESIGN_BRIEFS.md; parameter rule fields retained to preserve frozen physical identities."
+}

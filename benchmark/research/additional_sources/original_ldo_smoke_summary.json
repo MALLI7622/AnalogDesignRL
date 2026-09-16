@@ -1,0 +1,56 @@
+{
+  "warning": "Exploratory smoke results only. No independent measurements or acceptance qualification; interpolation diagnostic, not benchmark phase-margin definition.",
+  "runs": "runs/benchmark_additional_sources_20260910",
+  "results": {
+    "ldo_tb": {
+      "vout_at_2v_v": 1.79314215,
+      "transient_min_v": 1.39068173,
+      "transient_max_v": 1.98830662,
+      "vout_at_end_v": 1.83685827,
+      "loop_gain_minload": {
+        "dc_magnitude": 226.721901,
+        "crossings": [
+          {
+            "frequency_hz_linear_interp": 516655.439691694,
+            "phase_degrees_linear_interp": -130.9582562697963
+          }
+        ]
+      },
+      "loop_gain_maxload": {
+        "dc_magnitude": 60.9250236,
+        "crossings": [
+          {
+            "frequency_hz_linear_interp": 9660924.713955257,
+            "phase_degrees_linear_interp": -120.31646163234744
+          }
+        ]
+      },
+      "psrr_minload": {
+        "magnitude_at_1hz": 0.0453038415
+      },
+      "psrr_maxload": {
+        "magnitude_at_1hz": 0.0388492555
+      }
+    },
+    "ldo_folded_cascode_tb": {
+      "vout_at_2v_v": 1.99654271,
+      "transient_min_v": 1.99654068,
+      "transient_max_v": 1.99999904,
+      "vout_at_end_v": 1.99999655,
+      "loop_gain_minload": {
+        "dc_magnitude": 1.01516135e-07,
+        "crossings": []
+      },
+      "loop_gain_maxload": {
+        "dc_magnitude": 0.000102591044,
+        "crossings": []
+      },
+      "psrr_minload": {
+        "magnitude_at_1hz": 1.00000247
+      },
+      "psrr_maxload": {
+        "magnitude_at_1hz": 1.00248824
+      }
+    }
+  }
+}

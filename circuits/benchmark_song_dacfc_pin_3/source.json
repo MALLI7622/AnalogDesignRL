@@ -1,0 +1,112 @@
+{
+  "repository": "https://github.com/CODA-Team/AnalogGym",
+  "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+  "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+  "release": {
+    "release_name": "Song_DACFC_Pin_3",
+    "recommended": true,
+    "recommendation_rank": 10,
+    "paper": {
+      "title": "Dual Active-Capacitive-Feedback Compensation for Low-Power Large-Capacitive-Load Three-Stage Amplifiers",
+      "authors": [
+        "Song Guo",
+        "Hoi Lee"
+      ],
+      "year": 2011,
+      "doi": "10.1109/JSSC.2010.2092994",
+      "source_url": "https://doi.org/10.1109/JSSC.2010.2092994",
+      "review_level": "abstract_and_author_bibliography_only",
+      "author_bibliography_url": "https://personal.utdallas.edu/~hoilee/publication.html"
+    },
+    "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Song_DACFC_Pin_3",
+    "netlist_sha256": "6bf8535244e8b74276541ec403a6432b8709c581973e03182f1c084479da582a",
+    "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Song_DACFC_Pin_3",
+    "parameters_sha256": "01405ecd4b0d5a76acf9eaaff12482902481179bbca1a8c4341bc8659bae34c7",
+    "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Song_DACFC_Pin_3.png",
+    "schematic_visual_review": true,
+    "subcircuit": "song_dacfc_pin_3",
+    "pins": [
+      "gnda",
+      "vdda",
+      "vinn",
+      "vinp",
+      "vout"
+    ],
+    "mos_instance_count": 37,
+    "passive_connections": [
+      "I0 net013 GNDA 'CURRENT_0_BIAS'",
+      "C2 net4 GNDA 'CAPACITOR_1'",
+      "C0 VOUT net70 'CAPACITOR_0'"
+    ],
+    "released_cload": "500p",
+    "released_vcm": "300m",
+    "recommended_controls": [
+      {
+        "name": "CAPACITOR_1",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "0.7p"
+      },
+      {
+        "name": "MOSFET_10_1_M_gm2_PMOS",
+        "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "MOSFET_23_1_M_gm3_NMOS",
+        "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "MOSFET_8_2_M_gm1_PMOS",
+        "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "CAPACITOR_0",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "1.5p"
+      },
+      {
+        "name": "CURRENT_0_BIAS",
+        "role": "bias reference current",
+        "unit": "A",
+        "type": "continuous",
+        "released_value": "5u"
+      }
+    ],
+    "notes": "Dual active feedback branches, two capacitors, auxiliary PMOS gma1/gma2 groups; one capacitor is shunt net4 to ground. PMOS gmf1 pair supplements main input stage.",
+    "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+    "source_family": "song_2011",
+    "selection_status": "source_limited_provisional_pending_empirical_validation",
+    "review_limitations": [
+      "Original2011 full text and original figure not recovered; original abstract and author bibliography verified, released schematic/netlist inspected.",
+      "Do not claim original-paper full-text review or original transistor-for-transistor reproduction."
+    ],
+    "supplementary_analysis_source": {
+      "title": "Single miller capacitor frequency compensation techniques: Theoretical comparison and critical review",
+      "doi": "10.1002/cta.3244",
+      "section": "4.3",
+      "source_url": "https://onlinelibrary.wiley.com/doi/10.1002/cta.3244",
+      "review_level": "section_text_only",
+      "limitation": "Primary2022 analytical research is supplementary, not a substitute for original2011 paper review."
+    },
+    "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+  },
+  "adaptations": [
+    "Netlist and original fixed parameter file copied unchanged.",
+    "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+    "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+    "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+  ],
+  "training_approved": false
+}

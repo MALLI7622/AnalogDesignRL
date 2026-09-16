@@ -1,0 +1,103 @@
+{
+  "repository": "https://github.com/CODA-Team/AnalogGym",
+  "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+  "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+  "release": {
+    "release_name": "Ramos_PFC_Pin_3",
+    "recommended": true,
+    "recommendation_rank": 9,
+    "paper": {
+      "title": "Three Stage Amplifier With Positive Feedback Compensation Scheme",
+      "authors": [
+        "Joao Ramos",
+        "Michiel Steyaert"
+      ],
+      "year": 2002,
+      "doi": "10.1109/CICC.2002.1012833",
+      "source_url": "https://www.scribd.com/document/241079749/01012833-Technical-paper",
+      "review_level": "original_paper_ocr_transcript_and_release_schematic"
+    },
+    "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Ramos_PFC_Pin_3",
+    "netlist_sha256": "f8eeee71b125c76d4d28597b09bff763a7b0bd6b85b2c4885513137723bad982",
+    "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Ramos_PFC_Pin_3",
+    "parameters_sha256": "aa3d99fa1ff54e2a7a4c027e662d848c9e286bd7f0d9809a9946162e1351a865",
+    "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Ramos_PFC_Pin_3.png",
+    "schematic_visual_review": true,
+    "subcircuit": "ramos_pfc_pin_3",
+    "pins": [
+      "gnda",
+      "vdda",
+      "vinn",
+      "vinp",
+      "vout"
+    ],
+    "mos_instance_count": 24,
+    "passive_connections": [
+      "I0 net1 GNDA 'CURRENT_0_BIAS'",
+      "C0 net050 VOUT 'CAPACITOR_0'",
+      "C1 net050 net049 'CAPACITOR_1'"
+    ],
+    "released_cload": "100p",
+    "released_vcm": "400m",
+    "recommended_controls": [
+      {
+        "name": "MOSFET_10_1_M_gm2_PMOS",
+        "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "81"
+      },
+      {
+        "name": "MOSFET_23_1_M_gm3_NMOS",
+        "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "203"
+      },
+      {
+        "name": "MOSFET_8_2_M_gm1_PMOS",
+        "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "148"
+      },
+      {
+        "name": "CAPACITOR_0",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "63p"
+      },
+      {
+        "name": "CAPACITOR_1",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "25p"
+      },
+      {
+        "name": "CURRENT_0_BIAS",
+        "role": "bias reference current",
+        "unit": "A",
+        "type": "continuous",
+        "released_value": "24u"
+      }
+    ],
+    "notes": "Outer CAPACITOR_0 between net050 and VOUT; CAPACITOR_1 between net050 and net049 creates local positive-feedback compensation. Do not infer monotone stability from increasing every capacitor.",
+    "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+    "source_family": "ramos_2002",
+    "selection_status": "provisional_pending_empirical_validation",
+    "review_limitations": [
+      "Original figure image not accessible; OCR formulas and units are not used as quantitative targets.",
+      "Use CICC2002 article attribution; journal2004 sequel is a separate source."
+    ],
+    "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+  },
+  "adaptations": [
+    "Netlist and original fixed parameter file copied unchanged.",
+    "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+    "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+    "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+  ],
+  "training_approved": false
+}

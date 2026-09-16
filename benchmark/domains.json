@@ -1,0 +1,2641 @@
+{
+  "schema_version": 1,
+  "status": "domains_prepared_not_qualified",
+  "entries": [
+    {
+      "name": "autockt_two_stage",
+      "family": "two_stage_miller",
+      "task": {
+        "id": "domain_autockt_two_stage",
+        "purpose": "Pilot sizing task on the reconstructed topology: improve compensation and output-stage sizing to meet fixed stability and tracking requirements.",
+        "circuit_directory": "circuits/autockt_two_stage",
+        "subcircuit": "autockt_two_stage",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.9,
+          "load_f": 1e-11
+        },
+        "initial_parameters": {
+          "CCOMP": 2e-11,
+          "IBIAS": 3e-05,
+          "W_IN": 10.0,
+          "W_LOAD": 20.0,
+          "W_GM": 80.0,
+          "W_LOAD2": 20.0
+        },
+        "parameters": {
+          "CCOMP": {
+            "min": 1e-12,
+            "max": 8e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "Miller compensation capacitance"
+          },
+          "IBIAS": {
+            "min": 7.5e-06,
+            "max": 0.00012,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "W_IN": {
+            "min": 2.5,
+            "max": 40,
+            "unit": "um",
+            "sampling_scale": "log",
+            "role": "matched differential input-pair width"
+          },
+          "W_LOAD": {
+            "min": 5,
+            "max": 80,
+            "unit": "um",
+            "sampling_scale": "log",
+            "role": "matched first-stage PMOS current-mirror width"
+          },
+          "W_GM": {
+            "min": 20,
+            "max": 160,
+            "unit": "um",
+            "sampling_scale": "log",
+            "role": "second-stage PMOS gain-device width"
+          },
+          "W_LOAD2": {
+            "min": 5,
+            "max": 80,
+            "unit": "um",
+            "sampling_scale": "log",
+            "role": "second-stage NMOS current-source width"
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.85,
+          "high_v": 0.95,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.002,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 1000000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.001
+          },
+          "dc_error_v": {
+            "max": 0.002
+          },
+          "max_tracking_error_v": {
+            "max": 0.002
+          },
+          "settling_rise_s": {
+            "max": 2e-06
+          },
+          "settling_fall_s": {
+            "max": 2e-06
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "autockt_two_stage",
+          "topology_family": "two_stage_miller",
+          "paper": {
+            "title": "AutoCkt: Deep Reinforcement Learning of Analog Circuit Designs",
+            "source_url": "https://arxiv.org/pdf/2001.01808v2",
+            "figure": "6"
+          },
+          "circuit_description": "Two-stage amplifier with an NMOS differential pair, PMOS current-mirror load, PMOS second stage, NMOS current-source load, and Miller compensation.",
+          "netlist": "* Manual reconstruction of AutoCkt (arXiv:2001.01808v2), Figure 6.\n* Port order chosen to match the project's common amplifier interface.\n* Adapted to SKY130 1.8 V devices; dimensions are project choices.\n.subckt autockt_two_stage gnda vdda vinn vinp vout\nIref vdda bias 'IBIAS'\nXmir bias bias gnda gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_MIR'\nXtail tail bias gnda gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_TAIL'\nXin_left mirror vinn tail gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_IN'\nXin_right stage1 vinp tail gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_IN'\nXload_left mirror mirror vdda vdda sky130_fd_pr__pfet_01v8 l='L_DEVICE' w='W_LOAD'\nXload_right stage1 mirror vdda vdda sky130_fd_pr__pfet_01v8 l='L_DEVICE' w='W_LOAD'\nXgm vout stage1 vdda vdda sky130_fd_pr__pfet_01v8 l='L_DEVICE' w='W_GM'\nXload2 vout bias gnda gnda sky130_fd_pr__nfet_01v8 l='L_DEVICE' w='W_LOAD2'\nCc stage1 vout 'CCOMP'\n.ends autockt_two_stage\n",
+          "fixed_parameters": {
+            "L_DEVICE": 1.0,
+            "W_MIR": 5.0,
+            "W_TAIL": 10.0
+          },
+          "scope": "Project's manual Figure 6 reconstruction adapted from 45 nm to SKY130. Sizes and targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_IN": 10.0,
+        "W_LOAD": 20.0,
+        "W_GM": 80.0,
+        "W_LOAD2": 20.0
+      },
+      "source": {
+        "source_url": "https://arxiv.org/pdf/2001.01808v2",
+        "paper": "AutoCkt: Deep Reinforcement Learning of Analog Circuit Designs",
+        "figure": "6",
+        "pdf_page": 4,
+        "pdf_sha256": "b5bafa5dc5fdc5620f4bdaec76861674a75aaeee1cb0a6f644898280ac13f627",
+        "method": "Manually transcribed the eight MOS devices, bias source, and compensation capacitor after rendering and inspecting Figure 6. The load capacitor is supplied by the testbench.",
+        "known_from_figure": [
+          "NMOS differential pair with PMOS current-mirror load",
+          "NMOS tail current mirror and diode-connected reference",
+          "PMOS second-stage device with NMOS current-source load",
+          "Miller capacitor between stage-one output and final output",
+          "30 uA reference current"
+        ],
+        "engineering_choices": [
+          "SKY130 nfet_01v8 and pfet_01v8 replace the paper's 45 nm predictive devices.",
+          "Supply is 1.8 V, common mode 0.9 V, load 10 pF and temperature 27 C.",
+          "All device lengths are 1 um; widths and compensation value are project choices.",
+          "NMOS bodies connect to ground, PMOS bodies to supply; input labels are assigned for positive forward gain."
+        ],
+        "limitations": [
+          "No recovery of original transistor sizes or reported performance.",
+          "No layout, mismatch, process-corner, noise, CMRR or PSRR validation yet."
+        ],
+        "reference_design": {
+          "method": "Manual sizing with the fixed pilot tests; no RL training.",
+          "parameters": {
+            "CCOMP": 2e-11,
+            "IBIAS": 3e-05,
+            "W_GM": 80
+          },
+          "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+          "parameters_sha256": "685bcbce839a50908802decbfa83aecc0a521d9c214e7c4170a8cd6ca619e424"
+        }
+      }
+    },
+    {
+      "name": "Fan_SMC_Pin_3",
+      "family": "fan_single_miller",
+      "task": {
+        "id": "domain_fan_smc_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_fan_smc_pin_3",
+        "subcircuit": "fan_smc_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.3,
+          "load_f": 1e-11
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 5e-12,
+          "CURRENT_0_BIAS": 6e-05,
+          "MOSFET_10_1_M_gm2_PMOS": 8,
+          "MOSFET_23_1_M_gm3_NMOS": 16,
+          "MOSFET_8_2_M_gm1_PMOS": 4
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 1.25e-12,
+            "max": 2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 1.4999999999999999e-05,
+            "max": 0.00023999999999999998,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_10_1_M_gm2_PMOS": {
+            "min": 2,
+            "max": 32,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_23_1_M_gm3_NMOS": {
+            "min": 4,
+            "max": 64,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_8_2_M_gm1_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.3,
+          "high_v": 0.5,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Fan_SMC_Pin_3",
+          "topology_family": "fan_single_miller",
+          "paper": {
+            "title": "Single Miller Capacitor Frequency Compensation Technique for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Xiaohua Fan",
+              "Chinmaya Mishra",
+              "Edgar Sanchez-Sinencio"
+            ],
+            "year": 2005,
+            "doi": "10.1109/JSSC.2005.843602",
+            "source_url": "https://picture.iczhiku.com/resource/eetop/WYKhwFHGQpjORCXn.pdf"
+          },
+          "circuit_description": "One Miller capacitor from first-stage output net050 to VOUT; separate feedforward PMOS drives output. Not the two-stage simple Miller topology also abbreviated SMC. Original uses 0.5um CMOS, +/-1V supply (2V rail span), 120pF parallel 25kohm; release uses SKY130 and CLOAD=10pF.",
+          "netlist": ".subckt fan_smc_pin_3 gnda vdda vinn vinp vout\nxm11 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gmf2_PMOS' w='MOSFET_11_1_W_gmf2_PMOS*1' m='MOSFET_11_1_M_gmf2_PMOS'\nxm7 net049 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_10_1_L_gm2_PMOS' w='MOSFET_10_1_W_gm2_PMOS*1' m='MOSFET_10_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm9 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm8 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm4 net31 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='4*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net013 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm23 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_1_L_gm3_NMOS' w='MOSFET_23_1_W_gm3_NMOS*1' m='MOSFET_23_1_M_gm3_NMOS'\nxm22 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm21 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm19 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm15 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm20 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm16 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm17 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS'\nxm12 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm13 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nI0 net013 GNDA 'CURRENT_0_BIAS'\nC0 net050 VOUT 'CAPACITOR_0'\n.ends Fan_SMC_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_10_1_L_gm2_PMOS": 1.0,
+            "MOSFET_10_1_W_gm2_PMOS": 1.0,
+            "MOSFET_11_1_L_gmf2_PMOS": 1.0,
+            "MOSFET_11_1_M_gmf2_PMOS": 32.0,
+            "MOSFET_11_1_W_gmf2_PMOS": 1.0,
+            "MOSFET_23_1_L_gm3_NMOS": 1.0,
+            "MOSFET_23_1_W_gm3_NMOS": 1.0,
+            "MOSFET_8_2_L_gm1_PMOS": 1.0,
+            "MOSFET_8_2_W_gm1_PMOS": 1.0,
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 16.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_17_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_21_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_21_2_M_LOAD2_NMOS": 4.0,
+            "MOSFET_21_2_W_LOAD2_NMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 5e-12,
+        "CURRENT_0_BIAS": 6e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 8,
+        "MOSFET_23_1_M_gm3_NMOS": 16,
+        "MOSFET_8_2_M_gm1_PMOS": 4
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Fan_SMC_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 2,
+          "paper": {
+            "title": "Single Miller Capacitor Frequency Compensation Technique for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Xiaohua Fan",
+              "Chinmaya Mishra",
+              "Edgar Sanchez-Sinencio"
+            ],
+            "year": 2005,
+            "doi": "10.1109/JSSC.2005.843602",
+            "source_url": "https://picture.iczhiku.com/resource/eetop/WYKhwFHGQpjORCXn.pdf",
+            "review_level": "original_paper_text_and_release_schematic"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Fan_SMC_Pin_3",
+          "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Fan_SMC_Pin_3",
+          "parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Fan_SMC_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "fan_smc_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 24,
+          "passive_connections": [
+            "I0 net013 GNDA 'CURRENT_0_BIAS'",
+            "C0 net050 VOUT 'CAPACITOR_0'"
+          ],
+          "released_cload": "10p",
+          "released_vcm": "300m",
+          "recommended_controls": [
+            {
+              "name": "MOSFET_10_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "8"
+            },
+            {
+              "name": "MOSFET_23_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "16"
+            },
+            {
+              "name": "MOSFET_8_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "5p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "60u"
+            }
+          ],
+          "notes": "One Miller capacitor from first-stage output net050 to VOUT; separate feedforward PMOS drives output. Not the two-stage simple Miller topology also abbreviated SMC. Original uses 0.5um CMOS, +/-1V supply (2V rail span), 120pF parallel 25kohm; release uses SKY130 and CLOAD=10pF.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "fan_2005",
+          "selection_status": "provisional_pending_empirical_validation",
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "Leung_NMCNR_Pin_3",
+      "family": "leung_multistage_compensation",
+      "task": {
+        "id": "domain_leung_nmcnr_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_leung_nmcnr_pin_3",
+        "subcircuit": "leung_nmcnr_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.3,
+          "load_f": 1e-11
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 5e-12,
+          "CAPACITOR_1": 3e-12,
+          "CURRENT_0_BIAS": 3e-06,
+          "MOSFET_10_1_M_gm2_PMOS": 4,
+          "MOSFET_23_1_M_gm3_NMOS": 4,
+          "MOSFET_8_2_M_gm1_PMOS": 4
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 1.25e-12,
+            "max": 2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CAPACITOR_1": {
+            "min": 7.5e-13,
+            "max": 1.2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 7.5e-07,
+            "max": 1.2e-05,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_10_1_M_gm2_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_23_1_M_gm3_NMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_8_2_M_gm1_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.3,
+          "high_v": 0.5,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Leung_NMCNR_Pin_3",
+          "topology_family": "leung_multistage_compensation",
+          "paper": {
+            "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+            "authors": [
+              "Ka Nang Leung",
+              "Philip K. T. Mok"
+            ],
+            "year": 2001,
+            "doi": "10.1109/81.948432",
+            "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf"
+          },
+          "circuit_description": "Two nested compensation capacitors share node net044, connected through RESISTOR_0 to VOUT. No independent feedforward output PMOS parameter. Distinct nulling-resistor mechanism. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split.",
+          "netlist": ".subckt leung_nmcnr_pin_3 gnda vdda vinn vinp vout\nxm11 VOUT net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*10'\nxm7 net049 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_10_1_L_gm2_PMOS' w='MOSFET_10_1_W_gm2_PMOS*1' m='MOSFET_10_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm9 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm8 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm4 net31 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='4*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net013 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm23 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_1_L_gm3_NMOS' w='MOSFET_23_1_W_gm3_NMOS*1' m='MOSFET_23_1_M_gm3_NMOS'\nxm22 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm21 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm19 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm15 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm20 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm16 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm17 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS'\nxm12 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm13 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nI0 net013 GNDA 'CURRENT_0_BIAS'\nC1 net044 net049 'CAPACITOR_1'\nC0 net050 net044 'CAPACITOR_0'\nR0 net044 VOUT 'RESISTOR_0'\n.ends Leung_NMCNR_Pin_3\n",
+          "fixed_parameters": {
+            "RESISTOR_0": 10000.0,
+            "MOSFET_10_1_L_gm2_PMOS": 1.0,
+            "MOSFET_10_1_W_gm2_PMOS": 1.0,
+            "MOSFET_23_1_L_gm3_NMOS": 1.0,
+            "MOSFET_23_1_W_gm3_NMOS": 1.0,
+            "MOSFET_8_2_L_gm1_PMOS": 1.0,
+            "MOSFET_8_2_W_gm1_PMOS": 1.0,
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_17_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_21_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_21_2_M_LOAD2_NMOS": 4.0,
+            "MOSFET_21_2_W_LOAD2_NMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 5e-12,
+        "CAPACITOR_1": 3e-12,
+        "CURRENT_0_BIAS": 3e-06,
+        "MOSFET_10_1_M_gm2_PMOS": 4,
+        "MOSFET_23_1_M_gm3_NMOS": 4,
+        "MOSFET_8_2_M_gm1_PMOS": 4
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Leung_NMCNR_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 3,
+          "paper": {
+            "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+            "authors": [
+              "Ka Nang Leung",
+              "Philip K. T. Mok"
+            ],
+            "year": 2001,
+            "doi": "10.1109/81.948432",
+            "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf",
+            "review_level": "original_paper_text_and_schematic"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Leung_NMCNR_Pin_3",
+          "netlist_sha256": "fa98dc34a1620368bcc51f754d23513f76cb034eeae6b07f8947fa9d6c13d193",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Leung_NMCNR_Pin_3",
+          "parameters_sha256": "491fe11a6ee684a531dfaa5d4afd1a203ad4bfdf2324fc5365b5f2a3f5ae4453",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Leung_NMCNR_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "leung_nmcnr_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 24,
+          "passive_connections": [
+            "I0 net013 GNDA 'CURRENT_0_BIAS'",
+            "C1 net044 net049 'CAPACITOR_1'",
+            "C0 net050 net044 'CAPACITOR_0'",
+            "R0 net044 VOUT 'RESISTOR_0'"
+          ],
+          "released_cload": "10p",
+          "released_vcm": "300m",
+          "recommended_controls": [
+            {
+              "name": "MOSFET_10_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_23_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_8_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "5p"
+            },
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "3p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "3u"
+            }
+          ],
+          "notes": "Two nested compensation capacitors share node net044, connected through RESISTOR_0 to VOUT. No independent feedforward output PMOS parameter. Distinct nulling-resistor mechanism. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "leung_2001",
+          "selection_status": "provisional_pending_empirical_validation",
+          "original_conditions": {
+            "technology": "AMS0.8um",
+            "rails": "+1V,-1V",
+            "load": "100pF parallel25kohm"
+          },
+          "review_copy": {
+            "local_path": "runs/research_sources_20260910/leung_compensation_2001.pdf",
+            "sha256": "4bb70bbac68b5536ca333e6456e4981ba5abbdcac72fb4fe38529e98530072f6",
+            "redistribute_with_benchmark": false
+          },
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "Leung_DFCFC1_Pin_3",
+      "family": "leung_multistage_compensation",
+      "task": {
+        "id": "domain_leung_dfcfc1_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_leung_dfcfc1_pin_3",
+        "subcircuit": "leung_dfcfc1_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.3,
+          "load_f": 1e-10
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 1.8e-11,
+          "CAPACITOR_1": 3e-12,
+          "CURRENT_0_BIAS": 2e-05,
+          "MOSFET_11_1_M_gm2_PMOS": 200,
+          "MOSFET_25_1_M_gm3_NMOS": 400,
+          "MOSFET_9_2_M_gm1_PMOS": 100
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 4.5e-12,
+            "max": 7.2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CAPACITOR_1": {
+            "min": 7.5e-13,
+            "max": 1.2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 4.9999999999999996e-06,
+            "max": 7.999999999999999e-05,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_11_1_M_gm2_PMOS": {
+            "min": 50,
+            "max": 512,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_25_1_M_gm3_NMOS": {
+            "min": 100,
+            "max": 512,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_9_2_M_gm1_PMOS": {
+            "min": 25,
+            "max": 400,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.3,
+          "high_v": 0.5,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Leung_DFCFC1_Pin_3",
+          "topology_family": "leung_multistage_compensation",
+          "paper": {
+            "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+            "authors": [
+              "Ka Nang Leung",
+              "Philip K. T. Mok"
+            ],
+            "year": 2001,
+            "doi": "10.1109/81.948432",
+            "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf"
+          },
+          "circuit_description": "Damping-factor-control compensation, extra NMOS gm4 and capacitor around second-stage branch. Shares paper/family with DFCFC2 and NMCNR; group together when making paper-held-out splits. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+          "netlist": ".subckt leung_dfcfc1_pin_3 gnda vdda vinn vinp vout\nxm12 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_12_1_L_gmf2_PMOS' w='MOSFET_12_1_W_gmf2_PMOS*1' m='MOSFET_12_1_M_gmf2_PMOS'\nxm7 net049 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm11 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gm2_PMOS' w='MOSFET_11_1_W_gm2_PMOS*1' m='MOSFET_11_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm9 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm4 net31 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='2*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm8 net1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net013 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm25 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_25_1_L_gm3_NMOS' w='MOSFET_25_1_W_gm3_NMOS*1' m='MOSFET_25_1_M_gm3_NMOS'\nxm23 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm22 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm20 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm16 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm21 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm17 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm24 net1 net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_24_1_L_gm4_NMOS' w='MOSFET_24_1_W_gm4_NMOS*1' m='MOSFET_24_1_M_gm4_NMOS'\nxm15 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS'\nxm13 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm19 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm14 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nI0 net013 GNDA 'CURRENT_0_BIAS'\nC1 net049 net1 'CAPACITOR_1'\nC0 net050 VOUT 'CAPACITOR_0'\n.ends Leung_DFCFC1_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_11_1_L_gm2_PMOS": 1.0,
+            "MOSFET_11_1_W_gm2_PMOS": 1.0,
+            "MOSFET_12_1_L_gmf2_PMOS": 1.0,
+            "MOSFET_12_1_M_gmf2_PMOS": 400.0,
+            "MOSFET_12_1_W_gmf2_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_17_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_18_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_18_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_18_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_22_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_22_2_M_LOAD2_NMOS": 4.0,
+            "MOSFET_22_2_W_LOAD2_NMOS": 1.0,
+            "MOSFET_24_1_L_gm4_NMOS": 1.0,
+            "MOSFET_24_1_M_gm4_NMOS": 1.0,
+            "MOSFET_24_1_W_gm4_NMOS": 2.0,
+            "MOSFET_25_1_L_gm3_NMOS": 1.0,
+            "MOSFET_25_1_W_gm3_NMOS": 1.0,
+            "MOSFET_9_2_L_gm1_PMOS": 1.0,
+            "MOSFET_9_2_W_gm1_PMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 1.8e-11,
+        "CAPACITOR_1": 3e-12,
+        "CURRENT_0_BIAS": 2e-05,
+        "MOSFET_11_1_M_gm2_PMOS": 200,
+        "MOSFET_25_1_M_gm3_NMOS": 400,
+        "MOSFET_9_2_M_gm1_PMOS": 100
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Leung_DFCFC1_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 4,
+          "paper": {
+            "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+            "authors": [
+              "Ka Nang Leung",
+              "Philip K. T. Mok"
+            ],
+            "year": 2001,
+            "doi": "10.1109/81.948432",
+            "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf",
+            "review_level": "original_paper_text_and_schematic"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Leung_DFCFC1_Pin_3",
+          "netlist_sha256": "a0b7bc59e610611a259f0d18e29f4ad86b5eb11025dd711fb1843bb15dd90892",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Leung_DFCFC1_Pin_3",
+          "parameters_sha256": "270582534c9fae1f362db7544466e3089ae5588f357399a243fb35ca2231ed63",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Leung_DFCFC1_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "leung_dfcfc1_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 26,
+          "passive_connections": [
+            "I0 net013 GNDA 'CURRENT_0_BIAS'",
+            "C1 net049 net1 'CAPACITOR_1'",
+            "C0 net050 VOUT 'CAPACITOR_0'"
+          ],
+          "released_cload": "100p",
+          "released_vcm": "300m",
+          "recommended_controls": [
+            {
+              "name": "MOSFET_11_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "200"
+            },
+            {
+              "name": "MOSFET_25_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "400"
+            },
+            {
+              "name": "MOSFET_9_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "100"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "18p"
+            },
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "3p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "20u"
+            }
+          ],
+          "notes": "Damping-factor-control compensation, extra NMOS gm4 and capacitor around second-stage branch. Shares paper/family with DFCFC2 and NMCNR; group together when making paper-held-out splits. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "leung_2001",
+          "selection_status": "provisional_pending_empirical_validation",
+          "original_conditions": {
+            "technology": "AMS0.8um",
+            "rails": "+1V,-1V",
+            "load": "100pF parallel25kohm"
+          },
+          "review_copy": {
+            "local_path": "runs/research_sources_20260910/leung_compensation_2001.pdf",
+            "sha256": "4bb70bbac68b5536ca333e6456e4981ba5abbdcac72fb4fe38529e98530072f6",
+            "redistribute_with_benchmark": false
+          },
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "Leung_DFCFC2_Pin_3",
+      "family": "leung_multistage_compensation",
+      "task": {
+        "id": "domain_leung_dfcfc2_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_leung_dfcfc2_pin_3",
+        "subcircuit": "leung_dfcfc2_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.3,
+          "load_f": 1e-10
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 1.7e-11,
+          "CAPACITOR_1": 1.7e-11,
+          "CURRENT_0_BIAS": 2e-05,
+          "MOSFET_11_1_M_gm2_PMOS": 4,
+          "MOSFET_25_1_M_gm3_NMOS": 4,
+          "MOSFET_8_2_M_gm1_PMOS": 100
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 4.25e-12,
+            "max": 6.8e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CAPACITOR_1": {
+            "min": 4.25e-12,
+            "max": 6.8e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 4.9999999999999996e-06,
+            "max": 7.999999999999999e-05,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_11_1_M_gm2_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_25_1_M_gm3_NMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_8_2_M_gm1_PMOS": {
+            "min": 25,
+            "max": 400,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.3,
+          "high_v": 0.5,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Leung_DFCFC2_Pin_3",
+          "topology_family": "leung_multistage_compensation",
+          "paper": {
+            "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+            "authors": [
+              "Ka Nang Leung",
+              "Philip K. T. Mok"
+            ],
+            "year": 2001,
+            "doi": "10.1109/81.948432",
+            "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf"
+          },
+          "circuit_description": "Rearranged damping-factor-control network with extra PMOS gm4 near first-stage output. C1 device uses CAPACITOR_0; C2 device uses CAPACITOR_1. Device instance number is not parameter index. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+          "netlist": ".subckt leung_dfcfc2_pin_3 gnda vdda vinn vinp vout\nxm12 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_12_1_L_gmf2_PMOS' w='MOSFET_12_1_W_gmf2_PMOS*1' m='MOSFET_12_1_M_gmf2_PMOS'\nxm7 net049 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm11 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gm2_PMOS' w='MOSFET_11_1_W_gm2_PMOS*1' m='MOSFET_11_1_M_gm2_PMOS'\nxm10 net2 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_10_1_L_gm4_PMOS' w='MOSFET_10_1_W_gm4_PMOS*1' m='MOSFET_10_1_M_gm4_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm9 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm8 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm4 net31 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='2*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm25 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_25_1_L_gm3_NMOS' w='MOSFET_25_1_W_gm3_NMOS*1' m='MOSFET_25_1_M_gm3_NMOS'\nxm24 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_2_L_LOAD2_NMOS' w='MOSFET_23_2_W_LOAD2_NMOS*1' m='MOSFET_23_2_M_LOAD2_NMOS'\nxm23 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_2_L_LOAD2_NMOS' w='MOSFET_23_2_W_LOAD2_NMOS*1' m='MOSFET_23_2_M_LOAD2_NMOS'\nxm20 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm16 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm21 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm17 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm18 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm22 net2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm15 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS'\nxm13 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm19 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm14 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nI0 net1 GNDA 'CURRENT_0_BIAS'\nC1 net050 VOUT 'CAPACITOR_0'\nC2 net050 net2 'CAPACITOR_1'\n.ends Leung_DFCFC2_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_10_1_L_gm4_PMOS": 1.0,
+            "MOSFET_10_1_M_gm4_PMOS": 4.0,
+            "MOSFET_10_1_W_gm4_PMOS": 1.0,
+            "MOSFET_11_1_L_gm2_PMOS": 1.0,
+            "MOSFET_11_1_W_gm2_PMOS": 1.0,
+            "MOSFET_12_1_L_gmf2_PMOS": 1.0,
+            "MOSFET_12_1_M_gmf2_PMOS": 4.0,
+            "MOSFET_12_1_W_gmf2_PMOS": 1.0,
+            "MOSFET_18_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_18_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_18_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_23_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_23_2_M_LOAD2_NMOS": 4.0,
+            "MOSFET_23_2_W_LOAD2_NMOS": 1.0,
+            "MOSFET_25_1_L_gm3_NMOS": 1.0,
+            "MOSFET_25_1_W_gm3_NMOS": 1.0,
+            "MOSFET_8_2_L_gm1_PMOS": 1.0,
+            "MOSFET_8_2_W_gm1_PMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 1.7e-11,
+        "CAPACITOR_1": 1.7e-11,
+        "CURRENT_0_BIAS": 2e-05,
+        "MOSFET_11_1_M_gm2_PMOS": 4,
+        "MOSFET_25_1_M_gm3_NMOS": 4,
+        "MOSFET_8_2_M_gm1_PMOS": 100
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Leung_DFCFC2_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 5,
+          "paper": {
+            "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+            "authors": [
+              "Ka Nang Leung",
+              "Philip K. T. Mok"
+            ],
+            "year": 2001,
+            "doi": "10.1109/81.948432",
+            "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf",
+            "review_level": "original_paper_text_and_schematic"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Leung_DFCFC2_Pin_3",
+          "netlist_sha256": "4fbe2f49cac15cfce0f1ac06ac31868d5675d7537309debb658265de4247e73c",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Leung_DFCFC2_Pin_3",
+          "parameters_sha256": "dabbf9e339bcb9398b794c0691d6c416db1ac3e635ebf988ec48bcc2c29229dc",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Leung_DFCFC2_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "leung_dfcfc2_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 26,
+          "passive_connections": [
+            "I0 net1 GNDA 'CURRENT_0_BIAS'",
+            "C1 net050 VOUT 'CAPACITOR_0'",
+            "C2 net050 net2 'CAPACITOR_1'"
+          ],
+          "released_cload": "100p",
+          "released_vcm": "300m",
+          "recommended_controls": [
+            {
+              "name": "MOSFET_11_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_25_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_8_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "100"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "17p"
+            },
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "17p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "20u"
+            }
+          ],
+          "notes": "Rearranged damping-factor-control network with extra PMOS gm4 near first-stage output. C1 device uses CAPACITOR_0; C2 device uses CAPACITOR_1. Device instance number is not parameter index. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "leung_2001",
+          "selection_status": "provisional_pending_empirical_validation",
+          "original_conditions": {
+            "technology": "AMS0.8um",
+            "rails": "+1V,-1V",
+            "load": "100pF parallel25kohm"
+          },
+          "review_copy": {
+            "local_path": "runs/research_sources_20260910/leung_compensation_2001.pdf",
+            "sha256": "4bb70bbac68b5536ca333e6456e4981ba5abbdcac72fb4fe38529e98530072f6",
+            "redistribute_with_benchmark": false
+          },
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "HoiLee_AFFC_Pin_3",
+      "family": "lee_active_feedback",
+      "task": {
+        "id": "domain_hoilee_affc_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_hoilee_affc_pin_3",
+        "subcircuit": "hoilee_affc_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.3,
+          "load_f": 1e-10
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 1.8e-11,
+          "CAPACITOR_1": 3e-12,
+          "CURRENT_0_BIAS": 2e-05,
+          "MOSFET_11_1_M_gm2_PMOS": 4,
+          "MOSFET_25_1_M_gm3_NMOS": 4,
+          "MOSFET_9_2_M_gm1_PMOS": 4
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 4.5e-12,
+            "max": 7.2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CAPACITOR_1": {
+            "min": 7.5e-13,
+            "max": 1.2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 4.9999999999999996e-06,
+            "max": 7.999999999999999e-05,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_11_1_M_gm2_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_25_1_M_gm3_NMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_9_2_M_gm1_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.3,
+          "high_v": 0.5,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "HoiLee_AFFC_Pin_3",
+          "topology_family": "lee_active_feedback",
+          "paper": {
+            "title": "Active-Feedback Frequency-Compensation Technique for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Hoi Lee",
+              "Philip K. T. Mok"
+            ],
+            "year": 2003,
+            "doi": "10.1109/JSSC.2002.808326",
+            "source_url": "https://personal.utdallas.edu/~hoilee/publications/Journals/affc.pdf"
+          },
+          "circuit_description": "Two capacitors; active common-gate feedback stage and replica biasing supplement three gain stages. Original paper Fig.6 main schematic plus Fig.7 replica bias. Original uses 0.8um CMOS and 2V,120pF; release uses SKY130 1.8V and 100pF.",
+          "netlist": ".subckt hoilee_affc_pin_3 gnda vdda vinn vinp vout\nxm62 net050 net2 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_59_2_L_HSBCM_PMOS' w='MOSFET_59_2_W_HSBCM_PMOS*1' m='MOSFET_59_2_M_HSBCM_PMOS'\nxm59 net2 net2 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_59_2_L_HSBCM_PMOS' w='MOSFET_59_2_W_HSBCM_PMOS*1' m='MOSFET_59_2_M_HSBCM_PMOS'\nxm12 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_12_1_L_gmf2_PMOS' w='MOSFET_12_1_W_gmf2_PMOS*1' m='MOSFET_12_1_M_gmf2_PMOS'\nxm7 net049 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm11 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gm2_PMOS' w='MOSFET_11_1_W_gm2_PMOS*1' m='MOSFET_11_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm9 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm4 net31 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='2*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net013 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm64 net1 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm63 net050 VB3 net1 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_60_2_L_gma_NMOS' w='MOSFET_60_2_W_gma_NMOS*1' m='MOSFET_60_2_M_gma_NMOS'\nxm61 net3 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm60 net2 VB3 net3 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_60_2_L_gma_NMOS' w='MOSFET_60_2_W_gma_NMOS*1' m='MOSFET_60_2_M_gma_NMOS'\nxm25 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_25_1_L_gm3_NMOS' w='MOSFET_25_1_W_gm3_NMOS*1' m='MOSFET_25_1_M_gm3_NMOS'\nxm23 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm22 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm20 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm16 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm21 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm17 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm15 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS'\nxm13 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm19 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm14 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nI0 net013 GNDA 'CURRENT_0_BIAS'\nC1 VOUT net1 'CAPACITOR_1'\nC0 net049 VOUT 'CAPACITOR_0'\n.ends HoiLee_AFFC_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_11_1_L_gm2_PMOS": 1.0,
+            "MOSFET_11_1_W_gm2_PMOS": 1.0,
+            "MOSFET_12_1_L_gmf2_PMOS": 1.0,
+            "MOSFET_12_1_M_gmf2_PMOS": 4.0,
+            "MOSFET_12_1_W_gmf2_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_17_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_18_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_18_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_18_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_22_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_22_2_M_LOAD2_NMOS": 4.0,
+            "MOSFET_22_2_W_LOAD2_NMOS": 1.0,
+            "MOSFET_25_1_L_gm3_NMOS": 1.0,
+            "MOSFET_25_1_W_gm3_NMOS": 1.0,
+            "MOSFET_59_2_L_HSBCM_PMOS": 1.0,
+            "MOSFET_59_2_M_HSBCM_PMOS": 4.0,
+            "MOSFET_59_2_W_HSBCM_PMOS": 1.0,
+            "MOSFET_60_2_L_gma_NMOS": 1.0,
+            "MOSFET_60_2_M_gma_NMOS": 4.0,
+            "MOSFET_60_2_W_gma_NMOS": 1.0,
+            "MOSFET_9_2_L_gm1_PMOS": 1.0,
+            "MOSFET_9_2_W_gm1_PMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 1.8e-11,
+        "CAPACITOR_1": 3e-12,
+        "CURRENT_0_BIAS": 2e-05,
+        "MOSFET_11_1_M_gm2_PMOS": 4,
+        "MOSFET_25_1_M_gm3_NMOS": 4,
+        "MOSFET_9_2_M_gm1_PMOS": 4
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "HoiLee_AFFC_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 6,
+          "paper": {
+            "title": "Active-Feedback Frequency-Compensation Technique for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Hoi Lee",
+              "Philip K. T. Mok"
+            ],
+            "year": 2003,
+            "doi": "10.1109/JSSC.2002.808326",
+            "source_url": "https://personal.utdallas.edu/~hoilee/publications/Journals/affc.pdf",
+            "review_level": "original_paper_text_and_schematic"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/HoiLee_AFFC_Pin_3",
+          "netlist_sha256": "1f8dabf2ee2c04f7edd6d45d6fb5fa9ce9d773dc0a82d56a133211586df0ee28",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/HoiLee_AFFC_Pin_3",
+          "parameters_sha256": "a05db27bea2139a8891eb61e814a9843b14f6a8d0c5f474b435c379f9bdb6d84",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/HoiLee_AFFC_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "hoilee_affc_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 30,
+          "passive_connections": [
+            "I0 net013 GNDA 'CURRENT_0_BIAS'",
+            "C1 VOUT net1 'CAPACITOR_1'",
+            "C0 net049 VOUT 'CAPACITOR_0'"
+          ],
+          "released_cload": "100p",
+          "released_vcm": "300m",
+          "recommended_controls": [
+            {
+              "name": "MOSFET_11_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_25_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_9_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "18p"
+            },
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "3p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "20u"
+            }
+          ],
+          "notes": "Two capacitors; active common-gate feedback stage and replica biasing supplement three gain stages. Original paper Fig.6 main schematic plus Fig.7 replica bias. Original uses 0.8um CMOS and 2V,120pF; release uses SKY130 1.8V and 100pF.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "hoilee_2003",
+          "selection_status": "provisional_pending_empirical_validation",
+          "review_copy": {
+            "local_path": "runs/research_sources_20260910/lee_mok_affc_2003.pdf",
+            "sha256": "0ec7e57e395f74e5bd7e78fb0b10c2d9b1099e10c036bbf1580e22b25d374fd1",
+            "redistribute_with_benchmark": false
+          },
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "Peng_ACBC_Pin_3",
+      "family": "peng_ac_boosting",
+      "task": {
+        "id": "domain_peng_acbc_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_peng_acbc_pin_3",
+        "subcircuit": "peng_acbc_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.3,
+          "load_f": 1e-10
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 1e-11,
+          "CAPACITOR_1": 3e-12,
+          "CURRENT_0_BIAS": 2e-05,
+          "MOSFET_11_1_M_gm2_PMOS": 4,
+          "MOSFET_25_1_M_gm3_NMOS": 4,
+          "MOSFET_9_2_M_gm1_PMOS": 4
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 2.5e-12,
+            "max": 4e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CAPACITOR_1": {
+            "min": 7.5e-13,
+            "max": 1.2e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 4.9999999999999996e-06,
+            "max": 7.999999999999999e-05,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_11_1_M_gm2_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_25_1_M_gm3_NMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_9_2_M_gm1_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.3,
+          "high_v": 0.5,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Peng_ACBC_Pin_3",
+          "topology_family": "peng_ac_boosting",
+          "paper": {
+            "title": "AC Boosting Compensation Scheme for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Xiaohong Peng",
+              "Willy Sansen"
+            ],
+            "year": 2004,
+            "doi": "10.1109/JSSC.2004.835811",
+            "source_url": "https://picture.iczhiku.com/resource/eetop/sHItHoErkwWsfMBC.pdf"
+          },
+          "circuit_description": "AC boosting auxiliary branch across intermediate stage, CAPACITOR_1 from net049 to net1; outer CAPACITOR_0 net050 to VOUT. AnalogGym paper Table6 reference numbers appear swapped for ACBC and IAC: title-based mapping here corrects this.",
+          "netlist": ".subckt peng_acbc_pin_3 gnda vdda vinn vinp vout\nxm59 net1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_59_1_L_ma1_PMOS' w='MOSFET_59_1_W_ma1_PMOS*1' m='MOSFET_59_1_M_ma1_PMOS'\nxm12 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_12_1_L_gmf2_PMOS' w='MOSFET_12_1_W_gmf2_PMOS*1' m='MOSFET_12_1_M_gmf2_PMOS'\nxm7 net049 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm11 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gm2_PMOS' w='MOSFET_11_1_W_gm2_PMOS*1' m='MOSFET_11_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm9 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm4 net31 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='2*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm8 net1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net013 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm25 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_25_1_L_gm3_NMOS' w='MOSFET_25_1_W_gm3_NMOS*1' m='MOSFET_25_1_M_gm3_NMOS'\nxm23 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm22 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm20 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm16 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm21 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm17 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm24 net1 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_24_1_L_gm4_NMOS' w='MOSFET_24_1_W_gm4_NMOS*1' m='MOSFET_24_1_M_gm4_NMOS'\nxm15 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS'\nxm13 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm19 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm14 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nI0 net013 GNDA 'CURRENT_0_BIAS'\nC1 net049 net1 'CAPACITOR_1'\nC0 net050 VOUT 'CAPACITOR_0'\n.ends Peng_ACBC_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_11_1_L_gm2_PMOS": 1.0,
+            "MOSFET_11_1_W_gm2_PMOS": 1.0,
+            "MOSFET_12_1_L_gmf2_PMOS": 1.0,
+            "MOSFET_12_1_M_gmf2_PMOS": 4.0,
+            "MOSFET_12_1_W_gmf2_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_17_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_18_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_18_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_18_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_22_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_22_2_M_LOAD2_NMOS": 4.0,
+            "MOSFET_22_2_W_LOAD2_NMOS": 1.0,
+            "MOSFET_24_1_L_gm4_NMOS": 1.0,
+            "MOSFET_24_1_M_gm4_NMOS": 4.0,
+            "MOSFET_24_1_W_gm4_NMOS": 1.0,
+            "MOSFET_25_1_L_gm3_NMOS": 1.0,
+            "MOSFET_25_1_W_gm3_NMOS": 1.0,
+            "MOSFET_59_1_L_ma1_PMOS": 1.0,
+            "MOSFET_59_1_M_ma1_PMOS": 4.0,
+            "MOSFET_59_1_W_ma1_PMOS": 1.0,
+            "MOSFET_9_2_L_gm1_PMOS": 1.0,
+            "MOSFET_9_2_W_gm1_PMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 1e-11,
+        "CAPACITOR_1": 3e-12,
+        "CURRENT_0_BIAS": 2e-05,
+        "MOSFET_11_1_M_gm2_PMOS": 4,
+        "MOSFET_25_1_M_gm3_NMOS": 4,
+        "MOSFET_9_2_M_gm1_PMOS": 4
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Peng_ACBC_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 7,
+          "paper": {
+            "title": "AC Boosting Compensation Scheme for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Xiaohong Peng",
+              "Willy Sansen"
+            ],
+            "year": 2004,
+            "doi": "10.1109/JSSC.2004.835811",
+            "source_url": "https://picture.iczhiku.com/resource/eetop/sHItHoErkwWsfMBC.pdf",
+            "review_level": "original_paper_text_and_release_schematic"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Peng_ACBC_Pin_3",
+          "netlist_sha256": "e46b3ffdf2a15de1b1446f08e638184e490fa09b2f9493235183efeb290de503",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Peng_ACBC_Pin_3",
+          "parameters_sha256": "8672dda2154e241a34580bf8ef977aacedeeef7a548f32c8864c0439199a2abd",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Peng_ACBC_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "peng_acbc_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 27,
+          "passive_connections": [
+            "I0 net013 GNDA 'CURRENT_0_BIAS'",
+            "C1 net049 net1 'CAPACITOR_1'",
+            "C0 net050 VOUT 'CAPACITOR_0'"
+          ],
+          "released_cload": "100p",
+          "released_vcm": "300m",
+          "recommended_controls": [
+            {
+              "name": "MOSFET_11_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_25_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_9_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "10p"
+            },
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "3p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "20u"
+            }
+          ],
+          "notes": "AC boosting auxiliary branch across intermediate stage, CAPACITOR_1 from net049 to net1; outer CAPACITOR_0 net050 to VOUT. AnalogGym paper Table6 reference numbers appear swapped for ACBC and IAC: title-based mapping here corrects this.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "peng_2004",
+          "selection_status": "provisional_pending_empirical_validation",
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "Peng_IAC_Pin_3",
+      "family": "peng_impedance_adapting",
+      "task": {
+        "id": "domain_peng_iac_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_peng_iac_pin_3",
+        "subcircuit": "peng_iac_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.24,
+          "load_f": 1.5e-10
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 5e-13,
+          "CAPACITOR_1": 1.1e-12,
+          "CURRENT_0_BIAS": 1.25e-06,
+          "MOSFET_10_1_M_gm2_PMOS": 24,
+          "MOSFET_23_1_M_gm3_NMOS": 3,
+          "MOSFET_8_2_M_gm1_PMOS": 3,
+          "RESISTOR_0": 750000.0
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 1.25e-13,
+            "max": 1e-11,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "Miller compensation capacitance Cm"
+          },
+          "CAPACITOR_1": {
+            "min": 2.7500000000000004e-13,
+            "max": 4.400000000000001e-12,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "impedance-adapting capacitance Ca"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 3.1249999999999997e-07,
+            "max": 4.9999999999999996e-06,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_10_1_M_gm2_PMOS": {
+            "min": 6,
+            "max": 96,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_23_1_M_gm3_NMOS": {
+            "min": 1,
+            "max": 12,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_8_2_M_gm1_PMOS": {
+            "min": 1,
+            "max": 12,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          },
+          "RESISTOR_0": {
+            "min": 187500.0,
+            "max": 3000000.0,
+            "unit": "ohm",
+            "sampling_scale": "log",
+            "role": "compensation impedance Ra"
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.24,
+          "high_v": 0.44,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Peng_IAC_Pin_3",
+          "topology_family": "peng_impedance_adapting",
+          "paper": {
+            "title": "Impedance Adapting Compensation for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Xiaohong Peng",
+              "Willy Sansen",
+              "Ligang Hou",
+              "Jinhui Wang",
+              "Wuchen Wu"
+            ],
+            "year": 2011,
+            "doi": "10.1109/JSSC.2010.2090088",
+            "source_url": "https://drive.google.com/file/d/196gim84_yz_jyWEfnuk_R0HmsjakW7O7/view"
+          },
+          "circuit_description": "Single outer Miller capacitor and series RC intermediate-node branch: CAPACITOR_1 net10 to net4, RESISTOR_0 net4 to ground; gmt-labelled device is second-stage cascode/current-source load, not an extra primary gain stage. AnalogGym paper Table6 reference numbers appear swapped for IAC and ACBC.",
+          "netlist": ".subckt peng_iac_pin_3 gnda vdda vinn vinp vout\nxm66 net10 VB2 net049 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_66_1_L_gmt_PMOS' w='MOSFET_66_1_W_gmt_PMOS*1' m='MOSFET_66_1_M_gmt_PMOS'\nxm11 VOUT VOUTP VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gmf_PMOS' w='MOSFET_11_1_W_gmf_PMOS*1' m='MOSFET_11_1_M_gmf_PMOS'\nxm7 net049 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*16'\nxm10 net043 VOUTP VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_10_1_L_gm2_PMOS' w='MOSFET_10_1_W_gm2_PMOS*1' m='MOSFET_10_1_M_gm2_PMOS'\nxm57 VB1 VB2 net2 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm65 VB2 VB2 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm6 VOUTP VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='4*MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='4*MOSFET_0_8_M_BIASCM_PMOS'\nxm9 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm8 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm4 net31 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='8*MOSFET_0_8_M_BIASCM_PMOS'\nxm62 VB3 VB2 net8 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm3 net8 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm61 net7 VB2 net6 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm2 net6 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm58 VB4 VB2 net3 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm1 net3 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm0 net2 VB1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm23 VOUT net10 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_1_L_gm3_NMOS' w='MOSFET_23_1_W_gm3_NMOS*1' m='MOSFET_23_1_M_gm3_NMOS'\nxm70 net1 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_70_3_L_BIASCM_NMOS' w='MOSFET_70_3_W_BIASCM_NMOS*1' m='MOSFET_70_3_M_BIASCM_NMOS'\nxm69 net10 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_70_3_L_BIASCM_NMOS' w='MOSFET_70_3_W_BIASCM_NMOS*1' m='MOSFET_70_3_M_BIASCM_NMOS'\nxm19 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm15 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm20 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm16 VOUTP VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm17 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm67 net043 VB3 net1 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*32'\nxm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS'\nxm12 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm13 net7 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm64 net9 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm63 VB2 VB3 net9 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm68 net1 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_68_1_L_BIASCM_NMOS' w='MOSFET_68_1_W_BIASCM_NMOS*1' m='MOSFET_68_1_M_BIASCM_NMOS'\nI0 VB1 GNDA 'CURRENT_0_BIAS'\nC1 net10 net4 'CAPACITOR_1'\nC0 VOUTP VOUT 'CAPACITOR_0'\nR0 net4 GNDA 'RESISTOR_0'\n.ends Peng_IAC_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_10_1_L_gm2_PMOS": 0.35,
+            "MOSFET_10_1_W_gm2_PMOS": 1.0,
+            "MOSFET_11_1_L_gmf_PMOS": 0.35,
+            "MOSFET_11_1_M_gmf_PMOS": 9.0,
+            "MOSFET_11_1_W_gmf_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 0.35,
+            "MOSFET_17_7_M_BIASCM_NMOS": 2.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_23_1_L_gm3_NMOS": 0.35,
+            "MOSFET_23_1_W_gm3_NMOS": 1.0,
+            "MOSFET_66_1_L_gmt_PMOS": 1.0,
+            "MOSFET_66_1_M_gmt_PMOS": 16.0,
+            "MOSFET_66_1_W_gmt_PMOS": 1.0,
+            "MOSFET_68_1_L_BIASCM_NMOS": 0.35,
+            "MOSFET_68_1_M_BIASCM_NMOS": 3.0,
+            "MOSFET_68_1_W_BIASCM_NMOS": 1.0,
+            "MOSFET_70_3_L_BIASCM_NMOS": 0.35,
+            "MOSFET_70_3_M_BIASCM_NMOS": 3.0,
+            "MOSFET_70_3_W_BIASCM_NMOS": 1.0,
+            "MOSFET_8_2_L_gm1_PMOS": 0.35,
+            "MOSFET_8_2_W_gm1_PMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 5e-13,
+        "CAPACITOR_1": 1.1e-12,
+        "CURRENT_0_BIAS": 1.25e-06,
+        "MOSFET_10_1_M_gm2_PMOS": 24,
+        "MOSFET_23_1_M_gm3_NMOS": 3,
+        "MOSFET_8_2_M_gm1_PMOS": 3,
+        "RESISTOR_0": 750000.0
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Peng_IAC_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 8,
+          "paper": {
+            "title": "Impedance Adapting Compensation for Low-Power Multistage Amplifiers",
+            "authors": [
+              "Xiaohong Peng",
+              "Willy Sansen",
+              "Ligang Hou",
+              "Jinhui Wang",
+              "Wuchen Wu"
+            ],
+            "year": 2011,
+            "doi": "10.1109/JSSC.2010.2090088",
+            "source_url": "https://drive.google.com/file/d/196gim84_yz_jyWEfnuk_R0HmsjakW7O7/view",
+            "review_level": "original_full_paper_and_original_schematic_equations",
+            "author_bibliography_url": "https://sites.google.com/view/impact-lab/publications"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Peng_IAC_Pin_3",
+          "netlist_sha256": "355d7da6d7fe29e2af9fdd5c379b53a09a41d35f2a310dc226365b1983c100e8",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Peng_IAC_Pin_3",
+          "parameters_sha256": "672b25019a750c8ce10d4083fef834d81248a9d4ad626239ec7d08bb5703d25a",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Peng_IAC_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "peng_iac_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 34,
+          "passive_connections": [
+            "I0 VB1 GNDA 'CURRENT_0_BIAS'",
+            "C1 net10 net4 'CAPACITOR_1'",
+            "C0 VOUTP VOUT 'CAPACITOR_0'",
+            "R0 net4 GNDA 'RESISTOR_0'"
+          ],
+          "released_cload": "150p",
+          "released_vcm": "240m",
+          "recommended_controls": [
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "0.5p"
+            },
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "1.1p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "1.25u"
+            },
+            {
+              "name": "MOSFET_10_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "24"
+            },
+            {
+              "name": "MOSFET_23_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "3"
+            },
+            {
+              "name": "MOSFET_8_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "3"
+            }
+          ],
+          "notes": "Single outer Miller capacitor and series RC intermediate-node branch: CAPACITOR_1 net10 to net4, RESISTOR_0 net4 to ground; gmt-labelled device is second-stage cascode/current-source load, not an extra primary gain stage. AnalogGym paper Table6 reference numbers appear swapped for IAC and ACBC.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "peng_2011",
+          "selection_status": "provisional_pending_empirical_validation",
+          "additional_source_informed_controls": [
+            {
+              "name": "RESISTOR_0",
+              "role": "series RC compensation resistance Ra; trades intermediate pole-zero placement against high parasitic pole",
+              "unit": "ohm",
+              "type": "continuous",
+              "released_value": "750k"
+            }
+          ],
+          "compensation_guidance": {
+            "CAPACITOR_0": "Cm outer Miller capacitor; extending upper bound above released 0.5pF is physically justified to reduce crossover if adapted model is unstable",
+            "CAPACITOR_1": "Ca intermediate-node RC capacitor; require empirical pole separation, not independent monotone optimization",
+            "RESISTOR_0": "Ra changes pnd2 approximately gm2*Ra*gm3/CL and pnd3 approximately 1/(Ra*C2); increasing Ra helps one pole but hurts another",
+            "paper_equations": "19,22,23,26,32,33; approximations presume large stage gains and compensation capacitances exceeding corresponding parasitics",
+            "source_figures_visually_reviewed": [
+              "Fig.1",
+              "Fig.3",
+              "Table II",
+              "equations on pp.446-448"
+            ]
+          },
+          "review_copy": {
+            "local_path": "runs/research_sources_20260910/peng_iac_2011.pdf",
+            "sha256": "b1e41bfb1cc6e030765da3e793be8f58540b01f1d810ef8dc17166bce31b0f3d",
+            "redistribute_with_benchmark": false
+          },
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%).",
+          "IAC Cm search range expanded to 0.125-10 pF and Ra exposed over 187.5 kohm-3 Mohm after source-equation review; the 60 degree phase-margin floor is unchanged."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "Ramos_PFC_Pin_3",
+      "family": "ramos_positive_feedback",
+      "task": {
+        "id": "domain_ramos_pfc_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_ramos_pfc_pin_3",
+        "subcircuit": "ramos_pfc_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.4,
+          "load_f": 1e-10
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 6.3e-11,
+          "CAPACITOR_1": 2.5e-11,
+          "CURRENT_0_BIAS": 2.4e-05,
+          "MOSFET_10_1_M_gm2_PMOS": 81,
+          "MOSFET_23_1_M_gm3_NMOS": 203,
+          "MOSFET_8_2_M_gm1_PMOS": 148
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 1.575e-11,
+            "max": 2.52e-10,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CAPACITOR_1": {
+            "min": 6.25e-12,
+            "max": 1e-10,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 6e-06,
+            "max": 9.6e-05,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_10_1_M_gm2_PMOS": {
+            "min": 21,
+            "max": 324,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_23_1_M_gm3_NMOS": {
+            "min": 51,
+            "max": 512,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_8_2_M_gm1_PMOS": {
+            "min": 37,
+            "max": 512,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.4,
+          "high_v": 0.6000000000000001,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Ramos_PFC_Pin_3",
+          "topology_family": "ramos_positive_feedback",
+          "paper": {
+            "title": "Three Stage Amplifier With Positive Feedback Compensation Scheme",
+            "authors": [
+              "Joao Ramos",
+              "Michiel Steyaert"
+            ],
+            "year": 2002,
+            "doi": "10.1109/CICC.2002.1012833",
+            "source_url": "https://www.scribd.com/document/241079749/01012833-Technical-paper"
+          },
+          "circuit_description": "Outer CAPACITOR_0 between net050 and VOUT; CAPACITOR_1 between net050 and net049 creates local positive-feedback compensation. Do not infer monotone stability from increasing every capacitor.",
+          "netlist": ".subckt ramos_pfc_pin_3 gnda vdda vinn vinp vout\nxm11 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gmf1_PMOS' w='MOSFET_11_1_W_gmf1_PMOS*1' m='MOSFET_11_1_M_gmf1_PMOS'\nxm7 net049 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_10_1_L_gm2_PMOS' w='MOSFET_10_1_W_gm2_PMOS*1' m='MOSFET_10_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm9 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm8 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm4 net31 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='4*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm23 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_1_L_gm3_NMOS' w='MOSFET_23_1_W_gm3_NMOS*1' m='MOSFET_23_1_M_gm3_NMOS'\nxm22 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm21 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm19 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm15 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm20 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm16 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm17 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS'\nxm12 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm13 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nI0 net1 GNDA 'CURRENT_0_BIAS'\nC0 net050 VOUT 'CAPACITOR_0'\nC1 net050 net049 'CAPACITOR_1'\n.ends Ramos_PFC_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_11_1_L_gmf1_PMOS": 1.0,
+            "MOSFET_11_1_M_gmf1_PMOS": 400.0,
+            "MOSFET_11_1_W_gmf1_PMOS": 1.0,
+            "MOSFET_10_1_L_gm2_PMOS": 1.0,
+            "MOSFET_10_1_W_gm2_PMOS": 1.0,
+            "MOSFET_23_1_L_gm3_NMOS": 1.0,
+            "MOSFET_23_1_W_gm3_NMOS": 1.0,
+            "MOSFET_8_2_L_gm1_PMOS": 1.0,
+            "MOSFET_8_2_W_gm1_PMOS": 1.0,
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 71.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_17_7_M_BIASCM_NMOS": 20.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_21_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_21_2_M_LOAD2_NMOS": 1.0,
+            "MOSFET_21_2_W_LOAD2_NMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 6.3e-11,
+        "CAPACITOR_1": 2.5e-11,
+        "CURRENT_0_BIAS": 2.4e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 81,
+        "MOSFET_23_1_M_gm3_NMOS": 203,
+        "MOSFET_8_2_M_gm1_PMOS": 148
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Ramos_PFC_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 9,
+          "paper": {
+            "title": "Three Stage Amplifier With Positive Feedback Compensation Scheme",
+            "authors": [
+              "Joao Ramos",
+              "Michiel Steyaert"
+            ],
+            "year": 2002,
+            "doi": "10.1109/CICC.2002.1012833",
+            "source_url": "https://www.scribd.com/document/241079749/01012833-Technical-paper",
+            "review_level": "original_paper_ocr_transcript_and_release_schematic"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Ramos_PFC_Pin_3",
+          "netlist_sha256": "f8eeee71b125c76d4d28597b09bff763a7b0bd6b85b2c4885513137723bad982",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Ramos_PFC_Pin_3",
+          "parameters_sha256": "aa3d99fa1ff54e2a7a4c027e662d848c9e286bd7f0d9809a9946162e1351a865",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Ramos_PFC_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "ramos_pfc_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 24,
+          "passive_connections": [
+            "I0 net1 GNDA 'CURRENT_0_BIAS'",
+            "C0 net050 VOUT 'CAPACITOR_0'",
+            "C1 net050 net049 'CAPACITOR_1'"
+          ],
+          "released_cload": "100p",
+          "released_vcm": "400m",
+          "recommended_controls": [
+            {
+              "name": "MOSFET_10_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "81"
+            },
+            {
+              "name": "MOSFET_23_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "203"
+            },
+            {
+              "name": "MOSFET_8_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "148"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "63p"
+            },
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "25p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "24u"
+            }
+          ],
+          "notes": "Outer CAPACITOR_0 between net050 and VOUT; CAPACITOR_1 between net050 and net049 creates local positive-feedback compensation. Do not infer monotone stability from increasing every capacitor.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "ramos_2002",
+          "selection_status": "provisional_pending_empirical_validation",
+          "review_limitations": [
+            "Original figure image not accessible; OCR formulas and units are not used as quantitative targets.",
+            "Use CICC2002 article attribution; journal2004 sequel is a separate source."
+          ],
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    },
+    {
+      "name": "Song_DACFC_Pin_3",
+      "family": "song_dual_active_capacitive_feedback",
+      "task": {
+        "id": "domain_song_dacfc_pin_3",
+        "purpose": "Pilot sizing task on one topology; start with larger compensation capacitance and recover the fixed performance requirements.",
+        "circuit_directory": "circuits/benchmark_song_dacfc_pin_3",
+        "subcircuit": "song_dacfc_pin_3",
+        "conditions": {
+          "corner": "tt",
+          "supply_v": 1.8,
+          "temperature_c": 27,
+          "common_mode_v": 0.3,
+          "load_f": 5e-10
+        },
+        "initial_parameters": {
+          "CAPACITOR_0": 1.5e-12,
+          "CAPACITOR_1": 7e-13,
+          "CURRENT_0_BIAS": 5e-06,
+          "MOSFET_10_1_M_gm2_PMOS": 4,
+          "MOSFET_23_1_M_gm3_NMOS": 4,
+          "MOSFET_8_2_M_gm1_PMOS": 4
+        },
+        "parameters": {
+          "CAPACITOR_0": {
+            "min": 3.75e-13,
+            "max": 6e-12,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CAPACITOR_1": {
+            "min": 1.7499999999999999e-13,
+            "max": 2.7999999999999998e-12,
+            "unit": "F",
+            "sampling_scale": "log",
+            "role": "compensation capacitance"
+          },
+          "CURRENT_0_BIAS": {
+            "min": 1.2499999999999999e-06,
+            "max": 1.9999999999999998e-05,
+            "unit": "A",
+            "sampling_scale": "log",
+            "role": "bias reference current"
+          },
+          "MOSFET_10_1_M_gm2_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm2 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_23_1_M_gm3_NMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm3 stage transistor multiplicity",
+            "integer": true
+          },
+          "MOSFET_8_2_M_gm1_PMOS": {
+            "min": 1,
+            "max": 16,
+            "unit": "multiplicity",
+            "sampling_scale": "log",
+            "role": "gm1 stage transistor multiplicity",
+            "integer": true
+          }
+        },
+        "ac": {
+          "points_per_decade": 100,
+          "start_hz": 0.1,
+          "stop_hz": 1000000000.0
+        },
+        "transient": {
+          "low_v": 0.3,
+          "high_v": 0.5,
+          "rise_start_s": 5e-06,
+          "edge_s": 1e-08,
+          "high_duration_s": 2e-05,
+          "period_s": 6e-05,
+          "stop_s": 5e-05,
+          "max_step_s": 5e-09,
+          "settling_tolerance_v": 0.02,
+          "minimum_hold_s": 2e-06
+        },
+        "constraints": {
+          "gain_db": {
+            "min": 50
+          },
+          "unity_gain_hz": {
+            "min": 100000.0
+          },
+          "phase_margin_deg": {
+            "min": 60
+          },
+          "power_w": {
+            "max": 0.002
+          },
+          "dc_error_v": {
+            "max": 0.02
+          },
+          "max_tracking_error_v": {
+            "max": 0.02
+          },
+          "settling_rise_s": {
+            "max": 1e-05
+          },
+          "settling_fall_s": {
+            "max": 1e-05
+          }
+        },
+        "max_evaluations": 30,
+        "design_context": {
+          "topology": "Song_DACFC_Pin_3",
+          "topology_family": "song_dual_active_capacitive_feedback",
+          "paper": {
+            "title": "Dual Active-Capacitive-Feedback Compensation for Low-Power Large-Capacitive-Load Three-Stage Amplifiers",
+            "authors": [
+              "Song Guo",
+              "Hoi Lee"
+            ],
+            "year": 2011,
+            "doi": "10.1109/JSSC.2010.2092994",
+            "source_url": "https://doi.org/10.1109/JSSC.2010.2092994"
+          },
+          "circuit_description": "Dual active feedback branches, two capacitors, auxiliary PMOS gma1/gma2 groups; one capacitor is shunt net4 to ground. PMOS gmf1 pair supplements main input stage. These circuit roles follow the released AnalogGym schematic and netlist. Original-paper review was limited to the abstract and author bibliography; the original full text and original schematic were unavailable.",
+          "netlist": ".subckt song_dacfc_pin_3 gnda vdda vinn vinp vout\nxm69 net3 net70 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm68 net2 net70 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm63 net70 DM_1 net2 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm62 VOUTN DM_1 net3 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm61 net4 DM_1 net050 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm60 VOUTN DM_1 net5 VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm59 net1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='2*MOSFET_0_8_M_BIASCM_PMOS'\nxm58 net049 VINP net1 net1 sky130_fd_pr__pfet_01v8 l='MOSFET_58_2_L_gmf1_PMOS' w='MOSFET_58_2_W_gmf1_PMOS*1' m='MOSFET_58_2_M_gmf1_PMOS'\nxm57 net043 VINN net1 net1 sky130_fd_pr__pfet_01v8 l='MOSFET_58_2_L_gmf1_PMOS' w='MOSFET_58_2_W_gmf1_PMOS*1' m='MOSFET_58_2_M_gmf1_PMOS'\nxm11 VOUT net4 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gmf2_PMOS' w='MOSFET_11_1_W_gmf2_PMOS*1' m='MOSFET_11_1_M_gmf2_PMOS'\nxm7 net049 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_7_1_L_gma2_PMOS' w='MOSFET_7_1_W_gma2_PMOS*1' m='MOSFET_7_1_M_gma2_PMOS'\nxm10 net043 net4 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_10_1_L_gm2_PMOS' w='MOSFET_10_1_W_gm2_PMOS*1' m='MOSFET_10_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_5_2_L_gma1_PMOS' w='MOSFET_5_2_W_gma1_PMOS*1' m='MOSFET_5_2_M_gma1_PMOS'\nxm5 net5 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_5_2_L_gma1_PMOS' w='MOSFET_5_2_W_gma1_PMOS*1' m='MOSFET_5_2_M_gma1_PMOS'\nxm9 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm8 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm4 net31 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='2*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm2 DM_1 DM_1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm0 net013 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS*4'\nxm71 VOUTN VB3 net85 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm70 net70 VB3 net69 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm65 net69 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm64 net85 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm23 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_1_L_gm3_NMOS' w='MOSFET_23_1_W_gm3_NMOS*1' m='MOSFET_23_1_M_gm3_NMOS'\nxm22 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm21 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm19 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm15 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm20 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm16 net4 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm17 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS'\nxm12 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm13 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nI0 net013 GNDA 'CURRENT_0_BIAS'\nC2 net4 GNDA 'CAPACITOR_1'\nC0 VOUT net70 'CAPACITOR_0'\n.ends Song_DACFC_Pin_3\n",
+          "fixed_parameters": {
+            "MOSFET_58_2_L_gmf1_PMOS": 1.0,
+            "MOSFET_58_2_M_gmf1_PMOS": 4.0,
+            "MOSFET_58_2_W_gmf1_PMOS": 1.0,
+            "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+            "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+            "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+            "MOSFET_10_1_L_gm2_PMOS": 1.0,
+            "MOSFET_10_1_W_gm2_PMOS": 1.0,
+            "MOSFET_11_1_L_gmf2_PMOS": 1.0,
+            "MOSFET_11_1_M_gmf2_PMOS": 4.0,
+            "MOSFET_11_1_W_gmf2_PMOS": 1.0,
+            "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+            "MOSFET_17_7_M_BIASCM_NMOS": 4.0,
+            "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+            "MOSFET_21_2_L_LOAD2_NMOS": 1.0,
+            "MOSFET_21_2_M_LOAD2_NMOS": 4.0,
+            "MOSFET_21_2_W_LOAD2_NMOS": 1.0,
+            "MOSFET_23_1_L_gm3_NMOS": 1.0,
+            "MOSFET_23_1_W_gm3_NMOS": 1.0,
+            "MOSFET_5_2_L_gma1_PMOS": 1.0,
+            "MOSFET_5_2_M_gma1_PMOS": 4.0,
+            "MOSFET_5_2_W_gma1_PMOS": 1.0,
+            "MOSFET_7_1_L_gma2_PMOS": 1.0,
+            "MOSFET_7_1_M_gma2_PMOS": 4.0,
+            "MOSFET_7_1_W_gma2_PMOS": 1.0,
+            "MOSFET_8_2_L_gm1_PMOS": 1.0,
+            "MOSFET_8_2_W_gm1_PMOS": 1.0
+          },
+          "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+        }
+      },
+      "public_default": {
+        "CAPACITOR_0": 1.5e-12,
+        "CAPACITOR_1": 7e-13,
+        "CURRENT_0_BIAS": 5e-06,
+        "MOSFET_10_1_M_gm2_PMOS": 4,
+        "MOSFET_23_1_M_gm3_NMOS": 4,
+        "MOSFET_8_2_M_gm1_PMOS": 4
+      },
+      "source": {
+        "repository": "https://github.com/CODA-Team/AnalogGym",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+        "release": {
+          "release_name": "Song_DACFC_Pin_3",
+          "recommended": true,
+          "recommendation_rank": 10,
+          "paper": {
+            "title": "Dual Active-Capacitive-Feedback Compensation for Low-Power Large-Capacitive-Load Three-Stage Amplifiers",
+            "authors": [
+              "Song Guo",
+              "Hoi Lee"
+            ],
+            "year": 2011,
+            "doi": "10.1109/JSSC.2010.2092994",
+            "source_url": "https://doi.org/10.1109/JSSC.2010.2092994",
+            "review_level": "abstract_and_author_bibliography_only",
+            "author_bibliography_url": "https://personal.utdallas.edu/~hoilee/publication.html"
+          },
+          "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Song_DACFC_Pin_3",
+          "netlist_sha256": "6bf8535244e8b74276541ec403a6432b8709c581973e03182f1c084479da582a",
+          "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Song_DACFC_Pin_3",
+          "parameters_sha256": "01405ecd4b0d5a76acf9eaaff12482902481179bbca1a8c4341bc8659bae34c7",
+          "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Song_DACFC_Pin_3.png",
+          "schematic_visual_review": true,
+          "subcircuit": "song_dacfc_pin_3",
+          "pins": [
+            "gnda",
+            "vdda",
+            "vinn",
+            "vinp",
+            "vout"
+          ],
+          "mos_instance_count": 37,
+          "passive_connections": [
+            "I0 net013 GNDA 'CURRENT_0_BIAS'",
+            "C2 net4 GNDA 'CAPACITOR_1'",
+            "C0 VOUT net70 'CAPACITOR_0'"
+          ],
+          "released_cload": "500p",
+          "released_vcm": "300m",
+          "recommended_controls": [
+            {
+              "name": "CAPACITOR_1",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "0.7p"
+            },
+            {
+              "name": "MOSFET_10_1_M_gm2_PMOS",
+              "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_23_1_M_gm3_NMOS",
+              "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "MOSFET_8_2_M_gm1_PMOS",
+              "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+              "unit": "count",
+              "type": "integer",
+              "released_value": "4"
+            },
+            {
+              "name": "CAPACITOR_0",
+              "role": "compensation capacitance",
+              "unit": "F",
+              "type": "continuous",
+              "released_value": "1.5p"
+            },
+            {
+              "name": "CURRENT_0_BIAS",
+              "role": "bias reference current",
+              "unit": "A",
+              "type": "continuous",
+              "released_value": "5u"
+            }
+          ],
+          "notes": "Dual active feedback branches, two capacitors, auxiliary PMOS gma1/gma2 groups; one capacitor is shunt net4 to ground. PMOS gmf1 pair supplements main input stage.",
+          "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+          "source_family": "song_2011",
+          "selection_status": "source_limited_provisional_pending_empirical_validation",
+          "review_limitations": [
+            "Original2011 full text and original figure not recovered; original abstract and author bibliography verified, released schematic/netlist inspected.",
+            "Do not claim original-paper full-text review or original transistor-for-transistor reproduction."
+          ],
+          "supplementary_analysis_source": {
+            "title": "Single miller capacitor frequency compensation techniques: Theoretical comparison and critical review",
+            "doi": "10.1002/cta.3244",
+            "section": "4.3",
+            "source_url": "https://onlinelibrary.wiley.com/doi/10.1002/cta.3244",
+            "review_level": "section_text_only",
+            "limitation": "Primary2022 analytical research is supplementary, not a substitute for original2011 paper review."
+          },
+          "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+        },
+        "adaptations": [
+          "Netlist and original fixed parameter file copied unchanged.",
+          "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+          "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+          "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+        ],
+        "training_approved": false
+      }
+    }
+  ]
+}

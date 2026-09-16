@@ -5,6 +5,13 @@ external/
 .venv-tpu/
 .venv-bootstrap/
 training/cloud.local.json
+/TPU Builders Getting Started Guide.docx
+tpu_diagnostic_report.txt
+# Local screenshots and evaluator-only construction notes.
+/credits.png
+/benchmark/WORK_LOG.md
+/reports/benchmark_candidate_sample_review.md
+/reports/benchmark_final_candidate_review.md
 runs/
 datasets/*
 !datasets/pilot_20260909/

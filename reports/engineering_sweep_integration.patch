@@ -1,0 +1,33 @@
+--- a/benchmark/baselines.py
++++ b/benchmark/baselines.py
+@@ -10,7 +10,7 @@
+ import random
+ 
+ 
+-METHODS = ("uniform_linear", "uniform_log", "coordinate_search")
++METHODS = ("uniform_linear", "uniform_log", "coordinate_search", "engineering_sweep")
+ _LOG_UNITS = {"F", "A", "um", "m", "pF", "nF", "uA", "mA", "nm"}
+ 
+ 
+@@ -118,6 +118,9 @@
+     """
+     if method not in METHODS:
+         raise ValueError(f"Unknown baseline method: {method}")
++    if method == "engineering_sweep":
++        from benchmark.engineering_search import run_engineering_sweep
++        return run_engineering_sweep(task, evaluate_action, seed, budget=budget)
+     if isinstance(seed, bool) or not isinstance(seed, int):
+         raise ValueError("seed must be an integer.")
+     maximum = task.get("max_evaluations", budget)
+--- a/benchmark/calibrate.py
++++ b/benchmark/calibrate.py
+@@ -26,7 +26,8 @@
+ 
+ BUDGET = 30
+ PHYSICAL_FIELDS = ("circuit_directory", "subcircuit", "conditions", "parameters", "ac", "transient")
+-CODE_FILES = ("benchmark/calibrate.py", "benchmark/baselines.py", "benchmark/candidates.py",
++CODE_FILES = ("benchmark/calibrate.py", "benchmark/baselines.py", "benchmark/engineering_search.py",
++              "benchmark/candidates.py",
+               "benchmark/explore.py", "benchmark/catalog.py", "benchmark/simulation.py",
+               "analog_design/simulator.py", "analog_design/metrics.py", "analog_design/crosscheck.py",
+               "dependencies.lock.json")

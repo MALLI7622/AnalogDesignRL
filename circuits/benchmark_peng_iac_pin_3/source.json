@@ -1,0 +1,131 @@
+{
+  "repository": "https://github.com/CODA-Team/AnalogGym",
+  "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+  "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+  "release": {
+    "release_name": "Peng_IAC_Pin_3",
+    "recommended": true,
+    "recommendation_rank": 8,
+    "paper": {
+      "title": "Impedance Adapting Compensation for Low-Power Multistage Amplifiers",
+      "authors": [
+        "Xiaohong Peng",
+        "Willy Sansen",
+        "Ligang Hou",
+        "Jinhui Wang",
+        "Wuchen Wu"
+      ],
+      "year": 2011,
+      "doi": "10.1109/JSSC.2010.2090088",
+      "source_url": "https://drive.google.com/file/d/196gim84_yz_jyWEfnuk_R0HmsjakW7O7/view",
+      "review_level": "original_full_paper_and_original_schematic_equations",
+      "author_bibliography_url": "https://sites.google.com/view/impact-lab/publications"
+    },
+    "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Peng_IAC_Pin_3",
+    "netlist_sha256": "355d7da6d7fe29e2af9fdd5c379b53a09a41d35f2a310dc226365b1983c100e8",
+    "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Peng_IAC_Pin_3",
+    "parameters_sha256": "672b25019a750c8ce10d4083fef834d81248a9d4ad626239ec7d08bb5703d25a",
+    "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Peng_IAC_Pin_3.png",
+    "schematic_visual_review": true,
+    "subcircuit": "peng_iac_pin_3",
+    "pins": [
+      "gnda",
+      "vdda",
+      "vinn",
+      "vinp",
+      "vout"
+    ],
+    "mos_instance_count": 34,
+    "passive_connections": [
+      "I0 VB1 GNDA 'CURRENT_0_BIAS'",
+      "C1 net10 net4 'CAPACITOR_1'",
+      "C0 VOUTP VOUT 'CAPACITOR_0'",
+      "R0 net4 GNDA 'RESISTOR_0'"
+    ],
+    "released_cload": "150p",
+    "released_vcm": "240m",
+    "recommended_controls": [
+      {
+        "name": "CAPACITOR_0",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "0.5p"
+      },
+      {
+        "name": "CAPACITOR_1",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "1.1p"
+      },
+      {
+        "name": "CURRENT_0_BIAS",
+        "role": "bias reference current",
+        "unit": "A",
+        "type": "continuous",
+        "released_value": "1.25u"
+      },
+      {
+        "name": "MOSFET_10_1_M_gm2_PMOS",
+        "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "24"
+      },
+      {
+        "name": "MOSFET_23_1_M_gm3_NMOS",
+        "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "3"
+      },
+      {
+        "name": "MOSFET_8_2_M_gm1_PMOS",
+        "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "3"
+      }
+    ],
+    "notes": "Single outer Miller capacitor and series RC intermediate-node branch: CAPACITOR_1 net10 to net4, RESISTOR_0 net4 to ground; gmt-labelled device is second-stage cascode/current-source load, not an extra primary gain stage. AnalogGym paper Table6 reference numbers appear swapped for IAC and ACBC.",
+    "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+    "source_family": "peng_2011",
+    "selection_status": "provisional_pending_empirical_validation",
+    "additional_source_informed_controls": [
+      {
+        "name": "RESISTOR_0",
+        "role": "series RC compensation resistance Ra; trades intermediate pole-zero placement against high parasitic pole",
+        "unit": "ohm",
+        "type": "continuous",
+        "released_value": "750k"
+      }
+    ],
+    "compensation_guidance": {
+      "CAPACITOR_0": "Cm outer Miller capacitor; extending upper bound above released 0.5pF is physically justified to reduce crossover if adapted model is unstable",
+      "CAPACITOR_1": "Ca intermediate-node RC capacitor; require empirical pole separation, not independent monotone optimization",
+      "RESISTOR_0": "Ra changes pnd2 approximately gm2*Ra*gm3/CL and pnd3 approximately 1/(Ra*C2); increasing Ra helps one pole but hurts another",
+      "paper_equations": "19,22,23,26,32,33; approximations presume large stage gains and compensation capacitances exceeding corresponding parasitics",
+      "source_figures_visually_reviewed": [
+        "Fig.1",
+        "Fig.3",
+        "Table II",
+        "equations on pp.446-448"
+      ]
+    },
+    "review_copy": {
+      "local_path": "runs/research_sources_20260910/peng_iac_2011.pdf",
+      "sha256": "b1e41bfb1cc6e030765da3e793be8f58540b01f1d810ef8dc17166bce31b0f3d",
+      "redistribute_with_benchmark": false
+    },
+    "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+  },
+  "adaptations": [
+    "Netlist and original fixed parameter file copied unchanged.",
+    "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+    "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+    "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%).",
+    "IAC Cm search range expanded to 0.125-10 pF and Ra exposed over 187.5 kohm-3 Mohm after source-equation review; the 60 degree phase-margin floor is unchanged."
+  ],
+  "training_approved": false
+}

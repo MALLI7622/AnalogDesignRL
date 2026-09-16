@@ -4,6 +4,10 @@ Use an AI model to generate analog-circuit sizing tasks from published designs, 
 
 Pipeline: **papers/design files → AI-generated task candidates → Python/ngspice validation → dataset**. The generator supports your signed-in Codex account, OpenAI API, Gemini, DeepSeek, GLM through Z.AI, and OpenAI-compatible model servers. See [generation setup and commands](generation/README.md). The original pilot tasks were authored manually to develop the verifier.
 
+To continue task creation in another Codex session, use the [task-generation handoff](TASK_GENERATION_README.md): source provenance, bounded generation commands, and steps for adding another paper's circuit.
+
+For training on the completed 250-task dataset and evaluating with AnalogGym, read the [training and evaluation setup](TRAINING_ANALOGGYM_README.md). It explains the 174/21/55 split, shared circuit sources, evaluation protocol, and remaining integration work.
+
 The pilot contains two amplifier topologies, SKY130 device models, ngspice testbenches, a numeric-action evaluator, and a budgeted episode API. A separate audit runs AutoCkt's released 45 nm netlist and models. Automated verification checks pass; independent review and training approval remain pending. No model has been trained. The [TPU training starter](training/README.md) adds a CPU simulator service and a Gemma 3 1B LoRA/GRPO integration; its TPU runtime still needs hardware validation.
 
 | Circuit | Source | Sizing task |

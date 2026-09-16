@@ -1,0 +1,104 @@
+{
+  "repository": "https://github.com/CODA-Team/AnalogGym",
+  "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+  "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+  "release": {
+    "release_name": "HoiLee_AFFC_Pin_3",
+    "recommended": true,
+    "recommendation_rank": 6,
+    "paper": {
+      "title": "Active-Feedback Frequency-Compensation Technique for Low-Power Multistage Amplifiers",
+      "authors": [
+        "Hoi Lee",
+        "Philip K. T. Mok"
+      ],
+      "year": 2003,
+      "doi": "10.1109/JSSC.2002.808326",
+      "source_url": "https://personal.utdallas.edu/~hoilee/publications/Journals/affc.pdf",
+      "review_level": "original_paper_text_and_schematic"
+    },
+    "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/HoiLee_AFFC_Pin_3",
+    "netlist_sha256": "1f8dabf2ee2c04f7edd6d45d6fb5fa9ce9d773dc0a82d56a133211586df0ee28",
+    "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/HoiLee_AFFC_Pin_3",
+    "parameters_sha256": "a05db27bea2139a8891eb61e814a9843b14f6a8d0c5f474b435c379f9bdb6d84",
+    "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/HoiLee_AFFC_Pin_3.png",
+    "schematic_visual_review": true,
+    "subcircuit": "hoilee_affc_pin_3",
+    "pins": [
+      "gnda",
+      "vdda",
+      "vinn",
+      "vinp",
+      "vout"
+    ],
+    "mos_instance_count": 30,
+    "passive_connections": [
+      "I0 net013 GNDA 'CURRENT_0_BIAS'",
+      "C1 VOUT net1 'CAPACITOR_1'",
+      "C0 net049 VOUT 'CAPACITOR_0'"
+    ],
+    "released_cload": "100p",
+    "released_vcm": "300m",
+    "recommended_controls": [
+      {
+        "name": "MOSFET_11_1_M_gm2_PMOS",
+        "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "MOSFET_25_1_M_gm3_NMOS",
+        "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "MOSFET_9_2_M_gm1_PMOS",
+        "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "CAPACITOR_0",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "18p"
+      },
+      {
+        "name": "CAPACITOR_1",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "3p"
+      },
+      {
+        "name": "CURRENT_0_BIAS",
+        "role": "bias reference current",
+        "unit": "A",
+        "type": "continuous",
+        "released_value": "20u"
+      }
+    ],
+    "notes": "Two capacitors; active common-gate feedback stage and replica biasing supplement three gain stages. Original paper Fig.6 main schematic plus Fig.7 replica bias. Original uses 0.8um CMOS and 2V,120pF; release uses SKY130 1.8V and 100pF.",
+    "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+    "source_family": "hoilee_2003",
+    "selection_status": "provisional_pending_empirical_validation",
+    "review_copy": {
+      "local_path": "runs/research_sources_20260910/lee_mok_affc_2003.pdf",
+      "sha256": "0ec7e57e395f74e5bd7e78fb0b10c2d9b1099e10c036bbf1580e22b25d374fd1",
+      "redistribute_with_benchmark": false
+    },
+    "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+  },
+  "adaptations": [
+    "Netlist and original fixed parameter file copied unchanged.",
+    "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+    "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+    "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+  ],
+  "training_approved": false
+}

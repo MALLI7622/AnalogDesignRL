@@ -1,0 +1,1317 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-09-10",
+  "status": "standalone_educational_material_not_in_frozen_task_contexts",
+  "catalog_reviewed_sha256": "0de38857961a21b04a14f8d2dc43849f0b954b198a074ff07e57ba8ba93f1e87",
+  "integration_note": "No runtime imports this file. Inclusion in future learner task contexts requires explicit versioning, new context/task hashes, and validation; it does not modify an active calibration.",
+  "provenance": {
+    "AnalogGym_repository": "https://github.com/CODA-Team/AnalogGym",
+    "AnalogGym_commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+    "netlist_license_notice": "benchmark/THIRD_PARTY_NOTICES.md",
+    "paper_redistribution": "Paper text and figures are not redistributed in this material."
+  },
+  "common": {
+    "scope": "These are project-authored sizing exercises using fixed SKY130 amplifier circuits. The original papers motivate the architectures; project test conditions and numerical requirements are not reproductions of original-paper performance.",
+    "exercise": "Choose allowed parameter values that satisfy all stated requirements together under the task's fixed supply, load, common mode, temperature, and test waveforms. The topology and all unexposed parameters remain fixed.",
+    "parameter_semantics": [
+      "Capacitance is in farads, current in amperes, resistance in ohms, and editable AutoCkt widths in micrometres. Use each task's explicit units and bounds.",
+      "AnalogGym names containing gm1, gm2, or gm3 identify device groups. The editable M quantities are dimensionless integer multiplicities at fixed individual width and length; they are not transconductance values in siemens.",
+      "Changing multiplicity or width changes capacitance, operating point, transconductance, and output resistance together. The resulting metric changes need not be monotonic over the full domain.",
+      "A shared parameter changes every netlist instance that uses it. Numeric factors already present in an instance expression remain part of the fixed circuit relation.",
+      "Fixed geometry does not imply fixed current or transconductance: those still respond to the bias and signal operating point.",
+      "A bias reference current sets a mirror network. It is neither the total supply current nor a control over one isolated gain stage."
+    ],
+    "measurement_interpretation": {
+      "gain_db": "Open-loop gain at the AC sweep's starting frequency, in dB; the sweep and operating point are specified by the task.",
+      "unity_gain_hz": "The single downward zero-dB crossing within the measured AC band, interpolated in log frequency. Missing or multiple crossings fail measurement validation.",
+      "phase_margin_deg": "Phase margin at that crossing under the specified nominal small-signal test. It does not establish stability for every load, input level, or process corner.",
+      "power_w": "Quiescent DC supply power at the tested common-mode operating point, rather than step energy or average dynamic power.",
+      "dc_error_v": "Absolute follower output error relative to the input common-mode voltage at one DC operating point. It is not a mismatch-derived input-offset distribution.",
+      "max_tracking_error_v": "Maximum absolute input/output error before the rising edge and over the final quarter of each observed plateau. It is not maximum error across the complete waveform.",
+      "settling_rise_s_and_settling_fall_s": "Time measured from each edge start until the sampled output enters the specified absolute band and stays inside for the remainder of that edge's observation window, with at least minimum_hold_s observed inside. The band is settling_tolerance_v, separate from the tracking-error target."
+    },
+    "source_limit": "Nominal simulation checks do not provide layout, mismatch, process-corner, noise, CMRR, PSRR, or fabrication validation. Source review depth differs by paper and is recorded per topology."
+  },
+  "briefs": [
+    {
+      "topology": "autockt_two_stage",
+      "label": "AutoCkt two-stage Miller amplifier",
+      "source_family": "autockt_2020",
+      "netlist_path": "circuits/autockt_two_stage/netlist.spice",
+      "netlist_sha256": "cbaefd190006219d7806d831e07350e314de0daf42021d5daae4c977fb340cfe",
+      "paper": {
+        "title": "AutoCkt: Deep Reinforcement Learning of Analog Circuit Designs",
+        "authors": [
+          "Keertana Settaluri",
+          "Ameer Haj-Ali",
+          "Qijing Huang",
+          "Kourosh Hakhamaneshi",
+          "Borivoje Nikolic"
+        ],
+        "year": 2020,
+        "arxiv": "2001.01808v2",
+        "source_url": "https://arxiv.org/abs/2001.01808v2",
+        "review_level": "original_full_paper_and_original_schematic",
+        "figure": "6"
+      },
+      "source_review_limit": "Original full-paper text and the relevant original schematic were reviewed. The simulated circuit uses project or AnalogGym SKY130 adaptation and project-defined conditions.",
+      "design_brief": "Size a two-stage voltage amplifier with an NMOS differential input pair, a PMOS current-mirror load, a PMOS second stage, and an NMOS output current sink. A capacitor connects the first-stage output to the final output. The exercise couples gain, bandwidth, stability, quiescent power, and follower settling through physical device widths and bias current.",
+      "control_roles": [
+        {
+          "parameter": "CCOMP",
+          "unit": "F",
+          "physical_role": "Miller capacitor between stage1 and vout; couples the two gain stages and changes both the small-signal frequency response and charging during a step.",
+          "netlist_bindings": [
+            {
+              "instance": "Cc",
+              "terminals": [
+                "stage1",
+                "vout"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "IBIAS",
+          "unit": "A",
+          "physical_role": "Reference current injected into diode-connected NMOS Xmir; the shared bias node controls the fixed-geometry tail device and the editable output current sink.",
+          "netlist_bindings": [
+            {
+              "instance": "Iref",
+              "terminals": [
+                "vdda",
+                "bias"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "W_IN",
+          "unit": "um",
+          "physical_role": "Shared width of the two NMOS differential-input devices; changes their transconductance, operating point, and capacitance together.",
+          "netlist_bindings": [
+            {
+              "instance": "Xin_left",
+              "terminals": [
+                "mirror",
+                "vinn",
+                "tail",
+                "gnda"
+              ]
+            },
+            {
+              "instance": "Xin_right",
+              "terminals": [
+                "stage1",
+                "vinp",
+                "tail",
+                "gnda"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "W_LOAD",
+          "unit": "um",
+          "physical_role": "Shared width of the first-stage PMOS current-mirror devices; changes their operating point and loading while retaining the matched width relation.",
+          "netlist_bindings": [
+            {
+              "instance": "Xload_left",
+              "terminals": [
+                "mirror",
+                "mirror",
+                "vdda",
+                "vdda"
+              ]
+            },
+            {
+              "instance": "Xload_right",
+              "terminals": [
+                "stage1",
+                "mirror",
+                "vdda",
+                "vdda"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "W_GM",
+          "unit": "um",
+          "physical_role": "Width of the PMOS second-stage gain device; changes output drive and the loading seen at stage1.",
+          "netlist_bindings": [
+            {
+              "instance": "Xgm",
+              "terminals": [
+                "vout",
+                "stage1",
+                "vdda",
+                "vdda"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "W_LOAD2",
+          "unit": "um",
+          "physical_role": "Width of the NMOS output current sink; changes its relation to the fixed reference device, output operating point, and output capacitance.",
+          "netlist_bindings": [
+            {
+              "instance": "Xload2",
+              "terminals": [
+                "vout",
+                "bias",
+                "gnda",
+                "gnda"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "The reference and tail NMOS geometry, all device lengths, connections, and external load are fixed by the task.",
+        "The two input widths move together, as do the two first-stage mirror widths; these are shared parameters, not independent device edits."
+      ]
+    },
+    {
+      "topology": "Fan_SMC_Pin_3",
+      "label": "Fan single-Miller three-stage amplifier",
+      "source_family": "fan_2005",
+      "netlist_path": "circuits/benchmark_fan_smc_pin_3/netlist.spice",
+      "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+      "paper": {
+        "title": "Single Miller Capacitor Frequency Compensation Technique for Low-Power Multistage Amplifiers",
+        "authors": [
+          "Xiaohua Fan",
+          "Chinmaya Mishra",
+          "Edgar Sanchez-Sinencio"
+        ],
+        "year": 2005,
+        "doi": "10.1109/JSSC.2005.843602",
+        "source_url": "https://picture.iczhiku.com/resource/eetop/WYKhwFHGQpjORCXn.pdf",
+        "review_level": "original_paper_text_and_release_schematic"
+      },
+      "source_review_limit": "Original-paper text and the released AnalogGym schematic were reviewed. The original figure image was not inspected.",
+      "design_brief": "Size a three-stage amplifier with a PMOS input pair, a PMOS-driven intermediate current-mirror stage, and an NMOS output gain device. One outer Miller capacitor spans the first-stage output and final output. A fixed PMOS feedforward path also drives the output, so rising and falling responses depend on different device paths.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Outer Miller capacitor from first-stage output net050 to VOUT; couples the first and output stages.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "net050",
+                "VOUT"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net013",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_10_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net043",
+                "net050",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_23_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm23",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_8_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm9",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm8",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "The PMOS feedforward output device xm11 is fixed in geometry; its gate is net050, so its current still changes with circuit operation.",
+        "The intermediate NMOS mirror and bias/cascode device groups retain their released geometry and multiplicity relations."
+      ]
+    },
+    {
+      "topology": "Leung_NMCNR_Pin_3",
+      "label": "Leung nested Miller amplifier with a nulling resistor",
+      "source_family": "leung_2001",
+      "netlist_path": "circuits/benchmark_leung_nmcnr_pin_3/netlist.spice",
+      "netlist_sha256": "fa98dc34a1620368bcc51f754d23513f76cb034eeae6b07f8947fa9d6c13d193",
+      "paper": {
+        "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+        "authors": [
+          "Ka Nang Leung",
+          "Philip K. T. Mok"
+        ],
+        "year": 2001,
+        "doi": "10.1109/81.948432",
+        "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf",
+        "review_level": "original_paper_text_and_schematic"
+      },
+      "source_review_limit": "Original full-paper text and the relevant original schematic were reviewed. The simulated circuit uses project or AnalogGym SKY130 adaptation and project-defined conditions.",
+      "design_brief": "Size a three-stage amplifier whose two nested compensation capacitors return to the output through a shared nulling resistor. The shared node couples the two capacitor choices. The PMOS output load is bias-driven, while the NMOS output gain device is driven by the intermediate stage.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Outer compensation branch between first-stage output net050 and shared return node net044.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "net050",
+                "net044"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "Inner compensation branch between shared return node net044 and intermediate-stage output net049.",
+          "netlist_bindings": [
+            {
+              "instance": "C1",
+              "terminals": [
+                "net044",
+                "net049"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net013",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_10_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net043",
+                "net050",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_23_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm23",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_8_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm9",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm8",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "R0, controlled by fixed RESISTOR_0, connects net044 to VOUT; it remains part of both capacitor return paths and is not an editable control in this domain.",
+        "PMOS output device xm11 has a bias-driven gate net013; it is a fixed-geometry current-source load, rather than the signal-driven feedforward PMOS used in several other domains."
+      ]
+    },
+    {
+      "topology": "Leung_DFCFC1_Pin_3",
+      "label": "Leung damping-factor-control amplifier, variant 1",
+      "source_family": "leung_2001",
+      "netlist_path": "circuits/benchmark_leung_dfcfc1_pin_3/netlist.spice",
+      "netlist_sha256": "a0b7bc59e610611a259f0d18e29f4ad86b5eb11025dd711fb1843bb15dd90892",
+      "paper": {
+        "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+        "authors": [
+          "Ka Nang Leung",
+          "Philip K. T. Mok"
+        ],
+        "year": 2001,
+        "doi": "10.1109/81.948432",
+        "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf",
+        "review_level": "original_paper_text_and_schematic"
+      },
+      "source_review_limit": "Original full-paper text and the relevant original schematic were reviewed. The simulated circuit uses project or AnalogGym SKY130 adaptation and project-defined conditions.",
+      "design_brief": "Size a three-stage amplifier with an outer Miller capacitor and an auxiliary NMOS damping-control branch around the intermediate-stage output. The local capacitor is connected across the auxiliary transistor's gate and drain. Main-stage sizing changes the operating conditions of this fixed auxiliary branch as well as the signal path.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Outer Miller capacitor between first-stage output net050 and VOUT.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "net050",
+                "VOUT"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "Local damping-control capacitor between net049 and net1, the gate and drain of auxiliary NMOS xm24.",
+          "netlist_bindings": [
+            {
+              "instance": "C1",
+              "terminals": [
+                "net049",
+                "net1"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net013",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_11_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm11",
+              "terminals": [
+                "net043",
+                "net050",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_25_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm25",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_9_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm9",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "Auxiliary NMOS xm24 senses net049 and drives net1; its geometry is fixed.",
+        "PMOS xm12 provides a fixed-geometry feedforward output path driven by net050.",
+        "The original paper discusses DC robustness of the high-impedance damping-control node; nominal sizing tests do not establish robustness to process variation or mismatch."
+      ]
+    },
+    {
+      "topology": "Leung_DFCFC2_Pin_3",
+      "label": "Leung damping-factor-control amplifier, variant 2",
+      "source_family": "leung_2001",
+      "netlist_path": "circuits/benchmark_leung_dfcfc2_pin_3/netlist.spice",
+      "netlist_sha256": "4fbe2f49cac15cfce0f1ac06ac31868d5675d7537309debb658265de4247e73c",
+      "paper": {
+        "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+        "authors": [
+          "Ka Nang Leung",
+          "Philip K. T. Mok"
+        ],
+        "year": 2001,
+        "doi": "10.1109/81.948432",
+        "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf",
+        "review_level": "original_paper_text_and_schematic"
+      },
+      "source_review_limit": "Original full-paper text and the relevant original schematic were reviewed. The simulated circuit uses project or AnalogGym SKY130 adaptation and project-defined conditions.",
+      "design_brief": "Size a three-stage amplifier with the auxiliary damping-control branch placed at the first-stage output. This variant uses an auxiliary PMOS device and a local capacitor in addition to the outer Miller capacitor. Its connections differ from variant 1 even though the task exposes similar parameter categories.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Outer Miller capacitor, instance C1, between net050 and VOUT.",
+          "netlist_bindings": [
+            {
+              "instance": "C1",
+              "terminals": [
+                "net050",
+                "VOUT"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "Local damping-control capacitor, instance C2, between net050 and net2, the gate and drain of auxiliary PMOS xm10.",
+          "netlist_bindings": [
+            {
+              "instance": "C2",
+              "terminals": [
+                "net050",
+                "net2"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net1",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_11_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm11",
+              "terminals": [
+                "net043",
+                "net050",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_25_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm25",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_8_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm9",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm8",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "Auxiliary PMOS xm10 senses net050 and drives net2; its geometry is fixed.",
+        "PMOS xm12 provides a fixed-geometry feedforward output path driven by net050.",
+        "Capacitor instance suffixes and parameter suffixes differ: C1 uses CAPACITOR_0 and C2 uses CAPACITOR_1.",
+        "The original paper discusses DC robustness of the high-impedance damping-control node; nominal sizing tests do not establish robustness to process variation or mismatch."
+      ]
+    },
+    {
+      "topology": "HoiLee_AFFC_Pin_3",
+      "label": "Hoi Lee active-feedback three-stage amplifier",
+      "source_family": "hoilee_2003",
+      "netlist_path": "circuits/benchmark_hoilee_affc_pin_3/netlist.spice",
+      "netlist_sha256": "1f8dabf2ee2c04f7edd6d45d6fb5fa9ce9d773dc0a82d56a133211586df0ee28",
+      "paper": {
+        "title": "Active-Feedback Frequency-Compensation Technique for Low-Power Multistage Amplifiers",
+        "authors": [
+          "Hoi Lee",
+          "Philip K. T. Mok"
+        ],
+        "year": 2003,
+        "doi": "10.1109/JSSC.2002.808326",
+        "source_url": "https://personal.utdallas.edu/~hoilee/publications/Journals/affc.pdf",
+        "review_level": "original_paper_text_and_schematic"
+      },
+      "source_review_limit": "Original full-paper text and the relevant original schematic were reviewed. The simulated circuit uses project or AnalogGym SKY130 adaptation and project-defined conditions.",
+      "design_brief": "Size a three-stage amplifier with a common-gate active-feedback branch and a replica-bias branch. One capacitor is connected across the output stage; the other feeds the output signal into the active-feedback transistor's source. The auxiliary devices and mirror are fixed, so main-stage sizing and bias must work with their existing loading and operating conditions.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Inner compensation capacitor from intermediate-stage output net049 to VOUT, across the output gain stage.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "net049",
+                "VOUT"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "Active-feedback capacitor from VOUT to net1, the source of common-gate NMOS xm63; xm63's drain connects to first-stage output net050.",
+          "netlist_bindings": [
+            {
+              "instance": "C1",
+              "terminals": [
+                "VOUT",
+                "net1"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net013",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_11_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm11",
+              "terminals": [
+                "net043",
+                "net050",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_25_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm25",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_9_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm9",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "Common-gate NMOS xm63 and replica NMOS xm60 share the gma geometry parameter; their gates use bias node VB3.",
+        "PMOS mirror xm59/xm62 participates in the replica-bias arrangement. These devices and the feedforward output PMOS xm12 retain fixed geometry.",
+        "CAPACITOR_0 is the inner branch in this netlist; it should not inherit the outer-capacitor description used for Fan or the Leung DFC variants."
+      ]
+    },
+    {
+      "topology": "Peng_ACBC_Pin_3",
+      "label": "Peng AC-boosting three-stage amplifier",
+      "source_family": "peng_2004",
+      "netlist_path": "circuits/benchmark_peng_acbc_pin_3/netlist.spice",
+      "netlist_sha256": "e46b3ffdf2a15de1b1446f08e638184e490fa09b2f9493235183efeb290de503",
+      "paper": {
+        "title": "AC Boosting Compensation Scheme for Low-Power Multistage Amplifiers",
+        "authors": [
+          "Xiaohong Peng",
+          "Willy Sansen"
+        ],
+        "year": 2004,
+        "doi": "10.1109/JSSC.2004.835811",
+        "source_url": "https://picture.iczhiku.com/resource/eetop/sHItHoErkwWsfMBC.pdf",
+        "review_level": "original_paper_text_and_release_schematic"
+      },
+      "source_review_limit": "Original-paper text and the released AnalogGym schematic were reviewed. The original figure image was not inspected.",
+      "design_brief": "Size a three-stage amplifier with an outer Miller capacitor and a separate capacitive AC path around the intermediate-stage network. The auxiliary branch shares a drive node with the intermediate current mirror and connects to its output through the second capacitor. This path affects frequency response while its capacitor blocks DC transfer between its two terminals.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Outer Miller capacitor between first-stage output net050 and VOUT.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "net050",
+                "VOUT"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "AC-boosting capacitor between intermediate output net049 and auxiliary node net1; net1 is driven by fixed NMOS xm24 and loaded by the local PMOS network.",
+          "netlist_bindings": [
+            {
+              "instance": "C1",
+              "terminals": [
+                "net049",
+                "net1"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net013",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_11_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm11",
+              "terminals": [
+                "net043",
+                "net050",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_25_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm25",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_9_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm9",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "Auxiliary NMOS xm24 has gate net043 and drain net1. The similar-looking Leung DFCFC1 auxiliary device instead has gate net049.",
+        "The diode-connected PMOS xm59 and bias PMOS xm8 load net1; their geometry is fixed.",
+        "PMOS xm12 supplies a fixed-geometry feedforward output path driven by net050."
+      ]
+    },
+    {
+      "topology": "Peng_IAC_Pin_3",
+      "label": "Peng impedance-adapting three-stage amplifier",
+      "source_family": "peng_2011",
+      "netlist_path": "circuits/benchmark_peng_iac_pin_3/netlist.spice",
+      "netlist_sha256": "355d7da6d7fe29e2af9fdd5c379b53a09a41d35f2a310dc226365b1983c100e8",
+      "paper": {
+        "title": "Impedance Adapting Compensation for Low-Power Multistage Amplifiers",
+        "authors": [
+          "Xiaohong Peng",
+          "Willy Sansen",
+          "Ligang Hou",
+          "Jinhui Wang",
+          "Wuchen Wu"
+        ],
+        "year": 2011,
+        "doi": "10.1109/JSSC.2010.2090088",
+        "source_url": "https://drive.google.com/file/d/196gim84_yz_jyWEfnuk_R0HmsjakW7O7/view",
+        "review_level": "original_full_paper_and_original_schematic_equations",
+        "author_bibliography_url": "https://sites.google.com/view/impact-lab/publications"
+      },
+      "source_review_limit": "Original full-paper text and the relevant original schematic were reviewed. The simulated circuit uses project or AnalogGym SKY130 adaptation and project-defined conditions.",
+      "design_brief": "Size a three-stage amplifier with one outer Miller capacitor and a series RC branch from the intermediate-stage output to ground. The RC branch changes the impedance seen by the intermediate node, while the outer capacitor couples the first-stage output to the final output. The resistor and the two capacitors therefore describe different physical effects and must be considered together with stage sizing and bias.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Outer Miller capacitance Cm between first-stage output VOUTP and VOUT.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "VOUTP",
+                "VOUT"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "Impedance-adapting capacitance Ca between intermediate-stage output net10 and RC junction net4; it is in series with RESISTOR_0 to ground.",
+          "netlist_bindings": [
+            {
+              "instance": "C1",
+              "terminals": [
+                "net10",
+                "net4"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "VB1",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_10_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net043",
+                "VOUTP",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_23_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm23",
+              "terminals": [
+                "VOUT",
+                "net10",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_8_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm9",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm8",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "RESISTOR_0",
+          "unit": "ohm",
+          "physical_role": "Impedance-adapting resistance Ra from net4 to GNDA. Together with CAPACITOR_1 and node capacitances it changes the intermediate-node frequency dependence; changing Ra does not move every pole in the same direction.",
+          "netlist_bindings": [
+            {
+              "instance": "R0",
+              "terminals": [
+                "net4",
+                "GNDA"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "PMOS xm66, labelled gmt in the released parameters, is a cascode/current-source load in the intermediate branch. It is not an additional independently controlled primary gain stage.",
+        "The intermediate mirror, cascode devices, and feedforward output PMOS xm11 retain fixed geometry.",
+        "The output gain transistor is driven by net10; net049 is an internal load node in this topology."
+      ]
+    },
+    {
+      "topology": "Ramos_PFC_Pin_3",
+      "label": "Ramos positive-feedback-compensated three-stage amplifier",
+      "source_family": "ramos_2002",
+      "netlist_path": "circuits/benchmark_ramos_pfc_pin_3/netlist.spice",
+      "netlist_sha256": "f8eeee71b125c76d4d28597b09bff763a7b0bd6b85b2c4885513137723bad982",
+      "paper": {
+        "title": "Three Stage Amplifier With Positive Feedback Compensation Scheme",
+        "authors": [
+          "Joao Ramos",
+          "Michiel Steyaert"
+        ],
+        "year": 2002,
+        "doi": "10.1109/CICC.2002.1012833",
+        "source_url": "https://www.scribd.com/document/241079749/01012833-Technical-paper",
+        "review_level": "original_paper_ocr_transcript_and_release_schematic"
+      },
+      "source_review_limit": "Original-paper OCR transcript and released schematic were reviewed. The original figure image was not inspected, and no quantitative claim relies on OCR-sensitive symbols or units.",
+      "design_brief": "Size a three-stage amplifier that combines an outer Miller capacitor with local positive capacitive feedback across the non-inverting intermediate stage. The local branch changes the intermediate dynamics and damping. Treating both capacitors as interchangeable stabilizing loads would miss the defining mechanism of this topology.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Outer Miller capacitor between first-stage output net050 and VOUT.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "net050",
+                "VOUT"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "Local positive-feedback capacitor between net050 and intermediate-stage output net049; it spans the non-inverting intermediate stage.",
+          "netlist_bindings": [
+            {
+              "instance": "C1",
+              "terminals": [
+                "net050",
+                "net049"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net1",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_10_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net043",
+                "net050",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_23_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm23",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_8_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm9",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm8",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "The intermediate PMOS signal device and NMOS current mirror form the non-inverting path bridged by CAPACITOR_1.",
+        "The fixed-geometry PMOS output feedforward device xm11 is driven by net050.",
+        "Larger capacitance does not imply greater stability for the local positive-feedback branch."
+      ]
+    },
+    {
+      "topology": "Song_DACFC_Pin_3",
+      "label": "Song Guo dual-active-capacitive-feedback amplifier",
+      "source_family": "song_2011",
+      "netlist_path": "circuits/benchmark_song_dacfc_pin_3/netlist.spice",
+      "netlist_sha256": "6bf8535244e8b74276541ec403a6432b8709c581973e03182f1c084479da582a",
+      "paper": {
+        "title": "Dual Active-Capacitive-Feedback Compensation for Low-Power Large-Capacitive-Load Three-Stage Amplifiers",
+        "authors": [
+          "Song Guo",
+          "Hoi Lee"
+        ],
+        "year": 2011,
+        "doi": "10.1109/JSSC.2010.2092994",
+        "source_url": "https://doi.org/10.1109/JSSC.2010.2092994",
+        "review_level": "abstract_and_author_bibliography_only",
+        "author_bibliography_url": "https://personal.utdallas.edu/~hoilee/publication.html"
+      },
+      "source_review_limit": "Original abstract and author bibliography were checked; original full text and original schematic were unavailable. Circuit roles here are grounded in the released AnalogGym netlist and schematic.",
+      "design_brief": "Size the released AnalogGym three-stage amplifier with an output-to-feedback-node capacitor, auxiliary active-feedback devices, and a shunt capacitor at the first-stage output. A separate PMOS input pair supplies an additional signal path into the intermediate stage. These descriptions follow the released netlist and schematic; the complete original journal paper was not available for review.",
+      "control_roles": [
+        {
+          "parameter": "CAPACITOR_0",
+          "unit": "F",
+          "physical_role": "Feedback capacitor from VOUT to internal feedback node net70; this node belongs to the fixed active-feedback network.",
+          "netlist_bindings": [
+            {
+              "instance": "C0",
+              "terminals": [
+                "VOUT",
+                "net70"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CAPACITOR_1",
+          "unit": "F",
+          "physical_role": "Shunt capacitor, instance C2, from first-stage output net4 to GNDA. It loads net4 directly rather than bridging net4 and VOUT.",
+          "netlist_bindings": [
+            {
+              "instance": "C2",
+              "terminals": [
+                "net4",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "CURRENT_0_BIAS",
+          "unit": "A",
+          "physical_role": "Reference current drawn through the PMOS bias network; changes bias conditions across multiple branches, including signal and auxiliary branches.",
+          "netlist_bindings": [
+            {
+              "instance": "I0",
+              "terminals": [
+                "net013",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_10_1_M_gm2_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the PMOS signal device driving the intermediate current-mirror network; changes its operating point and loading as well as small-signal gain.",
+          "netlist_bindings": [
+            {
+              "instance": "xm10",
+              "terminals": [
+                "net043",
+                "net4",
+                "VDDA",
+                "VDDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_23_1_M_gm3_NMOS",
+          "unit": "multiplicity",
+          "physical_role": "Multiplicity of the NMOS output gain device; changes output drive and capacitance while loading the intermediate-stage output through its gate.",
+          "netlist_bindings": [
+            {
+              "instance": "xm23",
+              "terminals": [
+                "VOUT",
+                "net049",
+                "GNDA",
+                "GNDA"
+              ]
+            }
+          ]
+        },
+        {
+          "parameter": "MOSFET_8_2_M_gm1_PMOS",
+          "unit": "multiplicity",
+          "physical_role": "Shared multiplicity of the main matched PMOS differential-input pair; scales both devices at fixed individual width and length.",
+          "netlist_bindings": [
+            {
+              "instance": "xm9",
+              "terminals": [
+                "net063",
+                "VINP",
+                "net31",
+                "net31"
+              ]
+            },
+            {
+              "instance": "xm8",
+              "terminals": [
+                "DM_2",
+                "VINN",
+                "net31",
+                "net31"
+              ]
+            }
+          ]
+        }
+      ],
+      "fixed_structure_notes": [
+        "The gma1 PMOS pair xm5/xm6 and gma2 PMOS xm7 have gates at VOUTN and fixed geometry.",
+        "The additional PMOS differential pair xm57/xm58, labelled gmf1, connects the inputs to net043/net049 and is separate from the editable main input pair.",
+        "The output feedforward PMOS xm11 is driven by net4 and retains fixed geometry.",
+        "Original-paper attribution was checked against the abstract and author bibliography. Full original schematic correspondence and the paper's analytical conditions remain unverified."
+      ]
+    }
+  ]
+}

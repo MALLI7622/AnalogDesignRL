@@ -179,7 +179,7 @@ def evaluate(task_path, overrides, run_dir, timeout_s=30):
             raise ValueError("Python and ngspice measurements disagree; inspect the crosscheck.")
         result.update(score(metrics, task["constraints"]))
         independent_score = score(independent, task["constraints"])
-        if result["success"] != independent_score["success"]:
+        if result["checks"] != independent_score["checks"]:
             result.update(success=False, reward=-1.0)
             raise ValueError("The two measurement paths disagree on pass/fail.")
         result["status"] = "ok"  # A completed measurement can still fail the task.

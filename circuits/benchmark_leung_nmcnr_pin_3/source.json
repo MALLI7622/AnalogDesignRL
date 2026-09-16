@@ -1,0 +1,110 @@
+{
+  "repository": "https://github.com/CODA-Team/AnalogGym",
+  "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+  "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+  "release": {
+    "release_name": "Leung_NMCNR_Pin_3",
+    "recommended": true,
+    "recommendation_rank": 3,
+    "paper": {
+      "title": "Analysis of Multistage Amplifier-Frequency Compensation",
+      "authors": [
+        "Ka Nang Leung",
+        "Philip K. T. Mok"
+      ],
+      "year": 2001,
+      "doi": "10.1109/81.948432",
+      "source_url": "https://nthuee.org/archive/AIC/106%E8%AC%9D%E5%BF%97%E6%88%90/HW/Final%20project/reference/reference/01CAS-leung.pdf",
+      "review_level": "original_paper_text_and_schematic"
+    },
+    "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Leung_NMCNR_Pin_3",
+    "netlist_sha256": "fa98dc34a1620368bcc51f754d23513f76cb034eeae6b07f8947fa9d6c13d193",
+    "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Leung_NMCNR_Pin_3",
+    "parameters_sha256": "491fe11a6ee684a531dfaa5d4afd1a203ad4bfdf2324fc5365b5f2a3f5ae4453",
+    "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Leung_NMCNR_Pin_3.png",
+    "schematic_visual_review": true,
+    "subcircuit": "leung_nmcnr_pin_3",
+    "pins": [
+      "gnda",
+      "vdda",
+      "vinn",
+      "vinp",
+      "vout"
+    ],
+    "mos_instance_count": 24,
+    "passive_connections": [
+      "I0 net013 GNDA 'CURRENT_0_BIAS'",
+      "C1 net044 net049 'CAPACITOR_1'",
+      "C0 net050 net044 'CAPACITOR_0'",
+      "R0 net044 VOUT 'RESISTOR_0'"
+    ],
+    "released_cload": "10p",
+    "released_vcm": "300m",
+    "recommended_controls": [
+      {
+        "name": "MOSFET_10_1_M_gm2_PMOS",
+        "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "MOSFET_23_1_M_gm3_NMOS",
+        "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "MOSFET_8_2_M_gm1_PMOS",
+        "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "CAPACITOR_0",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "5p"
+      },
+      {
+        "name": "CAPACITOR_1",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "3p"
+      },
+      {
+        "name": "CURRENT_0_BIAS",
+        "role": "bias reference current",
+        "unit": "A",
+        "type": "continuous",
+        "released_value": "3u"
+      }
+    ],
+    "notes": "Two nested compensation capacitors share node net044, connected through RESISTOR_0 to VOUT. No independent feedforward output PMOS parameter. Distinct nulling-resistor mechanism. Original Fig.7 correspondence reviewed. Leung variants must share a source-family split; DFC high-impedance DC node robustness is not established by nominal sizing.",
+    "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+    "source_family": "leung_2001",
+    "selection_status": "provisional_pending_empirical_validation",
+    "original_conditions": {
+      "technology": "AMS0.8um",
+      "rails": "+1V,-1V",
+      "load": "100pF parallel25kohm"
+    },
+    "review_copy": {
+      "local_path": "runs/research_sources_20260910/leung_compensation_2001.pdf",
+      "sha256": "4bb70bbac68b5536ca333e6456e4981ba5abbdcac72fb4fe38529e98530072f6",
+      "redistribute_with_benchmark": false
+    },
+    "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+  },
+  "adaptations": [
+    "Netlist and original fixed parameter file copied unchanged.",
+    "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+    "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+    "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+  ],
+  "training_approved": false
+}

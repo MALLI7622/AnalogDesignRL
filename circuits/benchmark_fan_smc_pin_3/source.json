@@ -1,0 +1,92 @@
+{
+  "repository": "https://github.com/CODA-Team/AnalogGym",
+  "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+  "license": "BSD-3-Clause; retain external/AnalogGym/LICENSE with derivative netlists",
+  "release": {
+    "release_name": "Fan_SMC_Pin_3",
+    "recommended": true,
+    "recommendation_rank": 2,
+    "paper": {
+      "title": "Single Miller Capacitor Frequency Compensation Technique for Low-Power Multistage Amplifiers",
+      "authors": [
+        "Xiaohua Fan",
+        "Chinmaya Mishra",
+        "Edgar Sanchez-Sinencio"
+      ],
+      "year": 2005,
+      "doi": "10.1109/JSSC.2005.843602",
+      "source_url": "https://picture.iczhiku.com/resource/eetop/WYKhwFHGQpjORCXn.pdf",
+      "review_level": "original_paper_text_and_release_schematic"
+    },
+    "netlist_path": "external/AnalogGym/AnalogGym/Amplifier/spice_netlist/Fan_SMC_Pin_3",
+    "netlist_sha256": "1d1558e1cbbc003d83780a46884df1c01ebb4540315875dbec3e4d16d4a13aec",
+    "parameters_path": "external/AnalogGym/AnalogGym/Amplifier/design_variables/Fan_SMC_Pin_3",
+    "parameters_sha256": "7fd9ddc06c2de4aad44e62e406587ebb4778acfabe4d298624efbafac5b03247",
+    "schematic_path": "external/AnalogGym/AnalogGym/Amplifier/schematic/Fan_SMC_Pin_3.png",
+    "schematic_visual_review": true,
+    "subcircuit": "fan_smc_pin_3",
+    "pins": [
+      "gnda",
+      "vdda",
+      "vinn",
+      "vinp",
+      "vout"
+    ],
+    "mos_instance_count": 24,
+    "passive_connections": [
+      "I0 net013 GNDA 'CURRENT_0_BIAS'",
+      "C0 net050 VOUT 'CAPACITOR_0'"
+    ],
+    "released_cload": "10p",
+    "released_vcm": "300m",
+    "recommended_controls": [
+      {
+        "name": "MOSFET_10_1_M_gm2_PMOS",
+        "role": "second-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "8"
+      },
+      {
+        "name": "MOSFET_23_1_M_gm3_NMOS",
+        "role": "output-stage signal-device multiplicity; current and parasitics are coupled",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "16"
+      },
+      {
+        "name": "MOSFET_8_2_M_gm1_PMOS",
+        "role": "matched first-stage input-pair multiplicity; changes effective width, not a direct gm value",
+        "unit": "count",
+        "type": "integer",
+        "released_value": "4"
+      },
+      {
+        "name": "CAPACITOR_0",
+        "role": "compensation capacitance",
+        "unit": "F",
+        "type": "continuous",
+        "released_value": "5p"
+      },
+      {
+        "name": "CURRENT_0_BIAS",
+        "role": "bias reference current",
+        "unit": "A",
+        "type": "continuous",
+        "released_value": "60u"
+      }
+    ],
+    "notes": "One Miller capacitor from first-stage output net050 to VOUT; separate feedforward PMOS drives output. Not the two-stage simple Miller topology also abbreviated SMC. Original uses 0.5um CMOS, +/-1V supply (2V rail span), 120pF parallel 25kohm; release uses SKY130 and CLOAD=10pF.",
+    "claim_level": "sizing_of_AnalogGym_SKY130_adaptation_not_original_paper_reproduction",
+    "source_family": "fan_2005",
+    "selection_status": "provisional_pending_empirical_validation",
+    "schematic_visual_review_scope": "AnalogGym released schematic only; original schematic review recorded separately in paper.review_level"
+  },
+  "adaptations": [
+    "Netlist and original fixed parameter file copied unchanged.",
+    "Project-authored follower/AC testbench at 1.8 V, 27 C, SKY130 TT; released CLOAD/VCM retained.",
+    "Project-selected editable bounds and simulation-guided targets; no recovery of paper performance.",
+    "Large-signal settling uses a 20 mV absolute band for a 200 mV step (10%)."
+  ],
+  "training_approved": false
+}

@@ -2,6 +2,8 @@
 
 Status, 2026-09-10: CPU service and real ngspice integration tested locally. TPU trainer and Ubuntu bootstrap are implemented but have not run on a TPU. No cloud resources or paid training runs have been started. Current tasks still need training approval.
 
+For the completed 250-task dataset, use the [training-to-AnalogGym experiment guide](../TRAINING_ANALOGGYM_README.md) alongside this infrastructure guide. It specifies the 174/21/55 split, circuit overlap, matched evaluation, and the current initial-step and checkpoint-loading gaps.
+
 ## Starting choice
 
 **Gemma 3 1B-IT, LoRA, JAX/Flax, and Tunix 0.1.7.** Google publishes a [Gemma 3 1B GRPO example on one v6e TPU](https://tunix.readthedocs.io/en/stable/_collections/examples/grpo_gemma.html). This makes it a practical integration starting point; its analog-design ability still needs measurement. GPT-6/Codex remains the task generator; Gemma is the trainable solver.
@@ -22,13 +24,17 @@ ngspice runs as an ordinary CPU process. It does not need to be differentiable: 
 
 | Resource | Initial allocation |
 |---|---|
-| TPU | One v6e-1, 32 GB HBM. Move to v6e-4 if the measured memory footprint requires it. |
+| TPU | One `ct6e-standard-4t` VM: four v6e chips, 32 GB HBM each. Use the programme's FLEX_START capacity. |
 | CPU | Four simulator workers on the TPU VM's host CPUs; reserve other cores for JAX. |
-| Storage | Start with a 200 GB boot disk and a private Cloud Storage bucket for checkpoints/artifacts. |
+| Storage | 50 GB disposable boot disk, 200 GB retained Hyperdisk Balanced for the workspace, private Cloud Storage bucket for backups. |
 | Software | Ubuntu TPU image, Python 3.12, Tunix 0.1.7, ngspice 47, pinned circuit/device-model dependencies. |
-| Access | Allocated TPU type/zone/quota, enabled Compute API, SSH access, service account with access to the experiment bucket. |
+| Access | Confirmed programme credits, regional v6e Flex quota, Compute/TPU APIs, SSH access, service account with access to the experiment bucket. |
 
 Google lists [32 GB HBM per v6e chip](https://docs.cloud.google.com/tpu/docs/v6e). A 1B BF16 weight set alone is about 2 GB; reference weights, activations, token logits, KV cache, and optimizer state add memory. The official short-prompt example is not a memory guarantee for our longer episodes. This starter supports one host with 1, 2, or 4 JAX TPU devices; multi-host execution is deferred.
+
+The programme guide lists four-chip v6e capacity, so that is our provisioning preset. Its host has [180 vCPUs and 720 GB RAM](https://docs.cloud.google.com/tpu/docs/v6e); start with simulations on that host before buying another CPU VM. This is a setup choice, not a measured throughput optimum.
+
+Start with a **four-hour run limit** and a **two-hour queue limit**. Google's [Flex list price](https://cloud.google.com/products/dws/pricing) on 2026-09-10 is $1.35 per v6e chip-hour: **$5.40/hour, or $21.60 for four hours**, plus disks, object storage, and networking. Credits must be active and cover the relevant SKUs. Budget alerts notify you; the VM's run limit ends compute. Retained storage keeps billing until deleted.
 
 The service binds to `127.0.0.1`, authenticates requests, accepts only catalog task IDs and parameter actions, and limits concurrency. References, testbench files, and raw errors are not returned to the model. No generated Python, shell, SPICE, or arbitrary tool calls are executed. Moving workers to a separate CPU VM only requires an SSH tunnel and the same API; no public HTTP service is needed. This API restriction does not create an OS sandbox around the trusted trainer process.
 
@@ -47,30 +53,53 @@ The smoke check uses two public installation fixtures, first failing and then pa
 
 ## Provision and install
 
-Copy `training/cloud.example.json` to ignored `training/cloud.local.json`. Fill in the TPU Builders project, allocated zone/type, bucket region/name, and an existing service account. Credits do not by themselves establish quota or capacity. The currently configured local gcloud project is not automatically selected for this research.
+These defaults follow the supplied **TPU Builders Getting Started Guide**, updated July 24, 2026. Keep that document local. Before provisioning, confirm that the final credits application was submitted, credits appear on the linked billing account, and a project budget has alerts at 50%, 75%, and 90%.
+
+Copy `training/cloud.example.json` to ignored `training/cloud.local.json`. Fill in the credited project, your Google account email, a unique private bucket name, and an existing VM service account email. The default zone is `us-east5-a`. Other v6e zones listed by the programme are `us-east5-b`, `us-central1-a`, `europe-west4-a`, and `southamerica-west1-a`; set `region` to match the chosen zone. Quota and current capacity still need checking. Do not create requests in multiple zones simultaneously.
 
 ```sh
-python3 -m training.cloud_plan --config training/cloud.local.json
+cp training/cloud.example.json training/cloud.local.json
+# Edit training/cloud.local.json, then print the read-only checks:
+python3 -m training.cloud_plan --config training/cloud.local.json --phase inspect
 ```
 
-This **only prints** inspection, provisioning, connection, and cleanup commands. First confirm quota and the offered machine type. The commands follow Google's [Compute Engine TPU guide](https://docs.cloud.google.com/compute/docs/tpus/create-tpu-vm-instance); programme-provided reservations or older TPU types may require a different creation command. The caller needs permissions to create instances and use the selected service account. Bucket IAM is scoped to that bucket.
+The planner **prints commands; it never executes them**. Review and run each phase's output individually from this repository root. All commands select the project and account explicitly. Do not pipe `--phase all` into a shell: it includes cleanup.
 
-On the allocated TPU VM, clone the project:
+Check billing, the service account, and regional v6e Flex/preemptible quota sufficient for four chips. If Compute is disabled, run the `enable` phase after checking the project and billing, then repeat inspection. The guide also flags `GPUS_ALL_REGIONS=0` as a programme onboarding issue; [public Compute quota documentation](https://docs.cloud.google.com/compute/resource-usage) lists TPU quotas separately, so a nonzero GPU quota alone does not establish TPU access. Ask programme support about conflicting quota/backend errors.
 
 ```sh
+# Print API setup, then one-time private bucket and retained disk creation:
+python3 -m training.cloud_plan --config training/cloud.local.json --phase enable
+python3 -m training.cloud_plan --config training/cloud.local.json --phase storage
+# First boot of the newly created blank data disk:
+python3 -m training.cloud_plan --config training/cloud.local.json --phase provision --initialize-data-disk
+# Inspect status/startup logs and connect after the VM is running:
+python3 -m training.cloud_plan --config training/cloud.local.json --phase connect
+```
+
+This uses the guide's Compute Engine v6e route; `gcloud alpha` and legacy v5e queued resources are unnecessary. The caller needs permission to create instances/disks/buckets and use the selected service account. Bucket access is scoped to that bucket. The VM expires after four running hours and is deleted; its data disk has `auto-delete=no`. The queue can wait up to two hours before that running period starts. FLEX_START has a [seven-day maximum](https://docs.cloud.google.com/tpu/docs/create-flex-start-compute); keep the short limit while debugging. Spot and multi-host setups can follow after checkpoint recovery works.
+
+The startup script mounts the data disk at `/mnt/data`. It formats a blank disk only with the explicit initialization flag and refuses unknown filesystem signatures. In the SSH session, confirm the mount **before** creating the workspace:
+
+```sh
+mountpoint /mnt/data
+# Continue only if the mount exists:
+sudo install -d -o "$USER" -g "$(id -gn)" -m 700 /mnt/data/analog-rl
+cd /mnt/data/analog-rl
 git clone https://github.com/MALLI7622/AnalogDesignRL.git
 cd AnalogDesignRL
 ```
 
-The clone includes source code, manual task fixtures, the six pilot task JSONs, their index, and episode summaries. Additional generated batches, private references, and raw simulation artifacts stay outside Git. Copy any additional task catalog and task JSONs needed for your experiment. Keep credentials in the VM environment. Run there:
+The clone includes source code, manual fixtures, the six pilot task JSONs, their index, and episode summaries. Copy any additional catalog/task files needed for your experiment. On later VMs, reuse the same disk and path, omit `--initialize-data-disk`, and update the existing clone with `git pull --ff-only`. The disk is zonal: moving zones needs a separate storage migration.
 
 ```sh
 bash training/bootstrap.sh
-source .venv-tpu/bin/activate
-export PATH="$PWD/.deps/ngspice-47/bin:$PATH"
+source training/activate.sh
 ```
 
-Bootstrap installs Python and TPU dependencies, builds checksum-pinned ngspice 47, downloads the project's pinned device models, and runs verification. It changes the VM's packages and downloads dependencies. The requirement file pins Tunix and selected compatibility dependencies; it is **not yet a tested, fully resolved TPU lockfile**. Bootstrap writes the exact installed versions under `runs/environment/`. Freeze and reuse those versions after the first successful TPU run.
+Bootstrap installs host packages, Python 3.12, TPU dependencies, checksum-pinned ngspice 47, and pinned device models, then runs verification and HTTP smoke checks. Subsequent boots reuse the environment and simulator build. Exact package versions and input hashes are saved under `runs/environment/`; if the environment is missing and inputs are unchanged, bootstrap reinstalls from that resolved list. The initial dependency resolution and Ubuntu/TPU runtime still need hardware validation.
+
+Source `training/activate.sh` in each shell. It keeps Hugging Face downloads, Python/uv files, and a bounded 20 GiB [JAX compilation cache](https://docs.jax.dev/en/latest/persistent_compilation_cache.html) on the data disk, limits BLAS thread oversubscription, and loads an existing worker token. Keep the workspace path unchanged when reusing Python environments. Compilation cache hits depend on matching software, hardware, and shapes.
 
 Create a worker token once, with restricted permissions:
 
@@ -113,7 +142,7 @@ python3 -m training.train --mode train --output runs/gemma_experiment_001 \
   --checkpoint-uri gs://YOUR_BUCKET/checkpoints
 ```
 
-The trainer refuses an evaluation worker and requires train/validation splits. It uses the environment's scores, keeps simulator feedback out of the token loss via Tunix's agentic masks, and saves configuration, resolved model revision, catalog hashes, dependency versions, metrics, and LoRA checkpoints. Cloud checkpoints use a separate prefix for each local run name. Use a unique run name. Checkpoint restore and interruption recovery still need a TPU test before using preemptible capacity; the CLI does not yet offer resume.
+The trainer refuses an evaluation worker and requires train/validation splits. It uses the environment's scores, keeps simulator feedback out of the token loss via Tunix's agentic masks, and saves configuration, resolved model revision, catalog hashes, dependency versions, metrics, and LoRA checkpoints. Cloud checkpoints use a separate prefix for each local run name. Use a unique run name. The CLI does not yet implement resume: retained files preserve evidence and checkpoints, but do not automatically restore a training session. Implement and test recovery before longer or Spot runs.
 
 ## Runtime and experiment checks
 
@@ -123,4 +152,6 @@ Upper bound per update: `tasks_per_batch × samples_per_task × attempts`. Here 
 
 Before scaling: verify finite loss and changed LoRA weights on approved tasks, restore one checkpoint, measure peak HBM and step time, inspect invalid-action/timeouts/context truncation, and check that group scores vary. Identical scores produce no useful relative reward signal. Compare success rate and simulator calls against the untrained model and seeded random search under identical budgets, then add an established sizing optimizer and multiple seeds. High training reward alone is not evidence of generalization.
 
-Copy completed run artifacts to the private bucket before deleting compute, for example `gcloud storage rsync --recursive runs/EXPERIMENT gs://YOUR_BUCKET/runs/EXPERIMENT`. Keep full logs during the pilot; disk usage grows with every simulation. Final experiment cost must include TPU time, host/extra CPU resources, disks, and object storage according to what the programme credits cover.
+Back up completed artifacts with `gcloud storage rsync --recursive runs/EXPERIMENT gs://YOUR_BUCKET/runs/EXPERIMENT`. Also back up `runs/environment/` and any additional task catalogs. Keep full logs during the pilot; simulation artifacts grow with every evaluation. Do not copy credentials into run artifacts.
+
+When finished, print the `--phase cleanup` command on your local machine and delete the VM early instead of waiting for expiry. This leaves the disk and bucket intact for reuse. Track their ongoing storage costs separately.

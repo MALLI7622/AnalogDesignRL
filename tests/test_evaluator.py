@@ -108,6 +108,48 @@ class EvaluationTests(unittest.TestCase):
             self.assertFalse(result["success"])
             self.assertEqual(result["reward"], -1)
 
+    def test_constraint_disagreement_is_rejected_even_when_both_scores_fail(self):
+        # Power fails in both paths, so comparing only overall success would
+        # conceal an ambiguous phase-margin requirement and emit a valid score.
+        for primary_margin, native_margin in ((59.99, 60.01), (60.01, 59.99)):
+            with self.subTest(primary_margin=primary_margin), tempfile.TemporaryDirectory() as temporary:
+                directory = Path(temporary) / "run"
+                native = {"gain_db": 60.0, "unity_gain_hz": 2e6,
+                          "phase_margin_deg": native_margin, "power_w": 0.0036,
+                          "dc_error_v": 0.0, "max_tracking_error_v": 0.001,
+                          "settling_rise_s": 5e-7, "settling_fall_s": 5e-7}
+
+                def run_simulator(command, *, cwd, **kwargs):
+                    (Path(cwd) / command[-1].replace(".cir", ".log")).write_text("")
+                    return subprocess.CompletedProcess(command, 0, "", "")
+
+                def read_output(path, columns):
+                    if path.name == "operating_point.tsv":
+                        return [[0, 0.3, -0.002]]
+                    return [[0.1, 60, 0], [1e9, -20, -2]]
+
+                with patch.multiple("analog_design.simulator",
+                                    write_inputs=lambda *args: (ROOT / "circuits/fan_smc", self.task_path),
+                                    digest=lambda path: "test-hash",
+                                    read_table=read_output,
+                                    ac_metrics=lambda rows: {"gain_db": 60.0, "unity_gain_hz": 2e6,
+                                                             "phase_margin_deg": primary_margin},
+                                    transient_metrics=lambda rows, test: {
+                                        "max_tracking_error_v": 0.001,
+                                        "settling_rise_s": 5e-7, "settling_fall_s": 5e-7},
+                                    all_measurements=lambda *args: native), \
+                     patch("analog_design.simulator.platform.platform", return_value="test-host"), \
+                     patch("analog_design.simulator.shutil.which", return_value="ngspice"), \
+                     patch("analog_design.simulator.subprocess.check_output", return_value="ngspice-47 "), \
+                     patch("analog_design.simulator.subprocess.run", side_effect=run_simulator):
+                    result = evaluate(self.task_path, {}, directory)
+
+                self.assertTrue(result["crosscheck"]["agrees"])
+                self.assertEqual(result["status"], "failed")
+                self.assertFalse(result["success"])
+                self.assertEqual(result["reward"], -1)
+                self.assertIn("disagree on pass/fail", result["error"])
+
 
 if __name__ == "__main__":
     unittest.main()

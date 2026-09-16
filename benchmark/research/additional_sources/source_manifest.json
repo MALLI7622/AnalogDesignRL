@@ -1,0 +1,78 @@
+{
+  "ldo_tb_analysis.spice": {
+    "sha256": "f32b8c2f13b4516ad15863c6185b36e1be638c6c8030f6dc6ac7c99c0f2ef429",
+    "local_path": "external/benchmark_additional_sources_20260910/ldo_tb_analysis.spice",
+    "bytes": 2474,
+    "url": "https://raw.githubusercontent.com/ChrisZonghaoLi/sky130_ldo_rl/95adf17fc59804000ef6dc901241f0d4c7c419a1/python/simulations/ldo_tb_analysis.spice"
+  },
+  "ldo_tb_vars.spice": {
+    "sha256": "5dbd3cce2a5720243d0facb97d625d8f510410ba1e369b7efbef89f9143a6e6e",
+    "local_path": "external/benchmark_additional_sources_20260910/ldo_tb_vars.spice",
+    "bytes": 395,
+    "url": "https://raw.githubusercontent.com/ChrisZonghaoLi/sky130_ldo_rl/95adf17fc59804000ef6dc901241f0d4c7c419a1/python/simulations/ldo_tb_vars.spice"
+  },
+  "li_carusone_iccad2023.pdf": {
+    "sha256": "831fe3ed2f37971b9b62366ad52ba63bf1c790abe2c71857595cd46be3a34ee2",
+    "local_path": "external/benchmark_additional_sources_20260910/li_carusone_iccad2023.pdf",
+    "bytes": 3768316,
+    "url": "https://www.zonghaoli.com/docs/ICCAD2023.pdf"
+  },
+  "ldo_folded_cascode_tb_analysis.spice": {
+    "sha256": "940a69bac7575636d5c3586ba8c41d04073beb21cb9a2e08560b73f8eb45be13",
+    "local_path": "external/benchmark_additional_sources_20260910/ldo_folded_cascode_tb_analysis.spice",
+    "bytes": 2669,
+    "url": "https://raw.githubusercontent.com/ChrisZonghaoLi/sky130_ldo_rl/95adf17fc59804000ef6dc901241f0d4c7c419a1/python/simulations/ldo_folded_cascode_tb_analysis.spice"
+  },
+  "ldo_tb.spice": {
+    "sha256": "15ecc88e988bba140fd077864ccd53f171507ae8bc9a8098c01fdff53dfbd142",
+    "local_path": "external/benchmark_additional_sources_20260910/ldo_tb.spice",
+    "bytes": 4119,
+    "url": "https://raw.githubusercontent.com/ChrisZonghaoLi/sky130_ldo_rl/95adf17fc59804000ef6dc901241f0d4c7c419a1/python/simulations/ldo_tb.spice"
+  },
+  "analogcoder_table2.png": {
+    "sha256": "d9fe64f63642b5800338bc1d0b7177330694ce9126c0b73c49feed09a049c918",
+    "local_path": "external/benchmark_additional_sources_20260910/analogcoder_table2.png",
+    "bytes": 460134
+  },
+  "original_ldo_README.md": {
+    "sha256": "f7928fbd02ea4f0e0c8f589293541556a60ce28f3463e92d4da1814477030f6c",
+    "local_path": "external/benchmark_additional_sources_20260910/original_ldo_README.md",
+    "bytes": 2264,
+    "url": "https://raw.githubusercontent.com/ChrisZonghaoLi/sky130_ldo_rl/main/README.md"
+  },
+  "analogcoder_2405.14918v2.pdf": {
+    "sha256": "7f8211e5112247336ea2cbb8dae1d3850463b9c58d362da1c5345645ecd92ad1",
+    "local_path": "external/benchmark_additional_sources_20260910/analogcoder_2405.14918v2.pdf",
+    "bytes": 3229088,
+    "url": "https://arxiv.org/pdf/2405.14918v2"
+  },
+  "ldo_folded_cascode_tb_vars.spice": {
+    "sha256": "845fbf5643676fe85784adf7c879c4d852da1fb0941595a72e96544a2cae8dd3",
+    "local_path": "external/benchmark_additional_sources_20260910/ldo_folded_cascode_tb_vars.spice",
+    "bytes": 599,
+    "url": "https://raw.githubusercontent.com/ChrisZonghaoLi/sky130_ldo_rl/95adf17fc59804000ef6dc901241f0d4c7c419a1/python/simulations/ldo_folded_cascode_tb_vars.spice"
+  },
+  "ldo_folded_cascode_tb.spice": {
+    "sha256": "8259c3fe0a3c29dda727a535dce9f63af42c059ea8fbbce451bd70f7283811f1",
+    "local_path": "external/benchmark_additional_sources_20260910/ldo_folded_cascode_tb.spice",
+    "bytes": 5465,
+    "url": "https://raw.githubusercontent.com/ChrisZonghaoLi/sky130_ldo_rl/95adf17fc59804000ef6dc901241f0d4c7c419a1/python/simulations/ldo_folded_cascode_tb.spice"
+  },
+  "original_ldo_tree.json": {
+    "sha256": "3d2197680c4134092e523459630df83057d707f4c51015fd570b4cdab3788f4e",
+    "local_path": "external/benchmark_additional_sources_20260910/original_ldo_tree.json",
+    "bytes": 64653,
+    "url": "https://api.github.com/repos/ChrisZonghaoLi/sky130_ldo_rl/git/trees/main?recursive=1"
+  },
+  "analogcoder_problem_set.tsv": {
+    "sha256": "b37bf4613f2238232713dd1dff0e5aba167bba41c096d1278d4ad17870d41859",
+    "local_path": "external/benchmark_additional_sources_20260910/analogcoder_problem_set.tsv",
+    "bytes": 3033,
+    "url": "https://raw.githubusercontent.com/laiyao1/AnalogCoder/main/problem_set.tsv"
+  },
+  "li_carusone_fig2.png": {
+    "sha256": "5eaf9c98ec9e4640fdd947d3b284fde7d4eb6032f8906699903d27bae4ef01e4",
+    "local_path": "external/benchmark_additional_sources_20260910/li_carusone_fig2.png",
+    "bytes": 457710
+  }
+}
