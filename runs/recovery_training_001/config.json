@@ -1,0 +1,31 @@
+{
+  "model_id": "google/gemma-3-1b-it",
+  "model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+  "seed": 42,
+  "worker_url": "http://127.0.0.1:8766",
+  "max_episode_steps": 2,
+  "max_prompt_tokens": 4096,
+  "max_response_tokens": 2048,
+  "max_updates": 2,
+  "num_generations": 4,
+  "max_concurrency": 1,
+  "validation_task_limit": 2,
+  "learning_rate": 3e-06,
+  "beta": 0.08,
+  "temperature": 0.9,
+  "checkpoint_every": 1,
+  "eval_every": 5,
+  "lora": {
+    "rank": 16,
+    "alpha": 16.0,
+    "module_path": ".*q_einsum|.*kv_einsum|.*gate_proj|.*down_proj|.*up_proj|.*attn_vec_einsum"
+  },
+  "train_sequence_microbatch_size": 1,
+  "rollout_seed_policy": "sequential",
+  "prompt_variant": "single_change_recovery_v1",
+  "constrained_parameter_keys": true,
+  "verify_constrained_probabilities": false,
+  "constrained_compute_dtype": "float32",
+  "external_validation": true,
+  "require_reward_variation": true
+}

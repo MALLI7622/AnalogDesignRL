@@ -1,0 +1,25 @@
+{
+  "status": "stopped_on_probability_mismatch",
+  "model_calls": 1,
+  "evaluator_attempts": 0,
+  "optimizer_updates": 0,
+  "checks": [
+    {
+      "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+      "episode": 1,
+      "step": 1,
+      "tokens_checked": 113,
+      "max_abs_logp_error": 0.2571948170661926,
+      "mean_abs_logp_error": 0.00453935144469142,
+      "grpo_loss": -0.00015922897728160024,
+      "grpo_ratio_mean": 0.9963538646697998,
+      "grpo_kl": -0.0019903623033314943,
+      "grpo_entropy": 0.016216304153203964,
+      "reference_logps_finite": true,
+      "max_error_limit": 0.1,
+      "mean_error_limit": 0.01,
+      "optimizer_updates": 0,
+      "passed": false
+    }
+  ]
+}

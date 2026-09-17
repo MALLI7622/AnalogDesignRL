@@ -108,6 +108,19 @@ class GenerationSeedTests(unittest.TestCase):
         self.assertEqual(rows[0]['prompts'], ['one entire prompt'])
         self.assertEqual(seen, ['one entire prompt'])
 
+    def test_training_alignment_failure_preserves_raw_reply_and_stops(self):
+        path = self.root / 'alignment.jsonl'
+        result = SimpleNamespace(text=[' {"x":1} '], tokens=[[10, 11]])
+        call = SeededGeneration(lambda prompts, cfg: result, 42,
+            self.root / 'alignment_seeds.jsonl', path,
+            alignment_check=lambda prompts, output: {'valid': False}, require_alignment=True)
+        with self.assertRaisesRegex(RuntimeError, 'before optimizer use'):
+            call(['prompt'], Config())
+        response = json.loads(path.read_text().splitlines()[-1])
+        self.assertEqual(response['responses'], result.text)
+        self.assertFalse(response['training_token_alignment']['valid'])
+        self.assertEqual(response['completion_token_counts'], [2])
+
     def test_repeated_episodes_are_explicit_and_do_not_change_task_selection(self):
         args = argument_parser().parse_args(["--mode", "rollout", "--episodes-per-task", "4"])
         validate_run_arguments(args)

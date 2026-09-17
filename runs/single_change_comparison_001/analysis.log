@@ -1,0 +1,87 @@
+{
+  "optimizer_updates": 0,
+  "arms": {
+    "baseline": {
+      "model_calls": 3,
+      "evaluated_actions": 2,
+      "alignment_passes": 3,
+      "actions_accepted_for_simulation": 1,
+      "successful_measurements": 1,
+      "accepted_parameter_changes": 0,
+      "single_change_compliant_actions": 0,
+      "solved_episodes": 0,
+      "simulator_invocations": 2,
+      "final_scores": [
+        -0.011120155256065113,
+        null
+      ],
+      "responses_not_evaluated": 1
+    },
+    "explicit": {
+      "model_calls": 4,
+      "evaluated_actions": 4,
+      "alignment_passes": 4,
+      "actions_accepted_for_simulation": 4,
+      "successful_measurements": 0,
+      "accepted_parameter_changes": 2,
+      "single_change_compliant_actions": 2,
+      "solved_episodes": 0,
+      "simulator_invocations": 8,
+      "final_scores": [
+        -1.0,
+        -1.0
+      ],
+      "responses_not_evaluated": 0
+    }
+  },
+  "paired_seeds_verified": true,
+  "paired_seeds": {
+    "baseline": [
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        0,
+        3053378874
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        1,
+        3094702545
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        2,
+        0,
+        3801248591
+      ]
+    ],
+    "explicit": [
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        0,
+        3053378874
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        1,
+        3094702545
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        2,
+        0,
+        3801248591
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        2,
+        1,
+        2674688436
+      ]
+    ]
+  },
+  "comparison_limitation": "Baseline aborted on episode 2 step 1 duplicate keys before evaluator submission; no retry. Compare common seeds and report unequal actual counts."
+}

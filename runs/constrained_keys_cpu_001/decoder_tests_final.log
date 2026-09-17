@@ -1,0 +1,11 @@
+test_accepts_numeric_objects (tests.test_constrained_json.GrammarTests.test_accepts_numeric_objects) ... ok
+test_rejects_typos_injections_and_truncation (tests.test_constrained_json.GrammarTests.test_rejects_typos_injections_and_truncation) ... ok
+test_schema_is_task_specific_and_bounds_are_separate (tests.test_constrained_json.GrammarTests.test_schema_is_task_specific_and_bounds_are_separate) ... ok
+test_training_rejects_constraints_before_worker_or_model (tests.test_constrained_json.GrammarTests.test_training_rejects_constraints_before_worker_or_model) ... ok
+test_jitted_sampler_blocks_highest_logit_typo (tests.test_constrained_json.SamplerTests.test_jitted_sampler_blocks_highest_logit_typo) ... ok
+test_real_token_paths_and_typo_are_distinguished (tests.test_constrained_json.SamplerTests.test_real_token_paths_and_typo_are_distinguished) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 5.033s
+
+OK

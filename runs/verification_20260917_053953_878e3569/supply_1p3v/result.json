@@ -1,0 +1,119 @@
+{
+  "id": "supply_1p3v",
+  "status": "ok",
+  "success": true,
+  "reward": 1.0,
+  "metrics": {
+    "gain_db": 48.568612169068615,
+    "gain_vv": 268.1826071362982,
+    "supply_current_a": 8.006332808585605e-05,
+    "power_w": 0.00010408232651161286,
+    "unity_gain_hz": 2637512.8471499197,
+    "phase_margin_deg": 61.68277180599398
+  },
+  "checks": {
+    "gain_db": true,
+    "unity_gain_hz": true,
+    "phase_margin_deg": true,
+    "supply_current_a": true
+  },
+  "case": {
+    "id": "supply_1p3v",
+    "supply_v": 1.3,
+    "parameters": {
+      "mp1": 25,
+      "mn1": 50,
+      "mp3": 90,
+      "mn3": 25,
+      "mn4": 50,
+      "mn5": 45,
+      "cc": 9.9e-12
+    }
+  },
+  "timestamp_utc": "2026-09-17T05:40:11.135136+00:00",
+  "dependency": {
+    "url": "https://github.com/ksettaluri6/AutoCkt.git",
+    "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+    "files_sha256": {
+      "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+      "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+      "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+    }
+  },
+  "constraints": {
+    "gain_db": {
+      "min": 46.020599913279625
+    },
+    "unity_gain_hz": {
+      "min": 1000000.0
+    },
+    "phase_margin_deg": {
+      "min": 60
+    },
+    "supply_current_a": {
+      "max": 0.001
+    }
+  },
+  "warnings": [
+    "Warning: ckappad = 0.01 is too small.",
+    "Warning: ckappas = 0.01 is too small.",
+    "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+  ],
+  "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Sep 17 05:31:46 UTC 2026\n******",
+  "command": [
+    "/home/cheriearjun/AnalogDesignRL/.deps/ngspice-47/bin/ngspice",
+    "-n",
+    "-D",
+    "num_threads=1",
+    "-b",
+    "-o",
+    "simulation.log",
+    "design.cir"
+  ],
+  "independent_metrics": {
+    "gain_db": 48.5686,
+    "unity_gain_hz": 2637660.0,
+    "phase_margin_deg": 61.682,
+    "supply_current_a": 8.006332808585605e-05
+  },
+  "crosscheck": {
+    "agrees": true,
+    "metrics": {
+      "gain_db": {
+        "primary": 48.568612169068615,
+        "independent": 48.5686,
+        "absolute_difference": 1.2169068611456169e-05,
+        "tolerance": 0.01,
+        "agrees": true
+      },
+      "unity_gain_hz": {
+        "primary": 2637512.8471499197,
+        "independent": 2637660.0,
+        "absolute_difference": 147.1528500802815,
+        "tolerance": 5276.32,
+        "agrees": true
+      },
+      "phase_margin_deg": {
+        "primary": 61.68277180599398,
+        "independent": 61.682,
+        "absolute_difference": 0.0007718059939776367,
+        "tolerance": 0.05,
+        "agrees": true
+      }
+    }
+  },
+  "elapsed_s": 0.029070136999962415,
+  "files_sha256": {
+    "simulation.log": "02dac09d0a932c7fd363661280f4c034b1e091a539784b2dce517d3bda498be7",
+    "ac.csv": "db0a8755a133afcf659e1d8631b4a39918d5f1c999b554d7c75cc2d6f93ba925",
+    "console.txt": "9351b1df2e500144ac071f73acc696b90dbbbdf372c0b17d02623dcec14dfe51",
+    "design.cir": "b3e80c9fc1715b7d906f2bf469dc21e7ce122df6b2112caf81e55c2e544be9a5",
+    "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+    "dc.csv": "97664dad94a3725962650499daf57e39f9cd1900365818f99d5178ca41bacb1d"
+  },
+  "code_sha256": {
+    "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+    "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+    "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+  }
+}

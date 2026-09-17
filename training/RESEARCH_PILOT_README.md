@@ -6,6 +6,34 @@ independent analog-engineer review remains pending. It keeps the ordinary
 The separate `research-pilot` mode requires an explicitly authorized, expiring
 manifest. Preparing or fetching the code grants no authorization.
 
+## Latest: recovery feedback and training attempt stopped on zero reward variation
+
+The [bounded training attempt](../runs/recovery_training_001/README.md) implemented public failure categories, parameter-change feedback, a recovery prompt, explicit adapter-only initialization with fresh optimizer, and a pre-update reward-variation guard. It used 12 model responses total (4 validation, 8 training), with zero new optimizer updates. All four first training-group episodes scored -1 after valid capacitor edits failed AC extraction; all follow-ups repeated the failed candidate. The guard stopped before likelihood/gradient work, so no after-training evaluation ran. A single-string prompt integration bug was fixed with a regression test before the successful rollout continuation. There is no new trained checkpoint; Tunix's step-0 snapshot is untrained. All 55 distinct relevant CPU tests passed across the main suite and targeted follow-up. Readable trajectory JSON is included in the report.
+
+## Previous: explicit single-change prompt tested on TPU
+
+The [bounded prompt comparison](../runs/single_change_comparison_001/README.md) used seven actual responses, the same checkpoint and float32 decoder, and paired seeds. The new system instruction produced two valid first-action parameter changes that reached SPICE, but AC measurement extraction failed and both follow-ups repeated the candidate. Zero solves or optimizer updates. The baseline aborted on its third response because of duplicate keys, so counts are unequal. Readable per-episode JSON is included. The new `single_change_v1` variant is opt-in for rollout only.
+
+## Previous: TPU likelihood checks and constrained training integration
+
+See [integration report](../runs/constrained_training_cpu_001/README.md). Seven real-model responses ran on the existing TPU. Bfloat16 sampler/teacher checks failed; the float32 diagnostic passed with max log-probability error 0.00046627. Shared grammar probabilities, float32 temperature scaling, per-group optimizer guards and consistent no-example training prompts are implemented. All 72 final regression tests passed. No real-model optimizer updates ran. Accepted parameter-changing actions remain absent; training-memory feasibility in float32 is untested. The earlier evaluation-only implementation note below is historical and superseded by this report.
+
+## Exact-key decoder implemented (CPU validated)
+
+[Decoder audit](../runs/constrained_keys_cpu_001/README.md): rollouts now default to grammar-masked exact parameter keys and JSON numeric objects. Explicit `constrained_parameter_keys: false` restores historical unconstrained sampling. No new TPU run was performed. Bounds remain evaluator checks. Training with constraints is rejected pending consistent GRPO likelihood masking; ordinary training remains unconstrained and is not newly authorized by this change.
+
+## Latest status: removing answer example changes proposals, but all are invalid
+
+The [four-call example ablation](../runs/no_answer_example_001/README.md) changed both first proposals, but both exceeded CAPACITOR_1's bound. Both follow-ups misspelled CAPACITOR_0. All four passed token alignment, none was accepted, and no training followed. Same checkpoint, task, other configuration, and paired seeds as the preceding check. The new prompt variant is opt-in for rollout only; default is unchanged.
+
+## Previous corrected-formatter check
+
+The [four-call readiness check](../runs/formatter_smoke_001/README.md) completed on the existing TPU. All four responses passed token alignment and JSON validation, but repeated starting values; both episodes had identical failing scores. Stopped before optimizer updates. No expanded run followed. This supersedes the earlier unlaunched status below.
+
+## Earlier CPU repair validation
+
+See [CPU reliability audit](../runs/cpu_reliability_audit_001/README.md) for the formatter repair, 671-prompt replay, real parameter-application evidence, and 61 distinct passing tests. Model behavior after the repair is still untested. The next experiment is a draft capped at four calls and five minutes; it has not been launched. Do not resume an old consumed research manifest or expand training from these CPU results.
+
 ## Larger prompt comparison: 2026-09-17 (completed)
 
 The user requested a larger test of an exploration-focused prompt. The bounded
@@ -332,3 +360,7 @@ checked against raw generation logs; all 168 episodes are included. Each step
 shows the exact prompt, reply, and evaluator feedback. Use the matching-episode
 button to switch prompts. The portable bundle is
 `runs/prompt_comparison_001_review.tar.gz`.
+
+## Chat-template defect found during trajectory inspection
+
+Inspection of `current_ramos_pfc_frontier_00f3831c949d08ca_ep4` confirmed all four raw model replies repeat the six starting values, and feedback parameters match those replies. The evaluator did not discard a changed proposal. However, comparison against the pinned local tokenizer template found missing BOS and missing completed-assistant end-of-turn markers in recorded prompts. See `runs/prompt_comparison_001/chat_template_diagnostic.json`. This is a serialization mismatch; its causal contribution to copying is untested. Correct and validate the chat serialization before further prompt comparisons or training. Previous results describe behavior under the old serializer and should not establish that prompt wording or model ability alone caused the failures. The serializer has since been repaired and CPU-validated; see the latest audit linked above. No new model experiment has been run.

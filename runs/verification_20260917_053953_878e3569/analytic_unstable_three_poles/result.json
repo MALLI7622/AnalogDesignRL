@@ -1,0 +1,73 @@
+{
+  "id": "analytic_unstable_three_poles",
+  "poles_hz": [
+    1000.0,
+    1000.0,
+    1000.0
+  ],
+  "metrics": {
+    "gain_db": 59.99998697117206,
+    "unity_gain_hz": 9949.865292539556,
+    "phase_margin_deg": -72.78171172167109
+  },
+  "theoretical": {
+    "gain_db": 59.999986971172056,
+    "unity_gain_hz": 9949.8743710662,
+    "phase_margin_deg": -72.78248856819965
+  },
+  "native_comparison": {
+    "agrees": true,
+    "metrics": {
+      "gain_db": {
+        "primary": 59.99998697117206,
+        "independent": 60.0,
+        "absolute_difference": 1.3028827936523157e-05,
+        "tolerance": 0.01,
+        "agrees": true
+      },
+      "unity_gain_hz": {
+        "primary": 9949.865292539556,
+        "independent": 9951.63,
+        "absolute_difference": 1.764707460442878,
+        "tolerance": 20.90326,
+        "agrees": true
+      },
+      "phase_margin_deg": {
+        "primary": -72.78171172167109,
+        "independent": -72.784,
+        "absolute_difference": 0.002288278328919091,
+        "tolerance": 0.05,
+        "agrees": true
+      }
+    }
+  },
+  "theory_comparison": {
+    "agrees": true,
+    "metrics": {
+      "gain_db": {
+        "primary": 59.99998697117206,
+        "independent": 59.999986971172056,
+        "absolute_difference": 7.105427357601002e-15,
+        "tolerance": 0.01,
+        "agrees": true
+      },
+      "unity_gain_hz": {
+        "primary": 9949.865292539556,
+        "independent": 9949.8743710662,
+        "absolute_difference": 0.00907852664386155,
+        "tolerance": 20.899748742132402,
+        "agrees": true
+      },
+      "phase_margin_deg": {
+        "primary": -72.78171172167109,
+        "independent": -72.78248856819965,
+        "absolute_difference": 0.0007768465285664661,
+        "tolerance": 0.05,
+        "agrees": true
+      }
+    }
+  },
+  "success": false,
+  "expected_success": false,
+  "audit_passed": true
+}

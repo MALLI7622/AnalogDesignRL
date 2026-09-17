@@ -1,0 +1,87 @@
+{
+  "id": "reversed_inputs",
+  "status": "failed",
+  "success": false,
+  "reward": -1.0,
+  "metrics": {
+    "gain_db": 49.09311163252707,
+    "gain_vv": 284.87581563293986,
+    "supply_current_a": 7.850650894572444e-05,
+    "power_w": 9.420781073486932e-05
+  },
+  "checks": {
+    "gain_db": true,
+    "unity_gain_hz": false,
+    "phase_margin_deg": false,
+    "supply_current_a": true
+  },
+  "case": {
+    "id": "reversed_inputs",
+    "parameters": {
+      "mp1": 25,
+      "mn1": 50,
+      "mp3": 90,
+      "mn3": 25,
+      "mn4": 50,
+      "mn5": 45,
+      "cc": 9.9e-12
+    },
+    "fault": "reverse_input_polarity",
+    "expected_success": false
+  },
+  "timestamp_utc": "2026-09-17T05:40:10.998521+00:00",
+  "dependency": {
+    "url": "https://github.com/ksettaluri6/AutoCkt.git",
+    "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+    "files_sha256": {
+      "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+      "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+      "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+    }
+  },
+  "constraints": {
+    "gain_db": {
+      "min": 46.020599913279625
+    },
+    "unity_gain_hz": {
+      "min": 1000000.0
+    },
+    "phase_margin_deg": {
+      "min": 60
+    },
+    "supply_current_a": {
+      "max": 0.001
+    }
+  },
+  "warnings": [
+    "Warning: ckappad = 0.01 is too small.",
+    "Warning: ckappas = 0.01 is too small.",
+    "Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored."
+  ],
+  "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Thu Sep 17 05:31:46 UTC 2026\n******",
+  "command": [
+    "/home/cheriearjun/AnalogDesignRL/.deps/ngspice-47/bin/ngspice",
+    "-n",
+    "-D",
+    "num_threads=1",
+    "-b",
+    "-o",
+    "simulation.log",
+    "design.cir"
+  ],
+  "error": "Expected positive low-frequency gain and non-inverting phase.",
+  "elapsed_s": 0.02943726700004845,
+  "files_sha256": {
+    "simulation.log": "830093b5118d422d3fb792637be1254ad50af3308a56bbfd49355366206096de",
+    "ac.csv": "ebfeec4fe766f4b8f21f11620d244d080f98a2dc77e088aa1a9649a8090abd03",
+    "console.txt": "9351b1df2e500144ac071f73acc696b90dbbbdf372c0b17d02623dcec14dfe51",
+    "design.cir": "00b342c61c45a675c65a72eb948bee6be08be609e5cf2bcf8bae3294cf100f8e",
+    "bsim4v5.out": "cc0fe8a334687774500af6a6a7e6fe09a3202401a8c91b34612073e383b6ca55",
+    "dc.csv": "f51acb0d5972498be6911fef184c42006dc3f6513d5dbb87b2fd8aaec688c067"
+  },
+  "code_sha256": {
+    "author_reference.py": "64f6915e5d396c16921d09d550becb7ac4182a1a416c9e26d0e5969c74a6e6f3",
+    "metrics.py": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+    "crosscheck.py": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9"
+  }
+}

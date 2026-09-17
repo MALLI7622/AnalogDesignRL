@@ -7,6 +7,19 @@ from unittest.mock import Mock, patch
 @unittest.skipUnless(importlib.util.find_spec('tunix') and importlib.util.find_spec('numpy'),
                      'optional TPU training dependencies are not installed')
 class TunixAdapterTests(unittest.TestCase):
+    def test_no_example_variant_is_used_for_initial_and_feedback_prompts(self):
+        from training.tunix_env import CircuitEnvironment
+        observation='{"current_parameters":{"C":1},"constraints":{}}'
+        with patch('training.tunix_env.RemoteEpisode') as remote, patch('training.tunix_env.WorkerClient'):
+            remote.return_value.reset.return_value=observation
+            remote.return_value.step.return_value=(observation,0.,False,{})
+            for variant in ('no_answer_example_v1', 'single_change_recovery_v1'):
+                env=CircuitEnvironment({'task_id':'one'},endpoint='http://127.0.0.1:8765',
+                                       max_steps=2,prompt_variant=variant)
+                for rendered in (env._initial_observation()['prompts'],env._step_impl('{"C":2}').observation['prompts']):
+                    self.assertIn(observation,rendered)
+                    self.assertNotIn('current parameter values in the required reply format',rendered)
+
     def test_microbatch_id_and_initial_observation_match_grpo_contract(self):
         import numpy as np
         from training.tunix_env import CircuitEnvironment

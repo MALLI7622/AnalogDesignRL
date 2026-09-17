@@ -1,0 +1,9 @@
+test_actual_grpo_actor_anchor_reference_and_gradient (tests.test_constrained_training.TrainingConstraintsTests.test_actual_grpo_actor_anchor_reference_and_gradient) ... ok
+test_multiturn_feedback_padding_and_schema_isolation (tests.test_constrained_training.TrainingConstraintsTests.test_multiturn_feedback_padding_and_schema_isolation) ... ok
+test_optimizer_gate_rejects_observed_tpu_gap (tests.test_constrained_training.TrainingConstraintsTests.test_optimizer_gate_rejects_observed_tpu_gap) ... ok
+test_probabilities_normalized_temperature_and_forbidden_gradient (tests.test_constrained_training.TrainingConstraintsTests.test_probabilities_normalized_temperature_and_forbidden_gradient) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 6.238s
+
+OK

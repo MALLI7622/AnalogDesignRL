@@ -1,0 +1,38 @@
+{
+  "training": {
+    "model": "google/gemma-3-1b-it",
+    "algorithm": "LoRA + multi-turn GRPO",
+    "updates": 2,
+    "episodes_per_update": 4,
+    "max_training_episodes": 8,
+    "max_validation_episodes": 0,
+    "max_total_episodes": 8,
+    "max_evaluations_per_episode": 2,
+    "max_training_evaluations": 16,
+    "max_training_simulator_invocations": 32,
+    "validation_rounds": 0,
+    "validation_task_limit": 2,
+    "selected_validation_task_count": 2,
+    "max_validation_evaluations": 0,
+    "max_total_evaluations": 16,
+    "note": "Validation runs separately. A configured validation limit is an upper bound until the catalog is loaded. Baseline/rollout runs are separate. No weights downloaded or compute created by plan mode."
+  },
+  "scheduled_train_ids": [
+    "song_dacfc_frontier_7b5de669b6d475c9",
+    "fan_smc_frontier_f832eb2260ac29fa"
+  ],
+  "evaluation_ids": [
+    "ramos_pfc_frontier_00f3831c949d08ca",
+    "ramos_pfc_frontier_08107b5a4a2972ca"
+  ],
+  "evaluation_episodes_per_task": 1,
+  "max_evaluation_actions_per_arm": 4,
+  "max_model_responses_including_training_and_both_evaluation_arms": 24,
+  "stop_conditions": [
+    "zero reward variation before update",
+    "invalid token/likelihood alignment",
+    "nonfinite loss/weights",
+    "wall-clock timeout"
+  ],
+  "initialization": "research_pilot_007 adapter with fresh optimizer"
+}

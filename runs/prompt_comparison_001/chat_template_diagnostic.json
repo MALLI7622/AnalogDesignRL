@@ -1,0 +1,42 @@
+{
+  "episode": "current_ramos_pfc_frontier_00f3831c949d08ca_ep4",
+  "checks": [
+    {
+      "step": 1,
+      "actual_has_bos": false,
+      "canonical_has_bos": true,
+      "actual_end_of_turn_markers": 1,
+      "canonical_end_of_turn_markers": 1,
+      "all_six_raw_values_equal_start": true,
+      "feedback_values_equal_raw_response": true
+    },
+    {
+      "step": 2,
+      "actual_has_bos": false,
+      "canonical_has_bos": true,
+      "actual_end_of_turn_markers": 2,
+      "canonical_end_of_turn_markers": 3,
+      "all_six_raw_values_equal_start": true,
+      "feedback_values_equal_raw_response": true
+    },
+    {
+      "step": 3,
+      "actual_has_bos": false,
+      "canonical_has_bos": true,
+      "actual_end_of_turn_markers": 3,
+      "canonical_end_of_turn_markers": 5,
+      "all_six_raw_values_equal_start": true,
+      "feedback_values_equal_raw_response": true
+    },
+    {
+      "step": 4,
+      "actual_has_bos": false,
+      "canonical_has_bos": true,
+      "actual_end_of_turn_markers": 4,
+      "canonical_end_of_turn_markers": 7,
+      "all_six_raw_values_equal_start": true,
+      "feedback_values_equal_raw_response": true
+    }
+  ],
+  "finding": "Recorded prompts omit BOS and completed assistant end-of-turn delimiters relative to the pinned tokenizer template. Different system-prefix whitespace also exists. This establishes serialization mismatch, not its causal contribution to copying. No experiments rerun or model weights changed."
+}

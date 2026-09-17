@@ -1,0 +1,13 @@
+test_concurrent_calls_do_not_reuse_seeds (tests.test_generation_seeds.GenerationSeedTests.test_concurrent_calls_do_not_reuse_seeds) ... ok
+test_failure_consumes_seed_and_existing_ledger_is_preserved (tests.test_generation_seeds.GenerationSeedTests.test_failure_consumes_seed_and_existing_ledger_is_preserved) ... ok
+test_generation_transcript_preserves_prompt_and_raw_model_text (tests.test_generation_seeds.GenerationSeedTests.test_generation_transcript_preserves_prompt_and_raw_model_text) ... ok
+test_identical_prompts_get_distinct_reproducible_seeds_without_config_mutation (tests.test_generation_seeds.GenerationSeedTests.test_identical_prompts_get_distinct_reproducible_seeds_without_config_mutation) ... ok
+test_invalid_seed_and_exhaustion_rejected (tests.test_generation_seeds.GenerationSeedTests.test_invalid_seed_and_exhaustion_rejected) ... ok
+test_repeated_episodes_are_explicit_and_do_not_change_task_selection (tests.test_generation_seeds.GenerationSeedTests.test_repeated_episodes_are_explicit_and_do_not_change_task_selection) ... ok
+test_single_string_prompt_logs_one_prompt_not_characters (tests.test_generation_seeds.GenerationSeedTests.test_single_string_prompt_logs_one_prompt_not_characters) ... ok
+test_training_alignment_failure_preserves_raw_reply_and_stops (tests.test_generation_seeds.GenerationSeedTests.test_training_alignment_failure_preserves_raw_reply_and_stops) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+OK

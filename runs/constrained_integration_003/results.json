@@ -1,0 +1,63 @@
+{
+  "status": "probability_pass_action_invalid",
+  "model_calls": 1,
+  "teacher_forced_forwards": 3,
+  "optimizer_updates": 0,
+  "accepted_actions": 0,
+  "checks": [
+    {
+      "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+      "episode": 1,
+      "step": 1,
+      "tokens_checked": 116,
+      "max_abs_logp_error": 0.000466272234916687,
+      "mean_abs_logp_error": 1.1061663826694712e-05,
+      "grpo_loss": -2.3017239072942175e-05,
+      "grpo_ratio_mean": 0.9999897480010986,
+      "grpo_kl": -0.0002877154911402613,
+      "grpo_entropy": 0.01834218204021454,
+      "reference_logps_finite": true,
+      "largest_errors": [
+        {
+          "row": 0,
+          "position": 115,
+          "token_id": 236783,
+          "sampled_logp": -0.16830383241176605,
+          "teacher_logp": -0.16877010464668274
+        },
+        {
+          "row": 0,
+          "position": 8,
+          "token_id": 236778,
+          "sampled_logp": -0.24834945797920227,
+          "teacher_logp": -0.24875697493553162
+        },
+        {
+          "row": 0,
+          "position": 25,
+          "token_id": 236778,
+          "sampled_logp": -0.12411056458950043,
+          "teacher_logp": -0.12442120164632797
+        },
+        {
+          "row": 0,
+          "position": 71,
+          "token_id": 236828,
+          "sampled_logp": -0.05194411799311638,
+          "teacher_logp": -0.0518949069082737
+        },
+        {
+          "row": 0,
+          "position": 43,
+          "token_id": 236800,
+          "sampled_logp": -0.06548231840133667,
+          "teacher_logp": -0.06551426649093628
+        }
+      ],
+      "max_error_limit": 0.1,
+      "mean_error_limit": 0.01,
+      "optimizer_updates": 0,
+      "passed": true
+    }
+  ]
+}

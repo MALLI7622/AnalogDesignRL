@@ -1,0 +1,201 @@
+{
+  "episode_index": 3,
+  "task_id": "song_dacfc_frontier_7b5de669b6d475c9",
+  "episode_id": "ed81326eff75a17d95c7520992706047",
+  "initial_specification": {
+    "id": "song_dacfc_frontier_7b5de669b6d475c9",
+    "conditions": {
+      "corner": "tt",
+      "supply_v": 1.8,
+      "temperature_c": 27,
+      "common_mode_v": 0.3,
+      "load_f": 5e-10
+    },
+    "parameters": {
+      "CAPACITOR_0": {
+        "min": 3.75e-13,
+        "max": 6e-12,
+        "unit": "F",
+        "sampling_scale": "log",
+        "role": "compensation capacitance"
+      },
+      "CAPACITOR_1": {
+        "min": 1.7499999999999999e-13,
+        "max": 2.7999999999999998e-12,
+        "unit": "F",
+        "sampling_scale": "log",
+        "role": "compensation capacitance"
+      },
+      "CURRENT_0_BIAS": {
+        "min": 1.2499999999999999e-06,
+        "max": 1.9999999999999998e-05,
+        "unit": "A",
+        "sampling_scale": "log",
+        "role": "bias reference current"
+      },
+      "MOSFET_10_1_M_gm2_PMOS": {
+        "min": 1,
+        "max": 16,
+        "unit": "multiplicity",
+        "sampling_scale": "log",
+        "role": "gm2 stage transistor multiplicity",
+        "integer": true
+      },
+      "MOSFET_23_1_M_gm3_NMOS": {
+        "min": 1,
+        "max": 16,
+        "unit": "multiplicity",
+        "sampling_scale": "log",
+        "role": "gm3 stage transistor multiplicity",
+        "integer": true
+      },
+      "MOSFET_8_2_M_gm1_PMOS": {
+        "min": 1,
+        "max": 16,
+        "unit": "multiplicity",
+        "sampling_scale": "log",
+        "role": "gm1 stage transistor multiplicity",
+        "integer": true
+      }
+    },
+    "constraints": {
+      "gain_db": {
+        "min": 95
+      },
+      "unity_gain_hz": {
+        "min": 120000.0
+      },
+      "phase_margin_deg": {
+        "min": 95
+      },
+      "power_w": {
+        "max": 6.8e-05
+      },
+      "dc_error_v": {
+        "max": 0.0033
+      },
+      "max_tracking_error_v": {
+        "max": 0.0033
+      },
+      "settling_rise_s": {
+        "max": 8.2e-06
+      },
+      "settling_fall_s": {
+        "max": 3.2999999999999997e-06
+      }
+    },
+    "ac": {
+      "points_per_decade": 100,
+      "start_hz": 0.1,
+      "stop_hz": 1000000000.0
+    },
+    "transient": {
+      "low_v": 0.3,
+      "high_v": 0.5,
+      "rise_start_s": 5e-06,
+      "edge_s": 1e-08,
+      "high_duration_s": 2e-05,
+      "period_s": 6e-05,
+      "stop_s": 5e-05,
+      "max_step_s": 5e-09,
+      "settling_tolerance_v": 0.02,
+      "minimum_hold_s": 2e-06
+    },
+    "current_parameters": {
+      "CAPACITOR_0": 3.627e-12,
+      "CAPACITOR_1": 1.669e-12,
+      "CURRENT_0_BIAS": 2.028e-06,
+      "MOSFET_10_1_M_gm2_PMOS": 2,
+      "MOSFET_23_1_M_gm3_NMOS": 15,
+      "MOSFET_8_2_M_gm1_PMOS": 2
+    },
+    "evaluations_remaining": 2
+  },
+  "steps": [
+    {
+      "step": 1,
+      "raw_response": "{\"CAPACITOR_0\":6e-12}",
+      "parsed_action": {
+        "CAPACITOR_0": 6e-12
+      },
+      "applied_changes": {
+        "CAPACITOR_0": {
+          "before": 3.627e-12,
+          "after": 6e-12
+        }
+      },
+      "feedback": {
+        "task_id": "song_dacfc_frontier_7b5de669b6d475c9",
+        "status": "failed",
+        "success": false,
+        "reward": -1.0,
+        "metrics": {
+          "output_dc_v": 0.3031510612363,
+          "dc_error_v": 0.00315106123629999,
+          "supply_current_a": 5.444428032127e-05,
+          "power_w": 9.7999704578286e-05
+        },
+        "checks": {},
+        "simulator_invocations": 2,
+        "elapsed_s": 2.6009264910026104,
+        "parameters": {
+          "CAPACITOR_0": 6e-12,
+          "CAPACITOR_1": 1.669e-12,
+          "CURRENT_0_BIAS": 2.028e-06,
+          "MOSFET_10_1_M_gm2_PMOS": 2,
+          "MOSFET_23_1_M_gm3_NMOS": 15,
+          "MOSFET_8_2_M_gm1_PMOS": 2
+        },
+        "evaluations_remaining": 1,
+        "terminated": false,
+        "truncated": false,
+        "action_valid": true,
+        "parameters_changed": [
+          "CAPACITOR_0"
+        ],
+        "measurement_success": false,
+        "failure_category": "ac_measurement_failed",
+        "error": "The action was valid, but AC measurements could not be extracted reliably. Try a different, modest parameter change."
+      }
+    },
+    {
+      "step": 2,
+      "raw_response": "{\"CAPACITOR_0\":6e-12}",
+      "parsed_action": {
+        "CAPACITOR_0": 6e-12
+      },
+      "applied_changes": {},
+      "feedback": {
+        "task_id": "song_dacfc_frontier_7b5de669b6d475c9",
+        "status": "failed",
+        "success": false,
+        "reward": -1.0,
+        "metrics": {
+          "output_dc_v": 0.3031510612363,
+          "dc_error_v": 0.00315106123629999,
+          "supply_current_a": 5.444428032127e-05,
+          "power_w": 9.7999704578286e-05
+        },
+        "checks": {},
+        "simulator_invocations": 2,
+        "elapsed_s": 2.5508740340010263,
+        "parameters": {
+          "CAPACITOR_0": 6e-12,
+          "CAPACITOR_1": 1.669e-12,
+          "CURRENT_0_BIAS": 2.028e-06,
+          "MOSFET_10_1_M_gm2_PMOS": 2,
+          "MOSFET_23_1_M_gm3_NMOS": 15,
+          "MOSFET_8_2_M_gm1_PMOS": 2
+        },
+        "evaluations_remaining": 0,
+        "terminated": false,
+        "truncated": true,
+        "action_valid": true,
+        "parameters_changed": [],
+        "measurement_success": false,
+        "failure_category": "ac_measurement_failed",
+        "error": "The action was valid, but AC measurements could not be extracted reliably. Try a different, modest parameter change."
+      }
+    }
+  ]
+}

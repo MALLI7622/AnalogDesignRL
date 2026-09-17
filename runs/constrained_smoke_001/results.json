@@ -1,0 +1,13 @@
+{
+  "model_calls": 4,
+  "accepted_actions": 2,
+  "accepted_changed_actions": 0,
+  "alignment_passes": 4,
+  "final_episode_rewards": [
+    -0.011120155256065113,
+    -0.011120155256065113
+  ],
+  "simulator_invocations": 4,
+  "optimizer_updates": 0,
+  "sampling": "grammar mask, temperature 0.9, top_k 50, top_p 1.0 (before probability-consistency update)"
+}

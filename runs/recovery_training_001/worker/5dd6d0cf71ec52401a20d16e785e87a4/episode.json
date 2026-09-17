@@ -1,0 +1,74 @@
+{
+  "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+  "max_evaluations": 2,
+  "evaluations_used": 2,
+  "simulator_invocations": 4,
+  "success": false,
+  "done": true,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": {
+        "CAPACITOR_0": 2.52e-10
+      },
+      "run_directory": "evaluation_001",
+      "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "output_dc_v": 0.3998954822857,
+        "dc_error_v": 0.0001045177143000342,
+        "supply_current_a": 0.0004770480966962,
+        "power_w": 0.0008586865740531599
+      },
+      "checks": {},
+      "simulator_invocations": 2,
+      "elapsed_s": 2.0007215260011435,
+      "parameters": {
+        "CAPACITOR_0": 2.52e-10,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 3.018e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "evaluations_remaining": 1,
+      "terminated": false,
+      "truncated": false,
+      "error": "Expected positive low-frequency gain and non-inverting phase."
+    },
+    {
+      "evaluation": 2,
+      "action": {
+        "CAPACITOR_0": 2.52e-10
+      },
+      "run_directory": "evaluation_002",
+      "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "output_dc_v": 0.3998954822857,
+        "dc_error_v": 0.0001045177143000342,
+        "supply_current_a": 0.0004770480966962,
+        "power_w": 0.0008586865740531599
+      },
+      "checks": {},
+      "simulator_invocations": 2,
+      "elapsed_s": 1.9998171370025375,
+      "parameters": {
+        "CAPACITOR_0": 2.52e-10,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 3.018e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "evaluations_remaining": 0,
+      "terminated": false,
+      "truncated": true,
+      "error": "Expected positive low-frequency gain and non-inverting phase."
+    }
+  ]
+}

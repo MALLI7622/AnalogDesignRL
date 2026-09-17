@@ -1,0 +1,30 @@
+E0917 05:25:59.081688  347616 hugepage_text.cc:344] RAW: File offset incorrectly aligned for file-backed THP: (600000 & ~ffffffffffe00000) = 0 != 1000 = (201000 & ~ffffffffffe00000)
+/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/qwix/_src/providers/lora.py:44: UserWarning: rngs must be provided for NNX models to initialize LoRA weights. Please specify rngs=nnx.Rngs(...) in apply_lora_to_model.
+  warnings.warn(
+WARNING:absl:CheckpointManagerOptions.read_only=True, setting save_interval_steps=0.
+WARNING:absl:Given directory is read only=/home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/train/checkpoints/actor
+WARNING:absl:Reference model and actor model are colocated but do not share the same backbone. This will result in an unnecessary model copy and increased HBM usage.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 683, in <module>
+    main()
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 658, in main
+    learner.train(batches(train_tasks, config["max_updates"], config["seed"]),
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 1076, in train
+    _ = producer_future.result()
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 664, in _producer
+    train_examples = self._batch_to_train_example(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 601, in _batch_to_train_example
+    return self._process_results(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/constrained_training.py", line 199, in _process_results
+    raise RuntimeError('Zero reward variation; stopping before likelihood computation or optimizer update')
+RuntimeError: Zero reward variation; stopping before likelihood computation or optimizer update

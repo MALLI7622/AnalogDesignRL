@@ -1,0 +1,66 @@
+{
+  "id": "analytic_rc_settling",
+  "tau_s": 1e-07,
+  "test": {
+    "low_v": 0.3,
+    "high_v": 0.5,
+    "rise_start_s": 1e-06,
+    "edge_s": 1e-08,
+    "high_duration_s": 5e-06,
+    "period_s": 2e-05,
+    "stop_s": 1.2e-05,
+    "max_step_s": 1e-09,
+    "settling_tolerance_v": 0.002,
+    "minimum_hold_s": 2e-06
+  },
+  "metrics": {
+    "settling_rise_s": 4.66500000000034e-07,
+    "settling_fall_s": 4.664999999998396e-07,
+    "max_tracking_error_v": 1.2378986724570495e-14,
+    "output_min_v": 0.3,
+    "output_max_v": 0.4999999999999879
+  },
+  "theoretical": {
+    "settling_rise_s": 4.655586817938046e-07,
+    "settling_fall_s": 4.655586817938046e-07
+  },
+  "native_comparison": {
+    "agrees": true,
+    "metrics": {
+      "settling_rise_s": {
+        "primary": 4.66500000000034e-07,
+        "independent": 4.6556e-07,
+        "absolute_difference": 9.400000000339943e-10,
+        "tolerance": 1.1010000000000002e-09,
+        "agrees": true
+      },
+      "settling_fall_s": {
+        "primary": 4.664999999998396e-07,
+        "independent": 4.6556e-07,
+        "absolute_difference": 9.399999998396002e-10,
+        "tolerance": 1.1010000000000002e-09,
+        "agrees": true
+      }
+    }
+  },
+  "theory_comparison": {
+    "agrees": true,
+    "metrics": {
+      "settling_rise_s": {
+        "primary": 4.66500000000034e-07,
+        "independent": 4.655586817938046e-07,
+        "absolute_difference": 9.413182062294116e-10,
+        "tolerance": 1.1010000000000002e-09,
+        "agrees": true
+      },
+      "settling_fall_s": {
+        "primary": 4.664999999998396e-07,
+        "independent": 4.655586817938046e-07,
+        "absolute_difference": 9.413182060350176e-10,
+        "tolerance": 1.1010000000000002e-09,
+        "agrees": true
+      }
+    }
+  },
+  "audit_passed": true
+}

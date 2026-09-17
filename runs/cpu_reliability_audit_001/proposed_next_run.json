@@ -1,0 +1,36 @@
+{
+  "status": "draft_not_authorized_or_launched",
+  "purpose": "Test corrected serialization alone with unchanged current prompt and same checkpoint; no training",
+  "model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+  "checkpoint": "runs/research_pilot_007/train/checkpoints",
+  "checkpoint_run": "runs/research_pilot_007/train/run.json",
+  "task_selection": "First sorted validation task: ramos_pfc_frontier_00f3831c949d08ca",
+  "episodes": 2,
+  "attempts_per_episode": 2,
+  "max_model_calls": 4,
+  "max_evaluation_attempts": 4,
+  "max_ngspice_invocations": 8,
+  "trainer_wall_time_seconds": 300,
+  "termination_grace_seconds": 15,
+  "automatic_retries": 0,
+  "new_cloud_resources": false,
+  "changes_under_test": [
+    "chat serialization only"
+  ],
+  "technical_pass_criteria": [
+    "Every recorded training_token_alignment.valid is true",
+    "No context overflow or infrastructure error",
+    "Every response is an accepted raw JSON action"
+  ],
+  "behavior_gate": [
+    "At least one accepted action changes a starting parameter",
+    "Record distinct accepted designs and their fixed verifier scores; failures cannot supply the only reward variation"
+  ],
+  "stop_conditions": [
+    "Stop after four calls or five minutes, whichever comes first",
+    "Stop on alignment or infrastructure failure",
+    "If the model only copies values, stop and report failure; no expanded sample or optimizer run"
+  ],
+  "on_pass": "Review the four trajectories before proposing any further experiment; passing does not authorize training",
+  "resource_note": "Process timeout does not deallocate the TPU or stop idle allocation charges. Preserve files before any separately authorized resource deletion."
+}

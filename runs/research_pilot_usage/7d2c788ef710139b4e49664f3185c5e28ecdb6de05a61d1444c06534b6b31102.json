@@ -1,0 +1,16 @@
+{
+  "research_pilot": true,
+  "pilot_manifest_sha256": "7d2c788ef710139b4e49664f3185c5e28ecdb6de05a61d1444c06534b6b31102",
+  "independent_expert_review": "pending",
+  "qualified_training_approved": false,
+  "pilot_limits": {
+    "max_episodes": 10,
+    "max_evaluations_per_episode": 2,
+    "max_total_evaluations": 20
+  },
+  "pilot_expires_utc": "2026-09-17T06:25:51.535228+00:00",
+  "worker_output": "/home/cheriearjun/AnalogDesignRL/runs/recovery_training_001/worker_continuation",
+  "episodes_reserved": 4,
+  "evaluations_reserved": 8,
+  "updated_utc": "2026-09-17T05:28:45.047456+00:00"
+}

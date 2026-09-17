@@ -1,0 +1,22 @@
+Analytic RC settling with finite input rise/fall time
+VIN signal 0 pulse(0.3 0.5 1u 10n 10n 5u 20u)
+R signal out 1000
+C out 0 100p
+.control
+set numdgt=15
+set wr_vecnames
+set wr_singlescale
+tran 1n 12u 0 1n
+wrdata transient.tsv v(signal) v(out) i(vin)
+
+let check_rise_error = abs(v(out) - 0.5)
+let check_fall_error = abs(v(out) - 0.3)
+let check_tracking_error = abs(v(out) - v(signal))
+meas tran check_rise_cross_result when check_rise_error=0.002 fall=last from=1e-06 to=6.01e-06
+meas tran check_fall_cross_result when check_fall_error=0.002 fall=last from=6.01e-06 to=1.2e-05
+meas tran check_tracking_before_result max check_tracking_error from=0 to=1e-06
+meas tran check_tracking_high_result max check_tracking_error from=4.7575e-06 to=6.01e-06
+meas tran check_tracking_low_result max check_tracking_error from=1.05025e-05 to=1.2e-05
+quit
+.endc
+.end

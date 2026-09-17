@@ -1,0 +1,38 @@
+{
+  "provisioningModel": "FLEX_START",
+  "runDuration": {
+    "maxRunDuration": "86400s"
+  },
+  "queueingPolicy": {
+    "validUntilDuration": "3600s"
+  },
+  "tpu": {
+    "nodeSpec": [
+      {
+        "parent": "projects/interpretable-ml-moleculelens/locations/us-west4-a",
+        "nodeId": "analog-rl-v5e-20260917-24h",
+        "node": {
+          "acceleratorType": "v5litepod-4",
+          "runtimeVersion": "v2-alpha-tpuv5-lite",
+          "networkConfig": {
+            "network": "default",
+            "enableExternalIps": true
+          },
+          "serviceAccount": {
+            "email": "67636381610-compute@developer.gserviceaccount.com",
+            "scope": [
+              "https://www.googleapis.com/auth/cloud-platform"
+            ]
+          },
+          "metadata": {
+            "ssh-keys": "cheriearjun:ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOT3gr6axjQWi8mY/nh1VWhwNaNy2qtpxCYHKmVDfprN cheriearjun"
+          },
+          "labels": {
+            "research": "analog-rl",
+            "purpose": "migration"
+          }
+        }
+      }
+    ]
+  }
+}

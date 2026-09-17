@@ -1,0 +1,38 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: autockt_two_stage_sizing_v1 - controlled evaluation
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        1.8
+signal                                    0.85
+xamp.bias                             0.800621
+xamp.tail                             0.117641
+xamp.mirror                           0.611534
+out                                   0.848392
+xamp.stage1                           0.460653
+vin#branch                                   0
+vdd#branch                        -0.000227548
+
+
+No. of Data Rows : 10020
+check_rise_cross_result=  5.39394e-06
+check_fall_cross_result=  2.51897e-05
+check_tracking_before_result=  1.60776e-03 at=  4.90640e-06
+check_tracking_high_result=  2.00674e-03 at=  2.50063e-05
+check_tracking_low_result=  1.60776e-03 at=  4.37625e-05
+ngspice-47 done

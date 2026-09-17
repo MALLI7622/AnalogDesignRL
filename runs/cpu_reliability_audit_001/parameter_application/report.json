@@ -1,0 +1,195 @@
+{
+  "status": "passed",
+  "scope": "CPU only; manually specified diagnostic actions, no LLM inference or learning",
+  "environment": {
+    "python": "3.12.14",
+    "ngspice": "47",
+    "host": "Linux-6.5.0-1013-gcp-x86_64-with-glibc2.35",
+    "dependency_lock_sha256": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a"
+  },
+  "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+  "episode_id": "f9526718ba5c1cc5b840c43597cda9fc",
+  "checks": [
+    "raw JSON crosses HTTP unchanged",
+    "partial updates reach parameters.spice",
+    "omitted parameters retain prior edits",
+    "real simulation metrics change",
+    "invalid keys spend an attempt without simulation or state change"
+  ],
+  "evaluation_attempts": 4,
+  "simulator_invocations": 6,
+  "evidence": [
+    {
+      "attempt": 1,
+      "action": {},
+      "expected_parameters": {
+        "CAPACITOR_0": 6.183e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 3.018e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "feedback": {
+        "status": "ok",
+        "success": false,
+        "reward": -0.011120155256065113,
+        "metrics": {
+          "output_dc_v": 0.3998954822857,
+          "dc_error_v": 0.0001045177143000342,
+          "supply_current_a": 0.0004770480966962,
+          "power_w": 0.0008586865740531599,
+          "gain_db": 131.8293878936,
+          "unity_gain_hz": 1366558.1369272186,
+          "phase_margin_deg": 89.77256129339962,
+          "settling_rise_s": 4.174999999999998e-07,
+          "settling_fall_s": 4.2249999999999807e-07,
+          "max_tracking_error_v": 0.00010501209489999219,
+          "output_min_v": 0.3982519881135,
+          "output_max_v": 0.6015888876243
+        },
+        "parameters": {
+          "CAPACITOR_0": 6.183e-11,
+          "CAPACITOR_1": 8.02e-12,
+          "CURRENT_0_BIAS": 3.018e-05,
+          "MOSFET_10_1_M_gm2_PMOS": 82,
+          "MOSFET_23_1_M_gm3_NMOS": 140,
+          "MOSFET_8_2_M_gm1_PMOS": 66
+        },
+        "evaluations_remaining": 3,
+        "failed_requirements": [
+          "unity_gain_hz"
+        ]
+      },
+      "reward_delta": -0.011120155256065113,
+      "simulator_invocations": 2
+    },
+    {
+      "attempt": 2,
+      "action": {
+        "CURRENT_0_BIAS": 2.9576399999999997e-05
+      },
+      "expected_parameters": {
+        "CAPACITOR_0": 6.183e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 2.9576399999999997e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "feedback": {
+        "status": "ok",
+        "success": false,
+        "reward": -0.012455249943792334,
+        "metrics": {
+          "output_dc_v": 0.3998965567351,
+          "dc_error_v": 0.0001034432649000272,
+          "supply_current_a": 0.0004674361030776,
+          "power_w": 0.0008413849855396801,
+          "gain_db": 131.9887367613,
+          "unity_gain_hz": 1350537.000674492,
+          "phase_margin_deg": 89.76413038667539,
+          "settling_rise_s": 4.174999999999998e-07,
+          "settling_fall_s": 4.2749999999999887e-07,
+          "max_tracking_error_v": 0.00010406593259992825,
+          "output_min_v": 0.3982404879975,
+          "output_max_v": 0.6016081412823
+        },
+        "parameters": {
+          "CAPACITOR_0": 6.183e-11,
+          "CAPACITOR_1": 8.02e-12,
+          "CURRENT_0_BIAS": 2.9576399999999997e-05,
+          "MOSFET_10_1_M_gm2_PMOS": 82,
+          "MOSFET_23_1_M_gm3_NMOS": 140,
+          "MOSFET_8_2_M_gm1_PMOS": 66
+        },
+        "evaluations_remaining": 2,
+        "failed_requirements": [
+          "unity_gain_hz"
+        ]
+      },
+      "reward_delta": -0.0013350946877272209,
+      "simulator_invocations": 2
+    },
+    {
+      "attempt": 3,
+      "action": {
+        "CAPACITOR_0": 6.30666e-11
+      },
+      "expected_parameters": {
+        "CAPACITOR_0": 6.30666e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 2.9576399999999997e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "feedback": {
+        "status": "ok",
+        "success": false,
+        "reward": -0.015247812338548635,
+        "metrics": {
+          "output_dc_v": 0.3998965567351,
+          "dc_error_v": 0.0001034432649000272,
+          "supply_current_a": 0.0004674361030776,
+          "power_w": 0.0008413849855396801,
+          "gain_db": 131.9692984232,
+          "unity_gain_hz": 1317026.2519374164,
+          "phase_margin_deg": 89.8011076100829,
+          "settling_rise_s": 4.274999999999997e-07,
+          "settling_fall_s": 4.374999999999971e-07,
+          "max_tracking_error_v": 0.00010406593259992825,
+          "output_min_v": 0.3982035924167,
+          "output_max_v": 0.6016465888113
+        },
+        "parameters": {
+          "CAPACITOR_0": 6.30666e-11,
+          "CAPACITOR_1": 8.02e-12,
+          "CURRENT_0_BIAS": 2.9576399999999997e-05,
+          "MOSFET_10_1_M_gm2_PMOS": 82,
+          "MOSFET_23_1_M_gm3_NMOS": 140,
+          "MOSFET_8_2_M_gm1_PMOS": 66
+        },
+        "evaluations_remaining": 1,
+        "failed_requirements": [
+          "unity_gain_hz"
+        ]
+      },
+      "reward_delta": -0.0027925623947563007,
+      "simulator_invocations": 2
+    },
+    {
+      "attempt": 4,
+      "action": {
+        "__not_editable__": 1
+      },
+      "expected_parameters": {
+        "CAPACITOR_0": 6.30666e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 2.9576399999999997e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "feedback": {
+        "status": "failed",
+        "success": false,
+        "reward": -1.0,
+        "metrics": {},
+        "parameters": {
+          "CAPACITOR_0": 6.30666e-11,
+          "CAPACITOR_1": 8.02e-12,
+          "CURRENT_0_BIAS": 2.9576399999999997e-05,
+          "MOSFET_10_1_M_gm2_PMOS": 82,
+          "MOSFET_23_1_M_gm3_NMOS": 140,
+          "MOSFET_8_2_M_gm1_PMOS": 66
+        },
+        "evaluations_remaining": 0,
+        "error": "Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.",
+        "failed_requirements": []
+      },
+      "reward_delta": -0.9847521876614513,
+      "simulator_invocations": 0
+    }
+  ]
+}

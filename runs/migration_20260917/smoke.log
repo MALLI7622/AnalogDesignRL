@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "scope": "CPU HTTP integration using known public solutions; no model training",
+  "environment": {
+    "python": "3.12.14",
+    "ngspice": "47",
+    "host": "Linux-6.5.0-1013-gcp-x86_64-with-glibc2.35",
+    "dependency_lock_sha256": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a"
+  },
+  "concurrent_episodes": 2,
+  "wall_seconds": 4.458424347000005,
+  "mean_evaluation_seconds": 1.6597580977500002,
+  "artifact_bytes": 3555160,
+  "tasks": [
+    {
+      "task_id": "fan_smc_sizing_v1",
+      "initial_reward": -0.041334378079072545,
+      "final_reward": 1.0,
+      "episode_reward": 0.9999999999999999,
+      "retry_did_not_spend_budget": true,
+      "evaluation_seconds": [
+        1.9744209299999511,
+        1.9708619310000586
+      ],
+      "simulator_invocations": 4
+    },
+    {
+      "task_id": "autockt_two_stage_sizing_v1",
+      "initial_reward": -1.0,
+      "final_reward": 1.0,
+      "episode_reward": 1.0,
+      "retry_did_not_spend_budget": true,
+      "evaluation_seconds": [
+        1.32059545300001,
+        1.373154076999981
+      ],
+      "simulator_invocations": 4
+    }
+  ],
+  "tpu_runtime_tested": false
+}
+Report: /home/cheriearjun/AnalogDesignRL/runs/worker_smoke_1789623631093191093/report.json

@@ -1,0 +1,93 @@
+{
+  "baseline": {
+    "calls": 4,
+    "accepted": 4,
+    "accepted_changed_actions": 0,
+    "aligned": 4,
+    "solved_episodes": 0,
+    "final_scores": [
+      -0.011120155256065113,
+      -0.011120155256065113
+    ],
+    "responses": [
+      "{\"CAPACITOR_0\":6.183e-11,\"CAPACITOR_1\":8.02e-12,\"CURRENT_0_BIAS\":3.018e-05,\"MOSFET_10_1_M_gm2_PMOS\":82,\"MOSFET_23_1_M_gm3_NMOS\":140,\"MOSFET_8_2_M_gm1_PMOS\":66}",
+      "{\"CAPACITOR_0\":6.183e-11,\"CAPACITOR_1\":8.02e-12,\"CURRENT_0_BIAS\":3.018e-05,\"MOSFET_10_1_M_gm2_PMOS\":82,\"MOSFET_23_1_M_gm3_NMOS\":140,\"MOSFET_8_2_M_gm1_PMOS\":66}",
+      "{\"CAPACITOR_0\":6.183e-11,\"CAPACITOR_1\":8.02e-12,\"CURRENT_0_BIAS\":3.018e-05,\"MOSFET_10_1_M_gm2_PMOS\":82,\"MOSFET_23_1_M_gm3_NMOS\":140,\"MOSFET_8_2_M_gm1_PMOS\":66}",
+      "{\"CAPACITOR_0\":6.183e-11,\"CAPACITOR_1\":8.02e-12,\"CURRENT_0_BIAS\":3.018e-05,\"MOSFET_10_1_M_gm2_PMOS\":82,\"MOSFET_23_1_M_gm3_NMOS\":140,\"MOSFET_8_2_M_gm1_PMOS\":66}"
+    ],
+    "seeds": [
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        0,
+        3053378874
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        1,
+        3094702545
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        2,
+        0,
+        3801248591
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        2,
+        1,
+        2674688436
+      ]
+    ],
+    "simulator_invocations": 8
+  },
+  "no_answer_example": {
+    "calls": 4,
+    "accepted": 0,
+    "accepted_changed_actions": 0,
+    "aligned": 4,
+    "solved_episodes": 0,
+    "final_scores": [
+      -1.0,
+      -1.0
+    ],
+    "responses": [
+      "{\"CAPACITOR_0\": 2.52e-10, \"CAPACITOR_1\": 2.52e-10, \"CURRENT_0_BIAS\": 3.018e-05, \"MOSFET_10_1_M_gm2_PMOS\": 82, \"MOSFET_23_1_M_gm3_NMOS\": 140, \"MOSFET_8_2_M_gm1_PMOS\": 66}",
+      "{\n\"CAPACATOR_0\": 6.183e-11,\n\"CAPACITOR_1\": 8.02e-12,\n\"CURRENT_0_BIAS\": 3.018e-05,\n\"MOSFET_10_1_M_gm2_PMOS\": 82,\n\"MOSFET_23_1_M_gm3_NMOS\": 140,\n\"MOSFET_8_2_M_gm1_PMOS\": 66\n}",
+      "{\"CAPACITOR_0\": 1.575e-11, \"CAPACITOR_1\": 2.52e-10, \"CURRENT_0_BIAS\": 6e-06, \"MOSFET_10_1_M_gm2_PMOS\": 21, \"MOSFET_23_1_M_gm3_NMOS\": 324, \"MOSFET_8_2_M_gm1_PMOS\": 66}",
+      "{\"CAPACATOR_0\": 6.183e-11, \"CAPACITOR_1\": 8.02e-12, \"CURRENT_0_BIAS\": 3.018e-05, \"MOSFET_10_1_M_gm2_PMOS\": 82, \"MOSFET_23_1_M_gm3_NMOS\": 140, \"MOSFET_8_2_M_gm1_PMOS\": 66}"
+    ],
+    "seeds": [
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        0,
+        3053378874
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        1,
+        1,
+        3094702545
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        2,
+        0,
+        3801248591
+      ],
+      [
+        "ramos_pfc_frontier_00f3831c949d08ca",
+        2,
+        1,
+        2674688436
+      ]
+    ],
+    "simulator_invocations": 0
+  },
+  "paired_seeds_match": true,
+  "other_config_matches": true,
+  "optimizer_updates": 0
+}

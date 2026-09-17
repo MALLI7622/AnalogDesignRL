@@ -1,0 +1,92 @@
+E0917 05:23:30.809746  344788 hugepage_text.cc:344] RAW: File offset incorrectly aligned for file-backed THP: (600000 & ~ffffffffffe00000) = 0 != 1000 = (201000 & ~ffffffffffe00000)
+/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/qwix/_src/providers/lora.py:44: UserWarning: rngs must be provided for NNX models to initialize LoRA weights. Please specify rngs=nnx.Rngs(...) in apply_lora_to_model.
+  warnings.warn(
+WARNING:absl:CheckpointManagerOptions.read_only=True, setting save_interval_steps=0.
+WARNING:absl:Given directory is read only=/home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/train/checkpoints/actor
+WARNING:absl:Reference model and actor model are colocated but do not share the same backbone. This will result in an unnecessary model copy and increased HBM usage.
+ERROR:absl:Caught exception inside model_call: Initial public task specification missing from prompt
+Traceback (most recent call last):
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 508, in _safe_model_call
+    return self.model_call(
+           ^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 455, in _model_call
+    result = self.rl_cluster.generate(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/rl_cluster.py", line 938, in generate
+    self.rollout.generate(string_prompts[s], rollout_config)
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 116, in __call__
+    result = self.generate(prompts, replace(rollout_config, seed=seed), **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/constrained_training.py", line 119, in __call__
+    names = [prompt_names(p) for p in prompts]
+             ^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/constrained_training.py", line 20, in prompt_names
+    raise ValueError('Initial public task specification missing from prompt')
+ValueError: Initial public task specification missing from prompt
+ERROR:absl:Producer task failed: Initial public task specification missing from prompt
+ERROR:absl:Error yielding batches: Initial public task specification missing from prompt
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 683, in <module>
+    main()
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 658, in main
+    learner.train(batches(train_tasks, config["max_updates"], config["seed"]),
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 1076, in train
+    _ = producer_future.result()
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 652, in _producer
+    async for batch in self._orchestrator_producer(
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 561, in _orchestrator_producer
+    async for group in stream:
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 359, in yield_batches
+    batch = await self._group_queue_manager.get_batch(batch_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/queue_manager/group_queue_manager.py", line 133, in get_batch
+    group = await self._get_one_ready_group()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/queue_manager/group_queue_manager.py", line 105, in _get_one_ready_group
+    raise self._exc
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 311, in run_producers_from_stream
+    task.result()  # This will re-raise any exception in the task.
+    ^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 166, in _runner
+    episode_count = await self._run_and_queue_one_episode(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 118, in _run_and_queue_one_episode
+    traj = await self._collect_trajectory(agent, env, mode=collect_mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 104, in _collect_trajectory
+    return await engine.collect(mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 218, in collect
+    done = await self._one_step()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 518, in _one_step
+    rollout_output = await asyncio.get_event_loop().run_in_executor(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 508, in _safe_model_call
+    return self.model_call(
+           ^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 455, in _model_call
+    result = self.rl_cluster.generate(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/rl_cluster.py", line 938, in generate
+    self.rollout.generate(string_prompts[s], rollout_config)
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 116, in __call__
+    result = self.generate(prompts, replace(rollout_config, seed=seed), **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/constrained_training.py", line 119, in __call__
+    names = [prompt_names(p) for p in prompts]
+             ^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/constrained_training.py", line 20, in prompt_names
+    raise ValueError('Initial public task specification missing from prompt')
+ValueError: Initial public task specification missing from prompt

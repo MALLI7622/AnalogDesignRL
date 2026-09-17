@@ -1,0 +1,8 @@
+{
+  "change": "Remove only the current-values reply example; preserve observation, system prompt, and all remaining instructions",
+  "baseline": "runs/formatter_smoke_001",
+  "max_model_calls": 4,
+  "timeout_seconds": 300,
+  "automatic_retries": 0,
+  "training": false
+}

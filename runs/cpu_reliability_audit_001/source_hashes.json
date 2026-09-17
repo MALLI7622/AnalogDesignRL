@@ -1,0 +1,9 @@
+{
+  "training/chat_format.py": "344a21b03a50c531090d5db129f8a7ec51ef83a0fbab80269cb03b6a98897f37",
+  "training/train.py": "390ef910de357e5355e1d0bb4a63ba01bc89d0ac0cb4c0cd59205aa2361d8754",
+  "training/research_pilot.py": "ad1ff586797bc6b899c1fe8dbee3336f8ad07c2c21bdd0c55c6194c86137f6a1",
+  "training/cpu_chat_audit.py": "8e08098a5fae106b4e4d106475eafbf1d3844313978aec0250fcefba2b517555",
+  "training/cpu_parameter_audit.py": "493cdd8a5d596c82e2448f6bd7e11085ad12e4f989d18c813cb0cb08e974b3b3",
+  "tests/test_chat_format.py": "3375797757b7cac44c83e18892abc8ee4daa764829cf4e4f0cea0f8a966e988c",
+  "tests/test_generation_seeds.py": "97b5e14e7b5928b78f57e83d291d11e82529957aec837a750518587a89b4f870"
+}

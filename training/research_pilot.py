@@ -17,7 +17,8 @@ BOUND_CODE = (
     "analog_design/simulator.py", "analog_design/metrics.py", "analog_design/crosscheck.py",
     "analog_design/episode.py", "analog_design/qualification.py", "dependencies.lock.json",
     "training/catalog.py", "training/client.py", "training/worker.py", "training/train.py",
-    "training/tunix_env.py", "training/research_pilot.py",
+    "training/tunix_env.py", "training/research_pilot.py", "training/chat_format.py", "training/constrained_json.py",
+    "training/constrained_training.py",
 )
 LIMIT_NAMES = ("max_episodes", "max_evaluations_per_episode", "max_total_evaluations")
 

@@ -1,0 +1,79 @@
+{
+  "stages": {
+    "before": {
+      "model_requests": 4,
+      "model_responses": 4,
+      "alignment_passes": 4,
+      "episodes_started": 2,
+      "evaluated_actions": 4,
+      "valid_actions": 4,
+      "applied_parameter_changes": 1,
+      "successful_measurements": 2,
+      "solved_episodes": 0,
+      "simulator_invocations": 8,
+      "final_scores": [
+        -1.0,
+        -0.056810114397376696
+      ],
+      "mean_final_score": -0.5284050571986884
+    },
+    "train": {
+      "model_requests": 1,
+      "model_responses": 0,
+      "alignment_passes": 0,
+      "episodes_started": 1,
+      "evaluated_actions": 0,
+      "valid_actions": 0,
+      "applied_parameter_changes": 0,
+      "successful_measurements": 0,
+      "solved_episodes": 0,
+      "simulator_invocations": 0,
+      "final_scores": [],
+      "mean_final_score": null
+    },
+    "train_continuation": {
+      "model_requests": 8,
+      "model_responses": 8,
+      "alignment_passes": 8,
+      "episodes_started": 4,
+      "evaluated_actions": 8,
+      "valid_actions": 8,
+      "applied_parameter_changes": 4,
+      "successful_measurements": 0,
+      "solved_episodes": 0,
+      "simulator_invocations": 16,
+      "final_scores": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "mean_final_score": -1.0
+    }
+  },
+  "verified_optimizer_updates": 0,
+  "reward_groups": [
+    {
+      "mode": "train",
+      "expected_step": 0,
+      "optimizer_steps_before_group": 0,
+      "rewards": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "reward_std": 0.0,
+      "reward_range": 0.0,
+      "has_learning_signal": false
+    }
+  ],
+  "stop_reason": "First training group has zero reward variation; guard stopped before likelihood/optimizer work.",
+  "training_failure_diagnostics": {
+    "Multiple unity crossings: stability requires further analysis.": 8
+  },
+  "total_model_responses": 12,
+  "total_simulator_invocations": 24,
+  "after_evaluation": "Not run: no optimizer update or trained checkpoint.",
+  "checkpoint_zero": "Tunix wrote an untrained step-0 snapshot; it is not a completed training checkpoint and fails positive-step restore validation."
+}

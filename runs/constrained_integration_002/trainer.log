@@ -1,0 +1,17 @@
+E0917 04:54:24.237845  323787 hugepage_text.cc:344] RAW: File offset incorrectly aligned for file-backed THP: (600000 & ~ffffffffffe00000) = 0 != 1000 = (201000 & ~ffffffffffe00000)
+/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/qwix/_src/providers/lora.py:44: UserWarning: rngs must be provided for NNX models to initialize LoRA weights. Please specify rngs=nnx.Rngs(...) in apply_lora_to_model.
+  warnings.warn(
+WARNING:absl:CheckpointManagerOptions.read_only=True, setting save_interval_steps=0.
+WARNING:absl:Given directory is read only=/home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/train/checkpoints/actor
+Probability check: recomputing sampled-policy likelihoods
+Probability check: reference likelihoods
+Probability check: actor GRPO loss (no update)
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 649, in <module>
+    
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 587, in main
+    checks.write(json.dumps({'task_id': task['id'], 'episode': episode_index,
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Constrained sampler/trainer probability check failed; see probability_checks.jsonl

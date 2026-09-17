@@ -1,0 +1,20 @@
+{
+  "report": "/home/cheriearjun/AnalogDesignRL/runs/verification_20260917_053953_878e3569/verification.json",
+  "automated_checks_passed": true,
+  "checks": {
+    "unit_tests": true,
+    "analytic_fixtures": true,
+    "author_fixture_outcomes": true,
+    "released_deck_preserved": true,
+    "numerical_convergence": true,
+    "existing_pilot_regression": true,
+    "boundary_disagreement_handling": true,
+    "prior_passing_solutions": true
+  },
+  "training_ready": false,
+  "remaining_reviews": [
+    "Independent analog-engineer review of circuit and testbench semantics",
+    "Qualified operating envelope and supported device-model limits",
+    "Agent/evaluator isolation and held-out task protocol"
+  ]
+}

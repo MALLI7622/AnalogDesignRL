@@ -1,0 +1,15 @@
+{
+  "max_model_calls": 1,
+  "max_teacher_forced_forwards": 3,
+  "timeout_seconds": 600,
+  "kill_grace_seconds": 15,
+  "optimizer_updates": 0,
+  "automatic_retries": 0,
+  "reason": "Test whether residual cached/full-sequence likelihood difference is caused by reduced precision",
+  "compute_dtype": "float32",
+  "matmul_precision": "highest",
+  "top_k": 0,
+  "top_p": 1.0,
+  "max_abs_logp_error_limit": 0.1,
+  "mean_abs_logp_error_limit": 0.01
+}

@@ -1,0 +1,20 @@
+======================================================================
+ERROR: test_http_auth_and_catalog_hide_private_paths (tests.test_training.TrainingTests.test_http_auth_and_catalog_hide_private_paths)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/cheriearjun/AnalogDesignRL/tests/test_training.py", line 214, in test_http_auth_and_catalog_hide_private_paths
+    server = WorkerServer(("127.0.0.1", 0), self.service, token, workers=2)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/worker.py", line 185, in __init__
+    super().__init__(address, Handler)
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/socketserver.py", line 453, in __init__
+    self.socket = socket.socket(self.address_family,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/socket.py", line 233, in __init__
+    _socket.socket.__init__(self, family, type, proto, fileno)
+PermissionError: [Errno 1] Operation not permitted
+
+----------------------------------------------------------------------
+Ran 54 tests in 6.584s
+
+FAILED (errors=1)

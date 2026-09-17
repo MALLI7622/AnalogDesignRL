@@ -62,6 +62,11 @@ class RunControlTests(unittest.TestCase):
                       ["--mode", "rollout", "--restore-checkpoint", "saved", "--restore-run", "run.json"],
                       ["--mode", "research-pilot", "--pilot-manifest", "manifest.json"], []):
             validate_run_arguments(parser.parse_args(flags))
+        validate_run_arguments(parser.parse_args(['--mode', 'train', '--restore-checkpoint', 'saved',
+                                                  '--restore-run', 'run.json', '--warm-start-adapter']))
+        for flags in (['--warm-start-adapter'], ['--mode', 'train', '--warm-start-adapter'],
+                      ['--mode', 'rollout', '--restore-checkpoint', 'saved', '--restore-run', 'run.json', '--warm-start-adapter']):
+            with self.assertRaises(ValueError): validate_run_arguments(parser.parse_args(flags))
         invalid = [
             ["--mode", "train", "--max-tasks", "1"],
             ["--mode", "rollout", "--max-tasks", "0"],

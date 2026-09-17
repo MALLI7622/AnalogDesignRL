@@ -1,0 +1,12 @@
+{
+  "name": "projects/interpretable-ml-moleculelens/locations/us-west4-a/operations/operation-1789622579360-65ba6fa1ff335-fab1b411-4e4dee60",
+  "metadata": {
+    "@type": "type.googleapis.com/google.cloud.common.OperationMetadata",
+    "createTime": "2026-09-17T05:23:05.242846209Z",
+    "target": "projects/interpretable-ml-moleculelens/locations/us-west4-a/queuedResources/analog-rl-v5e-request-20260917-24h",
+    "verb": "create",
+    "cancelRequested": false,
+    "apiVersion": "v2alpha1"
+  },
+  "done": false
+}

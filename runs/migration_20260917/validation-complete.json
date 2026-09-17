@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "scope": "environment, source provenance, checkpoint restoration and one model/evaluator interaction; no optimizer updates",
+  "rollout_rows": 1,
+  "simulator_invocations": 2,
+  "circuit_solved": false,
+  "verifier_reward": -0.011120155256065113
+}

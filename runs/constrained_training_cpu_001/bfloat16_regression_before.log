@@ -1,0 +1,37 @@
+test_actual_grpo_actor_anchor_reference_and_gradient (tests.test_constrained_training.TrainingConstraintsTests.test_actual_grpo_actor_anchor_reference_and_gradient) ... FAIL
+
+======================================================================
+FAIL: test_actual_grpo_actor_anchor_reference_and_gradient (tests.test_constrained_training.TrainingConstraintsTests.test_actual_grpo_actor_anchor_reference_and_gradient)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/cheriearjun/AnalogDesignRL/tests/test_constrained_training.py", line 96, in test_actual_grpo_actor_anchor_reference_and_gradient
+    np.testing.assert_allclose(old,expected,atol=1e-6)
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 1780, in assert_allclose
+    assert_array_compare(compare, actual, desired, err_msg=str(err_msg),
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/numpy/testing/_private/utils.py", line 988, in assert_array_compare
+    raise AssertionError(msg)
+AssertionError: 
+Not equal to tolerance rtol=1e-07, atol=1e-06
+
+Mismatched elements: 10 / 14 (71.4%)
+First 5 mismatches are at indices:
+ [0, 0]: -0.6126019358634949 (ACTUAL), -0.6138299107551575 (DESIRED)
+ [0, 1]: -2.0693249702453613 (ACTUAL), -2.0683932304382324 (DESIRED)
+ [0, 4]: -1.175079345703125 (ACTUAL), -1.1757625341415405 (DESIRED)
+ [0, 5]: -2.650710344314575 (ACTUAL), -2.650768995285034 (DESIRED)
+ [0, 6]: -1.9632549285888672 (ACTUAL), -1.964793086051941 (DESIRED)
+Max absolute difference among violations: 0.00153816
+Max relative difference among violations: 0.00200051
+ ACTUAL: array([[-0.612602, -2.069325,  0.      ,  0.      , -1.175079, -2.65071 ,
+        -1.963255],
+       [-0.612602, -2.069325,  0.      ,  0.      , -1.175079, -2.65071 ,
+        -1.963255]], dtype=float32)
+ DESIRED: array([[-0.61383 , -2.068393,  0.      ,  0.      , -1.175763, -2.650769,
+        -1.964793],
+       [-0.61383 , -2.068393,  0.      ,  0.      , -1.175763, -2.650769,
+        -1.964793]], dtype=float32)
+
+----------------------------------------------------------------------
+Ran 1 test in 2.147s
+
+FAILED (failures=1)

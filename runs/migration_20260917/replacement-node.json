@@ -1,0 +1,17 @@
+{
+  "health": "HEALTHY",
+  "name": "projects/interpretable-ml-moleculelens/locations/us-west4-a/nodes/analog-rl-v5e-20260917-24h",
+  "networkEndpoints": [
+    {
+      "accessConfig": {
+        "externalIp": "34.125.161.147"
+      },
+      "ipAddress": "10.182.0.4",
+      "port": 8470
+    }
+  ],
+  "schedulingConfig": {
+    "terminationTimestamp": "2026-09-18T05:23:32.068614001Z"
+  },
+  "state": "READY"
+}

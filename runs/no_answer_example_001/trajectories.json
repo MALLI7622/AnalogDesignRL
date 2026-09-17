@@ -1,0 +1,118 @@
+[
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 1,
+    "step": 1,
+    "response": "{\"CAPACITOR_0\": 2.52e-10, \"CAPACITOR_1\": 2.52e-10, \"CURRENT_0_BIAS\": 3.018e-05, \"MOSFET_10_1_M_gm2_PMOS\": 82, \"MOSFET_23_1_M_gm3_NMOS\": 140, \"MOSFET_8_2_M_gm1_PMOS\": 66}",
+    "observation": {
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "parameters": {
+        "CAPACITOR_0": 6.183e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 3.018e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "evaluations_remaining": 1,
+      "error": "Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.",
+      "failed_requirements": []
+    },
+    "reward_delta": -1.0,
+    "verifier_reward": -1.0,
+    "success": false,
+    "steps": 1,
+    "simulator_invocations": 0,
+    "elapsed_s": 0.0003526499967847485
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 1,
+    "step": 2,
+    "response": "{\n\"CAPACATOR_0\": 6.183e-11,\n\"CAPACITOR_1\": 8.02e-12,\n\"CURRENT_0_BIAS\": 3.018e-05,\n\"MOSFET_10_1_M_gm2_PMOS\": 82,\n\"MOSFET_23_1_M_gm3_NMOS\": 140,\n\"MOSFET_8_2_M_gm1_PMOS\": 66\n}",
+    "observation": {
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "parameters": {
+        "CAPACITOR_0": 6.183e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 3.018e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "evaluations_remaining": 0,
+      "error": "Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.",
+      "failed_requirements": []
+    },
+    "reward_delta": 0.0,
+    "verifier_reward": -1.0,
+    "success": false,
+    "steps": 2,
+    "simulator_invocations": 0,
+    "elapsed_s": 0.00033039999834727496
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 2,
+    "step": 1,
+    "response": "{\"CAPACITOR_0\": 1.575e-11, \"CAPACITOR_1\": 2.52e-10, \"CURRENT_0_BIAS\": 6e-06, \"MOSFET_10_1_M_gm2_PMOS\": 21, \"MOSFET_23_1_M_gm3_NMOS\": 324, \"MOSFET_8_2_M_gm1_PMOS\": 66}",
+    "observation": {
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "parameters": {
+        "CAPACITOR_0": 6.183e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 3.018e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "evaluations_remaining": 1,
+      "error": "Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.",
+      "failed_requirements": []
+    },
+    "reward_delta": -1.0,
+    "verifier_reward": -1.0,
+    "success": false,
+    "steps": 1,
+    "simulator_invocations": 0,
+    "elapsed_s": 0.00034167100238846615
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 2,
+    "step": 2,
+    "response": "{\"CAPACATOR_0\": 6.183e-11, \"CAPACITOR_1\": 8.02e-12, \"CURRENT_0_BIAS\": 3.018e-05, \"MOSFET_10_1_M_gm2_PMOS\": 82, \"MOSFET_23_1_M_gm3_NMOS\": 140, \"MOSFET_8_2_M_gm1_PMOS\": 66}",
+    "observation": {
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "parameters": {
+        "CAPACITOR_0": 6.183e-11,
+        "CAPACITOR_1": 8.02e-12,
+        "CURRENT_0_BIAS": 3.018e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 82,
+        "MOSFET_23_1_M_gm3_NMOS": 140,
+        "MOSFET_8_2_M_gm1_PMOS": 66
+      },
+      "evaluations_remaining": 0,
+      "error": "Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.",
+      "failed_requirements": []
+    },
+    "reward_delta": 0.0,
+    "verifier_reward": -1.0,
+    "success": false,
+    "steps": 2,
+    "simulator_invocations": 0,
+    "elapsed_s": 0.0003162400025757961
+  }
+]

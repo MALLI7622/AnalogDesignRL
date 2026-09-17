@@ -1,0 +1,16 @@
+{
+  "status": "technical_pass_behavior_fail",
+  "model_calls": 4,
+  "accepted_actions": 4,
+  "alignment_passes": 4,
+  "distinct_proposals": 1,
+  "solved_episodes": 0,
+  "final_episode_scores": [
+    -0.011120155256065113,
+    -0.011120155256065113
+  ],
+  "simulator_invocations": 8,
+  "optimizer_updates": 0,
+  "decision": "Stop: all four proposals repeat starting parameters. No expanded rollout or training launched.",
+  "limitation": "One task, two episodes, restored old checkpoint; not evidence about all tasks or the untrained base model."
+}

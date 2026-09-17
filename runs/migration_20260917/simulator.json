@@ -1,0 +1,6 @@
+{
+  "python": "3.12.14",
+  "ngspice": "47",
+  "host": "Linux-6.5.0-1013-gcp-x86_64-with-glibc2.35",
+  "dependency_lock_sha256": "de7ad041c79dc616c88d268a6e834e6dfb276fbe2809eef8a60bc5e045b5439a"
+}

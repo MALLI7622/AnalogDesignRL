@@ -1,0 +1,4 @@
+{"call": 0, "seed": 3053378874, "prompt_count": 1, "prompt_sha256": ["25c20f017db04041d1bf2f9d3ae642fceb29e63acd9dd44eca7a9a210b59fbde"], "task_id": "ramos_pfc_frontier_00f3831c949d08ca", "episode": 1, "episode_call": 0}
+{"call": 1, "seed": 3094702545, "prompt_count": 1, "prompt_sha256": ["8d40b8c5e6ec1878c45f696c379c3915061d004bc1e0c492d388df2715682c03"], "task_id": "ramos_pfc_frontier_00f3831c949d08ca", "episode": 1, "episode_call": 1}
+{"call": 2, "seed": 3801248591, "prompt_count": 1, "prompt_sha256": ["25c20f017db04041d1bf2f9d3ae642fceb29e63acd9dd44eca7a9a210b59fbde"], "task_id": "ramos_pfc_frontier_00f3831c949d08ca", "episode": 2, "episode_call": 0}
+{"call": 3, "seed": 2674688436, "prompt_count": 1, "prompt_sha256": ["8d40b8c5e6ec1878c45f696c379c3915061d004bc1e0c492d388df2715682c03"], "task_id": "ramos_pfc_frontier_00f3831c949d08ca", "episode": 2, "episode_call": 1}

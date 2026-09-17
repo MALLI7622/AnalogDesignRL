@@ -1,0 +1,1 @@
+{"mode": "train", "expected_step": 0, "optimizer_steps_before_group": 0, "rewards": [-1.0, -1.0, -1.0, -1.0], "reward_std": 0.0, "reward_range": 0.0, "has_learning_signal": false}

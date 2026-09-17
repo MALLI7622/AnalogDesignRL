@@ -42,3 +42,11 @@ Files are local to the TPU VM, scheduled to terminate at 2026-09-17 06:53 UTC. N
 [Searchable browser](review/viewer.html) · [Episode index and examples](review/README.md)
 
 All 168 episodes and 671 exact replies are included, with prompts and evaluator feedback.
+
+## Chat-template defect found during trajectory inspection
+
+Inspection of `current_ramos_pfc_frontier_00f3831c949d08ca_ep4` confirmed all four raw model replies repeat the six starting values, and feedback parameters match those replies. The evaluator did not discard a changed proposal. However, comparison against the pinned local tokenizer template found missing BOS and missing completed-assistant end-of-turn markers in recorded prompts. See [chat_template_diagnostic.json](chat_template_diagnostic.json). This is a serialization mismatch; its causal contribution to copying is untested. Correct and validate the chat serialization before further prompt comparisons or training. Previous results describe behavior under the old serializer and should not establish that prompt wording or model ability alone caused the failures. No serializer fix or new experiment has been performed yet.
+
+## Subsequent CPU audit
+
+The chat serializer was repaired and validated without another model run. See [audit and limitations](../cpu_reliability_audit_001/README.md). The results here remain historical results under the old serializer.

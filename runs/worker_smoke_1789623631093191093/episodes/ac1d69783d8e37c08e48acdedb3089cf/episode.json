@@ -1,0 +1,87 @@
+{
+  "task_id": "autockt_two_stage_sizing_v1",
+  "max_evaluations": 30,
+  "evaluations_used": 2,
+  "simulator_invocations": 4,
+  "success": true,
+  "done": true,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": {},
+      "run_directory": "evaluation_001",
+      "task_id": "autockt_two_stage_sizing_v1",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {
+        "output_dc_v": 0.8982637045241,
+        "dc_error_v": 0.0017362954759000404,
+        "supply_current_a": 0.0002347644822774,
+        "power_w": 0.00042257606809932,
+        "gain_db": 72.33167385995,
+        "unity_gain_hz": 9264475.163700491,
+        "phase_margin_deg": 35.87430061960569
+      },
+      "checks": {},
+      "simulator_invocations": 2,
+      "elapsed_s": 1.32059545300001,
+      "parameters": {
+        "CCOMP": 5e-12,
+        "IBIAS": 3e-05,
+        "W_GM": 40
+      },
+      "evaluations_remaining": 29,
+      "terminated": false,
+      "truncated": false,
+      "error": "Transient response does not settle within the observation window."
+    },
+    {
+      "evaluation": 2,
+      "action": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "run_directory": "evaluation_002",
+      "task_id": "autockt_two_stage_sizing_v1",
+      "status": "ok",
+      "success": true,
+      "reward": 1.0,
+      "metrics": {
+        "output_dc_v": 0.8995838265396,
+        "dc_error_v": 0.00041617346040001557,
+        "supply_current_a": 0.0002349177047921,
+        "power_w": 0.00042285186862578,
+        "gain_db": 78.41666559488,
+        "unity_gain_hz": 2804238.4716260233,
+        "phase_margin_deg": 64.96473081013983,
+        "settling_rise_s": 1.424999999999999e-07,
+        "settling_fall_s": 1.3249999999999577e-07,
+        "max_tracking_error_v": 0.0004931565235000157,
+        "output_min_v": 0.8386715618824,
+        "output_max_v": 0.9621554715769
+      },
+      "checks": {
+        "gain_db": true,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": true,
+        "dc_error_v": true,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 1.373154076999981,
+      "parameters": {
+        "CCOMP": 2e-11,
+        "IBIAS": 3e-05,
+        "W_GM": 80
+      },
+      "evaluations_remaining": 28,
+      "terminated": true,
+      "truncated": false
+    }
+  ]
+}
