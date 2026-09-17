@@ -1,6 +1,7 @@
 """Gemma 3 1B LoRA GRPO on a TPU, with ngspice behind the worker API."""
 import argparse
 import copy
+from dataclasses import replace
 from contextlib import contextmanager
 import hashlib
 import json
@@ -10,11 +11,129 @@ import random
 import re
 import subprocess
 import sys
+import threading
 import time
 
-from training.client import RemoteEpisode, SYSTEM_PROMPT, WorkerClient, WorkerError
+from training.client import RemoteEpisode, SYSTEM_PROMPT, WorkerClient, WorkerError, action_prompt, system_prompt
 
 TRAINING_MODES = {"train", "research-pilot"}
+
+
+class PromptWindowExceeded(RuntimeError):
+    pass
+
+
+def sequence_microbatches(examples, group_size, microbatch_size):
+    """Split already-computed GRPO advantages without regrouping rewards."""
+    import jax
+    import numpy as np
+    for example in examples:
+        count = example.completion_ids.shape[0]
+        if count != group_size or count % microbatch_size:
+            raise ValueError("Expected one complete GRPO group for sequence accumulation")
+        # Tunix's sequence mean excludes empty masks. Uniform accumulation would
+        # change that denominator if any sequence were completely filtered out.
+        if np.any(np.asarray(example.completion_mask).sum(axis=-1) == 0):
+            raise ValueError("Cannot uniformly accumulate a GRPO group with empty response masks")
+        for start in range(0, count, microbatch_size):
+            yield jax.tree_util.tree_map(
+                lambda x: x[start:start + microbatch_size]
+                if hasattr(x, "shape") and x.shape and x.shape[0] == count else x,
+                example)
+
+
+def install_sequence_accumulation(cluster, group_size, microbatch_size):
+    original = cluster.update_actor
+
+    def update_actor(train_ds, eval_ds, skip_jit=False):
+        chunks = list(sequence_microbatches(train_ds, group_size, microbatch_size))
+        eval_chunks = (list(sequence_microbatches(eval_ds, group_size, microbatch_size))
+                       if eval_ds else None)
+        return original(chunks, eval_chunks, skip_jit)
+
+    cluster.update_actor = update_actor
+
+
+class SeededGeneration:
+    """Assign a fresh integer seed to each sampler call, including GRPO calls.
+
+    Reproducible for the same call order and batching. Async scheduling can change
+    that order, so record prompt hashes and seeds for auditing. Never mutate the
+    shared RolloutConfig or retain a JAX key that the sampler can donate.
+    """
+
+    def __init__(self, generate, seed, log_path, generations_path=None):
+        if type(seed) is not int or not 0 <= seed < 2**32:
+            raise ValueError("seed must be an unsigned 32-bit integer")
+        self.generate, self.seed = generate, seed
+        self.log_path = Path(log_path)
+        with self.log_path.open("x"):
+            pass
+        self.calls = 0
+        self.episode_scope = None
+        self.episode_calls = 0
+        self.lock = threading.Lock()
+        self.generations_path = Path(generations_path) if generations_path else None
+        if self.generations_path is not None:
+            with self.generations_path.open("x"):
+                pass
+
+    def set_episode(self, task_id, episode_index):
+        """Pair rollout seeds across arms even when earlier episodes end early."""
+        if not isinstance(task_id, str) or not task_id or type(episode_index) is not int or episode_index < 1:
+            raise ValueError("Expected a task ID and positive episode index")
+        with self.lock:
+            self.episode_scope = (task_id, episode_index)
+            self.episode_calls = 0
+
+    def __call__(self, prompts, rollout_config, **kwargs):
+        # Serialize access to the shared sampler and its seed ledger.
+        with self.lock:
+            prompt_list = [prompts] if isinstance(prompts, str) else list(prompts)
+            if not prompt_list or any(not isinstance(p, str) for p in prompt_list):
+                raise ValueError("Generation requires a string prompt or a nonempty sequence of strings")
+            if self.calls >= 2**32:
+                raise RuntimeError("Generation seed sequence exhausted")
+            call = self.calls
+            # Odd stride is a permutation modulo 2**32: no seed repeats.
+            seed = (self.seed + call * 0x9E3779B9) % 2**32
+            self.calls += 1
+            record = {"call": call, "seed": seed, "prompt_count": len(prompt_list),
+                      "prompt_sha256": [hashlib.sha256(p.encode()).hexdigest() for p in prompt_list]}
+            if self.episode_scope is not None:
+                task_id, episode_index = self.episode_scope
+                material = json.dumps(["paired_episode_v1", self.seed, task_id, episode_index,
+                                       self.episode_calls], separators=(",", ":")).encode()
+                seed = int.from_bytes(hashlib.sha256(material).digest()[:4], "big")
+                record.update(seed=seed, task_id=task_id, episode=episode_index,
+                              episode_call=self.episode_calls)
+                self.episode_calls += 1
+            # Record before invoking: failed calls consume their seed too.
+            with self.log_path.open("a") as stream:
+                stream.write(json.dumps(record) + "\n")
+            if self.generations_path is not None:
+                with self.generations_path.open("a") as stream:
+                    stream.write(json.dumps({**record, "event": "request", "prompts": prompt_list}) + "\n")
+            try:
+                result = self.generate(prompts, replace(rollout_config, seed=seed), **kwargs)
+            except Exception as exc:
+                if self.generations_path is not None:
+                    with self.generations_path.open("a") as stream:
+                        stream.write(json.dumps({**record, "event": "error", "error_type": type(exc).__name__}) + "\n")
+                raise
+            if self.generations_path is not None:
+                with self.generations_path.open("a") as stream:
+                    stream.write(json.dumps({**record, "event": "response", "responses": result.text}) + "\n")
+            return result
+
+
+def rollout_requests(tasks, episodes_per_task, skip_episodes=0):
+    index = 0
+    for task in tasks:
+        for episode in range(1, episodes_per_task + 1):
+            if index >= skip_episodes:
+                yield task, episode
+            index += 1
 
 
 def select_tasks(catalog, split, limit=None):
@@ -57,6 +176,10 @@ def argument_parser():
     cli.add_argument("--checkpoint-uri", help="Optional dedicated gs://... checkpoint prefix")
     cli.add_argument("--split", choices=["smoke", "train", "validation", "test"], default="smoke", help="Rollout mode only")
     cli.add_argument("--max-tasks", type=int, help="Rollout only: use the first N sorted task IDs in the split")
+    cli.add_argument("--episodes-per-task", type=int, default=1,
+                     help="Rollout only: independent episodes from each task's original start")
+    cli.add_argument("--skip-rollout-episodes", type=int, default=0,
+                     help="Rollout only: skip this many task/episode pairs; requires paired episode seeds")
     cli.add_argument("--restore-checkpoint", help="Rollout only: existing training checkpoint root (containing actor/)")
     cli.add_argument("--restore-run", type=Path, help="Rollout only: source run.json binding the checkpoint and base model")
     cli.add_argument("--pilot-manifest", type=Path, help="Authorized, bounded research-pilot manifest; required only in that mode")
@@ -64,10 +187,14 @@ def argument_parser():
 
 
 def validate_run_arguments(args):
+    if args.skip_rollout_episodes < 0 or (args.skip_rollout_episodes and args.mode != "rollout"):
+        raise ValueError("--skip-rollout-episodes requires rollout mode and a nonnegative count")
     if args.checkpoint_uri and not args.checkpoint_uri.startswith("gs://"):
         raise ValueError("--checkpoint-uri must be a gs:// bucket prefix")
     if args.max_tasks is not None and (args.mode != "rollout" or args.max_tasks < 1):
         raise ValueError("--max-tasks requires rollout mode and a positive integer")
+    if args.episodes_per_task < 1 or (args.mode != "rollout" and args.episodes_per_task != 1):
+        raise ValueError("--episodes-per-task requires rollout mode and a positive integer")
     if bool(args.restore_checkpoint) != bool(args.restore_run):
         raise ValueError("Use --restore-checkpoint and --restore-run together")
     if args.restore_checkpoint and args.mode != "rollout":
@@ -206,6 +333,11 @@ def batches(tasks, count, seed):
 
 
 def validate_config(config):
+    system_prompt(config.get("prompt_variant", "current"))
+    if config.get("rollout_seed_policy", "sequential") not in {"sequential", "paired_episode_v1"}:
+        raise ValueError("Unknown rollout_seed_policy")
+    if type(config.get("seed")) is not int or not 0 <= config["seed"] < 2**32:
+        raise ValueError("seed must be an unsigned 32-bit integer")
     if config["model_id"] != "google/gemma-3-1b-it":
         raise ValueError("This loader implements Gemma 3 1B-IT; another architecture needs its own loader")
     for key in ("max_episode_steps", "max_prompt_tokens", "max_response_tokens", "max_updates",
@@ -214,6 +346,10 @@ def validate_config(config):
             raise ValueError(f"{key} must be a positive integer")
     if config["num_generations"] < 2:
         raise ValueError("GRPO needs at least two samples per task")
+    sequence_batch_size = config.get("train_sequence_microbatch_size", config["num_generations"])
+    if (type(sequence_batch_size) is not int or sequence_batch_size < 1
+            or config["num_generations"] % sequence_batch_size):
+        raise ValueError("train_sequence_microbatch_size must divide num_generations")
     if "validation_task_limit" in config and (type(config["validation_task_limit"]) is not int or config["validation_task_limit"] < 1):
         raise ValueError("validation_task_limit must be a positive integer when supplied")
     if config["max_prompt_tokens"] + config["max_response_tokens"] > 32768:
@@ -225,6 +361,12 @@ def main():
     config = json.loads(Path(args.config).read_text())
     validate_config(config)
     validate_run_arguments(args)
+    prompt_variant = config.get("prompt_variant", "current")
+    paired_seeds = config.get("rollout_seed_policy") == "paired_episode_v1"
+    if args.skip_rollout_episodes and not paired_seeds:
+        raise ValueError("Skipping rollout episodes requires paired_episode_v1 seeds")
+    if args.mode in TRAINING_MODES and (prompt_variant != "current" or paired_seeds):
+        raise ValueError("Prompt comparison options currently support rollout evaluation only")
     if args.mode == "plan":
         print(json.dumps(execution_plan(config), indent=2))
         return
@@ -245,7 +387,11 @@ def main():
                  "validation_ids": [t["id"] for t in validation_tasks], "rollout_ids": [t["id"] for t in selected],
                  "validation_catalog_count": sum(t["split"] == "validation" for t in catalog["tasks"]),
                  "validation_task_limit": config.get("validation_task_limit"),
-                 "rollout_split": args.split if args.mode == "rollout" else None, "max_tasks": args.max_tasks}
+                 "rollout_split": args.split if args.mode == "rollout" else None, "max_tasks": args.max_tasks,
+                 "episodes_per_task": args.episodes_per_task if args.mode == "rollout" else None}
+    selection["skip_rollout_episodes"] = args.skip_rollout_episodes
+    if args.mode == "rollout" and args.skip_rollout_episodes >= len(selected) * args.episodes_per_task:
+        raise ValueError("Skipping all selected episodes would produce an empty rollout")
     if config["max_concurrency"] > catalog["max_active"]:
         raise ValueError("Model concurrency exceeds worker episode capacity")
 
@@ -284,20 +430,32 @@ def main():
                 HfApi().model_info(config["model_id"], revision=requested_revision, token=hf_token).sha)
     config["model_revision"] = revision
     run_record = {"config": config, "mode": args.mode, "hardware": hardware,
+                  "generation_seeding": {"policy": "uint32_odd_stride_per_sampler_call_v1",
+                      "base_seed": config["seed"], "ledger": "generation_seeds.jsonl",
+                      "reproducibility": "Same call order and batching; async scheduling can change seed assignment."},
                   "catalog": catalog, "checkpoint_uri": checkpoint_root, "selection": selection,
                   "requested_model_revision": requested_revision,
                   "plan": execution_plan(config, len(validation_tasks)) if args.mode in TRAINING_MODES else None,
                   "restore": ({key: value for key, value in restore.items() if key != "source_result"}
                               if restore is not None else None), **pilot}
+    run_record["prompt"] = {"variant": prompt_variant, "system": system_prompt(prompt_variant),
+                            "client_source_sha256": _sha256(Path(__file__).with_name("client.py"))}
+    if paired_seeds:
+        run_record["generation_seeding"].update(policy="paired_episode_v1",
+            reproducibility="SHA256 of base seed, task ID, episode index, and within-episode call; independent of earlier episode lengths.")
     run_path = output / "run.json"
     run_path.write_text(json.dumps(run_record, indent=2) + "\n")
     (output / "requirements-resolved.txt").write_text(subprocess.check_output([sys.executable, "-m", "pip", "freeze"], text=True))
     snapshot = snapshot_download(config["model_id"], revision=revision, token=hf_token,
                                  allow_patterns=["*.json", "*.safetensors", "*.model", "*.txt"])
     mesh = jax.sharding.Mesh(np.array(jax.devices()).reshape(1, -1), ("fsdp", "tp"))
-    with mesh:
+    # Gemma 1B has one KV head. Tunix 0.1.7 shares act_btnh between
+    # query and KV activations, so that head axis cannot be split over TP.
+    model_sharding = replace(gemma.ShardingConfig.get_default_sharding(),
+                             act_btnh=("fsdp", None, None, None))
+    with jax.set_mesh(mesh):
         reference = params_safetensors.create_model_from_safe_tensors(
-            snapshot, gemma.ModelConfig.gemma3_1b_it(), mesh, dtype=jnp.bfloat16)
+            snapshot, gemma.ModelConfig.gemma3_1b_it(sharding_config=model_sharding), mesh, dtype=jnp.bfloat16)
         actor = apply_lora_to_model(reference, mesh, config["lora"])
     adapter_leaves = jax.tree_util.tree_leaves(nnx.state(actor, nnx.LoRAParam))
     if not adapter_leaves:
@@ -331,7 +489,7 @@ def main():
             # user's dictionary. Preserve the agent's original conversation.
             result = super().parse(copy.deepcopy(messages), **kwargs)
             if len(self.tokenizer.encode(result)) > config["max_prompt_tokens"]:
-                raise RuntimeError("Conversation exceeds prompt bucket; increase max_prompt_tokens before continuing")
+                raise PromptWindowExceeded("Conversation exceeds the configured prompt bucket")
             return result
 
     chat_parser = CheckedParser(tokenizer)
@@ -352,12 +510,23 @@ def main():
             max_tokens_to_generate=config["max_response_tokens"], max_prompt_length=config["max_prompt_tokens"],
             kv_cache_size=config["max_prompt_tokens"] + config["max_response_tokens"] + 256,
             temperature=config["temperature"], top_p=1.0, top_k=50,
-            eos_tokens=[1, 106], return_logprobs=True, seed=jax.random.PRNGKey(config["seed"])))
+            # Sampler donates its state, including the key. An integer lets it
+            # create a fresh key per call instead of reusing a deleted array.
+            eos_tokens=[1, 106], return_logprobs=True, seed=config["seed"]))
+    sequence_batch_size = config.get("train_sequence_microbatch_size", config["num_generations"])
+    # RLTrainingConfig counts prompt groups, but we split sequences after group
+    # advantages are computed. Set the trainer's accumulation count accordingly.
+    cluster_config.training_config.gradient_accumulation_steps = config["num_generations"] // sequence_batch_size
     binding = {"source_run_sha256": _sha256(run_path), "model_id": config["model_id"],
                "model_revision": revision, "lora_config_sha256": _canonical_sha256(config["lora"])}
     training_result = None
     cluster = clusters.RLCluster(actor=actor, reference=reference, tokenizer=tokenizer, cluster_config=cluster_config)
+    if args.mode in TRAINING_MODES and sequence_batch_size < config["num_generations"]:
+        install_sequence_accumulation(cluster, config["num_generations"], sequence_batch_size)
     with closing_cluster(cluster, save_final_checkpoint if args.mode in TRAINING_MODES else None):
+        cluster.rollout.generate = SeededGeneration(
+            cluster.rollout.generate, config["seed"], output / "generation_seeds.jsonl",
+            output / "generations.jsonl")
         if args.mode in TRAINING_MODES:
             trainer = cluster.actor_trainer
             original_metadata = trainer.custom_checkpoint_metadata
@@ -365,21 +534,34 @@ def main():
                 **original_metadata(), **binding, "checkpoint_step": int(trainer.train_steps)}
         if args.mode == "rollout":
             with (output / "rollouts.jsonl").open("w") as stream:
-                for task in selected:
-                    episode = RemoteEpisode(client, task["id"], max_steps=config["max_episode_steps"], required_mode=catalog["mode"])
+                for task, episode_index in rollout_requests(selected, args.episodes_per_task, args.skip_rollout_episodes):
+                    if paired_seeds:
+                        cluster.rollout.generate.set_episode(task["id"], episode_index)
+                    episode = RemoteEpisode(client, task["id"], max_steps=config["max_episode_steps"], required_mode=catalog["mode"],
+                                            trajectory_directory=output / "trajectories")
                     try:
-                        messages = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": episode.reset()}]
+                        messages = [{"role": "system", "content": system_prompt(prompt_variant)},
+                                    {"role": "user", "content": action_prompt(episode.reset(), prompt_variant)}]
                         for step in range(config["max_episode_steps"]):
                             prompt = chat_parser.parse(messages, add_generation_prompt=True, is_first_msg=True)
                             result = cluster.generate(prompts=[prompt])
                             response = result.text[0]
                             observation, reward, done, info = episode.step(response)
-                            stream.write(json.dumps({"task_id": task["id"], "step": step + 1, "response": response,
+                            stream.write(json.dumps({"task_id": task["id"], "episode": episode_index,
+                                                     "step": step + 1, "response": response,
                                                      "observation": observation, "reward_delta": reward, **info}) + "\n")
                             stream.flush()
-                            messages += [{"role": "assistant", "content": response}, {"role": "user", "content": observation}]
+                            messages += [{"role": "assistant", "content": response},
+                                         {"role": "user", "content": action_prompt(observation, prompt_variant)}]
                             if done:
                                 break
+                    except PromptWindowExceeded as exc:
+                        error = {"task_id": task["id"], "episode": episode_index,
+                                 "kind": "context_overflow", "completed_attempts": episode.steps,
+                                 "last_observed_score": episode.previous_score, "error": str(exc)}
+                        with (output / "episode_errors.jsonl").open("a") as error_stream:
+                            error_stream.write(json.dumps(error) + "\n")
+                        print("Episode stopped at prompt limit: " + json.dumps(error), flush=True)
                     finally:
                         episode.close()
         else:
@@ -392,6 +574,7 @@ def main():
                                        episode_timeout=1800.0, overlong_filter=True),
                 agent_class=ModelAgent, env_class=CircuitEnvironment,
                 env_kwargs={"endpoint": config["worker_url"], "max_steps": config["max_episode_steps"],
+                            "trajectory_directory": str(output / "trajectories"),
                             "required_mode": "research-pilot" if args.mode == "research-pilot" else "training"})
             validation = [{"prompts": ["Solve the circuit sizing task using the simulator."], "task_id": [t["id"]]}
                           for t in validation_tasks]

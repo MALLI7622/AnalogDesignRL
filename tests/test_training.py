@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from analog_design.simulator import ROOT
 from training.catalog import group_key, load_catalog
-from training.client import RemoteEpisode, WorkerClient, WorkerError
+from training.client import RemoteEpisode, WorkerClient, WorkerError, action_prompt, scalar_task_id
 from training.train import batches
 from training.worker import EpisodeService, ServiceError, WorkerServer
 
@@ -47,6 +47,17 @@ class TrainingTests(unittest.TestCase):
     def test_training_rejects_smoke_catalog(self):
         with self.assertRaises(ValueError):
             EpisodeService(CATALOG, self.directory.name, mode="training")
+
+    def test_batched_task_id_is_normalized_before_http_serialization(self):
+        from types import SimpleNamespace
+        for task_id in (TASK_ID, [TASK_ID], [[TASK_ID]], SimpleNamespace(tolist=lambda: [TASK_ID])):
+            remote = RemoteEpisode(LocalClient(self.service), task_id, max_steps=1, required_mode="evaluation")
+            self.assertEqual(remote.task_id, TASK_ID)
+            remote.reset()
+            remote.close()
+        for value in ([], ['a', 'b'], 42, '', None):
+            with self.assertRaises(ValueError):
+                scalar_task_id(value)
 
     def test_training_requires_existing_qualification(self):
         manifest = json.loads(CATALOG.read_text())
@@ -141,6 +152,49 @@ class TrainingTests(unittest.TestCase):
                 remote.step("{}")
         self.assertEqual(remote.steps, 0)
         self.assertEqual(remote.previous_score, 0)
+
+    def test_markdown_rejected_with_format_feedback_then_raw_json_reaches_evaluator(self):
+        remote = RemoteEpisode(LocalClient(self.service), TASK_ID, max_steps=2, required_mode="evaluation")
+        initial = json.loads(remote.reset())
+        prompt = action_prompt(json.dumps(initial))
+        self.assertIn(json.dumps(initial["current_parameters"], separators=(",", ":")), prompt)
+        self.assertIn("without Markdown fences", prompt)
+        feedback, reward, done, info = remote.step('```json\n{}\n```')
+        self.assertEqual(reward, -1.0)
+        self.assertFalse(done)
+        self.assertEqual(info["simulator_invocations"], 0)
+        self.assertEqual(json.loads(feedback)["evaluations_remaining"], 1)
+        self.assertIn("Remove Markdown", json.loads(feedback)["error"])
+        with patch("analog_design.episode.evaluate", side_effect=evaluator(iter([-0.25]))) as mock:
+            feedback, reward, done, info = remote.step('{}')
+        self.assertEqual(mock.call_count, 1)
+        self.assertEqual(info["verifier_reward"], -0.25)
+        self.assertAlmostEqual(reward, 0.75)
+        self.assertTrue(done)
+        self.assertNotIn("error", json.loads(feedback))
+        remote.close()
+
+    def test_trajectory_keeps_raw_response_feedback_and_episode_identity(self):
+        directory = Path(self.directory.name) / "trajectories"
+        remote = RemoteEpisode(LocalClient(self.service), TASK_ID, max_steps=1,
+                               required_mode="evaluation", trajectory_directory=directory)
+        remote.reset()
+        episode_id = remote.key
+        response = '```json\n{}\n```'
+        remote.step(response)
+        remote.close()
+        paths = list(directory.glob('*.jsonl'))
+        self.assertEqual(len(paths), 1)
+        rows = [json.loads(line) for line in paths[0].read_text().splitlines()]
+        self.assertEqual([r['event'] for r in rows], ['initial', 'action', 'feedback', 'closed'])
+        self.assertEqual(rows[1]['response'], response)
+        self.assertEqual(rows[2]['observation']['reward'], -1)
+        self.assertEqual(rows[2]['reward_delta'], -1)
+        self.assertTrue(all(r['episode_id'] == episode_id for r in rows))
+        self.assertNotIn('reference', json.dumps(rows))
+        remote.reset()
+        remote.close()
+        self.assertEqual(len(list(directory.glob('*.jsonl'))), 2)
         remote.close()
 
     def test_capacity_and_mode_mismatch_release(self):

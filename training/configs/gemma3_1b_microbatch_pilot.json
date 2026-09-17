@@ -9,8 +9,8 @@
   "max_updates": 2,
   "num_generations": 4,
   "max_concurrency": 4,
-  "validation_task_limit": 3,
-  "learning_rate": 0.000003,
+  "validation_task_limit": 2,
+  "learning_rate": 3e-06,
   "beta": 0.08,
   "temperature": 0.9,
   "checkpoint_every": 1,
@@ -19,5 +19,6 @@
     "rank": 16,
     "alpha": 16.0,
     "module_path": ".*q_einsum|.*kv_einsum|.*gate_proj|.*down_proj|.*up_proj|.*attn_vec_einsum"
-  }
+  },
+  "train_sequence_microbatch_size": 1
 }
