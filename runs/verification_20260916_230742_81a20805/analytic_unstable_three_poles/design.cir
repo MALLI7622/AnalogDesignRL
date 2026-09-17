@@ -1,0 +1,26 @@
+Analytic isolated RC cascade: analytic_unstable_three_poles
+VIN input 0 dc 0 ac 1
+E0 drive0 0 input 0 1000
+R0 drive0 stage0 1000
+C0 stage0 0 1.591549430918953e-07
+E1 drive1 0 stage0 0 1
+R1 drive1 stage1 1000
+C1 stage1 0 1.591549430918953e-07
+E2 drive2 0 stage1 0 1
+R2 drive2 out 1000
+C2 out 0 1.591549430918953e-07
+.control
+set numdgt=15
+set wr_vecnames
+ac dec 100 1 10G
+wrdata response.tsv v(out)
+
+let check_magnitude = mag(v(out))
+let check_gain_db = db(v(out))
+let check_margin = 180 + cph(v(out))*57.29577951308232
+meas ac check_gain_db_result find check_gain_db at=1
+meas ac check_unity_hz_result when check_magnitude=1 fall=1
+meas ac check_margin_deg_result find check_margin when check_magnitude=1 fall=1
+quit
+.endc
+.end

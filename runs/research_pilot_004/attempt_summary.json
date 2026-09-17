@@ -1,0 +1,8 @@
+{
+  "status": "failed_before_optimizer",
+  "optimizer_updates": 0,
+  "episodes_reserved": 0,
+  "evaluations_reserved": 0,
+  "reason": "Task ID ndarray could not be serialized before episode creation.",
+  "retained_for_diagnosis": true
+}

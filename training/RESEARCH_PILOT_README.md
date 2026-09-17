@@ -322,3 +322,13 @@ unsupported. Restore checks the recorded base model, LoRA config, checkpoint
 metadata, and final adapter hash. It currently expects the original checkpoint
 root path. Preserve the full run directory outside the VM's temporary boot disk
 before the VM expires. This implementation does not extend the VM lifetime.
+
+## Readable trajectory review
+
+The larger prompt comparison has an offline searchable viewer at
+`runs/prompt_comparison_001/review/viewer.html` and a Markdown index at
+`runs/prompt_comparison_001/review/README.md`. All 671 displayed replies were
+checked against raw generation logs; all 168 episodes are included. Each step
+shows the exact prompt, reply, and evaluator feedback. Use the matching-episode
+button to switch prompts. The portable bundle is
+`runs/prompt_comparison_001_review.tar.gz`.

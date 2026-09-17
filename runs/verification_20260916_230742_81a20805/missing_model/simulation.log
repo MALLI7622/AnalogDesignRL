@@ -1,0 +1,4 @@
+Error: Could not find include file /home/cheriearjun/AnalogDesignRL/external/AutoCkt/eval_engines/ngspice/ngspice_inputs/spice_models/deliberately_missing_model.txt
+    While reading design.cir
+
+ERROR: fatal error in ngspice, exit(1)

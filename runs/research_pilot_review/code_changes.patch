@@ -1,0 +1,559 @@
+diff --git a/tests/test_training.py b/tests/test_training.py
+index 7ea0245..b82ddd2 100644
+--- a/tests/test_training.py
++++ b/tests/test_training.py
+@@ -7,7 +7,7 @@ from unittest.mock import patch
+ 
+ from analog_design.simulator import ROOT
+ from training.catalog import group_key, load_catalog
+-from training.client import RemoteEpisode, WorkerClient, WorkerError
++from training.client import RemoteEpisode, WorkerClient, WorkerError, action_prompt, scalar_task_id
+ from training.train import batches
+ from training.worker import EpisodeService, ServiceError, WorkerServer
+ 
+@@ -48,6 +48,17 @@ class TrainingTests(unittest.TestCase):
+         with self.assertRaises(ValueError):
+             EpisodeService(CATALOG, self.directory.name, mode="training")
+ 
++    def test_batched_task_id_is_normalized_before_http_serialization(self):
++        from types import SimpleNamespace
++        for task_id in (TASK_ID, [TASK_ID], [[TASK_ID]], SimpleNamespace(tolist=lambda: [TASK_ID])):
++            remote = RemoteEpisode(LocalClient(self.service), task_id, max_steps=1, required_mode="evaluation")
++            self.assertEqual(remote.task_id, TASK_ID)
++            remote.reset()
++            remote.close()
++        for value in ([], ['a', 'b'], 42, '', None):
++            with self.assertRaises(ValueError):
++                scalar_task_id(value)
++
+     def test_training_requires_existing_qualification(self):
+         manifest = json.loads(CATALOG.read_text())
+         for task in manifest["tasks"]:
+@@ -141,6 +152,49 @@ class TrainingTests(unittest.TestCase):
+                 remote.step("{}")
+         self.assertEqual(remote.steps, 0)
+         self.assertEqual(remote.previous_score, 0)
++
++    def test_markdown_rejected_with_format_feedback_then_raw_json_reaches_evaluator(self):
++        remote = RemoteEpisode(LocalClient(self.service), TASK_ID, max_steps=2, required_mode="evaluation")
++        initial = json.loads(remote.reset())
++        prompt = action_prompt(json.dumps(initial))
++        self.assertIn(json.dumps(initial["current_parameters"], separators=(",", ":")), prompt)
++        self.assertIn("without Markdown fences", prompt)
++        feedback, reward, done, info = remote.step('```json\n{}\n```')
++        self.assertEqual(reward, -1.0)
++        self.assertFalse(done)
++        self.assertEqual(info["simulator_invocations"], 0)
++        self.assertEqual(json.loads(feedback)["evaluations_remaining"], 1)
++        self.assertIn("Remove Markdown", json.loads(feedback)["error"])
++        with patch("analog_design.episode.evaluate", side_effect=evaluator(iter([-0.25]))) as mock:
++            feedback, reward, done, info = remote.step('{}')
++        self.assertEqual(mock.call_count, 1)
++        self.assertEqual(info["verifier_reward"], -0.25)
++        self.assertAlmostEqual(reward, 0.75)
++        self.assertTrue(done)
++        self.assertNotIn("error", json.loads(feedback))
++        remote.close()
++
++    def test_trajectory_keeps_raw_response_feedback_and_episode_identity(self):
++        directory = Path(self.directory.name) / "trajectories"
++        remote = RemoteEpisode(LocalClient(self.service), TASK_ID, max_steps=1,
++                               required_mode="evaluation", trajectory_directory=directory)
++        remote.reset()
++        episode_id = remote.key
++        response = '```json\n{}\n```'
++        remote.step(response)
++        remote.close()
++        paths = list(directory.glob('*.jsonl'))
++        self.assertEqual(len(paths), 1)
++        rows = [json.loads(line) for line in paths[0].read_text().splitlines()]
++        self.assertEqual([r['event'] for r in rows], ['initial', 'action', 'feedback', 'closed'])
++        self.assertEqual(rows[1]['response'], response)
++        self.assertEqual(rows[2]['observation']['reward'], -1)
++        self.assertEqual(rows[2]['reward_delta'], -1)
++        self.assertTrue(all(r['episode_id'] == episode_id for r in rows))
++        self.assertNotIn('reference', json.dumps(rows))
++        remote.reset()
++        remote.close()
++        self.assertEqual(len(list(directory.glob('*.jsonl'))), 2)
+         remote.close()
+ 
+     def test_capacity_and_mode_mismatch_release(self):
+diff --git a/training/RESEARCH_PILOT_README.md b/training/RESEARCH_PILOT_README.md
+index 6c66fbb..953557a 100644
+--- a/training/RESEARCH_PILOT_README.md
++++ b/training/RESEARCH_PILOT_README.md
+@@ -6,11 +6,70 @@ independent analog-engineer review remains pending. It keeps the ordinary
+ The separate `research-pilot` mode requires an explicitly authorized, expiring
+ manifest. Preparing or fetching the code grants no authorization.
+ 
+-Status on 2026-09-16: Ubuntu bootstrap, ngspice checks, HTTP smoke tests, and
+-JAX detection of four v5e devices passed on the existing TPU VM. Gemma weights
+-were downloaded at the revision pinned in the pilot config. No model rollout,
+-optimizer update, or real checkpoint roundtrip has completed. The pilot code's
+-unit tests pass; actual model execution is the next validation step.
++## Latest training attempt: 2026-09-17
++
++The user-authorized diagnostic reached the first gradient update but failed with
++TPU HBM exhaustion: `jit__train_step` required 34.64 GiB of temporary memory versus
++15.75 GiB available per device. Zero optimizer updates completed; the step-zero
++checkpoint is not a trained model. Resolve gradient-memory use before retrying
++this configuration on the existing v5e devices.
++
++The attempts are retained under `runs/research_pilot_004/`, `_005/`, and `_006/`.
++Together they used 16 episodes and 60 evaluations, below the cumulative authorized
++20/80 limits. All processes were stopped. The final retry used two validation
++tasks to preserve the remaining budget. The readable trajectory index is
++`runs/research_pilot_review/README.md`; raw prompts/replies are in each run's
++`train/generations.jsonl`, episode events in `train/trajectories/`, and simulator
++evidence in `worker/<episode_id>/`.
++
++Runtime fixes normalize Tunix's ndarray task IDs, expose the `prompts` observation
++field needed by GRPO reward processing, and handle string prompts in the seed
++logger. The pilot trajectory token limit is now 4,096: the earlier 2,048-token
++limit truncated episodes after three actions. The installed-Tunix adapter and
++regression suite passed 54 tests. The final retry completed four-step collection
++without context truncation but did not demonstrate circuit exploration: actions
++repeated the start, with occasional invalid parameter names.
++
++Next engineering work is to split the GRPO group's gradient computation into
++smaller sequence microbatches while preserving group advantages and gradient
++accumulation, and profile context padding. This run observed a maximum prompt of
++3,433 tokens and trajectory of 2,387 tokens; these are observations on three tasks,
++not safe bounds for the complete catalog. Preserve the fixed circuit reward.
++Do not reuse consumed authorization manifests; saved attempts and cumulative
++usage must remain part of any subsequent experiment's provenance.
++
++## Earlier rollout checks
++
++Status on 2026-09-17: an untrained four-attempt rollout completed on the existing
++four-device TPU with the pinned Gemma revision. All four actions were valid JSON
++and reached ngspice (eight simulator invocations). The model repeated the initial
++values and did not solve the task. This establishes formatting and runtime
++integration for one task, not useful learning. Evidence is in
++`runs/pilot_format_rollout_003/summary.json` and `rollouts.jsonl`; 44 relevant
++regression tests passed. No optimizer update or real checkpoint roundtrip has
++completed.
++
++Runtime fixes replicate the single KV-head activations across tensor-parallel
++devices and give the sampler an integer seed instead of a donated JAX key.
++Rollout and training share a prompt showing the already-public current values
++in the required flat JSON format. Markdown-wrapped actions remain invalid and
++consume budget; feedback now explains format errors. The pilot prompt window
++is 6,144 tokens because 3,072 overflowed before the fourth attempt. Regenerate
++pilot manifests after these changes; earlier drafts have stale hashes.
++
++Generation now assigns a distinct integer seed to each sampler call, including
++calls made by the GRPO learner. `generation_seeds.jsonl` records the call index,
++seed, and prompt hashes without copying prompt contents. The sequence is
++reproducible for the same base seed, call order, and batching; asynchronous
++scheduling can change which prompt receives which seed. Distinct seeds do not
++guarantee distinct actions or rewards. Shared sampler calls are serialized.
++
++The four-episode seed diagnostic completed in `runs/pilot_seed_rollout_001/`:
++16 distinct seeds, 15 simulated actions (30 ngspice invocations), and one invalid
++parameter-name typo. All accepted actions repeated the start; no episode solved
++the task. Final rewards differed only because of that typo, so useful sizing
++exploration is still unproven. Initial prompts matched across all four episodes,
++and 49 seed/training/pilot/bundle regression tests passed. No optimizer ran.
+ 
+ ## Files and data
+ 
+@@ -91,6 +150,13 @@ Inspect `runs/pilot_baseline_001/rollouts.jsonl` for actions and simulator
+ feedback. Stop that evaluation worker with Ctrl-C before starting the pilot
+ worker on the same port. Use fresh output names if a run directory exists.
+ 
++For a bounded diversity diagnostic, add `--episodes-per-task 4` and use a new
++output directory. This creates four independent episodes from the same original
++start, with up to 16 total evaluations for one task. The `episode` field in
++`rollouts.jsonl` distinguishes them. Compare final rewards across episodes;
++four edits in a single episode are not a GRPO sample group. This rollout check
++does not execute optimizer updates or exercise the GRPO gradient path.
++
+ ## Prepare and authorize the pilot
+ 
+ Create the draft after any code/config changes and the baseline check:
+diff --git a/training/client.py b/training/client.py
+index 0187d3b..9396e5f 100644
+--- a/training/client.py
++++ b/training/client.py
+@@ -1,5 +1,8 @@
+ """Learner-side client. Network failures abort rollouts; they are never rewards."""
+ import json
++from datetime import datetime, timezone
++from pathlib import Path
++import uuid
+ from urllib.error import HTTPError, URLError
+ from urllib.parse import urlsplit
+ from urllib.request import HTTPRedirectHandler, ProxyHandler, Request, build_opener
+@@ -12,6 +15,11 @@ Use the units in the specification. Omitted parameters keep their current value;
+ Every response spends one evaluation, including invalid responses. You cannot change requirements or circuit connections.
+ Stop when the environment ends. Do not include explanations, Markdown, executable code, or tool calls."""
+ 
++RESPONSE_FORMAT = (
++    'Return only a flat parameter-to-number JSON object, without Markdown fences. '
++    'Do not repeat the task description, constraints, or measurements.'
++)
++
+ 
+ class WorkerError(RuntimeError):
+     pass
+@@ -51,7 +59,7 @@ def observation_text(observation):
+     # Keep numerical feedback compact to leave space for multiple design attempts.
+     fields = ("status", "success", "reward", "metrics", "parameters", "evaluations_remaining", "error")
+     if "constraints" in observation:
+-        public = observation
++        public = dict(observation)
+     else:
+         public = {k: observation[k] for k in fields if k in observation}
+         public["failed_requirements"] = [key for key, passed in observation.get("checks", {}).items()
+@@ -59,14 +67,45 @@ def observation_text(observation):
+     return json.dumps(public, separators=(",", ":"), allow_nan=False)
+ 
+ 
++def action_prompt(observation):
++    """Render the public observation with a concrete, answer-free action example."""
++    public = strict_json(observation)
++    parameters = public.get("current_parameters", public.get("parameters", {}))
++    example = json.dumps(parameters, separators=(",", ":"), allow_nan=False)
++    return ("Circuit task and feedback:\n" + observation + "\n\n" + RESPONSE_FORMAT
++            + "\nThe current parameter values in the required reply format are:\n" + example
++            + "\nChoose your next parameter values. Reply in exactly that flat JSON format, "
++              "starting with { and ending with }. No other text.")
++
++
++def scalar_task_id(value):
++    """Tunix microbatches wrap one task ID in an ndarray/list."""
++    if hasattr(value, "tolist"):
++        value = value.tolist()
++    while isinstance(value, (list, tuple)) and len(value) == 1:
++        value = value[0]
++    if not isinstance(value, str) or not value:
++        raise ValueError("Expected exactly one nonempty string task ID")
++    return value
++
++
+ class RemoteEpisode:
+-    def __init__(self, client, task_id, *, max_steps, required_mode="training"):
++    def __init__(self, client, task_id, *, max_steps, required_mode="training", trajectory_directory=None):
+         if max_steps < 1:
+             raise ValueError("max_steps must be positive")
+-        self.client, self.task_id, self.max_steps, self.required_mode = client, task_id, max_steps, required_mode
++        self.client, self.task_id, self.max_steps, self.required_mode = client, scalar_task_id(task_id), max_steps, required_mode
+         self.key = None
+         self.steps, self.previous_score = 0, 0.0
+         self.done = False
++        self.trajectory_directory = Path(trajectory_directory) if trajectory_directory else None
++        self.trajectory_path = None
++
++    def _record(self, event, **fields):
++        if self.trajectory_path is not None:
++            record = {"event": event, "timestamp_utc": datetime.now(timezone.utc).isoformat(),
++                      "task_id": self.task_id, "episode_id": self.key, **fields}
++            with self.trajectory_path.open("a") as stream:
++                stream.write(json.dumps(record, allow_nan=False) + "\n")
+ 
+     def reset(self):
+         self.close()
+@@ -79,6 +118,12 @@ class RemoteEpisode:
+         spec = result["specification"]
+         self.limit = min(spec["evaluations_remaining"], self.max_steps)
+         spec["evaluations_remaining"] = self.limit
++        if self.trajectory_directory is not None:
++            self.trajectory_directory.mkdir(parents=True, exist_ok=True)
++            self.trajectory_path = self.trajectory_directory / (uuid.uuid4().hex + ".jsonl")
++            with self.trajectory_path.open("x"):
++                pass
++            self._record("initial", mode=self.required_mode, specification=spec)
+         return observation_text(spec)
+ 
+     def step(self, response):
+@@ -90,7 +135,18 @@ class RemoteEpisode:
+                 action = "invalid JSON action"
+         except (ValueError, RecursionError):
+             action = "invalid JSON action"
+-        result = self.client.request("/step", {"episode_id": self.key, "step": self.steps + 1, "action": action})
++        self._record("action", step=self.steps + 1, response=response, parsed_action=action)
++        try:
++            result = self.client.request("/step", {"episode_id": self.key, "step": self.steps + 1, "action": action})
++        except Exception as exc:
++            self._record("error", step=self.steps + 1, error_type=type(exc).__name__)
++            raise
++        if action == "invalid JSON action":
++            result["error"] = (
++                "Your response was rejected before simulation: expected a raw JSON object. "
++                "Remove Markdown code fences and all text outside the object. "
++                "Duplicate keys and non-finite numbers are also invalid. This attempt spent one evaluation."
++            )
+         self.steps += 1
+         self.done = bool(result["terminated"] or result["truncated"] or self.steps >= self.limit)
+         result["evaluations_remaining"] = min(result["evaluations_remaining"], self.limit - self.steps)
+@@ -101,9 +157,12 @@ class RemoteEpisode:
+         self.previous_score = score
+         info = {"verifier_reward": score, "success": result["success"], "steps": self.steps,
+                 "simulator_invocations": result["simulator_invocations"], "elapsed_s": result["elapsed_s"]}
++        self._record("feedback", step=self.steps, observation=result, reward_delta=reward, done=self.done)
+         return observation_text(result), reward, self.done, info
+ 
+     def close(self):
+         if self.key is not None:
+             self.client.request("/close", {"episode_id": self.key})
++            self._record("closed", steps=self.steps, final_score=self.previous_score, done=self.done)
+             self.key = None
++            self.trajectory_path = None
+diff --git a/training/configs/gemma3_1b_pilot.json b/training/configs/gemma3_1b_pilot.json
+index 7ddd203..f83cf12 100644
+--- a/training/configs/gemma3_1b_pilot.json
++++ b/training/configs/gemma3_1b_pilot.json
+@@ -4,8 +4,8 @@
+   "seed": 42,
+   "worker_url": "http://127.0.0.1:8765",
+   "max_episode_steps": 4,
+-  "max_prompt_tokens": 3072,
+-  "max_response_tokens": 2048,
++  "max_prompt_tokens": 6144,
++  "max_response_tokens": 4096,
+   "max_updates": 2,
+   "num_generations": 4,
+   "max_concurrency": 4,
+diff --git a/training/train.py b/training/train.py
+index cae8c44..1e77303 100644
+--- a/training/train.py
++++ b/training/train.py
+@@ -1,6 +1,7 @@
+ """Gemma 3 1B LoRA GRPO on a TPU, with ngspice behind the worker API."""
+ import argparse
+ import copy
++from dataclasses import replace
+ from contextlib import contextmanager
+ import hashlib
+ import json
+@@ -10,13 +11,75 @@ import random
+ import re
+ import subprocess
+ import sys
++import threading
+ import time
+ 
+-from training.client import RemoteEpisode, SYSTEM_PROMPT, WorkerClient, WorkerError
++from training.client import RemoteEpisode, SYSTEM_PROMPT, WorkerClient, WorkerError, action_prompt
+ 
+ TRAINING_MODES = {"train", "research-pilot"}
+ 
+ 
++class SeededGeneration:
++    """Assign a fresh integer seed to each sampler call, including GRPO calls.
++
++    Reproducible for the same call order and batching. Async scheduling can change
++    that order, so record prompt hashes and seeds for auditing. Never mutate the
++    shared RolloutConfig or retain a JAX key that the sampler can donate.
++    """
++
++    def __init__(self, generate, seed, log_path, generations_path=None):
++        if type(seed) is not int or not 0 <= seed < 2**32:
++            raise ValueError("seed must be an unsigned 32-bit integer")
++        self.generate, self.seed = generate, seed
++        self.log_path = Path(log_path)
++        with self.log_path.open("x"):
++            pass
++        self.calls = 0
++        self.lock = threading.Lock()
++        self.generations_path = Path(generations_path) if generations_path else None
++        if self.generations_path is not None:
++            with self.generations_path.open("x"):
++                pass
++
++    def __call__(self, prompts, rollout_config, **kwargs):
++        # Serialize access to the shared sampler and its seed ledger.
++        with self.lock:
++            prompt_list = [prompts] if isinstance(prompts, str) else list(prompts)
++            if not prompt_list or any(not isinstance(p, str) for p in prompt_list):
++                raise ValueError("Generation requires a string prompt or a nonempty sequence of strings")
++            if self.calls >= 2**32:
++                raise RuntimeError("Generation seed sequence exhausted")
++            call = self.calls
++            # Odd stride is a permutation modulo 2**32: no seed repeats.
++            seed = (self.seed + call * 0x9E3779B9) % 2**32
++            self.calls += 1
++            record = {"call": call, "seed": seed, "prompt_count": len(prompt_list),
++                      "prompt_sha256": [hashlib.sha256(p.encode()).hexdigest() for p in prompt_list]}
++            # Record before invoking: failed calls consume their seed too.
++            with self.log_path.open("a") as stream:
++                stream.write(json.dumps(record) + "\n")
++            if self.generations_path is not None:
++                with self.generations_path.open("a") as stream:
++                    stream.write(json.dumps({**record, "event": "request", "prompts": prompt_list}) + "\n")
++            try:
++                result = self.generate(prompts, replace(rollout_config, seed=seed), **kwargs)
++            except Exception as exc:
++                if self.generations_path is not None:
++                    with self.generations_path.open("a") as stream:
++                        stream.write(json.dumps({**record, "event": "error", "error_type": type(exc).__name__}) + "\n")
++                raise
++            if self.generations_path is not None:
++                with self.generations_path.open("a") as stream:
++                    stream.write(json.dumps({**record, "event": "response", "responses": result.text}) + "\n")
++            return result
++
++
++def rollout_requests(tasks, episodes_per_task):
++    for task in tasks:
++        for episode in range(1, episodes_per_task + 1):
++            yield task, episode
++
++
+ def select_tasks(catalog, split, limit=None):
+     """Select a reproducible subset without rewriting the catalog's splits."""
+     if limit is not None and (type(limit) is not int or limit < 1):
+@@ -57,6 +120,8 @@ def argument_parser():
+     cli.add_argument("--checkpoint-uri", help="Optional dedicated gs://... checkpoint prefix")
+     cli.add_argument("--split", choices=["smoke", "train", "validation", "test"], default="smoke", help="Rollout mode only")
+     cli.add_argument("--max-tasks", type=int, help="Rollout only: use the first N sorted task IDs in the split")
++    cli.add_argument("--episodes-per-task", type=int, default=1,
++                     help="Rollout only: independent episodes from each task's original start")
+     cli.add_argument("--restore-checkpoint", help="Rollout only: existing training checkpoint root (containing actor/)")
+     cli.add_argument("--restore-run", type=Path, help="Rollout only: source run.json binding the checkpoint and base model")
+     cli.add_argument("--pilot-manifest", type=Path, help="Authorized, bounded research-pilot manifest; required only in that mode")
+@@ -68,6 +133,8 @@ def validate_run_arguments(args):
+         raise ValueError("--checkpoint-uri must be a gs:// bucket prefix")
+     if args.max_tasks is not None and (args.mode != "rollout" or args.max_tasks < 1):
+         raise ValueError("--max-tasks requires rollout mode and a positive integer")
++    if args.episodes_per_task < 1 or (args.mode != "rollout" and args.episodes_per_task != 1):
++        raise ValueError("--episodes-per-task requires rollout mode and a positive integer")
+     if bool(args.restore_checkpoint) != bool(args.restore_run):
+         raise ValueError("Use --restore-checkpoint and --restore-run together")
+     if args.restore_checkpoint and args.mode != "rollout":
+@@ -206,6 +273,8 @@ def batches(tasks, count, seed):
+ 
+ 
+ def validate_config(config):
++    if type(config.get("seed")) is not int or not 0 <= config["seed"] < 2**32:
++        raise ValueError("seed must be an unsigned 32-bit integer")
+     if config["model_id"] != "google/gemma-3-1b-it":
+         raise ValueError("This loader implements Gemma 3 1B-IT; another architecture needs its own loader")
+     for key in ("max_episode_steps", "max_prompt_tokens", "max_response_tokens", "max_updates",
+@@ -245,7 +314,8 @@ def main():
+                  "validation_ids": [t["id"] for t in validation_tasks], "rollout_ids": [t["id"] for t in selected],
+                  "validation_catalog_count": sum(t["split"] == "validation" for t in catalog["tasks"]),
+                  "validation_task_limit": config.get("validation_task_limit"),
+-                 "rollout_split": args.split if args.mode == "rollout" else None, "max_tasks": args.max_tasks}
++                 "rollout_split": args.split if args.mode == "rollout" else None, "max_tasks": args.max_tasks,
++                 "episodes_per_task": args.episodes_per_task if args.mode == "rollout" else None}
+     if config["max_concurrency"] > catalog["max_active"]:
+         raise ValueError("Model concurrency exceeds worker episode capacity")
+ 
+@@ -284,6 +354,9 @@ def main():
+                 HfApi().model_info(config["model_id"], revision=requested_revision, token=hf_token).sha)
+     config["model_revision"] = revision
+     run_record = {"config": config, "mode": args.mode, "hardware": hardware,
++                  "generation_seeding": {"policy": "uint32_odd_stride_per_sampler_call_v1",
++                      "base_seed": config["seed"], "ledger": "generation_seeds.jsonl",
++                      "reproducibility": "Same call order and batching; async scheduling can change seed assignment."},
+                   "catalog": catalog, "checkpoint_uri": checkpoint_root, "selection": selection,
+                   "requested_model_revision": requested_revision,
+                   "plan": execution_plan(config, len(validation_tasks)) if args.mode in TRAINING_MODES else None,
+@@ -295,9 +368,13 @@ def main():
+     snapshot = snapshot_download(config["model_id"], revision=revision, token=hf_token,
+                                  allow_patterns=["*.json", "*.safetensors", "*.model", "*.txt"])
+     mesh = jax.sharding.Mesh(np.array(jax.devices()).reshape(1, -1), ("fsdp", "tp"))
+-    with mesh:
++    # Gemma 1B has one KV head. Tunix 0.1.7 shares act_btnh between
++    # query and KV activations, so that head axis cannot be split over TP.
++    model_sharding = replace(gemma.ShardingConfig.get_default_sharding(),
++                             act_btnh=("fsdp", None, None, None))
++    with jax.set_mesh(mesh):
+         reference = params_safetensors.create_model_from_safe_tensors(
+-            snapshot, gemma.ModelConfig.gemma3_1b_it(), mesh, dtype=jnp.bfloat16)
++            snapshot, gemma.ModelConfig.gemma3_1b_it(sharding_config=model_sharding), mesh, dtype=jnp.bfloat16)
+         actor = apply_lora_to_model(reference, mesh, config["lora"])
+     adapter_leaves = jax.tree_util.tree_leaves(nnx.state(actor, nnx.LoRAParam))
+     if not adapter_leaves:
+@@ -352,12 +429,17 @@ def main():
+             max_tokens_to_generate=config["max_response_tokens"], max_prompt_length=config["max_prompt_tokens"],
+             kv_cache_size=config["max_prompt_tokens"] + config["max_response_tokens"] + 256,
+             temperature=config["temperature"], top_p=1.0, top_k=50,
+-            eos_tokens=[1, 106], return_logprobs=True, seed=jax.random.PRNGKey(config["seed"])))
++            # Sampler donates its state, including the key. An integer lets it
++            # create a fresh key per call instead of reusing a deleted array.
++            eos_tokens=[1, 106], return_logprobs=True, seed=config["seed"]))
+     binding = {"source_run_sha256": _sha256(run_path), "model_id": config["model_id"],
+                "model_revision": revision, "lora_config_sha256": _canonical_sha256(config["lora"])}
+     training_result = None
+     cluster = clusters.RLCluster(actor=actor, reference=reference, tokenizer=tokenizer, cluster_config=cluster_config)
+     with closing_cluster(cluster, save_final_checkpoint if args.mode in TRAINING_MODES else None):
++        cluster.rollout.generate = SeededGeneration(
++            cluster.rollout.generate, config["seed"], output / "generation_seeds.jsonl",
++            output / "generations.jsonl")
+         if args.mode in TRAINING_MODES:
+             trainer = cluster.actor_trainer
+             original_metadata = trainer.custom_checkpoint_metadata
+@@ -365,19 +447,21 @@ def main():
+                 **original_metadata(), **binding, "checkpoint_step": int(trainer.train_steps)}
+         if args.mode == "rollout":
+             with (output / "rollouts.jsonl").open("w") as stream:
+-                for task in selected:
+-                    episode = RemoteEpisode(client, task["id"], max_steps=config["max_episode_steps"], required_mode=catalog["mode"])
++                for task, episode_index in rollout_requests(selected, args.episodes_per_task):
++                    episode = RemoteEpisode(client, task["id"], max_steps=config["max_episode_steps"], required_mode=catalog["mode"],
++                                            trajectory_directory=output / "trajectories")
+                     try:
+-                        messages = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": episode.reset()}]
++                        messages = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": action_prompt(episode.reset())}]
+                         for step in range(config["max_episode_steps"]):
+                             prompt = chat_parser.parse(messages, add_generation_prompt=True, is_first_msg=True)
+                             result = cluster.generate(prompts=[prompt])
+                             response = result.text[0]
+                             observation, reward, done, info = episode.step(response)
+-                            stream.write(json.dumps({"task_id": task["id"], "step": step + 1, "response": response,
++                            stream.write(json.dumps({"task_id": task["id"], "episode": episode_index,
++                                                     "step": step + 1, "response": response,
+                                                      "observation": observation, "reward_delta": reward, **info}) + "\n")
+                             stream.flush()
+-                            messages += [{"role": "assistant", "content": response}, {"role": "user", "content": observation}]
++                            messages += [{"role": "assistant", "content": response}, {"role": "user", "content": action_prompt(observation)}]
+                             if done:
+                                 break
+                     finally:
+@@ -392,6 +476,7 @@ def main():
+                                        episode_timeout=1800.0, overlong_filter=True),
+                 agent_class=ModelAgent, env_class=CircuitEnvironment,
+                 env_kwargs={"endpoint": config["worker_url"], "max_steps": config["max_episode_steps"],
++                            "trajectory_directory": str(output / "trajectories"),
+                             "required_mode": "research-pilot" if args.mode == "research-pilot" else "training"})
+             validation = [{"prompts": ["Solve the circuit sizing task using the simulator."], "task_id": [t["id"]]}
+                           for t in validation_tasks]
+diff --git a/training/tunix_env.py b/training/tunix_env.py
+index 17f158e..76654b6 100644
+--- a/training/tunix_env.py
++++ b/training/tunix_env.py
+@@ -2,23 +2,25 @@
+ import os
+ 
+ from tunix.rl.agentic.environments.base_environment import BaseTaskEnv, EnvStepResult
+-from training.client import RemoteEpisode, WorkerClient
++from training.client import RemoteEpisode, WorkerClient, action_prompt
+ 
+ 
+ class CircuitEnvironment(BaseTaskEnv):
+-    def __init__(self, task, *, endpoint, max_steps, required_mode="training", **kwargs):
++    def __init__(self, task, *, endpoint, max_steps, required_mode="training", trajectory_directory=None, **kwargs):
+         if required_mode not in {"training", "research-pilot"}:
+             raise ValueError("Optimizer environments require training or explicitly authorized research-pilot mode")
+         super().__init__(task, max_steps=max_steps, **kwargs)
+         client = WorkerClient(endpoint, os.environ.get("ANALOG_WORKER_TOKEN"))
+-        self.remote = RemoteEpisode(client, task["task_id"], max_steps=max_steps, required_mode=required_mode)
++        self.remote = RemoteEpisode(client, task["task_id"], max_steps=max_steps, required_mode=required_mode,
++                                    trajectory_directory=trajectory_directory)
+ 
+     def _initial_observation(self):
+-        return {"question": self.remote.reset()}
++        # GRPO preserves this observation as original_input and requires prompts.
++        return {"prompts": action_prompt(self.remote.reset())}
+ 
+     def _step_impl(self, action):
+         observation, reward, done, info = self.remote.step(action)
+-        return EnvStepResult(observation={"question": observation}, reward=reward, done=done, info=info)
++        return EnvStepResult(observation={"prompts": action_prompt(observation)}, reward=reward, done=done, info=info)
+ 
+     def close(self):
+         self.remote.close()

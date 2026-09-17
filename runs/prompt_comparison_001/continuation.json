@@ -1,0 +1,15 @@
+{
+  "skip_episodes": 63,
+  "completed_episodes": 62,
+  "partial_episode": {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 3,
+    "kind": "context_overflow",
+    "completed_attempts": 3,
+    "last_observed_score": -1.0,
+    "evidence": "exploration.log: parser prompt bucket exception after this episode; reconstructed after process exit, no action replay"
+  },
+  "remaining_episodes": 21,
+  "max_remaining_evaluations": 84,
+  "reason": "Continue remaining pairs without replaying consumed evaluations or changing prompt/context limits"
+}

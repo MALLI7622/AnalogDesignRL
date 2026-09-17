@@ -1,0 +1,226 @@
+[
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode_id": "e73eb291dcc634e1cfa9cb2471524154",
+    "steps": 4,
+    "reward": -0.011120155256065113,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "fan_smc_frontier_f832eb2260ac29fa",
+    "episode_id": "a940bd6bc33748b2e81f855b8337575b",
+    "steps": 4,
+    "reward": -0.14153454093056228,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "song_dacfc_frontier_7b5de669b6d475c9",
+    "episode_id": "20cdb0817c37487d3bf61c4f56333669",
+    "steps": 4,
+    "reward": -0.05821688411040808,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode_id": "576e62d348efb2078b4ad4e18c70704f",
+    "steps": 4,
+    "reward": -1.0,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "failed"
+    ]
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode_id": "d3b1648ec78e4aeb3a7d0bfdd1cb84a7",
+    "steps": 4,
+    "reward": -0.056810114397376696,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode_id": "e1e7f5f4273333f4f23f41e81470e0b8",
+    "steps": 4,
+    "reward": -0.011120155256065113,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode_id": "108de0ce53bd1d113b347a670c6d74cb",
+    "steps": 4,
+    "reward": -0.011120155256065113,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "song_dacfc_frontier_7b5de669b6d475c9",
+    "episode_id": "32c53c0604c6dd357c250b490caf6c09",
+    "steps": 4,
+    "reward": -0.05821688411040808,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "fan_smc_frontier_f832eb2260ac29fa",
+    "episode_id": "2b322edf878d4d3130cc8ed9e6a4af95",
+    "steps": 4,
+    "reward": -0.14153454093056228,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "song_dacfc_frontier_7b5de669b6d475c9",
+    "episode_id": "3a9a67b6a4fccf3700e8861e4c1f4785",
+    "steps": 4,
+    "reward": -1.0,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "failed"
+    ]
+  },
+  {
+    "task_id": "fan_smc_frontier_f832eb2260ac29fa",
+    "episode_id": "90d6b5a0cd02e22295a9c8025241875d",
+    "steps": 4,
+    "reward": -0.14153454093056228,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "song_dacfc_frontier_7b5de669b6d475c9",
+    "episode_id": "a26ad2bf466422a4c8dd0c0d0115e60d",
+    "steps": 4,
+    "reward": -0.05821688411040808,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode_id": "208113e6a17e3e3bb5d8980c1269a836",
+    "steps": 4,
+    "reward": -0.056810114397376696,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "fan_smc_frontier_f832eb2260ac29fa",
+    "episode_id": "4cd70b0603fda73ddc5cfab30ca88840",
+    "steps": 4,
+    "reward": -0.14153454093056228,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode_id": "5d98554f5bbcfc19bb5c17ae65b2c96d",
+    "steps": 4,
+    "reward": -0.011120155256065113,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "ok"
+    ]
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode_id": "15cebc0c36e01d1d83014c69e167f03d",
+    "steps": 4,
+    "reward": -1.0,
+    "solved": false,
+    "changed_actions": 0,
+    "statuses": [
+      "ok",
+      "ok",
+      "ok",
+      "failed"
+    ]
+  }
+]

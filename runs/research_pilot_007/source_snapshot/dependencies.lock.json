@@ -1,0 +1,19 @@
+{
+  "analoggym": {
+    "url": "https://github.com/CODA-Team/AnalogGym.git",
+    "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+    "pdk_archive": "PDK/sky130_pdk.zip",
+    "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+  },
+  "ngspice_validated_version": "47",
+  "python_minimum": "3.10",
+  "autockt": {
+    "url": "https://github.com/ksettaluri6/AutoCkt.git",
+    "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+    "files_sha256": {
+      "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+      "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+      "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+    }
+  }
+}

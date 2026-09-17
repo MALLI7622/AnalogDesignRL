@@ -1,0 +1,484 @@
+# current: ramos_pfc_frontier_fe98b9cec3124b96, episode 1
+
+[Back to index](../README.md)
+
+[Raw event trace](../../current/trajectories/78d82ba71a38494a89b59a3c0a5f6f5a.jsonl) · [Generation transcript](../../current/generations.jsonl)
+
+These are recorded model replies and evaluator results. Notes are review annotations, not model reasoning.
+
+## Starting task
+
+```json
+{
+  "id": "ramos_pfc_frontier_fe98b9cec3124b96",
+  "conditions": {
+    "corner": "tt",
+    "supply_v": 1.8,
+    "temperature_c": 27,
+    "common_mode_v": 0.4,
+    "load_f": 1e-10
+  },
+  "parameters": {
+    "CAPACITOR_0": {
+      "min": 1.575e-11,
+      "max": 2.52e-10,
+      "unit": "F",
+      "sampling_scale": "log",
+      "role": "compensation capacitance"
+    },
+    "CAPACITOR_1": {
+      "min": 6.25e-12,
+      "max": 1e-10,
+      "unit": "F",
+      "sampling_scale": "log",
+      "role": "compensation capacitance"
+    },
+    "CURRENT_0_BIAS": {
+      "min": 6e-06,
+      "max": 9.6e-05,
+      "unit": "A",
+      "sampling_scale": "log",
+      "role": "bias reference current"
+    },
+    "MOSFET_10_1_M_gm2_PMOS": {
+      "min": 21,
+      "max": 324,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm2 stage transistor multiplicity",
+      "integer": true
+    },
+    "MOSFET_23_1_M_gm3_NMOS": {
+      "min": 51,
+      "max": 512,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm3 stage transistor multiplicity",
+      "integer": true
+    },
+    "MOSFET_8_2_M_gm1_PMOS": {
+      "min": 37,
+      "max": 512,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm1 stage transistor multiplicity",
+      "integer": true
+    }
+  },
+  "constraints": {
+    "gain_db": {
+      "min": 129
+    },
+    "unity_gain_hz": {
+      "min": 470000.0
+    },
+    "phase_margin_deg": {
+      "min": 89
+    },
+    "power_w": {
+      "max": 0.00082
+    },
+    "dc_error_v": {
+      "max": 0.00015000000000000001
+    },
+    "max_tracking_error_v": {
+      "max": 0.00018
+    },
+    "settling_rise_s": {
+      "max": 1.2e-06
+    },
+    "settling_fall_s": {
+      "max": 1.2e-06
+    }
+  },
+  "ac": {
+    "points_per_decade": 100,
+    "start_hz": 0.1,
+    "stop_hz": 1000000000.0
+  },
+  "transient": {
+    "low_v": 0.4,
+    "high_v": 0.6000000000000001,
+    "rise_start_s": 5e-06,
+    "edge_s": 1e-08,
+    "high_duration_s": 2e-05,
+    "period_s": 6e-05,
+    "stop_s": 5e-05,
+    "max_step_s": 5e-09,
+    "settling_tolerance_v": 0.02,
+    "minimum_hold_s": 2e-06
+  },
+  "current_parameters": {
+    "CAPACITOR_0": 1.763e-10,
+    "CAPACITOR_1": 1.442e-11,
+    "CURRENT_0_BIAS": 3.756e-05,
+    "MOSFET_10_1_M_gm2_PMOS": 65,
+    "MOSFET_23_1_M_gm3_NMOS": 128,
+    "MOSFET_8_2_M_gm1_PMOS": 43
+  },
+  "evaluations_remaining": 4
+}
+```
+
+## System prompt
+
+````text
+Size the analog circuit to satisfy every fixed constraint using simulator feedback.
+Reply with ONLY a JSON object mapping allowed parameter names to numeric absolute values.
+Use the units in the specification. Omitted parameters keep their current value; {} evaluates the current design.
+Every response spends one evaluation, including invalid responses. You cannot change requirements or circuit connections.
+Stop when the environment ends. Do not include explanations, Markdown, executable code, or tool calls.
+````
+
+## Attempt 1 — seed 335195496
+
+Action or simulation failed; inspect feedback and allowed parameter names/bounds.
+
+**Exact model reply:**
+
+````text
+{"CAPACATOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+````
+
+**Evaluator feedback:**
+
+```json
+{
+  "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+  "status": "failed",
+  "success": false,
+  "reward": -1.0,
+  "metrics": {},
+  "checks": {},
+  "simulator_invocations": 0,
+  "elapsed_s": 0.0003221199986001011,
+  "parameters": {
+    "CAPACITOR_0": 1.763e-10,
+    "CAPACITOR_1": 1.442e-11,
+    "CURRENT_0_BIAS": 3.756e-05,
+    "MOSFET_10_1_M_gm2_PMOS": 65,
+    "MOSFET_23_1_M_gm3_NMOS": 128,
+    "MOSFET_8_2_M_gm1_PMOS": 43
+  },
+  "evaluations_remaining": 3,
+  "terminated": false,
+  "truncated": false,
+  "error": "Invalid action or unsuccessful simulation; inspect numeric bounds and feedback."
+}
+```
+
+<details><summary>Exact serialized prompt sent for this attempt</summary>
+
+````text
+<start_of_turn>user
+Size the analog circuit to satisfy every fixed constraint using simulator feedback.
+Reply with ONLY a JSON object mapping allowed parameter names to numeric absolute values.
+Use the units in the specification. Omitted parameters keep their current value; {} evaluates the current design.
+Every response spends one evaluation, including invalid responses. You cannot change requirements or circuit connections.
+Stop when the environment ends. Do not include explanations, Markdown, executable code, or tool calls.
+Circuit task and feedback:
+{"id":"ramos_pfc_frontier_fe98b9cec3124b96","conditions":{"corner":"tt","supply_v":1.8,"temperature_c":27,"common_mode_v":0.4,"load_f":1e-10},"parameters":{"CAPACITOR_0":{"min":1.575e-11,"max":2.52e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CAPACITOR_1":{"min":6.25e-12,"max":1e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CURRENT_0_BIAS":{"min":6e-06,"max":9.6e-05,"unit":"A","sampling_scale":"log","role":"bias reference current"},"MOSFET_10_1_M_gm2_PMOS":{"min":21,"max":324,"unit":"multiplicity","sampling_scale":"log","role":"gm2 stage transistor multiplicity","integer":true},"MOSFET_23_1_M_gm3_NMOS":{"min":51,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm3 stage transistor multiplicity","integer":true},"MOSFET_8_2_M_gm1_PMOS":{"min":37,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm1 stage transistor multiplicity","integer":true}},"constraints":{"gain_db":{"min":129},"unity_gain_hz":{"min":470000.0},"phase_margin_deg":{"min":89},"power_w":{"max":0.00082},"dc_error_v":{"max":0.00015000000000000001},"max_tracking_error_v":{"max":0.00018},"settling_rise_s":{"max":1.2e-06},"settling_fall_s":{"max":1.2e-06}},"ac":{"points_per_decade":100,"start_hz":0.1,"stop_hz":1000000000.0},"transient":{"low_v":0.4,"high_v":0.6000000000000001,"rise_start_s":5e-06,"edge_s":1e-08,"high_duration_s":2e-05,"period_s":6e-05,"stop_s":5e-05,"max_step_s":5e-09,"settling_tolerance_v":0.02,"minimum_hold_s":2e-06},"current_parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":4}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+
+````
+
+</details>
+
+## Attempt 2 — seed 808723047
+
+Accepted; parameters are unchanged from the start.
+
+**Exact model reply:**
+
+````text
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+````
+
+**Evaluator feedback:**
+
+```json
+{
+  "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+  "status": "ok",
+  "success": false,
+  "reward": -0.10726581369552395,
+  "metrics": {
+    "output_dc_v": 0.3998192909686,
+    "dc_error_v": 0.00018070903139999483,
+    "supply_current_a": 0.0006443257799164,
+    "power_w": 0.00115978640384952,
+    "gain_db": 126.3527768492,
+    "unity_gain_hz": 413838.0406006125,
+    "phase_margin_deg": 90.13201204908364,
+    "settling_rise_s": 1.1674999999999994e-06,
+    "settling_fall_s": 1.0974999999999975e-06,
+    "max_tracking_error_v": 0.00019782203939999743,
+    "output_min_v": 0.3967826860436,
+    "output_max_v": 0.6028715364285
+  },
+  "checks": {
+    "gain_db": false,
+    "unity_gain_hz": false,
+    "phase_margin_deg": true,
+    "power_w": false,
+    "dc_error_v": false,
+    "max_tracking_error_v": false,
+    "settling_rise_s": true,
+    "settling_fall_s": true
+  },
+  "simulator_invocations": 2,
+  "elapsed_s": 2.021697222000512,
+  "parameters": {
+    "CAPACITOR_0": 1.763e-10,
+    "CAPACITOR_1": 1.442e-11,
+    "CURRENT_0_BIAS": 3.756e-05,
+    "MOSFET_10_1_M_gm2_PMOS": 65,
+    "MOSFET_23_1_M_gm3_NMOS": 128,
+    "MOSFET_8_2_M_gm1_PMOS": 43
+  },
+  "evaluations_remaining": 2,
+  "terminated": false,
+  "truncated": false
+}
+```
+
+<details><summary>Exact serialized prompt sent for this attempt</summary>
+
+````text
+<start_of_turn>user
+Size the analog circuit to satisfy every fixed constraint using simulator feedback.
+Reply with ONLY a JSON object mapping allowed parameter names to numeric absolute values.
+Use the units in the specification. Omitted parameters keep their current value; {} evaluates the current design.
+Every response spends one evaluation, including invalid responses. You cannot change requirements or circuit connections.
+Stop when the environment ends. Do not include explanations, Markdown, executable code, or tool calls.
+Circuit task and feedback:
+{"id":"ramos_pfc_frontier_fe98b9cec3124b96","conditions":{"corner":"tt","supply_v":1.8,"temperature_c":27,"common_mode_v":0.4,"load_f":1e-10},"parameters":{"CAPACITOR_0":{"min":1.575e-11,"max":2.52e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CAPACITOR_1":{"min":6.25e-12,"max":1e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CURRENT_0_BIAS":{"min":6e-06,"max":9.6e-05,"unit":"A","sampling_scale":"log","role":"bias reference current"},"MOSFET_10_1_M_gm2_PMOS":{"min":21,"max":324,"unit":"multiplicity","sampling_scale":"log","role":"gm2 stage transistor multiplicity","integer":true},"MOSFET_23_1_M_gm3_NMOS":{"min":51,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm3 stage transistor multiplicity","integer":true},"MOSFET_8_2_M_gm1_PMOS":{"min":37,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm1 stage transistor multiplicity","integer":true}},"constraints":{"gain_db":{"min":129},"unity_gain_hz":{"min":470000.0},"phase_margin_deg":{"min":89},"power_w":{"max":0.00082},"dc_error_v":{"max":0.00015000000000000001},"max_tracking_error_v":{"max":0.00018},"settling_rise_s":{"max":1.2e-06},"settling_fall_s":{"max":1.2e-06}},"ac":{"points_per_decade":100,"start_hz":0.1,"stop_hz":1000000000.0},"transient":{"low_v":0.4,"high_v":0.6000000000000001,"rise_start_s":5e-06,"edge_s":1e-08,"high_duration_s":2e-05,"period_s":6e-05,"stop_s":5e-05,"max_step_s":5e-09,"settling_tolerance_v":0.02,"minimum_hold_s":2e-06},"current_parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":4}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+{"CAPACATOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}<start_of_turn>user
+Circuit task and feedback:
+{"status":"failed","success":false,"reward":-1.0,"metrics":{},"parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":3,"error":"Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.","failed_requirements":[]}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+
+````
+
+</details>
+
+## Attempt 3 — seed 1456924506
+
+Accepted; parameters are unchanged from the start.
+
+**Exact model reply:**
+
+````text
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+````
+
+**Evaluator feedback:**
+
+```json
+{
+  "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+  "status": "ok",
+  "success": false,
+  "reward": -0.10726581369552395,
+  "metrics": {
+    "output_dc_v": 0.3998192909686,
+    "dc_error_v": 0.00018070903139999483,
+    "supply_current_a": 0.0006443257799164,
+    "power_w": 0.00115978640384952,
+    "gain_db": 126.3527768492,
+    "unity_gain_hz": 413838.0406006125,
+    "phase_margin_deg": 90.13201204908364,
+    "settling_rise_s": 1.1674999999999994e-06,
+    "settling_fall_s": 1.0974999999999975e-06,
+    "max_tracking_error_v": 0.00019782203939999743,
+    "output_min_v": 0.3967826860436,
+    "output_max_v": 0.6028715364285
+  },
+  "checks": {
+    "gain_db": false,
+    "unity_gain_hz": false,
+    "phase_margin_deg": true,
+    "power_w": false,
+    "dc_error_v": false,
+    "max_tracking_error_v": false,
+    "settling_rise_s": true,
+    "settling_fall_s": true
+  },
+  "simulator_invocations": 2,
+  "elapsed_s": 2.021559291999438,
+  "parameters": {
+    "CAPACITOR_0": 1.763e-10,
+    "CAPACITOR_1": 1.442e-11,
+    "CURRENT_0_BIAS": 3.756e-05,
+    "MOSFET_10_1_M_gm2_PMOS": 65,
+    "MOSFET_23_1_M_gm3_NMOS": 128,
+    "MOSFET_8_2_M_gm1_PMOS": 43
+  },
+  "evaluations_remaining": 1,
+  "terminated": false,
+  "truncated": false
+}
+```
+
+<details><summary>Exact serialized prompt sent for this attempt</summary>
+
+````text
+<start_of_turn>user
+Size the analog circuit to satisfy every fixed constraint using simulator feedback.
+Reply with ONLY a JSON object mapping allowed parameter names to numeric absolute values.
+Use the units in the specification. Omitted parameters keep their current value; {} evaluates the current design.
+Every response spends one evaluation, including invalid responses. You cannot change requirements or circuit connections.
+Stop when the environment ends. Do not include explanations, Markdown, executable code, or tool calls.
+Circuit task and feedback:
+{"id":"ramos_pfc_frontier_fe98b9cec3124b96","conditions":{"corner":"tt","supply_v":1.8,"temperature_c":27,"common_mode_v":0.4,"load_f":1e-10},"parameters":{"CAPACITOR_0":{"min":1.575e-11,"max":2.52e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CAPACITOR_1":{"min":6.25e-12,"max":1e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CURRENT_0_BIAS":{"min":6e-06,"max":9.6e-05,"unit":"A","sampling_scale":"log","role":"bias reference current"},"MOSFET_10_1_M_gm2_PMOS":{"min":21,"max":324,"unit":"multiplicity","sampling_scale":"log","role":"gm2 stage transistor multiplicity","integer":true},"MOSFET_23_1_M_gm3_NMOS":{"min":51,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm3 stage transistor multiplicity","integer":true},"MOSFET_8_2_M_gm1_PMOS":{"min":37,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm1 stage transistor multiplicity","integer":true}},"constraints":{"gain_db":{"min":129},"unity_gain_hz":{"min":470000.0},"phase_margin_deg":{"min":89},"power_w":{"max":0.00082},"dc_error_v":{"max":0.00015000000000000001},"max_tracking_error_v":{"max":0.00018},"settling_rise_s":{"max":1.2e-06},"settling_fall_s":{"max":1.2e-06}},"ac":{"points_per_decade":100,"start_hz":0.1,"stop_hz":1000000000.0},"transient":{"low_v":0.4,"high_v":0.6000000000000001,"rise_start_s":5e-06,"edge_s":1e-08,"high_duration_s":2e-05,"period_s":6e-05,"stop_s":5e-05,"max_step_s":5e-09,"settling_tolerance_v":0.02,"minimum_hold_s":2e-06},"current_parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":4}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+{"CAPACATOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}<start_of_turn>user
+Circuit task and feedback:
+{"status":"failed","success":false,"reward":-1.0,"metrics":{},"parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":3,"error":"Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.","failed_requirements":[]}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}<start_of_turn>user
+Circuit task and feedback:
+{"status":"ok","success":false,"reward":-0.10726581369552395,"metrics":{"output_dc_v":0.3998192909686,"dc_error_v":0.00018070903139999483,"supply_current_a":0.0006443257799164,"power_w":0.00115978640384952,"gain_db":126.3527768492,"unity_gain_hz":413838.0406006125,"phase_margin_deg":90.13201204908364,"settling_rise_s":1.1674999999999994e-06,"settling_fall_s":1.0974999999999975e-06,"max_tracking_error_v":0.00019782203939999743,"output_min_v":0.3967826860436,"output_max_v":0.6028715364285},"parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":2,"failed_requirements":["gain_db","unity_gain_hz","power_w","dc_error_v","max_tracking_error_v"]}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+
+````
+
+</details>
+
+## Attempt 4 — seed 2895129517
+
+Accepted; parameters are unchanged from the start.
+
+**Exact model reply:**
+
+````text
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+````
+
+**Evaluator feedback:**
+
+```json
+{
+  "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+  "status": "ok",
+  "success": false,
+  "reward": -0.10726581369552395,
+  "metrics": {
+    "output_dc_v": 0.3998192909686,
+    "dc_error_v": 0.00018070903139999483,
+    "supply_current_a": 0.0006443257799164,
+    "power_w": 0.00115978640384952,
+    "gain_db": 126.3527768492,
+    "unity_gain_hz": 413838.0406006125,
+    "phase_margin_deg": 90.13201204908364,
+    "settling_rise_s": 1.1674999999999994e-06,
+    "settling_fall_s": 1.0974999999999975e-06,
+    "max_tracking_error_v": 0.00019782203939999743,
+    "output_min_v": 0.3967826860436,
+    "output_max_v": 0.6028715364285
+  },
+  "checks": {
+    "gain_db": false,
+    "unity_gain_hz": false,
+    "phase_margin_deg": true,
+    "power_w": false,
+    "dc_error_v": false,
+    "max_tracking_error_v": false,
+    "settling_rise_s": true,
+    "settling_fall_s": true
+  },
+  "simulator_invocations": 2,
+  "elapsed_s": 2.0223690919992805,
+  "parameters": {
+    "CAPACITOR_0": 1.763e-10,
+    "CAPACITOR_1": 1.442e-11,
+    "CURRENT_0_BIAS": 3.756e-05,
+    "MOSFET_10_1_M_gm2_PMOS": 65,
+    "MOSFET_23_1_M_gm3_NMOS": 128,
+    "MOSFET_8_2_M_gm1_PMOS": 43
+  },
+  "evaluations_remaining": 0,
+  "terminated": false,
+  "truncated": false
+}
+```
+
+<details><summary>Exact serialized prompt sent for this attempt</summary>
+
+````text
+<start_of_turn>user
+Size the analog circuit to satisfy every fixed constraint using simulator feedback.
+Reply with ONLY a JSON object mapping allowed parameter names to numeric absolute values.
+Use the units in the specification. Omitted parameters keep their current value; {} evaluates the current design.
+Every response spends one evaluation, including invalid responses. You cannot change requirements or circuit connections.
+Stop when the environment ends. Do not include explanations, Markdown, executable code, or tool calls.
+Circuit task and feedback:
+{"id":"ramos_pfc_frontier_fe98b9cec3124b96","conditions":{"corner":"tt","supply_v":1.8,"temperature_c":27,"common_mode_v":0.4,"load_f":1e-10},"parameters":{"CAPACITOR_0":{"min":1.575e-11,"max":2.52e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CAPACITOR_1":{"min":6.25e-12,"max":1e-10,"unit":"F","sampling_scale":"log","role":"compensation capacitance"},"CURRENT_0_BIAS":{"min":6e-06,"max":9.6e-05,"unit":"A","sampling_scale":"log","role":"bias reference current"},"MOSFET_10_1_M_gm2_PMOS":{"min":21,"max":324,"unit":"multiplicity","sampling_scale":"log","role":"gm2 stage transistor multiplicity","integer":true},"MOSFET_23_1_M_gm3_NMOS":{"min":51,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm3 stage transistor multiplicity","integer":true},"MOSFET_8_2_M_gm1_PMOS":{"min":37,"max":512,"unit":"multiplicity","sampling_scale":"log","role":"gm1 stage transistor multiplicity","integer":true}},"constraints":{"gain_db":{"min":129},"unity_gain_hz":{"min":470000.0},"phase_margin_deg":{"min":89},"power_w":{"max":0.00082},"dc_error_v":{"max":0.00015000000000000001},"max_tracking_error_v":{"max":0.00018},"settling_rise_s":{"max":1.2e-06},"settling_fall_s":{"max":1.2e-06}},"ac":{"points_per_decade":100,"start_hz":0.1,"stop_hz":1000000000.0},"transient":{"low_v":0.4,"high_v":0.6000000000000001,"rise_start_s":5e-06,"edge_s":1e-08,"high_duration_s":2e-05,"period_s":6e-05,"stop_s":5e-05,"max_step_s":5e-09,"settling_tolerance_v":0.02,"minimum_hold_s":2e-06},"current_parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":4}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+{"CAPACATOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}<start_of_turn>user
+Circuit task and feedback:
+{"status":"failed","success":false,"reward":-1.0,"metrics":{},"parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":3,"error":"Invalid action or unsuccessful simulation; inspect numeric bounds and feedback.","failed_requirements":[]}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}<start_of_turn>user
+Circuit task and feedback:
+{"status":"ok","success":false,"reward":-0.10726581369552395,"metrics":{"output_dc_v":0.3998192909686,"dc_error_v":0.00018070903139999483,"supply_current_a":0.0006443257799164,"power_w":0.00115978640384952,"gain_db":126.3527768492,"unity_gain_hz":413838.0406006125,"phase_margin_deg":90.13201204908364,"settling_rise_s":1.1674999999999994e-06,"settling_fall_s":1.0974999999999975e-06,"max_tracking_error_v":0.00019782203939999743,"output_min_v":0.3967826860436,"output_max_v":0.6028715364285},"parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":2,"failed_requirements":["gain_db","unity_gain_hz","power_w","dc_error_v","max_tracking_error_v"]}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}<start_of_turn>user
+Circuit task and feedback:
+{"status":"ok","success":false,"reward":-0.10726581369552395,"metrics":{"output_dc_v":0.3998192909686,"dc_error_v":0.00018070903139999483,"supply_current_a":0.0006443257799164,"power_w":0.00115978640384952,"gain_db":126.3527768492,"unity_gain_hz":413838.0406006125,"phase_margin_deg":90.13201204908364,"settling_rise_s":1.1674999999999994e-06,"settling_fall_s":1.0974999999999975e-06,"max_tracking_error_v":0.00019782203939999743,"output_min_v":0.3967826860436,"output_max_v":0.6028715364285},"parameters":{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43},"evaluations_remaining":1,"failed_requirements":["gain_db","unity_gain_hz","power_w","dc_error_v","max_tracking_error_v"]}
+
+Return only a flat parameter-to-number JSON object, without Markdown fences. Do not repeat the task description, constraints, or measurements.
+The current parameter values in the required reply format are:
+{"CAPACITOR_0":1.763e-10,"CAPACITOR_1":1.442e-11,"CURRENT_0_BIAS":3.756e-05,"MOSFET_10_1_M_gm2_PMOS":65,"MOSFET_23_1_M_gm3_NMOS":128,"MOSFET_8_2_M_gm1_PMOS":43}
+Choose your next parameter values. Reply in exactly that flat JSON format, starting with { and ending with }. No other text.<end_of_turn>
+<start_of_turn>model
+
+````
+
+</details>

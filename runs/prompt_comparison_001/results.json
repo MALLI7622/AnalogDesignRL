@@ -1,0 +1,1201 @@
+{
+  "current": {
+    "episodes": 84,
+    "evaluations": 336,
+    "context_overflow_episodes": 0,
+    "episode_errors": [],
+    "simulator_invocations": 654,
+    "invalid_json_actions": 0,
+    "markdown_fenced_replies": 0,
+    "solved_episodes": 0,
+    "tasks_solved_at_least_once": 0,
+    "mean_final_reward": -0.10614332233883347,
+    "failed_actions": 9,
+    "valid_changed_actions": 0,
+    "episodes_with_valid_change": 0,
+    "tasks_with_valid_change": 0,
+    "tasks_with_final_reward_variation": 1,
+    "action_statuses": {
+      "ok": 327,
+      "failed": 9
+    },
+    "per_task": {
+      "ramos_pfc_frontier_00f3831c949d08ca": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.011120155256065113,
+          -0.011120155256065113,
+          -0.011120155256065113,
+          -0.011120155256065113
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.011120155256065113,
+          -0.011120155256065113,
+          -0.011120155256065113,
+          -0.011120155256065113
+        ],
+        "observed_start_reward": -0.011120155256065113,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.011120155256065113,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_08107b5a4a2972ca": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 1,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.056810114397376696,
+          -0.056810114397376696,
+          -0.056810114397376696,
+          -0.056810114397376696
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.056810114397376696,
+          -0.056810114397376696,
+          -0.056810114397376696,
+          -0.056810114397376696
+        ],
+        "observed_start_reward": -0.056810114397376696,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.056810114397376696,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_0ee4a8052c59197d": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 1,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.33229465316238277,
+          -0.33229465316238277,
+          -0.33229465316238277,
+          -0.33229465316238277
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.33229465316238277,
+          -0.33229465316238277,
+          -0.33229465316238277,
+          -0.33229465316238277
+        ],
+        "observed_start_reward": -0.33229465316238277,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.33229465316238277,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_19ec2769099c9a77": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.1844798924385309,
+          -0.1844798924385309,
+          -0.1844798924385309,
+          -0.1844798924385309
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.1844798924385309,
+          -0.1844798924385309,
+          -0.1844798924385309,
+          -0.1844798924385309
+        ],
+        "observed_start_reward": -0.1844798924385309,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.1844798924385309,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_239f7a62eea81d20": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.021632592181641857,
+          -0.021632592181641857,
+          -0.021632592181641857,
+          -0.021632592181641857
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.021632592181641857,
+          -0.021632592181641857,
+          -0.021632592181641857,
+          -0.021632592181641857
+        ],
+        "observed_start_reward": -0.021632592181641857,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.021632592181641857,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_46c49195794677cb": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.07308566214126891,
+          -0.07308566214126891,
+          -0.07308566214126891,
+          -0.07308566214126891
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.07308566214126891,
+          -0.07308566214126891,
+          -0.07308566214126891,
+          -0.07308566214126891
+        ],
+        "observed_start_reward": -0.07308566214126891,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.07308566214126891,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_492ce020af44c02a": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.4817128853039789,
+          -0.4817128853039789,
+          -0.4817128853039789,
+          -0.4817128853039789
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.4817128853039789,
+          -0.4817128853039789,
+          -0.4817128853039789,
+          -0.4817128853039789
+        ],
+        "observed_start_reward": -0.4817128853039789,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.4817128853039789,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_6bcc6522002a4848": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.015842338867751743,
+          -0.015842338867751743,
+          -0.015842338867751743,
+          -0.015842338867751743
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.015842338867751743,
+          -0.015842338867751743,
+          -0.015842338867751743,
+          -0.015842338867751743
+        ],
+        "observed_start_reward": -0.015842338867751743,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.015842338867751743,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_6cfd52a096b5dd0c": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 1,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.042746212489722546,
+          -0.042746212489722546,
+          -0.042746212489722546,
+          -0.042746212489722546
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.042746212489722546,
+          -0.042746212489722546,
+          -0.042746212489722546,
+          -0.042746212489722546
+        ],
+        "observed_start_reward": -0.042746212489722546,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.042746212489722546,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_729ee4d6d6c84ae8": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.047810414279097,
+          -0.047810414279097,
+          -0.047810414279097,
+          -0.047810414279097
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.047810414279097,
+          -0.047810414279097,
+          -0.047810414279097,
+          -0.047810414279097
+        ],
+        "observed_start_reward": -0.047810414279097,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.047810414279097,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_748c38a9d53bee07": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.0831117021276595,
+          -0.0831117021276595,
+          -0.0831117021276595,
+          -0.0831117021276595
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.0831117021276595,
+          -0.0831117021276595,
+          -0.0831117021276595,
+          -0.0831117021276595
+        ],
+        "observed_start_reward": -0.0831117021276595,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.0831117021276595,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_7c40fc00c4494453": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.04743889139660546,
+          -0.04743889139660546,
+          -0.04743889139660546,
+          -0.04743889139660546
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.04743889139660546,
+          -0.04743889139660546,
+          -0.04743889139660546,
+          -0.04743889139660546
+        ],
+        "observed_start_reward": -0.04743889139660546,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.04743889139660546,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_8d5ef31872812e70": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.059283088235294004,
+          -0.059283088235294004,
+          -0.059283088235294004,
+          -0.059283088235294004
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.059283088235294004,
+          -0.059283088235294004,
+          -0.059283088235294004,
+          -0.059283088235294004
+        ],
+        "observed_start_reward": -0.059283088235294004,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.059283088235294004,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_98973731138367c8": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 3,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.21288408470734077,
+          -1.0,
+          -0.21288408470734077,
+          -0.21288408470734077
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.21288408470734077,
+          -0.21288408470734077,
+          -0.21288408470734077,
+          -0.21288408470734077
+        ],
+        "observed_start_reward": -0.21288408470734077,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.4096630635305056,
+        "final_reward_std": 0.3408311891832416,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_b5846ee2c7a6d612": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.12782073884803624,
+          -0.12782073884803624,
+          -0.12782073884803624,
+          -0.12782073884803624
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.12782073884803624,
+          -0.12782073884803624,
+          -0.12782073884803624,
+          -0.12782073884803624
+        ],
+        "observed_start_reward": -0.12782073884803624,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.12782073884803624,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_d83b64dea527a91a": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.04751819398926773,
+          -0.04751819398926773,
+          -0.04751819398926773,
+          -0.04751819398926773
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.04751819398926773,
+          -0.04751819398926773,
+          -0.04751819398926773,
+          -0.04751819398926773
+        ],
+        "observed_start_reward": -0.04751819398926773,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.04751819398926773,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_eaaf9a756498c26b": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.006907917787748777,
+          -0.006907917787748777,
+          -0.006907917787748777,
+          -0.006907917787748777
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.006907917787748777,
+          -0.006907917787748777,
+          -0.006907917787748777,
+          -0.006907917787748777
+        ],
+        "observed_start_reward": -0.006907917787748777,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.006907917787748777,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_f171bdefb113edc2": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.06544390304170167,
+          -0.06544390304170167,
+          -0.06544390304170167,
+          -0.06544390304170167
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.06544390304170167,
+          -0.06544390304170167,
+          -0.06544390304170167,
+          -0.06544390304170167
+        ],
+        "observed_start_reward": -0.06544390304170167,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.06544390304170167,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_f5bfd5c4809b7919": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 0,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.006430665273911138,
+          -0.006430665273911138,
+          -0.006430665273911138,
+          -0.006430665273911138
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.006430665273911138,
+          -0.006430665273911138,
+          -0.006430665273911138,
+          -0.006430665273911138
+        ],
+        "observed_start_reward": -0.006430665273911138,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.006430665273911138,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_f7e8fe21edc3b690": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 1,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.0005908706714326168,
+          -0.0005908706714326168,
+          -0.0005908706714326168,
+          -0.0005908706714326168
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.0005908706714326168,
+          -0.0005908706714326168,
+          -0.0005908706714326168,
+          -0.0005908706714326168
+        ],
+        "observed_start_reward": -0.0005908706714326168,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.0005908706714326168,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_fe98b9cec3124b96": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 2,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -0.10726581369552395,
+          -0.10726581369552395,
+          -0.10726581369552395,
+          -0.10726581369552395
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          -0.10726581369552395,
+          -0.10726581369552395,
+          -0.10726581369552395,
+          -0.10726581369552395
+        ],
+        "observed_start_reward": -0.10726581369552395,
+        "unique_valid_designs": 1,
+        "mean_final_reward": -0.10726581369552395,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      }
+    },
+    "valid_changed_actions_better_than_start": 0,
+    "episodes_with_better_design_than_start": 0
+  },
+  "exploration": {
+    "episodes": 84,
+    "evaluations": 335,
+    "context_overflow_episodes": 1,
+    "episode_errors": [
+      {
+        "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+        "episode": 3,
+        "kind": "context_overflow",
+        "completed_attempts": 3,
+        "last_observed_score": -1.0,
+        "evidence": "exploration.log: parser prompt bucket exception after this episode; reconstructed after process exit, no action replay"
+      }
+    ],
+    "simulator_invocations": 0,
+    "invalid_json_actions": 335,
+    "markdown_fenced_replies": 335,
+    "solved_episodes": 0,
+    "tasks_solved_at_least_once": 0,
+    "mean_final_reward": -1.0,
+    "failed_actions": 335,
+    "valid_changed_actions": 0,
+    "episodes_with_valid_change": 0,
+    "tasks_with_valid_change": 0,
+    "tasks_with_final_reward_variation": 0,
+    "action_statuses": {
+      "failed": 335
+    },
+    "per_task": {
+      "ramos_pfc_frontier_00f3831c949d08ca": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_08107b5a4a2972ca": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_0ee4a8052c59197d": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_19ec2769099c9a77": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_239f7a62eea81d20": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_46c49195794677cb": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_492ce020af44c02a": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_6bcc6522002a4848": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_6cfd52a096b5dd0c": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_729ee4d6d6c84ae8": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_748c38a9d53bee07": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_7c40fc00c4494453": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_8d5ef31872812e70": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_98973731138367c8": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_b5846ee2c7a6d612": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_d83b64dea527a91a": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 15,
+        "failed_actions": 15,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_eaaf9a756498c26b": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_f171bdefb113edc2": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_f5bfd5c4809b7919": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_f7e8fe21edc3b690": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      },
+      "ramos_pfc_frontier_fe98b9cec3124b96": {
+        "episodes": 4,
+        "solved": 0,
+        "evaluations": 16,
+        "failed_actions": 16,
+        "valid_changed_actions": 0,
+        "episodes_with_valid_change": 0,
+        "final_rewards": [
+          -1.0,
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "valid_changed_rewards": [],
+        "episode_best_valid_rewards": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "observed_start_reward": null,
+        "unique_valid_designs": 0,
+        "mean_final_reward": -1.0,
+        "final_reward_std": 0.0,
+        "valid_changed_actions_better_than_start": 0,
+        "episodes_with_better_design_than_start": 0
+      }
+    },
+    "valid_changed_actions_better_than_start": 0,
+    "episodes_with_better_design_than_start": 0
+  },
+  "paired_episode_reward_comparison": {
+    "worse": 83,
+    "tied": 1
+  },
+  "matching_seed_contexts": 335,
+  "checkpoint_sha256": "fe2db0a64fd5fdaa592ebbd5b4ac213d1f52d2e664353cd21225c36a2f603fe5",
+  "limitations": "All 21 validation tasks are Ramos PFC; this is prompt tuning on validation, not a final held-out test. Same trained checkpoint in both arms. No optimizer updates."
+}

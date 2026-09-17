@@ -1,0 +1,1651 @@
+{
+  "config": {
+    "model_id": "google/gemma-3-1b-it",
+    "model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+    "seed": 42,
+    "worker_url": "http://127.0.0.1:8765",
+    "max_episode_steps": 4,
+    "max_prompt_tokens": 6144,
+    "max_response_tokens": 2048,
+    "max_updates": 2,
+    "num_generations": 4,
+    "max_concurrency": 4,
+    "validation_task_limit": 3,
+    "learning_rate": 3e-06,
+    "beta": 0.08,
+    "temperature": 0.9,
+    "checkpoint_every": 1,
+    "eval_every": 5,
+    "lora": {
+      "rank": 16,
+      "alpha": 16.0,
+      "module_path": ".*q_einsum|.*kv_einsum|.*gate_proj|.*down_proj|.*up_proj|.*attn_vec_einsum"
+    }
+  },
+  "mode": "research-pilot",
+  "hardware": {
+    "devices": [
+      "TPU_0(process=0,(0,0,0,0))",
+      "TPU_1(process=0,(1,0,0,0))",
+      "TPU_2(process=0,(0,1,0,0))",
+      "TPU_3(process=0,(1,1,0,0))"
+    ],
+    "jax": "0.11.1",
+    "tunix": "0.1.7"
+  },
+  "generation_seeding": {
+    "policy": "uint32_odd_stride_per_sampler_call_v1",
+    "base_seed": 42,
+    "ledger": "generation_seeds.jsonl",
+    "reproducibility": "Same call order and batching; async scheduling can change seed assignment."
+  },
+  "catalog": {
+    "mode": "research-pilot",
+    "catalog_sha256": "38a49b26bdceca8a3260d1beb547f9e0ceade47da5095dc724965c9c438827e9",
+    "research_pilot": true,
+    "pilot_manifest_sha256": "f00dc0236c7f430fcbe1e5ec2609d0fbefed405483d48291654142ed0c66b2d2",
+    "independent_expert_review": "pending",
+    "qualified_training_approved": false,
+    "pilot_limits": {
+      "max_episodes": 20,
+      "max_evaluations_per_episode": 4,
+      "max_total_evaluations": 80
+    },
+    "pilot_expires_utc": "2026-09-17T04:13:39.290332+00:00",
+    "split_policy": "topology",
+    "max_active": 16,
+    "tasks": [
+      {
+        "id": "leung_dfcfc2_frontier_0e46ab4eea945ecd",
+        "sha256": "91171db607b1cce36eec984c750dd495063531f8197264d0338f6ad2b8667e8e",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_323dedec29e9298a",
+        "sha256": "165fb60c7a88d06d1107057bb8915d29a601d09135d89e9bc7fd5b196dd9199a",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_4898ddf50c3837dc",
+        "sha256": "2584be5ee7a9775e4835f302597495281216f30fe616eca93f1cc0f1d0eac1d7",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_4d924f5d91038734",
+        "sha256": "66a117f16165afe273d9e0b0153324b1698d08b17c5fa2ee95e1f631bf905ceb",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_19ec2769099c9a77",
+        "sha256": "f579a2b95bbc6bb50182a8c82a2d2ae829fd493fc8f69bb1cbdbec658aa27f49",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_913a04a5d7e6ef9f",
+        "sha256": "523e2ff4d9c0b94db59b3979e3d8245a1fe5a3757909867bc7a98a743017b2d2",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_9cb18236bef5d780",
+        "sha256": "ca937a231b25923368bb9d95e58168ea89dd4137c693eb20160c6a996b6b1034",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_2ebe016aeccad6c0",
+        "sha256": "161ecf140fddd5207ac7f447d4c18833543cf9d754b26a0fd8c3daaabd142183",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_d3a713ba04cead8e",
+        "sha256": "a0ec8a9c8aa1a79dd65c7bf7cbd8ff2867cd7db451b30c2dd0b38709e26f068b",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_2a39212dcb7d2d3e",
+        "sha256": "37a38184aa1caf23a01225f7ad2ff90758e8598c6e9453fe79f467f75127ffa6",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_9cd58741b40a6084",
+        "sha256": "8dc39d0b1f3a9739a2d5ec9ab00695a1de781f1d247d15fca69b286a4d5e66b9",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_0ee4a8052c59197d",
+        "sha256": "b9195801b5c691ae251573174e8410c183fda30ad0114069ca0e69ee63e023f6",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_50037b26f91138d9",
+        "sha256": "c8494cbdad0b51aefa6bb13e360ffae1e6cfa377ce4716f6b8ce28923fffb132",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_5b608aa34bb8db38",
+        "sha256": "3504ed1fe7aaf4c1f32302d4fd04a846920ab716b2e528e87e1d237e32afd405",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_44f1068084761da7",
+        "sha256": "d95b9b04e56d0fa8d0da6cc6a815ed539c088e2dfc0c1dc7ce98028b61066182",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_1d4820a15602c5b0",
+        "sha256": "d02dd731cfcf9507d8c3180cf7fadb1702d50291c286a41b7d9593bd80b26add",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_0b2eb8a28750e20f",
+        "sha256": "4cfbcabdb102adb33b7aa7df32c3b22e5c67c0a1b02727e1ec8c2450a8196e30",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_367a80efd788d260",
+        "sha256": "f2298773103852f5649639fe3b540d4aab8bf7c52e9b7bed1f28db1e4e866076",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_492ce020af44c02a",
+        "sha256": "b5c00775fc11ee12e28dfc6a86e2832f801930a68a4ded017e071165d865f45a",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_21167db817a8ebfa",
+        "sha256": "494f728645c184ea37f81076617962f3a1963c43b64a885c56c5b872333ce2b6",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_8b93fc3d548142e9",
+        "sha256": "05bf1dea6cb17bb439e294cf5cabf51449b3c85927073d645ed1cd67db65a9d6",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_58b56e0ab40b28f9",
+        "sha256": "b3275f9bac0b4d377796d70955c000d881dbba8b0543a20361cce623965a2a86",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_5aae9b115175df42",
+        "sha256": "9889ff09b40cc9f0eebe0d81136ce894a92db884695a27573599182db68b3a8f",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_debe99f55db2a8f6",
+        "sha256": "81a8cade168d2f25632c150ddb520c3cec05f472c76d24312182f7cd71a4ba4d",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_23be21cfe42e0086",
+        "sha256": "7ccd38ffc9b052ab38f0c1986ccb9d17205c0a37df946a20c877932af018f067",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_dda14d5dbe9642dc",
+        "sha256": "e9e337310b9f61471f96c48088b9c43dafb8e1eacbcafc0788138176cf05f038",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_1a74a5e033589299",
+        "sha256": "10565ac867ae7528a149ca0c44720a1745849b0b41ad72241ccfc58422ed49de",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_748c38a9d53bee07",
+        "sha256": "059c0ea8a4cc8d0977e00c0ea7e0f20bc4cc011a30daac98972f97f4240b66af",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_36d0c4a9bf4dcc15",
+        "sha256": "9359710ba15ebfb80497c0dfdea30628cd33f199bbae3e647900b58980db5611",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_f7958f8043414d5e",
+        "sha256": "d24ebfddcdc96ccc6714c51ec12c03640e20404dad765b644b0b239954e091ea",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_c32203fde9c6de2c",
+        "sha256": "073d760835784a3adafbc747c1449d20281330d18034bbd2bb73c16614adb310",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_03db39c78a7196e9",
+        "sha256": "600b56d22503eadff454a0651c95a8fe86713435c032a2582c6b45f482762e76",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_4e280b9dfd71178f",
+        "sha256": "063887c12949ec7b2cf7defc692190b1912096834af457ff06f866be424bba44",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_bf1a1ac8db2c9b19",
+        "sha256": "bf5d77cc63b91f24152c86f7c5750395e20500167c11676d49b6fe3877869734",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_4d0a584b8cfe10cf",
+        "sha256": "c2168c6b7c9c7538f685f5e6f83f0f4cc1eaaa3df40f002ebc28ddcec7306af0",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+        "sha256": "ee2c4ceee73eb64591388e43f4b5b05967ca505c3774c42ad47f43b69d9eda48",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_639d865216e96f29",
+        "sha256": "7d42972c5b01e36c008a563bea25dbcac7de907645f7585a34e9d615efbda6a2",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_8647adebddde4618",
+        "sha256": "9d9827e99a74578fb3688d164d2650c77aac816dc7179c136259e55c1426b396",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_8ef2937309959cba",
+        "sha256": "545eb8b6cf28a65d8bc6eecb609e7ef36f11015f9e6e8f9201b72b90d0359bc0",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_72417d81a2ddaa50",
+        "sha256": "0f8f70399b59e9f9dc08de0bc1a07d3e79f777100c9b4ec1ba5150b87a8abd6a",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_301a8dad7cfb74e7",
+        "sha256": "e7e672d2f8c03fa1b4ee94cd1bbdc5500eeed088dc69b894d61ba35224408cd3",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_159053c30195e65b",
+        "sha256": "7538a59d38249bb37e5ce212c26583ab50c62c60bdb146b806718d0436d46190",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_98973731138367c8",
+        "sha256": "8fc95364c7f96c60698ba567dc0f6ce23ba68872737af22d838d0858b2ab0660",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_f648d99367d628d1",
+        "sha256": "4012aefaeb8a088b2896433cceae6c105a7e4c1a0069f8a15c5eccbc347f0ab1",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_61e005982459c779",
+        "sha256": "6f0b57a8b47e5eca8a596498fe6c284f8b9ad91307c5baeac6921424d35de968",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_95289ea12858b4dd",
+        "sha256": "299956f3bfea5c8a1500c09396bc9420ec6b9a218ae7c75bac306592ea6ebcb3",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_80ddd966dfc5621d",
+        "sha256": "5fe8e2944cf375fb8749e4ef091a78817265c0e7c743c1ef1aee29c68b219739",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_5e19181204b4f4a9",
+        "sha256": "ee7d6ed6862d93b293a39f2b5c96194040291aa2db87abd33b5d3267e74d2046",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_e6b44b01172ad0c9",
+        "sha256": "3a7153a4456e8c87a88863f736be7e7fa012d400fe59786c3c40c0c71acddfdd",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_c31acde5a2127175",
+        "sha256": "23e385aac6fdde474445e24dfee63ab42b22142428b8d558a6be326a8f74b11a",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_0c7b6e767b667db0",
+        "sha256": "8e8ca41307e7261b892561042e66e1772c84ce0d8da6515ffff0e426526a4abe",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_f171bdefb113edc2",
+        "sha256": "d26bec4d3884bd1a5bdc8eb03d0e05ae65753aff575aab7854d7764c5c4573dd",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_7e49392317f2cc73",
+        "sha256": "56004b53c143112188c1f00d5f619d76aa1078ca5cfc460beb57ffe4e26c2ee7",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_f0bceac0ab6da33e",
+        "sha256": "04ddd9dcda506353fb4374a72d71e8813f25611cc9c0b3e4f65ba1465c52f29d",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_8bd2dda96b9fc74c",
+        "sha256": "413f5fd07c39395ac20949b82406a3a8e0d0c29706398600a463ad637df5cb89",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_3b018558048c80b8",
+        "sha256": "6ff6bdb7a2c1f2f794f0919200c0f3fe0c0731025b476540b61e2f2d461ee6f7",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_519a94b31509be3b",
+        "sha256": "9680cd3464ddfe9206c6413935fc4890f4d3bc8a12869b8c4dc561598c02e1b8",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_fa30cae8d0d3b7f2",
+        "sha256": "07070ad52b9a704b33f23d91b9dd55e1cd3100ea12617bd6c77832e8ec22707c",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_b473a685adb6e871",
+        "sha256": "961dac62a96aa894dc383c9f8a910349196d2170608bc8706f69a904a8ca5369",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_fe98b9cec3124b96",
+        "sha256": "b4ec7e2a9c577373adc5d18b46a5dcffc4050e11629b0af92ac58472ae6e9b3a",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_c61384b724f4f8dc",
+        "sha256": "0523652507607bcc9fa3c4bd2fd4e74aac075918b0fca7f65fc7d98b40dd8674",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_40abceea195c2085",
+        "sha256": "67f1da474907bac5f30f98b45acdb088db4931a213ffde789f4b34137316c0df",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_2b4df3da15bf1e35",
+        "sha256": "e866895d8c74b5f3ba54e75d2f96110957122db7d6948c466f63f512adb6fdcc",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_4295d67115e44cde",
+        "sha256": "d8479854ec3bebf0231cb9d42ca316edbbe1b4215342d13a4746dedc12a08237",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_728d1f705b515a02",
+        "sha256": "16d9a04c452ab6c1be0b7722905f304c34a66d4d60e284b1cb513a47ebb36f07",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_d34985a7c27db076",
+        "sha256": "3eb67b5d72ad7c5812e8a9b6e7c7fb664d0b068c8725f48d31da65893159a7a7",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_a1ea661bad7489c0",
+        "sha256": "1fd8560c8b9898483ae6b6c7231dfe94986f93fa05729a247b9c130d6fb66ba4",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_46c49195794677cb",
+        "sha256": "89e12546fc2529b924ffdcd7d3235addd628a10165100c8608d0e84a40da035d",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_e6c5644cbe3200d1",
+        "sha256": "3d9b62cb5a66503b60007491ebd1885d30b5aadd6d37e878ad271422ccd81966",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_6275314c67f123af",
+        "sha256": "eff0bb5e3b26ed5f0dcba1610e829db2d3de797c07105f1e1041f283cf16e69f",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_e524fc4396c4d509",
+        "sha256": "3fdacae49b113e7774e985fac90d166762581bfab80c744a443cd8bf5f076950",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_4295c799f97f7065",
+        "sha256": "90e739865da0d26bb1a40ccc6e2abae3b300b937ede968c95e32c0c05e3f6760",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_207fa3fbf2b02736",
+        "sha256": "c24926ca92b8f3d70f0ae6115ccf166fba176a90f13b98f04cca3c140d657763",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_a4ce34f2c21c8eef",
+        "sha256": "7a75d2a3c4e887d0340e6a8549b051e89cb18feb9c2235ccf0216698de3cbdda",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_180d3409f5d6d5cb",
+        "sha256": "fdb32ae0be39389ed1c272e4f95942d203653d15ef014e2326b55dac0cc02e48",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_08107b5a4a2972ca",
+        "sha256": "b76c97cad8db6c30f20ad86d19359abe3b2e873220f80eead0128c43bca51546",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_664615cd4651fa9b",
+        "sha256": "b42e2a57ecaf06467e0fc90cc413e47f2ec6b2736b3e0d35e2d19c0f9d738a9f",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_2632445c5339c9e1",
+        "sha256": "fac6dbdfb115b4a2707b309d27157d3f9921f61249d4b3a7a919b8e99be263b1",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_a9731812de055093",
+        "sha256": "d517f384655bd6311073e798965dbc76a0cd2743f99953c73f84a8fad3dcf582",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_5c8b4921700be3b6",
+        "sha256": "d68643373aca837b156a145731602a4402ca5fd23b560ce06e533fedf6072ed3",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_4e72c1531efff576",
+        "sha256": "258993803121792daea451c6d98dc6e0e378ccee75fc6615f682b94b0ce3cc25",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_7b5de669b6d475c9",
+        "sha256": "7270b7ad3cebb797c9c2a51ee3b9f2fe83dde8b68f83dcdd99e79da62310ab2c",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_41977d294b2e797a",
+        "sha256": "bbbad9569f2aa37bd991e4d18a89f3b1391e319bf5fd46601051d37648076760",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_6bcc6522002a4848",
+        "sha256": "94d1966df35ad47f5d857ddde922a4c8bfe0edf100ac4ae8a5c52511587c14a2",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_008130e0e5c95f94",
+        "sha256": "e539439710c0921958e847e43158bdffc6a876f8ac43636f856b3b6ec294ce86",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_eace0e1dd4851e26",
+        "sha256": "547e4f5c1ba27fcb16fe5dfbbe15f1314444f1d641f064f6bf9713f541f278e7",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_c334c11550c01a0b",
+        "sha256": "0cd9c3be33c480f6c97061fb3447cd8b00ef1c95261d17d97cdc91e04b618667",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_0364ca437c0d80af",
+        "sha256": "161d90c08f41c66277ce47f561e056c9e597bf6b876823be95bbb8f5247a7c11",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_3529a0b7e9e50d6f",
+        "sha256": "c3a8165334cc245c9593adb8aa07bdca81d2c8c3fc4481cfc86b3b3077caab8f",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_c535e64d572c5370",
+        "sha256": "125dde952886c0362a632400dbbd0579b90690f2bd2b7cfbdde7a771174a41fb",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_43719fee6516a285",
+        "sha256": "ee75ea40ef0d1b9e99c4a8634cb8d2bc153889c8f6079b4c668edee9176c8d86",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_d83b64dea527a91a",
+        "sha256": "65dec11dd1acf3f8ea8044388ceefc7772fc3166c048eb5a515f315c092de9e6",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_77775e3834718ec4",
+        "sha256": "e3912553573672e963a3fbccbab5a6b0f60e57a857621339269db398ffd3d4e4",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_46dfbcbf3cc60d70",
+        "sha256": "4006cd5cca8011ed528641768061892347f755faf5010966bb5d17df448c44fb",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_856db2050283780a",
+        "sha256": "8e15c7cdda66d35f06fdc726b7ec8241fd9f3befe32cd32c0468b708f39fd843",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_24ffb60cdb2415f3",
+        "sha256": "b80dfcf3ae7c48d38fc00e53168b7c9480cfdc6de9553d8b58ca45a067087400",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_bab220e5e5791893",
+        "sha256": "3c51682668131102bf1ac357b60c1aa59990b21721e0cd0373056e2c05956581",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_9e213d928c7f5169",
+        "sha256": "920be6ec69f18477e8f54e36ee6329d232ce32c464c609da2bec3b0ffcc52895",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_a620b8b985ae69e9",
+        "sha256": "b4ae2e7d71e3810e97e661ad096d97f3f8b2368af83fd1b5a55684d5c599c679",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+        "sha256": "76965822ce8205bdf1efb34540ca27b2da7f0703b50d525fd13b715c92026233",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_34bae7672d0434b4",
+        "sha256": "ea3c382112c80ffc3b5401ba85e6c7c104385dd2de6e37e38ca60296d81b9178",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_324ac108a39c3e0e",
+        "sha256": "ffaae451842bd4bb1e93d7f29c34018601427597748f01c4599adbed15eeda22",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_1daefd8596f5107f",
+        "sha256": "3c7c9abc7c91ed08743b1aba8f2ff7df8a99a27af864cea5b4bdeb2658fe6716",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_913e4439d07b1bcc",
+        "sha256": "cbd3f57c29fb0553ec1ba2580a57a9bb3c5e4d32fbf98cf41e8601272faa9fed",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_0d67fb66e8fe38b0",
+        "sha256": "459c5821a7d98b937d0d84c06995819002bba8353b205d203ea6c7c51d3de6b1",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_ecce2bdd25386aa6",
+        "sha256": "22ed9c245cce37cb497c46de0117577e28904369c25075e3ac34ee0e150fcbb3",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_c05bc15cad860427",
+        "sha256": "89159e34bdbb4a56b1a2e5b166043b1ded923e9aaabbc0f42917ba34de8ddd6c",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_7c40fc00c4494453",
+        "sha256": "f5debbc94b2a14442f5e7ba600d0d973ab1f98c595df83201fbf448084595e29",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_4cdec3ce470aa464",
+        "sha256": "8fff982e871996b0acb6c58876f37ac94f1e5d783c4b24a31f4f6357a118efa1",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_2336f088ae3ad0a3",
+        "sha256": "fb66f4e889fbe7d3b7e9437216e2f78070787ea90c138f8a5b1b550b8c9fc254",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_51a12c05b4e6098c",
+        "sha256": "31f7a3ac6b38b8ce6e22293f743a73432e838960547fcf7e17ef054f0e913fbb",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_b54ef28450790565",
+        "sha256": "079eaa77b2d351b219c7acc3a8ed3e6c08cc0268ead6de76d2041642f81062d4",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_89ad540664075201",
+        "sha256": "5203d07f71d3a1a1d9b978482d664f86fdd51f68e36dd40307d115dd64a6989c",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_4ece4c7a4171708e",
+        "sha256": "c05cbc38a4ce575a6c8a96724b55da430d43520955911c95269cb3a432f99f15",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_2707adfd32089063",
+        "sha256": "111cfab47fd68de8abb933313df8a97d273958fbf8f3e4ee3b5cf88a26f7d364",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_8d5ef31872812e70",
+        "sha256": "1a1af76b1fdfacc2378cca67e7e9228b8ce8f4c72bef38a96fd7e55974bb2362",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_a4d2767c6bb84f04",
+        "sha256": "8e90200ee1a5e5782fca5d259a134eba1895003f153e659ff014097c4475a754",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_4120ad3d0d0d636b",
+        "sha256": "43b78eddd1ef6a41b32361fc98d105665bd00c43e5ecdccffe3fbd498e125c6b",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_936f9195419339cc",
+        "sha256": "825c92b6fea784e7d4b9f15c399ca51e041ae77a3bebed0255b2c630adf820a2",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_bda62c225ac6ef6b",
+        "sha256": "fbf363abffc578268f697471f54435b9effbdac8d45c09c78bc6fea4d16ecb3f",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_cf326d548d65e860",
+        "sha256": "5548fd4d9b02983dd93078144405d5223f363722688276e5e858a7778273a04e",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_ab1315e32def3f09",
+        "sha256": "4b367df105cf7c6345cf3c2baf2caa1db462618b7fff6aa699caca536242ca9b",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_2c4caacbfd1861c9",
+        "sha256": "fee13da38f25f7a7273de1e0a16f65407444f0dd98ea282901eedd1befebe85b",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_07eb1d589fdb3246",
+        "sha256": "97cefe939339d439d29131e53e69c190693623762a9359d2440637cb3afff4c1",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+        "sha256": "bf2d87329a21214b2310bbc104e75bc2bfcb4b28f17912a83842b7e166df9ff2",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_41566c468b59e6ef",
+        "sha256": "6041fdf3ef54ad58ca105c4a5c9c399b9c36a739d6cec85f88d1b31ee16151cb",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_9ade1acf406a60f4",
+        "sha256": "073e7f98ccfee4726278937442f2eed4914bd86830afff1e07a59063378a3e42",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_432058d8d8afea70",
+        "sha256": "6947dff536c7c4795bd50a5710cd1b36687702ec5c07f848b64617fe195687e8",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_b4161db3b478c3b0",
+        "sha256": "62c1de726147aeb2f528f60524413edd4d009428511d93cf7c14911a90d34849",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_224432f1f0f22119",
+        "sha256": "19fe32813c498bbcecb588a8efb8604410a434ea9fa2c9ae3d12b7c77c181dcd",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_086776761e35776a",
+        "sha256": "e13e29957547926c0f16d29dc626a488e7fe7cb8666234e85b68791b031867fe",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_239f7a62eea81d20",
+        "sha256": "32b6669a8221bc20c34e20421aeaeaaa5f4d6467f8407693be9a123556fac2e4",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_7abb935e8438dd7d",
+        "sha256": "240e892b22d2719360b7c26f6b1491474e675fdc3853d21cb05b71b585cf8bf5",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_85e67068f6f6cea9",
+        "sha256": "a65357d5d6966a4b613c25edd733f38aa3739dce190e98297c261329270d0048",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_27caf5fb0adc3011",
+        "sha256": "4f342951a3aff3c45b8044f5c695a0004c69704db03b36d8cb9e26c927b6ff7c",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_0fb4c4b3324b5731",
+        "sha256": "e992b689a7b85f0e3c5fbbfdcf0e331db38e2486fc63eed13a81b435d98bd56d",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_7c935cf7ab6753d7",
+        "sha256": "6c4fd897227aacd8d1ee32fae26f1f92a128bfb7d82977f442e6f5da34285a47",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_fc261442c165097c",
+        "sha256": "1c810d53adb07d8c85aa7763a1ab2010d70d44da8111cc48a963fe5c541a4f11",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_49546ce5fa636cf4",
+        "sha256": "c6fad109563b254aa37b7e045492d09119ab13a36aaf06c0cfb99d7a8004dba3",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+        "sha256": "4dc7b980fbfd31dfc4ee8ad29e581e6103dba09539980f959324f7a39933761a",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_a767fbb332bc8455",
+        "sha256": "cdaf34d5e354f0baae93448235703ae70f4fe873706800883d47e8abbd528352",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_1359504351cb8f43",
+        "sha256": "09c54b34035226eed9ee10d8644ca4ee9f22041ce7eb07bfabea05f212f789cd",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_f47fca4f6dbf05c7",
+        "sha256": "c0fb2b21e6fcd3f1224c570bcc94a2d5ed598c4a1c89817fb18e53d2fd36c5fd",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_ac60132731dc0196",
+        "sha256": "f0e088ab14dbe786e61ce8c69576655df1d47623ed8202067ef78755b4db190a",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_aa3b950a995b8257",
+        "sha256": "f72d272c907177ebd9c8f75779ff8a681737b7dbbdfebc92ae8538b62348cc88",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_f0005b56342a7707",
+        "sha256": "2ba55fc17f485084bceb348ae2cb25f227f4f7bf922c9a76970544cdb9ad8a6d",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_25eab09a0782ae8d",
+        "sha256": "fb76fb468d67a3b4b1fa257b6ca0ed200de64b9470ecb100483268ac5a8561bc",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_00f3831c949d08ca",
+        "sha256": "969cf67122de735f5ca366012dde008c95193fe89be569891aed2d021b84803c",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_0e301af457bba1af",
+        "sha256": "a67f15e865993c8a82f3b7035781d00b73209f65153cc442fd262df464d70bd3",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_bfce16de87d71958",
+        "sha256": "4f9c0433e20c1c2e56d2b5a2511b275f47d5618fbfa0243dc703bdcc965b8a97",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_15f946958e3399f7",
+        "sha256": "a477f3d5d6d299bd45fee3685d60231cf477070a7ca8cf46fcb1a7fc5177ea01",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_78374981bacf8bf6",
+        "sha256": "957a440126438a751684e342d499d5ac7914cdbbdd4f7983da53f0fbec9cc922",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_fb78aec92d6537a8",
+        "sha256": "8015b55bd0cf03d743f3295a59e576f3925e96e0a8da015d042f846c58c0a15e",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_85bab8e2faf8d6ed",
+        "sha256": "9cf8b3cf0e025987646c3d207895272b5a8e0a4e7127487cfe3d9e99fad62d64",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_b45860dd87e4c051",
+        "sha256": "06a81da9c431adeeef72bc19855c2030cc09508e2d9be570471e435f6fdd5ca8",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_eaaf9a756498c26b",
+        "sha256": "acdf4223cc6aa9821c96d4e6df82e6ac95fd64370f77aeeff5f54126a09ccfd5",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_e6e356621225bb2f",
+        "sha256": "27d68982f622742b324edfe5798ae778187d04a8ddd220032e84e7922cfd9cf6",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_03d95d61570bcc54",
+        "sha256": "3d02dbc158abbdbf1b3db0a386641dff4edf5406cae0b119c6074b9fd415bae6",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_20be88cb1cc43c22",
+        "sha256": "e679c2fce9ad44baebc6ef0698c9b2f6404cbb58d99dad7ddc244b8c7ebeed04",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_0d8c3a41f5169f5d",
+        "sha256": "22eab85f961888498a5e5b0bfb8f45556d3fe683b2b622eff6498a07201c5a53",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_e3fef94247133ca1",
+        "sha256": "318641657e1ad107f3aa65ea9d93bf2669738f1fbcaf4021361e4018ef6565e5",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_4bc86be15dbaa7ff",
+        "sha256": "387a18c2eadd2e229133a82a1faa0e439ccac2db0183a618e3e0c6bacbc15f5f",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_5bacf2eac302ee7d",
+        "sha256": "212de365d3934511eb1a5f0afcf29fc30ec908b26f8b63cd93cb1b4d6bbec8b1",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_f832eb2260ac29fa",
+        "sha256": "54f6664563223a3ff0353cc4eca9d8cc64f7f0a5a3391365adfba5bd49f506a3",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_f00dcf10efe8007f",
+        "sha256": "a724248e91890a31097c253c4ccea98c5a679c606fe362b19544d544b5fb3be6",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+        "sha256": "4ae94bbde3f027346d3af5f97af6d3cb1a38027791e56189cccbd50e5fc315b1",
+        "split": "validation",
+        "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_984009cedff7b542",
+        "sha256": "a08f6e28f78c63dfd4b315e2ec8d6d88090c22b8744db73258611f2a15782152",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_3e0b8c2f83c8201d",
+        "sha256": "6584d9236e8094e0b7032ed5513ca0a331835a6589de933a69ceb137a6bceeeb",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_c3ba96e3d6943510",
+        "sha256": "ed5652521a87366505a275fe4a92f998589b27d3a606022583b42d521e67553e",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_bc102423eb376e62",
+        "sha256": "8a91eac346ba2f6388126262ee2bbcb3cdd255ebae7f8fe8b127f7583fd6b55d",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_91615d12a20ebf1e",
+        "sha256": "d826699b9fc1076a0495c072e23f5b5044d7ac32911d8d5f585dec793f29702e",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_7356cd7522e2cd73",
+        "sha256": "4d803e55df36bfef232988eeb652b3861efd9dbb1134c424e6b2659fd9e76773",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_4b84913bf9c70be7",
+        "sha256": "48461e5542756f0c020b647bb26d613b813ab5df3555565d63e583151500d533",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_cee5dfc2ed035ae8",
+        "sha256": "9ae13471d4a1c0f97cb6c774bba3caf2b9131f7ec20945194858e0b3eded4e9a",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_da8b57b3b9f03755",
+        "sha256": "ee46756dabb8cc8eb0408390deda5bf612b3bc4f732d0b7cc350bf1675b14272",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_a0e25cb2146f00b2",
+        "sha256": "c3769f9683189ebc4b056b89001c0daee8d1ee1a4bccb3d9e2a7e49ccdd7d1a0",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc2_frontier_838be093ca785808",
+        "sha256": "916ee3ce86085bf2c546f479f7cc26bcb61bef298d4592549300d1300645cd11",
+        "split": "train",
+        "group": "fbe8ce5d1f56bdfcf9dbc643d4145a19c35c8516a0b96e6a40e1c6dce6660bd5",
+        "max_evaluations": 30
+      },
+      {
+        "id": "song_dacfc_frontier_3ebcc27572452f6d",
+        "sha256": "3b406414ed845cc7e0b5cbb082acd852c60a68aae2c458bdbccfb50b6d60767e",
+        "split": "train",
+        "group": "a691438f3ec50b1e73a4b6a0ec9fe251ca8ad988a27e9c7e7610a745a88eda5d",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_8a0d0a05c45f26f7",
+        "sha256": "7cc0e29404d47d106785605473552c7c42ee6848548b36d5090799c7bd1937af",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_dfcfc1_frontier_6f5c088d71beba39",
+        "sha256": "7490ad8e8a74d535d529542644d85f839981e9c95c24884c4acb2b917671b524",
+        "split": "train",
+        "group": "f3c59f73e1bc9fd626719172178ef9101522cba83d8e96c071b120e1e558249f",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_76c57ab4a4d6ec23",
+        "sha256": "d7b7fe22824d9b859be2903f446ddf5872df77e4cab430d5d18c93abd462bd1e",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_270a26c39a2a29cc",
+        "sha256": "ba4bed6f138be7359faec298ed1dd6c8e72dfa6c9b3c846268b242dc583d504c",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "peng_acbc_frontier_8a811152fc25b94c",
+        "sha256": "dc6e5afca2ee873ce2cd474ad66745fff93525e9f6f56ef3dd06206eb74f10cb",
+        "split": "train",
+        "group": "ccfd9ffd34774818b3f7063c7e2c7928d1ea6c374800ea0045619b38024f13d2",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_4cf1dec6c481c31b",
+        "sha256": "fb9e6494b7658066ca66e758e70e6b4aa7ea078df47bcd70af4c815b0a071413",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "leung_nmcnr_frontier_6c25358d85e529d3",
+        "sha256": "151f32925a80d39de0d89c8f5f7846b3eac80c192537c81ac934e8617184270e",
+        "split": "train",
+        "group": "81ac203e0d4d9f8da554c979c406f96b4f5104a42e8b0253d91bf5cbcd1db502",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_ae27d7b2b0ca2248",
+        "sha256": "625fddb5f6a2e4c922a63d3a615ac7f9d8c8fae4e825dc4c4e4c3ff01106ad12",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_a496b9592b79f50f",
+        "sha256": "f089a74d60108902931ee5191a7846f59f1a0bf8e8e1629002e9597c50453303",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_4efdb6ae369f513f",
+        "sha256": "1068b1a0141657fa0bdc658bc361800086c2306f361a079acb14c58a517dcd00",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_ac75cd5eb128ca54",
+        "sha256": "9da1647e54bf4534481751a0ff26d43aa8d2d5990297fff929bea42233b8b11a",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_953bc1b7963999d0",
+        "sha256": "d0efd71c4978c49ec9e85995823e7c3709990aaab2b207cb1cec6f303edb225a",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_115ee8f9eb511163",
+        "sha256": "64f419ad250589ac44547cc8560f92250e58343dae419b79252c5475b7830b1a",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_ac7892f70234221c",
+        "sha256": "a5d2ad3b222f4f6bcfcca29c9b0cdd444be7476246b135bf72bfa306014c38f1",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_aafebad8a8ba3edb",
+        "sha256": "438b21dcf3f4bc10ff26ee5b40e39f35e3c87f80e68ab93f3f22640e3f678f0b",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      },
+      {
+        "id": "hoilee_affc_frontier_3d3665a1ef7097b8",
+        "sha256": "33a4d296cab69f0261dc5d99ccaa384db64290ce728227d110fe5f13a2eae146",
+        "split": "train",
+        "group": "c283b638ab3419d397f14181bcd5d4e0e51a2ef09a70163253b39d8b74c51ab0",
+        "max_evaluations": 30
+      },
+      {
+        "id": "fan_smc_frontier_3f0d2ee40ba7b566",
+        "sha256": "4da100606b2c75742b852a00d199cceea529bad868a1cff1fb1082990a10a19d",
+        "split": "train",
+        "group": "4dcbf044aa6084373b0421e8f88c7e57888c01d5db4f60921168aff8054872b7",
+        "max_evaluations": 30
+      }
+    ]
+  },
+  "checkpoint_uri": "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_005/train/checkpoints",
+  "selection": {
+    "policy": "first_sorted_ids_within_unchanged_split",
+    "train_ids": [
+      "fan_smc_frontier_115ee8f9eb511163",
+      "fan_smc_frontier_15f946958e3399f7",
+      "fan_smc_frontier_2632445c5339c9e1",
+      "fan_smc_frontier_27caf5fb0adc3011",
+      "fan_smc_frontier_2ebe016aeccad6c0",
+      "fan_smc_frontier_324ac108a39c3e0e",
+      "fan_smc_frontier_3f0d2ee40ba7b566",
+      "fan_smc_frontier_40abceea195c2085",
+      "fan_smc_frontier_46dfbcbf3cc60d70",
+      "fan_smc_frontier_4cf1dec6c481c31b",
+      "fan_smc_frontier_51a12c05b4e6098c",
+      "fan_smc_frontier_5aae9b115175df42",
+      "fan_smc_frontier_5b608aa34bb8db38",
+      "fan_smc_frontier_61e005982459c779",
+      "fan_smc_frontier_6275314c67f123af",
+      "fan_smc_frontier_639d865216e96f29",
+      "fan_smc_frontier_7356cd7522e2cd73",
+      "fan_smc_frontier_8a0d0a05c45f26f7",
+      "fan_smc_frontier_936f9195419339cc",
+      "fan_smc_frontier_9ade1acf406a60f4",
+      "fan_smc_frontier_a496b9592b79f50f",
+      "fan_smc_frontier_aafebad8a8ba3edb",
+      "fan_smc_frontier_ac75cd5eb128ca54",
+      "fan_smc_frontier_c334c11550c01a0b",
+      "fan_smc_frontier_e6e356621225bb2f",
+      "fan_smc_frontier_f0bceac0ab6da33e",
+      "fan_smc_frontier_f47fca4f6dbf05c7",
+      "fan_smc_frontier_f7958f8043414d5e",
+      "fan_smc_frontier_f832eb2260ac29fa",
+      "hoilee_affc_frontier_0364ca437c0d80af",
+      "hoilee_affc_frontier_03db39c78a7196e9",
+      "hoilee_affc_frontier_0d8c3a41f5169f5d",
+      "hoilee_affc_frontier_0fb4c4b3324b5731",
+      "hoilee_affc_frontier_1d4820a15602c5b0",
+      "hoilee_affc_frontier_24ffb60cdb2415f3",
+      "hoilee_affc_frontier_270a26c39a2a29cc",
+      "hoilee_affc_frontier_3d3665a1ef7097b8",
+      "hoilee_affc_frontier_3e0b8c2f83c8201d",
+      "hoilee_affc_frontier_4295c799f97f7065",
+      "hoilee_affc_frontier_4295d67115e44cde",
+      "hoilee_affc_frontier_432058d8d8afea70",
+      "hoilee_affc_frontier_4d924f5d91038734",
+      "hoilee_affc_frontier_4efdb6ae369f513f",
+      "hoilee_affc_frontier_5c8b4921700be3b6",
+      "hoilee_affc_frontier_5e19181204b4f4a9",
+      "hoilee_affc_frontier_72417d81a2ddaa50",
+      "hoilee_affc_frontier_78374981bacf8bf6",
+      "hoilee_affc_frontier_8bd2dda96b9fc74c",
+      "hoilee_affc_frontier_913e4439d07b1bcc",
+      "hoilee_affc_frontier_953bc1b7963999d0",
+      "hoilee_affc_frontier_ac60132731dc0196",
+      "hoilee_affc_frontier_ac7892f70234221c",
+      "hoilee_affc_frontier_ae27d7b2b0ca2248",
+      "hoilee_affc_frontier_b54ef28450790565",
+      "hoilee_affc_frontier_bda62c225ac6ef6b",
+      "hoilee_affc_frontier_da8b57b3b9f03755",
+      "hoilee_affc_frontier_debe99f55db2a8f6",
+      "leung_dfcfc1_frontier_008130e0e5c95f94",
+      "leung_dfcfc1_frontier_03d95d61570bcc54",
+      "leung_dfcfc1_frontier_07eb1d589fdb3246",
+      "leung_dfcfc1_frontier_0e301af457bba1af",
+      "leung_dfcfc1_frontier_34bae7672d0434b4",
+      "leung_dfcfc1_frontier_36d0c4a9bf4dcc15",
+      "leung_dfcfc1_frontier_44f1068084761da7",
+      "leung_dfcfc1_frontier_4b84913bf9c70be7",
+      "leung_dfcfc1_frontier_4cdec3ce470aa464",
+      "leung_dfcfc1_frontier_58b56e0ab40b28f9",
+      "leung_dfcfc1_frontier_664615cd4651fa9b",
+      "leung_dfcfc1_frontier_6f5c088d71beba39",
+      "leung_dfcfc1_frontier_77775e3834718ec4",
+      "leung_dfcfc1_frontier_7abb935e8438dd7d",
+      "leung_dfcfc1_frontier_7e49392317f2cc73",
+      "leung_dfcfc1_frontier_8647adebddde4618",
+      "leung_dfcfc1_frontier_95289ea12858b4dd",
+      "leung_dfcfc1_frontier_9cb18236bef5d780",
+      "leung_dfcfc1_frontier_a4d2767c6bb84f04",
+      "leung_dfcfc1_frontier_a767fbb332bc8455",
+      "leung_dfcfc1_frontier_c61384b724f4f8dc",
+      "leung_dfcfc1_frontier_e6c5644cbe3200d1",
+      "leung_dfcfc1_frontier_f00dcf10efe8007f",
+      "leung_dfcfc2_frontier_0b2eb8a28750e20f",
+      "leung_dfcfc2_frontier_0d67fb66e8fe38b0",
+      "leung_dfcfc2_frontier_0e46ab4eea945ecd",
+      "leung_dfcfc2_frontier_207fa3fbf2b02736",
+      "leung_dfcfc2_frontier_224432f1f0f22119",
+      "leung_dfcfc2_frontier_23be21cfe42e0086",
+      "leung_dfcfc2_frontier_301a8dad7cfb74e7",
+      "leung_dfcfc2_frontier_3529a0b7e9e50d6f",
+      "leung_dfcfc2_frontier_4e280b9dfd71178f",
+      "leung_dfcfc2_frontier_4e72c1531efff576",
+      "leung_dfcfc2_frontier_4ece4c7a4171708e",
+      "leung_dfcfc2_frontier_728d1f705b515a02",
+      "leung_dfcfc2_frontier_838be093ca785808",
+      "leung_dfcfc2_frontier_9cd58741b40a6084",
+      "leung_dfcfc2_frontier_bab220e5e5791893",
+      "leung_dfcfc2_frontier_bc102423eb376e62",
+      "leung_dfcfc2_frontier_c31acde5a2127175",
+      "leung_dfcfc2_frontier_cf326d548d65e860",
+      "leung_dfcfc2_frontier_e3fef94247133ca1",
+      "leung_dfcfc2_frontier_f0005b56342a7707",
+      "leung_dfcfc2_frontier_fa30cae8d0d3b7f2",
+      "leung_dfcfc2_frontier_fb78aec92d6537a8",
+      "leung_dfcfc2_frontier_fc261442c165097c",
+      "leung_nmcnr_frontier_1359504351cb8f43",
+      "leung_nmcnr_frontier_1daefd8596f5107f",
+      "leung_nmcnr_frontier_20be88cb1cc43c22",
+      "leung_nmcnr_frontier_2336f088ae3ad0a3",
+      "leung_nmcnr_frontier_2b4df3da15bf1e35",
+      "leung_nmcnr_frontier_323dedec29e9298a",
+      "leung_nmcnr_frontier_3b018558048c80b8",
+      "leung_nmcnr_frontier_4120ad3d0d0d636b",
+      "leung_nmcnr_frontier_41566c468b59e6ef",
+      "leung_nmcnr_frontier_6c25358d85e529d3",
+      "leung_nmcnr_frontier_76c57ab4a4d6ec23",
+      "leung_nmcnr_frontier_80ddd966dfc5621d",
+      "leung_nmcnr_frontier_856db2050283780a",
+      "leung_nmcnr_frontier_85e67068f6f6cea9",
+      "leung_nmcnr_frontier_8b93fc3d548142e9",
+      "leung_nmcnr_frontier_8ef2937309959cba",
+      "leung_nmcnr_frontier_984009cedff7b542",
+      "leung_nmcnr_frontier_a9731812de055093",
+      "leung_nmcnr_frontier_bfce16de87d71958",
+      "leung_nmcnr_frontier_c32203fde9c6de2c",
+      "leung_nmcnr_frontier_cee5dfc2ed035ae8",
+      "leung_nmcnr_frontier_d3a713ba04cead8e",
+      "leung_nmcnr_frontier_e524fc4396c4d509",
+      "leung_nmcnr_frontier_eace0e1dd4851e26",
+      "peng_acbc_frontier_0c7b6e767b667db0",
+      "peng_acbc_frontier_180d3409f5d6d5cb",
+      "peng_acbc_frontier_1a74a5e033589299",
+      "peng_acbc_frontier_367a80efd788d260",
+      "peng_acbc_frontier_41977d294b2e797a",
+      "peng_acbc_frontier_43719fee6516a285",
+      "peng_acbc_frontier_4d0a584b8cfe10cf",
+      "peng_acbc_frontier_50037b26f91138d9",
+      "peng_acbc_frontier_5bacf2eac302ee7d",
+      "peng_acbc_frontier_7c935cf7ab6753d7",
+      "peng_acbc_frontier_85bab8e2faf8d6ed",
+      "peng_acbc_frontier_89ad540664075201",
+      "peng_acbc_frontier_8a811152fc25b94c",
+      "peng_acbc_frontier_913a04a5d7e6ef9f",
+      "peng_acbc_frontier_a0e25cb2146f00b2",
+      "peng_acbc_frontier_a1ea661bad7489c0",
+      "peng_acbc_frontier_a620b8b985ae69e9",
+      "peng_acbc_frontier_aa3b950a995b8257",
+      "peng_acbc_frontier_ab1315e32def3f09",
+      "peng_acbc_frontier_b4161db3b478c3b0",
+      "peng_acbc_frontier_b473a685adb6e871",
+      "peng_acbc_frontier_c05bc15cad860427",
+      "peng_acbc_frontier_c3ba96e3d6943510",
+      "peng_acbc_frontier_f648d99367d628d1",
+      "song_dacfc_frontier_086776761e35776a",
+      "song_dacfc_frontier_159053c30195e65b",
+      "song_dacfc_frontier_21167db817a8ebfa",
+      "song_dacfc_frontier_25eab09a0782ae8d",
+      "song_dacfc_frontier_2707adfd32089063",
+      "song_dacfc_frontier_2a39212dcb7d2d3e",
+      "song_dacfc_frontier_2c4caacbfd1861c9",
+      "song_dacfc_frontier_3ebcc27572452f6d",
+      "song_dacfc_frontier_4898ddf50c3837dc",
+      "song_dacfc_frontier_49546ce5fa636cf4",
+      "song_dacfc_frontier_4bc86be15dbaa7ff",
+      "song_dacfc_frontier_519a94b31509be3b",
+      "song_dacfc_frontier_7b5de669b6d475c9",
+      "song_dacfc_frontier_91615d12a20ebf1e",
+      "song_dacfc_frontier_9e213d928c7f5169",
+      "song_dacfc_frontier_a4ce34f2c21c8eef",
+      "song_dacfc_frontier_b45860dd87e4c051",
+      "song_dacfc_frontier_bf1a1ac8db2c9b19",
+      "song_dacfc_frontier_c535e64d572c5370",
+      "song_dacfc_frontier_d34985a7c27db076",
+      "song_dacfc_frontier_dda14d5dbe9642dc",
+      "song_dacfc_frontier_e6b44b01172ad0c9",
+      "song_dacfc_frontier_ecce2bdd25386aa6"
+    ],
+    "validation_ids": [
+      "ramos_pfc_frontier_00f3831c949d08ca",
+      "ramos_pfc_frontier_08107b5a4a2972ca",
+      "ramos_pfc_frontier_0ee4a8052c59197d"
+    ],
+    "rollout_ids": [],
+    "validation_catalog_count": 21,
+    "validation_task_limit": 3,
+    "rollout_split": null,
+    "max_tasks": null,
+    "episodes_per_task": null
+  },
+  "requested_model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+  "plan": {
+    "model": "google/gemma-3-1b-it",
+    "algorithm": "LoRA + multi-turn GRPO",
+    "updates": 2,
+    "episodes_per_update": 4,
+    "max_training_episodes": 8,
+    "max_validation_episodes": 12,
+    "max_total_episodes": 20,
+    "max_evaluations_per_episode": 4,
+    "max_training_evaluations": 32,
+    "max_training_simulator_invocations": 64,
+    "validation_rounds": 1,
+    "validation_task_limit": 3,
+    "selected_validation_task_count": 3,
+    "max_validation_evaluations": 48,
+    "max_total_evaluations": 80,
+    "note": "Validation includes step zero. A configured validation limit is an upper bound until the catalog is loaded. Baseline/rollout runs are separate. No weights downloaded or compute created by plan mode."
+  },
+  "restore": null,
+  "research_pilot": true,
+  "pilot_manifest_sha256": "f00dc0236c7f430fcbe1e5ec2609d0fbefed405483d48291654142ed0c66b2d2",
+  "independent_expert_review": "pending",
+  "qualified_training_approved": false,
+  "pilot_limits": {
+    "max_episodes": 20,
+    "max_evaluations_per_episode": 4,
+    "max_total_evaluations": 80
+  },
+  "pilot_expires_utc": "2026-09-17T04:13:39.290332+00:00",
+  "authorization": {
+    "authorized_by": "Experiment owner (current user in this conversation)",
+    "authorized_utc": "2026-09-17T00:15:17.341554+00:00",
+    "basis": "User explicitly accepted the proposed two-update diagnostic pilot: \"okay, let's do that, also please save the trajectories so that I can look later and what can be done better\". Scope: existing TPU, two optimizer updates, at most 20 training/validation episodes and 80 evaluations, independent expert review pending; no qualified training approval. Retry after ndarray task-ID adapter failure, with verified zero prior episodes/evaluations; same user-authorized total budget and expiry."
+  }
+}

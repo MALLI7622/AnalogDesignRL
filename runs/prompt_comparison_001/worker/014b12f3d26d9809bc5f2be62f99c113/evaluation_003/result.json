@@ -1,0 +1,17 @@
+{
+  "task_id": "ramos_pfc_frontier_98973731138367c8",
+  "status": "failed",
+  "success": false,
+  "reward": -1.0,
+  "metrics": {},
+  "checks": {},
+  "simulator_invocations": 0,
+  "timestamp_utc": "2026-09-17T03:31:52.474958+00:00",
+  "task_sha256": "8fc95364c7f96c60698ba567dc0f6ce23ba68872737af22d838d0858b2ab0660",
+  "host": "Linux-6.5.0-1013-gcp-x86_64-with-glibc2.35",
+  "python_version": "3.12.14",
+  "commands": [],
+  "warnings": [],
+  "error": "Parameter is not editable: CAPACATOR_0",
+  "elapsed_s": 0.0003109909994236659
+}

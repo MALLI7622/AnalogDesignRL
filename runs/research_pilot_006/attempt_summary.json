@@ -1,0 +1,87 @@
+{
+  "status": "failed_first_gradient_update_out_of_memory",
+  "optimizer_updates": 0,
+  "trained_checkpoint_verified": false,
+  "checkpoint_note": "Only step-zero checkpoint exists; not a trained model.",
+  "error": "jit__train_step requires 34.64 GiB HLO temporary memory; 15.75 GiB available per device.",
+  "episodes": 12,
+  "evaluations": 48,
+  "simulator_invocations": 90,
+  "successful_evaluations": 0,
+  "tunix_trajectory_statuses": [
+    {
+      "status": "SUCCEEDED",
+      "reward": -1.0,
+      "tokens": 2303,
+      "trainable_tokens": 416
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.05821688411040808,
+      "tokens": 2303,
+      "trainable_tokens": 416
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.05821688411040808,
+      "tokens": 2303,
+      "trainable_tokens": 416
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.05821688411040808,
+      "tokens": 2303,
+      "trainable_tokens": 416
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.011120155256065113,
+      "tokens": 2377,
+      "trainable_tokens": 424
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.011120155256065113,
+      "tokens": 2377,
+      "trainable_tokens": 424
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.011120155256065113,
+      "tokens": 2377,
+      "trainable_tokens": 424
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.011120155256065113,
+      "tokens": 2377,
+      "trainable_tokens": 424
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -1.0,
+      "tokens": 2387,
+      "trainable_tokens": 428
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -1.0,
+      "tokens": 2387,
+      "trainable_tokens": 428
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.056810114397376696,
+      "tokens": 2387,
+      "trainable_tokens": 428
+    },
+    {
+      "status": "SUCCEEDED",
+      "reward": -0.056810114397376696,
+      "tokens": 2387,
+      "trainable_tokens": 428
+    }
+  ],
+  "note": "Tunix SUCCEEDED means episode collection completed, not that the circuit satisfied its constraints.",
+  "regression_tests_passed": 54
+}

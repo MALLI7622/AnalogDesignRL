@@ -1,0 +1,149 @@
+{
+  "id": "ramos_pfc_frontier_f171bdefb113edc2",
+  "purpose": "Size the Ramos_PFC_Pin_3 amplifier using the permitted parameters. Meet all eight fixed nominal DC, AC, and transient requirements within 30 evaluations. The joint requirements are project-defined for this released circuit adaptation.",
+  "circuit_directory": "circuits/benchmark_ramos_pfc_pin_3",
+  "subcircuit": "ramos_pfc_pin_3",
+  "conditions": {
+    "corner": "tt",
+    "supply_v": 1.8,
+    "temperature_c": 27,
+    "common_mode_v": 0.4,
+    "load_f": 1e-10
+  },
+  "initial_parameters": {
+    "CAPACITOR_0": 5.274e-11,
+    "CAPACITOR_1": 6.667e-11,
+    "CURRENT_0_BIAS": 2.876e-05,
+    "MOSFET_10_1_M_gm2_PMOS": 56,
+    "MOSFET_23_1_M_gm3_NMOS": 194,
+    "MOSFET_8_2_M_gm1_PMOS": 89
+  },
+  "parameters": {
+    "CAPACITOR_0": {
+      "min": 1.575e-11,
+      "max": 2.52e-10,
+      "unit": "F",
+      "sampling_scale": "log",
+      "role": "compensation capacitance"
+    },
+    "CAPACITOR_1": {
+      "min": 6.25e-12,
+      "max": 1e-10,
+      "unit": "F",
+      "sampling_scale": "log",
+      "role": "compensation capacitance"
+    },
+    "CURRENT_0_BIAS": {
+      "min": 6e-06,
+      "max": 9.6e-05,
+      "unit": "A",
+      "sampling_scale": "log",
+      "role": "bias reference current"
+    },
+    "MOSFET_10_1_M_gm2_PMOS": {
+      "min": 21,
+      "max": 324,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm2 stage transistor multiplicity",
+      "integer": true
+    },
+    "MOSFET_23_1_M_gm3_NMOS": {
+      "min": 51,
+      "max": 512,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm3 stage transistor multiplicity",
+      "integer": true
+    },
+    "MOSFET_8_2_M_gm1_PMOS": {
+      "min": 37,
+      "max": 512,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm1 stage transistor multiplicity",
+      "integer": true
+    }
+  },
+  "ac": {
+    "points_per_decade": 100,
+    "start_hz": 0.1,
+    "stop_hz": 1000000000.0
+  },
+  "transient": {
+    "low_v": 0.4,
+    "high_v": 0.6000000000000001,
+    "rise_start_s": 5e-06,
+    "edge_s": 1e-08,
+    "high_duration_s": 2e-05,
+    "period_s": 6e-05,
+    "stop_s": 5e-05,
+    "max_step_s": 5e-09,
+    "settling_tolerance_v": 0.02,
+    "minimum_hold_s": 2e-06
+  },
+  "constraints": {
+    "gain_db": {
+      "min": 134
+    },
+    "unity_gain_hz": {
+      "min": 1200000.0
+    },
+    "phase_margin_deg": {
+      "min": 67
+    },
+    "power_w": {
+      "max": 0.00068
+    },
+    "dc_error_v": {
+      "max": 0.00012
+    },
+    "max_tracking_error_v": {
+      "max": 0.00015000000000000001
+    },
+    "settling_rise_s": {
+      "max": 4.7e-07
+    },
+    "settling_fall_s": {
+      "max": 4.7e-07
+    }
+  },
+  "max_evaluations": 30,
+  "design_context": {
+    "topology": "Ramos_PFC_Pin_3",
+    "topology_family": "ramos_positive_feedback",
+    "paper": {
+      "title": "Three Stage Amplifier With Positive Feedback Compensation Scheme",
+      "authors": [
+        "Joao Ramos",
+        "Michiel Steyaert"
+      ],
+      "year": 2002,
+      "doi": "10.1109/CICC.2002.1012833",
+      "source_url": "https://www.scribd.com/document/241079749/01012833-Technical-paper"
+    },
+    "circuit_description": "Outer CAPACITOR_0 between net050 and VOUT; CAPACITOR_1 between net050 and net049 creates local positive-feedback compensation. Do not infer monotone stability from increasing every capacitor.",
+    "netlist": ".subckt ramos_pfc_pin_3 gnda vdda vinn vinp vout\nxm11 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gmf1_PMOS' w='MOSFET_11_1_W_gmf1_PMOS*1' m='MOSFET_11_1_M_gmf1_PMOS'\nxm7 net049 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_10_1_L_gm2_PMOS' w='MOSFET_10_1_W_gm2_PMOS*1' m='MOSFET_10_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm9 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm8 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_8_2_L_gm1_PMOS' w='MOSFET_8_2_W_gm1_PMOS*1' m='MOSFET_8_2_M_gm1_PMOS'\nxm4 net31 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='4*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm23 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_23_1_L_gm3_NMOS' w='MOSFET_23_1_W_gm3_NMOS*1' m='MOSFET_23_1_M_gm3_NMOS'\nxm22 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm21 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_21_2_L_LOAD2_NMOS' w='MOSFET_21_2_W_LOAD2_NMOS*1' m='MOSFET_21_2_M_LOAD2_NMOS'\nxm19 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm15 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm20 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*8'\nxm16 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm17 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm14 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS'\nxm12 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm13 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nI0 net1 GNDA 'CURRENT_0_BIAS'\nC0 net050 VOUT 'CAPACITOR_0'\nC1 net050 net049 'CAPACITOR_1'\n.ends Ramos_PFC_Pin_3\n",
+    "fixed_parameters": {
+      "MOSFET_11_1_L_gmf1_PMOS": 1.0,
+      "MOSFET_11_1_M_gmf1_PMOS": 400.0,
+      "MOSFET_11_1_W_gmf1_PMOS": 1.0,
+      "MOSFET_10_1_L_gm2_PMOS": 1.0,
+      "MOSFET_10_1_W_gm2_PMOS": 1.0,
+      "MOSFET_23_1_L_gm3_NMOS": 1.0,
+      "MOSFET_23_1_W_gm3_NMOS": 1.0,
+      "MOSFET_8_2_L_gm1_PMOS": 1.0,
+      "MOSFET_8_2_W_gm1_PMOS": 1.0,
+      "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+      "MOSFET_0_8_M_BIASCM_PMOS": 71.0,
+      "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+      "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+      "MOSFET_17_7_M_BIASCM_NMOS": 20.0,
+      "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+      "MOSFET_21_2_L_LOAD2_NMOS": 1.0,
+      "MOSFET_21_2_M_LOAD2_NMOS": 1.0,
+      "MOSFET_21_2_W_LOAD2_NMOS": 1.0
+    },
+    "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+  }
+}

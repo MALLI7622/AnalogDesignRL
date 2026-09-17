@@ -1,0 +1,27 @@
+E0917 00:20:29.819160  207553 hugepage_text.cc:344] RAW: File offset incorrectly aligned for file-backed THP: (600000 & ~ffffffffffe00000) = 0 != 1000 = (201000 & ~ffffffffffe00000)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 284.20it/s]
+/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/qwix/_src/providers/lora.py:44: UserWarning: rngs must be provided for NNX models to initialize LoRA weights. Please specify rngs=nnx.Rngs(...) in apply_lora_to_model.
+  warnings.warn(
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 507, in <module>
+    main()
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 483, in main
+    learner.train(batches(train_tasks, config["max_updates"], config["seed"]), eval_dataset=validation)
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 921, in train
+    self.rl_cluster.update_actor(
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/rl_cluster.py", line 855, in update_actor
+    self.actor_trainer.train(train_ds, eval_ds, skip_jit)
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/sft/peft_trainer.py", line 707, in train
+    train_loss, aux, grad_norm = train_step(train_example)
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/flax/nnx/graphlib.py", line 1693, in cache_args_wrapper
+    return f(*cached_args, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/flax/nnx/transforms/compilation.py", line 1023, in __call__
+    pure_args_out, pure_kwargs_out, pure_out = self.jitted_fn(
+                                               ^^^^^^^^^^^^^^^
+jax.errors.JaxRuntimeError: RESOURCE_EXHAUSTED: Ran out of memory on HBM, the total memory required for HLO temporaries (34.64G) exceeds available HBM (15.75G). HLO module: jit__train_step.
+--------------------
+For simplicity, JAX has removed its internal frames from the traceback of the following exception. Set JAX_TRACEBACK_FILTERING=off to include these.

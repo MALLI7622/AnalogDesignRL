@@ -1,0 +1,15 @@
+{
+  "status": "completed_training_and_matched_evaluation",
+  "optimizer_updates": 2,
+  "checkpoint_verified": true,
+  "training_episodes": 16,
+  "training_evaluations": 64,
+  "comparison_episodes": 16,
+  "comparison_evaluations": 64,
+  "pre_run_regression_tests_passed": 49,
+  "post_run_guard_regression_tests_passed": 35,
+  "processes_stopped": true,
+  "external_backup": false,
+  "tpu_termination_utc": "2026-09-17T06:53:09Z",
+  "post_run_change": "Added fail-closed guard for empty completion masks; all 16 collected pilot trajectories had nonempty masks. Executed source remains in source_snapshot."
+}

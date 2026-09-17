@@ -1,0 +1,233 @@
+E0917 00:13:54.226835  184735 hugepage_text.cc:344] RAW: File offset incorrectly aligned for file-backed THP: (600000 & ~ffffffffffe00000) = 0 != 1000 = (201000 & ~ffffffffffe00000)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 2113.27it/s]
+/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/qwix/_src/providers/lora.py:44: UserWarning: rngs must be provided for NNX models to initialize LoRA weights. Please specify rngs=nnx.Rngs(...) in apply_lora_to_model.
+  warnings.warn(
+ERROR:absl:Producer task failed: Object of type ndarray is not JSON serializable
+ERROR:absl:Error yielding batches: Object of type ndarray is not JSON serializable
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 504, in <module>
+    main()
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 480, in main
+    learner.train(batches(train_tasks, config["max_updates"], config["seed"]), eval_dataset=validation)
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 1076, in train
+    _ = producer_future.result()
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 652, in _producer
+    async for batch in self._orchestrator_producer(
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 561, in _orchestrator_producer
+    async for group in stream:
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 359, in yield_batches
+    batch = await self._group_queue_manager.get_batch(batch_size)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/queue_manager/group_queue_manager.py", line 133, in get_batch
+    group = await self._get_one_ready_group()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/queue_manager/group_queue_manager.py", line 105, in _get_one_ready_group
+    raise self._exc
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 311, in run_producers_from_stream
+    task.result()  # This will re-raise any exception in the task.
+    ^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 166, in _runner
+    episode_count = await self._run_and_queue_one_episode(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 118, in _run_and_queue_one_episode
+    traj = await self._collect_trajectory(agent, env, mode=collect_mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 104, in _collect_trajectory
+    return await engine.collect(mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 207, in collect
+    await self._reset()
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 414, in _reset
+    (obs, _), wall_time, cpu_time = await self._run_with_timing(self.env.reset)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 185, in _run_with_timing
+    result, cpu_delta = await fut
+                        ^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 174, in _clocked_wrapper
+    res = func(*args)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/environments/base_environment.py", line 301, in reset
+    obs = self._initial_observation()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/tunix_env.py", line 18, in _initial_observation
+    return {"question": action_prompt(self.remote.reset())}
+                                      ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 101, in reset
+    result = self.client.request("/episodes", {"task_id": self.task_id})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 45, in request
+    data = None if payload is None else json.dumps(payload, allow_nan=False).encode()
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ndarray is not JSON serializable
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-6' coro=<RolloutOrchestrator._runner() done, defined at /home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py:131> exception=TypeError('Object of type ndarray is not JSON serializable')>
+Traceback (most recent call last):
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 166, in _runner
+    episode_count = await self._run_and_queue_one_episode(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 118, in _run_and_queue_one_episode
+    traj = await self._collect_trajectory(agent, env, mode=collect_mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 104, in _collect_trajectory
+    return await engine.collect(mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 207, in collect
+    await self._reset()
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 414, in _reset
+    (obs, _), wall_time, cpu_time = await self._run_with_timing(self.env.reset)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 185, in _run_with_timing
+    result, cpu_delta = await fut
+                        ^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 174, in _clocked_wrapper
+    res = func(*args)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/environments/base_environment.py", line 301, in reset
+    obs = self._initial_observation()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/tunix_env.py", line 18, in _initial_observation
+    return {"question": action_prompt(self.remote.reset())}
+                                      ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 101, in reset
+    result = self.client.request("/episodes", {"task_id": self.task_id})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 45, in request
+    data = None if payload is None else json.dumps(payload, allow_nan=False).encode()
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ndarray is not JSON serializable
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-5' coro=<RolloutOrchestrator._runner() done, defined at /home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py:131> exception=TypeError('Object of type ndarray is not JSON serializable')>
+Traceback (most recent call last):
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 166, in _runner
+    episode_count = await self._run_and_queue_one_episode(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 118, in _run_and_queue_one_episode
+    traj = await self._collect_trajectory(agent, env, mode=collect_mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 104, in _collect_trajectory
+    return await engine.collect(mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 207, in collect
+    await self._reset()
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 414, in _reset
+    (obs, _), wall_time, cpu_time = await self._run_with_timing(self.env.reset)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 185, in _run_with_timing
+    result, cpu_delta = await fut
+                        ^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 174, in _clocked_wrapper
+    res = func(*args)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/environments/base_environment.py", line 301, in reset
+    obs = self._initial_observation()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/tunix_env.py", line 18, in _initial_observation
+    return {"question": action_prompt(self.remote.reset())}
+                                      ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 101, in reset
+    result = self.client.request("/episodes", {"task_id": self.task_id})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 45, in request
+    data = None if payload is None else json.dumps(payload, allow_nan=False).encode()
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ndarray is not JSON serializable
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='Task-4' coro=<RolloutOrchestrator._runner() done, defined at /home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py:131> exception=TypeError('Object of type ndarray is not JSON serializable')>
+Traceback (most recent call last):
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 166, in _runner
+    episode_count = await self._run_and_queue_one_episode(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 118, in _run_and_queue_one_episode
+    traj = await self._collect_trajectory(agent, env, mode=collect_mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/pipeline/rollout_orchestrator.py", line 104, in _collect_trajectory
+    return await engine.collect(mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 207, in collect
+    await self._reset()
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 414, in _reset
+    (obs, _), wall_time, cpu_time = await self._run_with_timing(self.env.reset)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 185, in _run_with_timing
+    result, cpu_delta = await fut
+                        ^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/trajectory/trajectory_collect_engine.py", line 174, in _clocked_wrapper
+    res = func(*args)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/environments/base_environment.py", line 301, in reset
+    obs = self._initial_observation()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/tunix_env.py", line 18, in _initial_observation
+    return {"question": action_prompt(self.remote.reset())}
+                                      ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 101, in reset
+    result = self.client.request("/episodes", {"task_id": self.task_id})
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/training/client.py", line 45, in request
+    data = None if payload is None else json.dumps(payload, allow_nan=False).encode()
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type ndarray is not JSON serializable

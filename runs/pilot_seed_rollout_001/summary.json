@@ -1,0 +1,29 @@
+{
+  "status": "completed",
+  "scope": "Four independent evaluation-mode episodes on one training task; no GRPO update",
+  "episodes": 4,
+  "actions": 16,
+  "seed_calls": 16,
+  "distinct_seeds": 16,
+  "simulated_actions": 15,
+  "invalid_actions": 1,
+  "simulator_invocations": 30,
+  "successful_episodes": 0,
+  "final_episode_rewards": {
+    "1": -1.0,
+    "2": -0.14261667586214727,
+    "3": -0.14261667586214727,
+    "4": -0.14261667586214727
+  },
+  "distinct_simulated_parameter_vectors": 1,
+  "finding": "Seed assignment varies correctly. All simulated actions repeat the start. Reward variation is solely an invalid parameter-name typo; useful sizing exploration not demonstrated.",
+  "optimizer_updates": 0,
+  "regression_tests_passed": 49,
+  "inputs_sha256": {
+    "training/train.py": "991adb336698d4ddf1a2409d31b9b2b59cf9bf45c26b49704a741fa417ecacdd",
+    "training/client.py": "5b8369c5c40fdccfe5051c417b457106463b1e46011e803102be7835cc6d44ec",
+    "training/tunix_env.py": "8b77c4b0de03370a8bab242628fa3cc09da6c15b2050058944e6e376a733b93a",
+    "training/configs/gemma3_1b_pilot.json": "a0a909adad174d442f5a55a8bdf789b6c23a856465de2b8e20a7edfbfa318bf6"
+  },
+  "identical_initial_prompts_verified": true
+}

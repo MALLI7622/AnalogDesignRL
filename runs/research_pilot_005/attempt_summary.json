@@ -1,0 +1,8 @@
+{
+  "status": "failed_before_optimizer",
+  "optimizer_updates": 0,
+  "episodes_reserved": 4,
+  "evaluations_reserved": 12,
+  "reason": "GRPO reward processing raised KeyError: prompts; all four trajectories also hit the 2048-token trajectory limit after three actions.",
+  "retained_for_diagnosis": true
+}

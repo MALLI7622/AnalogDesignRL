@@ -1,0 +1,235 @@
+{
+  "created_utc": "2026-09-17T03:20:21.264245+00:00",
+  "status": "prepared",
+  "checkpoint": "runs/research_pilot_007/train/checkpoints",
+  "source_run": "runs/research_pilot_007/train/run.json",
+  "split": "validation",
+  "tasks": [
+    {
+      "difficulty": "easy",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_00f3831c949d08ca",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_00f3831c949d08ca.json",
+      "sha256": "969cf67122de735f5ca366012dde008c95193fe89be569891aed2d021b84803c",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_08107b5a4a2972ca.json",
+      "sha256": "b76c97cad8db6c30f20ad86d19359abe3b2e873220f80eead0128c43bca51546",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "hard",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_0ee4a8052c59197d",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_0ee4a8052c59197d.json",
+      "sha256": "b9195801b5c691ae251573174e8410c183fda30ad0114069ca0e69ee63e023f6",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "hard",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_19ec2769099c9a77",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_19ec2769099c9a77.json",
+      "sha256": "f579a2b95bbc6bb50182a8c82a2d2ae829fd493fc8f69bb1cbdbec658aa27f49",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "easy",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_239f7a62eea81d20",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_239f7a62eea81d20.json",
+      "sha256": "32b6669a8221bc20c34e20421aeaeaaa5f4d6467f8407693be9a123556fac2e4",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_46c49195794677cb",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_46c49195794677cb.json",
+      "sha256": "89e12546fc2529b924ffdcd7d3235addd628a10165100c8608d0e84a40da035d",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "hard",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_492ce020af44c02a",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_492ce020af44c02a.json",
+      "sha256": "b5c00775fc11ee12e28dfc6a86e2832f801930a68a4ded017e071165d865f45a",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_6bcc6522002a4848",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_6bcc6522002a4848.json",
+      "sha256": "94d1966df35ad47f5d857ddde922a4c8bfe0edf100ac4ae8a5c52511587c14a2",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_6cfd52a096b5dd0c.json",
+      "sha256": "ee2c4ceee73eb64591388e43f4b5b05967ca505c3774c42ad47f43b69d9eda48",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "easy",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_729ee4d6d6c84ae8.json",
+      "sha256": "4ae94bbde3f027346d3af5f97af6d3cb1a38027791e56189cccbd50e5fc315b1",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_748c38a9d53bee07",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_748c38a9d53bee07.json",
+      "sha256": "059c0ea8a4cc8d0977e00c0ea7e0f20bc4cc011a30daac98972f97f4240b66af",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_7c40fc00c4494453",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_7c40fc00c4494453.json",
+      "sha256": "f5debbc94b2a14442f5e7ba600d0d973ab1f98c595df83201fbf448084595e29",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_8d5ef31872812e70",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_8d5ef31872812e70.json",
+      "sha256": "1a1af76b1fdfacc2378cca67e7e9228b8ce8f4c72bef38a96fd7e55974bb2362",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_98973731138367c8",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_98973731138367c8.json",
+      "sha256": "8fc95364c7f96c60698ba567dc0f6ce23ba68872737af22d838d0858b2ab0660",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_b5846ee2c7a6d612.json",
+      "sha256": "76965822ce8205bdf1efb34540ca27b2da7f0703b50d525fd13b715c92026233",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_d83b64dea527a91a",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_d83b64dea527a91a.json",
+      "sha256": "65dec11dd1acf3f8ea8044388ceefc7772fc3166c048eb5a515f315c092de9e6",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "easy",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_eaaf9a756498c26b",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_eaaf9a756498c26b.json",
+      "sha256": "acdf4223cc6aa9821c96d4e6df82e6ac95fd64370f77aeeff5f54126a09ccfd5",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_f171bdefb113edc2",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_f171bdefb113edc2.json",
+      "sha256": "d26bec4d3884bd1a5bdc8eb03d0e05ae65753aff575aab7854d7764c5c4573dd",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "easy",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_f5bfd5c4809b7919.json",
+      "sha256": "4dc7b980fbfd31dfc4ee8ad29e581e6103dba09539980f959324f7a39933761a",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "easy",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_f7e8fe21edc3b690.json",
+      "sha256": "bf2d87329a21214b2310bbc104e75bc2bfcb4b28f17912a83842b7e166df9ff2",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    },
+    {
+      "difficulty": "medium",
+      "group": "a904e94ae506839476126e8fb83c8b91a82daa37ab18f775880e698da226a8a6",
+      "id": "ramos_pfc_frontier_fe98b9cec3124b96",
+      "path": "datasets/analog_benchmark_250_v1/tasks/ramos_pfc_frontier_fe98b9cec3124b96.json",
+      "sha256": "b4ec7e2a9c577373adc5d18b46a5dcffc4050e11629b0af92ac58472ae6e9b3a",
+      "split": "validation",
+      "topology": "Ramos_PFC_Pin_3",
+      "topology_family": "ramos_positive_feedback"
+    }
+  ],
+  "episodes_per_task_per_arm": 4,
+  "max_attempts_per_episode": 4,
+  "arms": [
+    "current",
+    "exploration_v1"
+  ],
+  "max_episodes": 168,
+  "max_evaluations": 672,
+  "seed_policy": "paired_episode_v1",
+  "primary_metrics": [
+    "solved episodes",
+    "valid actions changing starting parameters",
+    "mean final reward",
+    "within-task reward variation"
+  ],
+  "limitations": "All 21 validation tasks are Ramos PFC; this is prompt tuning on validation, not a final held-out test. Same trained checkpoint in both arms. No optimizer updates."
+}

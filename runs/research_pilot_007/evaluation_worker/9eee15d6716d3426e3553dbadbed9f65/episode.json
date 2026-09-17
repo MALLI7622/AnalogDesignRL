@@ -1,0 +1,138 @@
+{
+  "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+  "max_evaluations": 30,
+  "evaluations_used": 4,
+  "simulator_invocations": 0,
+  "success": false,
+  "done": false,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": {
+        "CAPACTOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "run_directory": "evaluation_001",
+      "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.0003234710002288921,
+      "parameters": {
+        "CAPACITOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "evaluations_remaining": 29,
+      "terminated": false,
+      "truncated": false,
+      "error": "Parameter is not editable: CAPACTOR_0"
+    },
+    {
+      "evaluation": 2,
+      "action": {
+        "CAPACTOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "run_directory": "evaluation_002",
+      "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.00032158000067283865,
+      "parameters": {
+        "CAPACITOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "evaluations_remaining": 28,
+      "terminated": false,
+      "truncated": false,
+      "error": "Parameter is not editable: CAPACTOR_0"
+    },
+    {
+      "evaluation": 3,
+      "action": {
+        "CAPACTOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "run_directory": "evaluation_003",
+      "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.0003586799994081957,
+      "parameters": {
+        "CAPACITOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "evaluations_remaining": 27,
+      "terminated": false,
+      "truncated": false,
+      "error": "Parameter is not editable: CAPACTOR_0"
+    },
+    {
+      "evaluation": 4,
+      "action": {
+        "CAPACTOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "run_directory": "evaluation_004",
+      "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.0003218300007574726,
+      "parameters": {
+        "CAPACITOR_0": 2.546e-11,
+        "CAPACITOR_1": 1.231e-11,
+        "CURRENT_0_BIAS": 1.077e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 31,
+        "MOSFET_23_1_M_gm3_NMOS": 181,
+        "MOSFET_8_2_M_gm1_PMOS": 83
+      },
+      "evaluations_remaining": 26,
+      "terminated": false,
+      "truncated": false,
+      "error": "Parameter is not editable: CAPACTOR_0"
+    }
+  ]
+}

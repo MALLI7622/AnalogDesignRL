@@ -1,0 +1,23 @@
+{
+  "status": "completed",
+  "scope": "One untrained training-partition task; formatting and simulator integration only",
+  "attempts": 4,
+  "valid_json_actions": 4,
+  "simulator_invocations": 8,
+  "success": false,
+  "rewards": [
+    -0.14261667586214727,
+    -0.14261667586214727,
+    -0.14261667586214727,
+    -0.14261667586214727
+  ],
+  "distinct_actions": 1,
+  "optimizer_updates": 0,
+  "regression_tests_passed": 44,
+  "inputs_sha256": {
+    "training/client.py": "5b8369c5c40fdccfe5051c417b457106463b1e46011e803102be7835cc6d44ec",
+    "training/train.py": "497ff46435ca9448af72b09432379ae6bdac11c167fcfd7083f44d5214677c65",
+    "training/tunix_env.py": "8b77c4b0de03370a8bab242628fa3cc09da6c15b2050058944e6e376a733b93a",
+    "training/configs/gemma3_1b_pilot.json": "a0a909adad174d442f5a55a8bdf789b6c23a856465de2b8e20a7edfbfa318bf6"
+  }
+}

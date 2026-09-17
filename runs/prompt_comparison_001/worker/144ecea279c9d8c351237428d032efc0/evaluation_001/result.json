@@ -1,0 +1,17 @@
+{
+  "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+  "status": "failed",
+  "success": false,
+  "reward": -1.0,
+  "metrics": {},
+  "checks": {},
+  "simulator_invocations": 0,
+  "timestamp_utc": "2026-09-17T03:37:10.453399+00:00",
+  "task_sha256": "b76c97cad8db6c30f20ad86d19359abe3b2e873220f80eead0128c43bca51546",
+  "host": "Linux-6.5.0-1013-gcp-x86_64-with-glibc2.35",
+  "python_version": "3.12.14",
+  "commands": [],
+  "warnings": [],
+  "error": "An action must be a JSON object of parameter values.",
+  "elapsed_s": 0.00031865100027062
+}

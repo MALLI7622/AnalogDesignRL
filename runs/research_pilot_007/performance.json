@@ -1,0 +1,143 @@
+{
+  "baseline": {
+    "episodes": 8,
+    "evaluations": 32,
+    "solved": 0,
+    "mean_final_reward": -0.2754738511200407,
+    "changed_parameter_actions": 0,
+    "action_statuses": {
+      "ok": 25,
+      "failed": 7
+    },
+    "task_ids": [
+      "ramos_pfc_frontier_00f3831c949d08ca",
+      "ramos_pfc_frontier_08107b5a4a2972ca"
+    ],
+    "per_task": {
+      "ramos_pfc_frontier_00f3831c949d08ca": {
+        "solved": 0,
+        "mean_final_reward": -0.25834011644204885
+      },
+      "ramos_pfc_frontier_08107b5a4a2972ca": {
+        "solved": 0,
+        "mean_final_reward": -0.29260758579803253
+      }
+    },
+    "restore": null
+  },
+  "trained": {
+    "episodes": 8,
+    "evaluations": 32,
+    "solved": 0,
+    "mean_final_reward": -0.15757511541971275,
+    "changed_parameter_actions": 0,
+    "action_statuses": {
+      "ok": 30,
+      "failed": 2
+    },
+    "task_ids": [
+      "ramos_pfc_frontier_00f3831c949d08ca",
+      "ramos_pfc_frontier_08107b5a4a2972ca"
+    ],
+    "per_task": {
+      "ramos_pfc_frontier_00f3831c949d08ca": {
+        "solved": 0,
+        "mean_final_reward": -0.25834011644204885
+      },
+      "ramos_pfc_frontier_08107b5a4a2972ca": {
+        "solved": 0,
+        "mean_final_reward": -0.056810114397376696
+      }
+    },
+    "restore": {
+      "checkpoint_root": "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/train/checkpoints",
+      "source_run": "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/train/run.json",
+      "source_run_sha256": "3acd915c1f9b3998b9dd512af6e947a3411a37a4f97b3b2d21dacb90b4179c78",
+      "source_mode": "research-pilot",
+      "model_id": "google/gemma-3-1b-it",
+      "model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+      "lora_config_sha256": "2090398626cdffc907c0846e16cbfa60bc5355da37bd293601252a16d3cbc125",
+      "source_result_path": "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/train/training_result.json",
+      "source_result_sha256": "565a8cecbda00da124483b6496bb51aa0e7faa0adc7e6303051026af34fcb5f9",
+      "checkpoint_step": 2,
+      "global_step": 2,
+      "adapter_sha256": "fe2db0a64fd5fdaa592ebbd5b4ac213d1f52d2e664353cd21225c36a2f603fe5",
+      "final_adapter_hash_verified": true
+    }
+  },
+  "training": {
+    "optimizer_steps": 2,
+    "checkpoint_step": 2,
+    "initial_adapter_sha256": "173650868a87bcbc7defd632ac672cefa6fb19acf7af41f28306659efc313bcd",
+    "final_adapter_sha256": "fe2db0a64fd5fdaa592ebbd5b4ac213d1f52d2e664353cd21225c36a2f603fe5",
+    "device_memory": [
+      {
+        "num_allocs": 2312,
+        "bytes_in_use": 3631489536,
+        "peak_bytes_in_use": 7488949248,
+        "largest_alloc_size": 566022144,
+        "bytes_limit": 16909334528,
+        "bytes_reserved": 12200558592,
+        "peak_bytes_reserved": 12200558592,
+        "bytes_reservable_limit": 14690310144,
+        "largest_free_block_bytes": 522878976
+      },
+      {
+        "num_allocs": 2225,
+        "bytes_in_use": 3628609536,
+        "peak_bytes_in_use": 7482397696,
+        "largest_alloc_size": 566022144,
+        "bytes_limit": 16909334528,
+        "bytes_reserved": 12200558592,
+        "peak_bytes_reserved": 12200558592,
+        "bytes_reservable_limit": 14692295168,
+        "largest_free_block_bytes": 522878976
+      },
+      {
+        "num_allocs": 2225,
+        "bytes_in_use": 3628609536,
+        "peak_bytes_in_use": 7482397696,
+        "largest_alloc_size": 566022144,
+        "bytes_limit": 16909334528,
+        "bytes_reserved": 12200558592,
+        "peak_bytes_reserved": 12200558592,
+        "bytes_reservable_limit": 14692295168,
+        "largest_free_block_bytes": 522878976
+      },
+      {
+        "num_allocs": 2225,
+        "bytes_in_use": 3628609536,
+        "peak_bytes_in_use": 7482397696,
+        "largest_alloc_size": 566022144,
+        "bytes_limit": 16909334528,
+        "bytes_reserved": 12200558592,
+        "peak_bytes_reserved": 12200558592,
+        "bytes_reservable_limit": 14692295168,
+        "largest_free_block_bytes": 522878976
+      }
+    ],
+    "checkpoint_root": "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/train/checkpoints",
+    "research_pilot": true,
+    "pilot_manifest_sha256": "71546a0c625ef0b76775fb408d3bd99396f0a22973836cbef0920036356ac2d7",
+    "independent_expert_review": "pending",
+    "qualified_training_approved": false,
+    "pilot_limits": {
+      "max_episodes": 16,
+      "max_evaluations_per_episode": 4,
+      "max_total_evaluations": 64
+    },
+    "pilot_expires_utc": "2026-09-17T05:49:31.444516+00:00",
+    "authorization": {
+      "authorized_by": "cheriearjun (user in this conversation)",
+      "authorized_utc": "2026-09-17T02:49:31.474059+00:00",
+      "basis": "User requested: \"Let's start training the model I wanted to see how well the model performs\". New bounded two-update attempt on existing TPU; 16 episodes / 64 evaluations. Earlier attempts 004-006 retained with 16 episodes / 60 evaluations, separate consumed authorization. No cloud provisioning authorized."
+    },
+    "checkpoint_readback": {
+      "checkpoint_step": 2,
+      "global_step": 2,
+      "adapter_sha256": "fe2db0a64fd5fdaa592ebbd5b4ac213d1f52d2e664353cd21225c36a2f603fe5",
+      "final_adapter_hash_verified": true
+    }
+  },
+  "limitations": "Two optimizer updates; two validation tasks with four sampled episodes each. No held-out test-set or unseen-topology claim. Local artifacts on an expiring TPU VM."
+}

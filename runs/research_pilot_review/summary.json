@@ -1,0 +1,305 @@
+{
+  "attempts": [
+    {
+      "run": "research_pilot_004",
+      "episodes_reserved": 0,
+      "evaluations_reserved": 0,
+      "outcome": {
+        "status": "failed_before_optimizer",
+        "optimizer_updates": 0,
+        "episodes_reserved": 0,
+        "evaluations_reserved": 0,
+        "reason": "Task ID ndarray could not be serialized before episode creation.",
+        "retained_for_diagnosis": true
+      },
+      "training_result": null
+    },
+    {
+      "run": "research_pilot_005",
+      "episodes_reserved": 4,
+      "evaluations_reserved": 12,
+      "outcome": {
+        "status": "failed_before_optimizer",
+        "optimizer_updates": 0,
+        "episodes_reserved": 4,
+        "evaluations_reserved": 12,
+        "reason": "GRPO reward processing raised KeyError: prompts; all four trajectories also hit the 2048-token trajectory limit after three actions.",
+        "retained_for_diagnosis": true
+      },
+      "training_result": null
+    },
+    {
+      "run": "research_pilot_006",
+      "episodes_reserved": 12,
+      "evaluations_reserved": 48,
+      "outcome": {
+        "status": "failed_first_gradient_update_out_of_memory",
+        "optimizer_updates": 0,
+        "trained_checkpoint_verified": false,
+        "checkpoint_note": "Only step-zero checkpoint exists; not a trained model.",
+        "error": "jit__train_step requires 34.64 GiB HLO temporary memory; 15.75 GiB available per device.",
+        "episodes": 12,
+        "evaluations": 48,
+        "simulator_invocations": 90,
+        "successful_evaluations": 0,
+        "tunix_trajectory_statuses": [
+          {
+            "status": "SUCCEEDED",
+            "reward": -1.0,
+            "tokens": 2303,
+            "trainable_tokens": 416
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.05821688411040808,
+            "tokens": 2303,
+            "trainable_tokens": 416
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.05821688411040808,
+            "tokens": 2303,
+            "trainable_tokens": 416
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.05821688411040808,
+            "tokens": 2303,
+            "trainable_tokens": 416
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.011120155256065113,
+            "tokens": 2377,
+            "trainable_tokens": 424
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.011120155256065113,
+            "tokens": 2377,
+            "trainable_tokens": 424
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.011120155256065113,
+            "tokens": 2377,
+            "trainable_tokens": 424
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.011120155256065113,
+            "tokens": 2377,
+            "trainable_tokens": 424
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -1.0,
+            "tokens": 2387,
+            "trainable_tokens": 428
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -1.0,
+            "tokens": 2387,
+            "trainable_tokens": 428
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.056810114397376696,
+            "tokens": 2387,
+            "trainable_tokens": 428
+          },
+          {
+            "status": "SUCCEEDED",
+            "reward": -0.056810114397376696,
+            "tokens": 2387,
+            "trainable_tokens": 428
+          }
+        ],
+        "note": "Tunix SUCCEEDED means episode collection completed, not that the circuit satisfied its constraints.",
+        "regression_tests_passed": 54
+      },
+      "training_result": null
+    }
+  ],
+  "episodes": [
+    {
+      "run": "research_pilot_005",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "a20583e0eefffa9aa49ac3b073c30461",
+      "evaluations": 3,
+      "simulator_invocations": 6,
+      "final_reward": -0.05821688411040808,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_005_a20583e0eefffa9aa49ac3b073c30461.md"
+    },
+    {
+      "run": "research_pilot_005",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "b42962d7bcf2bd581aa64bc4fd581d17",
+      "evaluations": 3,
+      "simulator_invocations": 6,
+      "final_reward": -0.05821688411040808,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_005_b42962d7bcf2bd581aa64bc4fd581d17.md"
+    },
+    {
+      "run": "research_pilot_005",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "05fc18d00106ab5f9255d2c1680fcd93",
+      "evaluations": 3,
+      "simulator_invocations": 6,
+      "final_reward": -0.05821688411040808,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_005_05fc18d00106ab5f9255d2c1680fcd93.md"
+    },
+    {
+      "run": "research_pilot_005",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "a183acec2ad74088257eb4b50acef63e",
+      "evaluations": 3,
+      "simulator_invocations": 6,
+      "final_reward": -0.05821688411040808,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_005_a183acec2ad74088257eb4b50acef63e.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "3c7b95e0c4d320b0daaf27b5a2a809c6",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.05821688411040808,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_3c7b95e0c4d320b0daaf27b5a2a809c6.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "episode_id": "5747576a4fc4dd75d15b30830adb6cac",
+      "evaluations": 4,
+      "simulator_invocations": 6,
+      "final_reward": -1.0,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_5747576a4fc4dd75d15b30830adb6cac.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "77e7dbd8417904e4f405ca789b65ef96",
+      "evaluations": 4,
+      "simulator_invocations": 6,
+      "final_reward": -1.0,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_77e7dbd8417904e4f405ca789b65ef96.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_00f3831c949d08ca",
+      "episode_id": "a4e20dbbaa7acd572ad3ebfcd73248c1",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.011120155256065113,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_a4e20dbbaa7acd572ad3ebfcd73248c1.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "episode_id": "c08a9f6f48b75612b73d4b28a7921f50",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.056810114397376696,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_c08a9f6f48b75612b73d4b28a7921f50.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "episode_id": "1f61d7a1c09c29f7f2a78f8ba411384d",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.056810114397376696,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_1f61d7a1c09c29f7f2a78f8ba411384d.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_00f3831c949d08ca",
+      "episode_id": "d842061239d499790ce8b742a6ad5aa4",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.011120155256065113,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_d842061239d499790ce8b742a6ad5aa4.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "3e2527242636467224b4ac7e8172724d",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.05821688411040808,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_3e2527242636467224b4ac7e8172724d.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_08107b5a4a2972ca",
+      "episode_id": "9b90cf0600cbe081ed62027bdaa6d961",
+      "evaluations": 4,
+      "simulator_invocations": 6,
+      "final_reward": -1.0,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_9b90cf0600cbe081ed62027bdaa6d961.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_00f3831c949d08ca",
+      "episode_id": "74cc0ef6ebd26ba3f2e6f7b40a6c7e33",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.011120155256065113,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_74cc0ef6ebd26ba3f2e6f7b40a6c7e33.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "ramos_pfc_frontier_00f3831c949d08ca",
+      "episode_id": "9de1d32c15196e6052b7d0b4a0e85bda",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.011120155256065113,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_9de1d32c15196e6052b7d0b4a0e85bda.md"
+    },
+    {
+      "run": "research_pilot_006",
+      "task": "song_dacfc_frontier_7b5de669b6d475c9",
+      "episode_id": "5e4d7321a2e086ed83460bb613235643",
+      "evaluations": 4,
+      "simulator_invocations": 8,
+      "final_reward": -0.05821688411040808,
+      "success": false,
+      "actions_changing_start_values": 0,
+      "report": "episodes/research_pilot_006_5e4d7321a2e086ed83460bb613235643.md"
+    }
+  ],
+  "total_episodes_reserved": 16,
+  "total_evaluations_reserved": 60
+}

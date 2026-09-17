@@ -1,0 +1,222 @@
+{
+  "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+  "max_evaluations": 30,
+  "evaluations_used": 4,
+  "simulator_invocations": 8,
+  "success": false,
+  "done": false,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "run_directory": "evaluation_001",
+      "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+      "status": "ok",
+      "success": false,
+      "reward": -0.06544390304170167,
+      "metrics": {
+        "output_dc_v": 0.3998646582123,
+        "dc_error_v": 0.00013534178770002736,
+        "supply_current_a": 0.0005230031367473,
+        "power_w": 0.00094140564614514,
+        "gain_db": 132.4880879643,
+        "unity_gain_hz": 1895599.7980698561,
+        "phase_margin_deg": 69.74264995578352,
+        "settling_rise_s": 3.024999999999992e-07,
+        "settling_fall_s": 3.1749999999999823e-07,
+        "max_tracking_error_v": 0.00014611028919997437,
+        "output_min_v": 0.3989175324091,
+        "output_max_v": 0.6008312703323
+      },
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": false,
+        "dc_error_v": false,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 2.0215737209982763,
+      "parameters": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "evaluations_remaining": 29,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "evaluation": 2,
+      "action": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "run_directory": "evaluation_002",
+      "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+      "status": "ok",
+      "success": false,
+      "reward": -0.06544390304170167,
+      "metrics": {
+        "output_dc_v": 0.3998646582123,
+        "dc_error_v": 0.00013534178770002736,
+        "supply_current_a": 0.0005230031367473,
+        "power_w": 0.00094140564614514,
+        "gain_db": 132.4880879643,
+        "unity_gain_hz": 1895599.7980698561,
+        "phase_margin_deg": 69.74264995578352,
+        "settling_rise_s": 3.024999999999992e-07,
+        "settling_fall_s": 3.1749999999999823e-07,
+        "max_tracking_error_v": 0.00014611028919997437,
+        "output_min_v": 0.3989175324091,
+        "output_max_v": 0.6008312703323
+      },
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": false,
+        "dc_error_v": false,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 2.171955110003182,
+      "parameters": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "evaluations_remaining": 28,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "evaluation": 3,
+      "action": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "run_directory": "evaluation_003",
+      "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+      "status": "ok",
+      "success": false,
+      "reward": -0.06544390304170167,
+      "metrics": {
+        "output_dc_v": 0.3998646582123,
+        "dc_error_v": 0.00013534178770002736,
+        "supply_current_a": 0.0005230031367473,
+        "power_w": 0.00094140564614514,
+        "gain_db": 132.4880879643,
+        "unity_gain_hz": 1895599.7980698561,
+        "phase_margin_deg": 69.74264995578352,
+        "settling_rise_s": 3.024999999999992e-07,
+        "settling_fall_s": 3.1749999999999823e-07,
+        "max_tracking_error_v": 0.00014611028919997437,
+        "output_min_v": 0.3989175324091,
+        "output_max_v": 0.6008312703323
+      },
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": false,
+        "dc_error_v": false,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 2.0220236019995355,
+      "parameters": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "evaluations_remaining": 27,
+      "terminated": false,
+      "truncated": false
+    },
+    {
+      "evaluation": 4,
+      "action": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "run_directory": "evaluation_004",
+      "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+      "status": "ok",
+      "success": false,
+      "reward": -0.06544390304170167,
+      "metrics": {
+        "output_dc_v": 0.3998646582123,
+        "dc_error_v": 0.00013534178770002736,
+        "supply_current_a": 0.0005230031367473,
+        "power_w": 0.00094140564614514,
+        "gain_db": 132.4880879643,
+        "unity_gain_hz": 1895599.7980698561,
+        "phase_margin_deg": 69.74264995578352,
+        "settling_rise_s": 3.024999999999992e-07,
+        "settling_fall_s": 3.1749999999999823e-07,
+        "max_tracking_error_v": 0.00014611028919997437,
+        "output_min_v": 0.3989175324091,
+        "output_max_v": 0.6008312703323
+      },
+      "checks": {
+        "gain_db": false,
+        "unity_gain_hz": true,
+        "phase_margin_deg": true,
+        "power_w": false,
+        "dc_error_v": false,
+        "max_tracking_error_v": true,
+        "settling_rise_s": true,
+        "settling_fall_s": true
+      },
+      "simulator_invocations": 2,
+      "elapsed_s": 2.021515560998523,
+      "parameters": {
+        "CAPACITOR_0": 5.274e-11,
+        "CAPACITOR_1": 6.667e-11,
+        "CURRENT_0_BIAS": 2.876e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 56,
+        "MOSFET_23_1_M_gm3_NMOS": 194,
+        "MOSFET_8_2_M_gm1_PMOS": 89
+      },
+      "evaluations_remaining": 26,
+      "terminated": false,
+      "truncated": false
+    }
+  ]
+}

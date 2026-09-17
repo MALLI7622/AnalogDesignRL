@@ -1,0 +1,6 @@
+{
+  "Copying the same values despite failed constraints": "current_ramos_pfc_frontier_00f3831c949d08ca_ep1.md",
+  "Exploration prompt: fenced JSON rejected repeatedly": "exploration_ramos_pfc_frontier_00f3831c949d08ca_ep1.md",
+  "Current prompt: a failed action among accepted copies": "current_ramos_pfc_frontier_08107b5a4a2972ca_ep3.md",
+  "Verbose output eventually exceeds the context window": "exploration_ramos_pfc_frontier_d83b64dea527a91a_ep3.md"
+}

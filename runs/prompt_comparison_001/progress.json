@@ -1,0 +1,25 @@
+{
+  "checked_utc": "2026-09-17T03:43:15.153932+00:00",
+  "arms": {
+    "current": {
+      "status": "episodes_complete",
+      "completed_episodes": 84,
+      "evaluations": 336,
+      "context_failures": 0,
+      "finished_episodes": 84,
+      "solved": 0,
+      "valid_changed_actions": 0,
+      "failed_actions": 9
+    },
+    "exploration": {
+      "status": "episodes_complete",
+      "completed_episodes": 83,
+      "evaluations": 335,
+      "context_failures": 1,
+      "finished_episodes": 84,
+      "solved": 0,
+      "valid_changed_actions": 0,
+      "failed_actions": 335
+    }
+  }
+}

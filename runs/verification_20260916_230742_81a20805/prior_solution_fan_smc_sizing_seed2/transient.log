@@ -1,0 +1,47 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: fan_smc_sizing_v1 - controlled evaluation
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        1.8
+signal                                     0.3
+out                                   0.295704
+xamp.net050                           0.469152
+xamp.net049                           0.936091
+xamp.net013                           0.588034
+xamp.net043                           0.891487
+xamp.voutn                            0.570643
+xamp.net063                            0.11718
+xamp.net31                             1.73407
+xamp.dm_2                             0.118607
+xamp.vb3                               0.89218
+xamp.dm_1                             0.754323
+xamp.vb4                              0.754323
+xamp.net54                             0.12888
+xamp.net56                             0.12888
+vin#branch                                   0
+vdd#branch                        -0.000586598
+
+
+No. of Data Rows : 10020
+check_rise_cross_result=  5.12285e-06
+check_fall_cross_result=  2.50848e-05
+check_tracking_before_result=  4.29608e-03 at=  1.26140e-06
+check_tracking_high_result=  5.59252e-03 at=  2.01525e-05
+check_tracking_low_result=  4.29608e-03 at=  4.38115e-05
+ngspice-47 done

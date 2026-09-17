@@ -1,0 +1,29 @@
+{
+  "catalog": "datasets/analog_benchmark_250_v1/train_validation_catalog.json",
+  "task_hashes_valid": true,
+  "splits": {
+    "train": 174,
+    "validation": 21
+  },
+  "training_gate": "blocked",
+  "reason": "Training is not approved for this task. See verification/qualification.json and the verification report.",
+  "cached_model_revision": "dcc83ea841ab6100d6b47a070329e1ba4cf78752",
+  "cached_model_files": [
+    "model.safetensors",
+    "tokenizer_config.json",
+    "tokenizer.json",
+    "added_tokens.json",
+    "generation_config.json",
+    "special_tokens_map.json",
+    "tokenizer.model",
+    "config.json"
+  ],
+  "simulator_preflight": "passed",
+  "tpu_preflight": {
+    "status": "passed",
+    "devices": 4,
+    "jax": "0.11.1",
+    "tunix": "0.1.7"
+  },
+  "training_started": false
+}

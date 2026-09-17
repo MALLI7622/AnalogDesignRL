@@ -1,0 +1,11 @@
+{
+  "status": "completed_with_one_context_failure",
+  "episodes_attempted": 168,
+  "evaluation_attempts": 671,
+  "model_updates": 0,
+  "shared_seed_contexts_verified": 335,
+  "pre_run_worker_prompt_checks_passed": 37,
+  "continuation_checks_passed": 21,
+  "external_backup": false,
+  "interpretation": "Combined exploration prompt broke JSON formatting; no usable exploration in either arm. Current remains default."
+}

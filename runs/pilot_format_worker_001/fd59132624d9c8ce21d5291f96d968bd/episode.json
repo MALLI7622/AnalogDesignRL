@@ -1,0 +1,82 @@
+{
+  "task_id": "fan_smc_frontier_115ee8f9eb511163",
+  "max_evaluations": 30,
+  "evaluations_used": 3,
+  "simulator_invocations": 0,
+  "success": false,
+  "done": false,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": "invalid JSON action",
+      "run_directory": "evaluation_001",
+      "task_id": "fan_smc_frontier_115ee8f9eb511163",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.00034644000015759957,
+      "parameters": {
+        "CAPACITOR_0": 4.405e-12,
+        "CURRENT_0_BIAS": 3.033e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 9,
+        "MOSFET_23_1_M_gm3_NMOS": 32,
+        "MOSFET_8_2_M_gm1_PMOS": 2
+      },
+      "evaluations_remaining": 29,
+      "terminated": false,
+      "truncated": false,
+      "error": "An action must be a JSON object of parameter values."
+    },
+    {
+      "evaluation": 2,
+      "action": "invalid JSON action",
+      "run_directory": "evaluation_002",
+      "task_id": "fan_smc_frontier_115ee8f9eb511163",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.00034065999989252305,
+      "parameters": {
+        "CAPACITOR_0": 4.405e-12,
+        "CURRENT_0_BIAS": 3.033e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 9,
+        "MOSFET_23_1_M_gm3_NMOS": 32,
+        "MOSFET_8_2_M_gm1_PMOS": 2
+      },
+      "evaluations_remaining": 28,
+      "terminated": false,
+      "truncated": false,
+      "error": "An action must be a JSON object of parameter values."
+    },
+    {
+      "evaluation": 3,
+      "action": "invalid JSON action",
+      "run_directory": "evaluation_003",
+      "task_id": "fan_smc_frontier_115ee8f9eb511163",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.0003002399998877081,
+      "parameters": {
+        "CAPACITOR_0": 4.405e-12,
+        "CURRENT_0_BIAS": 3.033e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 9,
+        "MOSFET_23_1_M_gm3_NMOS": 32,
+        "MOSFET_8_2_M_gm1_PMOS": 2
+      },
+      "evaluations_remaining": 27,
+      "terminated": false,
+      "truncated": false,
+      "error": "An action must be a JSON object of parameter values."
+    }
+  ]
+}

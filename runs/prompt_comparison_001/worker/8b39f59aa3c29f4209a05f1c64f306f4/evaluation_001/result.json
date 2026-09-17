@@ -1,0 +1,175 @@
+{
+  "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+  "status": "ok",
+  "success": false,
+  "reward": -0.04743889139660546,
+  "metrics": {
+    "output_dc_v": 0.3998578143854,
+    "dc_error_v": 0.0001421856145999989,
+    "supply_current_a": 0.0004965909073502,
+    "power_w": 0.0008938636332303599,
+    "gain_db": 131.2587614038,
+    "unity_gain_hz": 1451932.9581595194,
+    "phase_margin_deg": 88.29166534298267,
+    "settling_rise_s": 3.975e-07,
+    "settling_fall_s": 3.9749999999999746e-07,
+    "max_tracking_error_v": 0.00015778706530000797,
+    "output_min_v": 0.398745779092,
+    "output_max_v": 0.6008727848859
+  },
+  "checks": {
+    "gain_db": false,
+    "unity_gain_hz": true,
+    "phase_margin_deg": true,
+    "power_w": false,
+    "dc_error_v": true,
+    "max_tracking_error_v": false,
+    "settling_rise_s": true,
+    "settling_fall_s": true
+  },
+  "simulator_invocations": 2,
+  "timestamp_utc": "2026-09-17T03:30:44.808735+00:00",
+  "task_sha256": "f5debbc94b2a14442f5e7ba600d0d973ab1f98c595df83201fbf448084595e29",
+  "host": "Linux-6.5.0-1013-gcp-x86_64-with-glibc2.35",
+  "python_version": "3.12.14",
+  "commands": [
+    [
+      "/home/cheriearjun/AnalogDesignRL/.deps/ngspice-47/bin/ngspice",
+      "-n",
+      "-D",
+      "ngbehavior=hsa",
+      "-D",
+      "num_threads=1",
+      "-b",
+      "-o",
+      "ac.log",
+      "ac.cir"
+    ],
+    [
+      "/home/cheriearjun/AnalogDesignRL/.deps/ngspice-47/bin/ngspice",
+      "-n",
+      "-D",
+      "ngbehavior=hsa",
+      "-D",
+      "num_threads=1",
+      "-b",
+      "-o",
+      "transient.log",
+      "transient.cir"
+    ]
+  ],
+  "warnings": [
+    "Warning: m=xx on .subckt line will override multiplier m hierarchy!"
+  ],
+  "parameters": {
+    "CAPACITOR_0": 5.46e-11,
+    "CAPACITOR_1": 1.047e-11,
+    "CURRENT_0_BIAS": 2.841e-05,
+    "MOSFET_10_1_M_gm2_PMOS": 62,
+    "MOSFET_23_1_M_gm3_NMOS": 250,
+    "MOSFET_8_2_M_gm1_PMOS": 58
+  },
+  "ngspice_version": "******\n** ngspice-47 : Circuit level simulation program\n** Compiled with KLU Direct Linear Solver\n** The U. C. Berkeley CAD Group\n** Copyright 1985-1994, Regents of the University of California.\n** Copyright 2001-2026, The ngspice team.\n** Please get your ngspice manual from https://ngspice.sourceforge.io/docs.html\n** Please file your bug-reports at http://ngspice.sourceforge.net/bugrep.html\n** Creation Date: Wed Sep 16 23:03:34 UTC 2026\n******",
+  "provenance": {
+    "dependencies": {
+      "analoggym": {
+        "url": "https://github.com/CODA-Team/AnalogGym.git",
+        "commit": "0a9d1390ade361e2b4a2d33181e22367edbb8afc",
+        "pdk_archive": "PDK/sky130_pdk.zip",
+        "pdk_archive_sha256": "bc46a070e6c8c217e61e97355ed2ab3f029706a99b5053a80860cd98963e1ce8"
+      },
+      "ngspice_validated_version": "47",
+      "python_minimum": "3.10",
+      "autockt": {
+        "url": "https://github.com/ksettaluri6/AutoCkt.git",
+        "commit": "a6c8a61d3dffb8b433f19251e135994a5b0f6ee4",
+        "files_sha256": {
+          "eval_engines/ngspice/ngspice_inputs/netlist/two_stage_opamp.cir": "3a546b7ea95b850ceab23488dde318a5c1d0664fac1555ad071b7157b4206bea",
+          "eval_engines/ngspice/ngspice_inputs/spice_models/45nm_bulk.txt": "42489e9aab3423fe868c6d249326535892ad87de7f8f5b18d790d0afe8401ef4",
+          "eval_engines/ngspice/ngspice_inputs/yaml_files/two_stage_opamp.yaml": "83086648744650acea20ce79275f0e22c7b544ee46512ee260d2342db62b14dd"
+        }
+      }
+    },
+    "netlist_sha256": "f8eeee71b125c76d4d28597b09bff763a7b0bd6b85b2c4885513137723bad982",
+    "reference_parameters_sha256": "aa3d99fa1ff54e2a7a4c027e662d848c9e286bd7f0d9809a9946162e1351a865",
+    "parameters_sha256": "e7b6a84667b8b8f7ff0bfa1c9b3d3aae90202e1f5ab1512907b22c19aaa16385",
+    "corner_file_sha256": "961b2e4f381bb8a6306a16840afacd8772b400b42cd4dee6c284d58e03983d9d",
+    "evaluator_sha256": "3c0b100a8c13febab96f8a81452f42d63c3ca35256e42c924eeec8477b27c5b4",
+    "metrics_code_sha256": "ea6122a353f03bd44b324a39ba03534d722f8ada5d2c2b72a632d97b3dd68083",
+    "crosscheck_code_sha256": "065b70d0067712ded5082e5bfd265526cfbd2184dc2b6414cf8ae6cf1a5ec9a9",
+    "ac_testbench_sha256": "74171ad1d188ff4c6388a7131c944a4ed57ecf310335815b74c86d5a62c96422",
+    "transient_testbench_sha256": "93533e3017b637a46d3eb9cfa6a2c60281aac4bf821965549b83f5c7e80144c6"
+  },
+  "independent_metrics": {
+    "gain_db": 131.259,
+    "unity_gain_hz": 1452040.0,
+    "phase_margin_deg": 88.2914,
+    "power_w": 0.0008938636332303,
+    "dc_error_v": 0.0001421856146436,
+    "max_tracking_error_v": 0.000157787,
+    "settling_rise_s": 3.9546999999999945e-07,
+    "settling_fall_s": 3.9339999999999864e-07
+  },
+  "crosscheck": {
+    "agrees": true,
+    "metrics": {
+      "gain_db": {
+        "primary": 131.2587614038,
+        "independent": 131.259,
+        "absolute_difference": 0.0002385961999777919,
+        "tolerance": 0.01,
+        "agrees": true
+      },
+      "unity_gain_hz": {
+        "primary": 1451932.9581595194,
+        "independent": 1452040.0,
+        "absolute_difference": 107.04184048064053,
+        "tolerance": 2905.08,
+        "agrees": true
+      },
+      "phase_margin_deg": {
+        "primary": 88.29166534298267,
+        "independent": 88.2914,
+        "absolute_difference": 0.0002653429826722231,
+        "tolerance": 0.05,
+        "agrees": true
+      },
+      "power_w": {
+        "primary": 0.0008938636332303599,
+        "independent": 0.0008938636332303,
+        "absolute_difference": 5.99563801384484e-17,
+        "tolerance": 9.038636332303e-08,
+        "agrees": true
+      },
+      "dc_error_v": {
+        "primary": 0.0001421856145999989,
+        "independent": 0.0001421856146436,
+        "absolute_difference": 4.3601109051341624e-14,
+        "tolerance": 1e-06,
+        "agrees": true
+      },
+      "max_tracking_error_v": {
+        "primary": 0.00015778706530000797,
+        "independent": 0.000157787,
+        "absolute_difference": 6.530000796816857e-11,
+        "tolerance": 2e-06,
+        "agrees": true
+      },
+      "settling_rise_s": {
+        "primary": 3.975e-07,
+        "independent": 3.9546999999999945e-07,
+        "absolute_difference": 2.030000000000555e-09,
+        "tolerance": 5.501000000000001e-09,
+        "agrees": true
+      },
+      "settling_fall_s": {
+        "primary": 3.9749999999999746e-07,
+        "independent": 3.9339999999999864e-07,
+        "absolute_difference": 4.099999999998826e-09,
+        "tolerance": 5.501000000000001e-09,
+        "agrees": true
+      }
+    }
+  },
+  "elapsed_s": 2.021931991999736
+}

@@ -1,0 +1,1346 @@
+[
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_00f3831c949d08ca_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_00f3831c949d08ca_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_00f3831c949d08ca_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_00f3831c949d08ca_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_00f3831c949d08ca_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_00f3831c949d08ca_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_00f3831c949d08ca_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_00f3831c949d08ca",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_00f3831c949d08ca_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_08107b5a4a2972ca_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_08107b5a4a2972ca_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_08107b5a4a2972ca_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_08107b5a4a2972ca_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_08107b5a4a2972ca_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_08107b5a4a2972ca_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_08107b5a4a2972ca_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_08107b5a4a2972ca",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_08107b5a4a2972ca_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_0ee4a8052c59197d_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_0ee4a8052c59197d_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_0ee4a8052c59197d_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_0ee4a8052c59197d_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_0ee4a8052c59197d_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_0ee4a8052c59197d_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_0ee4a8052c59197d_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_0ee4a8052c59197d",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_0ee4a8052c59197d_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_19ec2769099c9a77_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_19ec2769099c9a77_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_19ec2769099c9a77_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_19ec2769099c9a77_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_19ec2769099c9a77_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_19ec2769099c9a77_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_19ec2769099c9a77_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_19ec2769099c9a77",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_19ec2769099c9a77_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_239f7a62eea81d20_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_239f7a62eea81d20_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_239f7a62eea81d20_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_239f7a62eea81d20_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_239f7a62eea81d20_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_239f7a62eea81d20_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_239f7a62eea81d20_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_239f7a62eea81d20",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_239f7a62eea81d20_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_46c49195794677cb_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_46c49195794677cb_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_46c49195794677cb_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_46c49195794677cb_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_46c49195794677cb_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_46c49195794677cb_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_46c49195794677cb_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_46c49195794677cb",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_46c49195794677cb_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_492ce020af44c02a_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_492ce020af44c02a_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_492ce020af44c02a_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_492ce020af44c02a_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_492ce020af44c02a_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_492ce020af44c02a_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_492ce020af44c02a_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_492ce020af44c02a",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_492ce020af44c02a_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6bcc6522002a4848_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6bcc6522002a4848_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6bcc6522002a4848_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6bcc6522002a4848_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6bcc6522002a4848_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6bcc6522002a4848_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6bcc6522002a4848_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6bcc6522002a4848",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6bcc6522002a4848_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6cfd52a096b5dd0c_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6cfd52a096b5dd0c_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6cfd52a096b5dd0c_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6cfd52a096b5dd0c_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6cfd52a096b5dd0c_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6cfd52a096b5dd0c_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_6cfd52a096b5dd0c_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_6cfd52a096b5dd0c",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_6cfd52a096b5dd0c_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_729ee4d6d6c84ae8_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_729ee4d6d6c84ae8_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_729ee4d6d6c84ae8_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_729ee4d6d6c84ae8_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_729ee4d6d6c84ae8_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_729ee4d6d6c84ae8_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_729ee4d6d6c84ae8_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_729ee4d6d6c84ae8",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_729ee4d6d6c84ae8_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_748c38a9d53bee07_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_748c38a9d53bee07_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_748c38a9d53bee07_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_748c38a9d53bee07_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_748c38a9d53bee07_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_748c38a9d53bee07_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_748c38a9d53bee07_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_748c38a9d53bee07",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_748c38a9d53bee07_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_7c40fc00c4494453_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_7c40fc00c4494453_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_7c40fc00c4494453_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_7c40fc00c4494453_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_7c40fc00c4494453_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_7c40fc00c4494453_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_7c40fc00c4494453_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_7c40fc00c4494453",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_7c40fc00c4494453_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_8d5ef31872812e70_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_8d5ef31872812e70_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_8d5ef31872812e70_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_8d5ef31872812e70_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_8d5ef31872812e70_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_8d5ef31872812e70_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_8d5ef31872812e70_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_8d5ef31872812e70",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_8d5ef31872812e70_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_98973731138367c8_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_98973731138367c8_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_98973731138367c8_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_98973731138367c8_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_98973731138367c8_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_98973731138367c8_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_98973731138367c8_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_98973731138367c8",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_98973731138367c8_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_b5846ee2c7a6d612_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_b5846ee2c7a6d612_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_b5846ee2c7a6d612_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_b5846ee2c7a6d612_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_b5846ee2c7a6d612_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_b5846ee2c7a6d612_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_b5846ee2c7a6d612_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_b5846ee2c7a6d612",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_b5846ee2c7a6d612_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_d83b64dea527a91a_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_d83b64dea527a91a_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_d83b64dea527a91a_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_d83b64dea527a91a_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_d83b64dea527a91a_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_d83b64dea527a91a_ep3.json",
+    "attempts": 3,
+    "context_error": true
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_d83b64dea527a91a_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_d83b64dea527a91a",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_d83b64dea527a91a_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_eaaf9a756498c26b_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_eaaf9a756498c26b_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_eaaf9a756498c26b_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_eaaf9a756498c26b_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_eaaf9a756498c26b_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_eaaf9a756498c26b_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_eaaf9a756498c26b_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_eaaf9a756498c26b",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_eaaf9a756498c26b_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f171bdefb113edc2_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f171bdefb113edc2_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f171bdefb113edc2_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f171bdefb113edc2_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f171bdefb113edc2_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f171bdefb113edc2_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f171bdefb113edc2_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f171bdefb113edc2",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f171bdefb113edc2_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f5bfd5c4809b7919_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f5bfd5c4809b7919_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f5bfd5c4809b7919_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f5bfd5c4809b7919_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f5bfd5c4809b7919_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f5bfd5c4809b7919_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f5bfd5c4809b7919_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f5bfd5c4809b7919",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f5bfd5c4809b7919_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f7e8fe21edc3b690_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f7e8fe21edc3b690_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f7e8fe21edc3b690_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f7e8fe21edc3b690_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f7e8fe21edc3b690_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f7e8fe21edc3b690_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_f7e8fe21edc3b690_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_f7e8fe21edc3b690_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 1,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_fe98b9cec3124b96_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 1,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_fe98b9cec3124b96_ep1.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 2,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_fe98b9cec3124b96_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 2,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_fe98b9cec3124b96_ep2.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 3,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_fe98b9cec3124b96_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 3,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_fe98b9cec3124b96_ep3.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 4,
+    "prompt_variant": "current",
+    "file": "current_ramos_pfc_frontier_fe98b9cec3124b96_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  },
+  {
+    "task_id": "ramos_pfc_frontier_fe98b9cec3124b96",
+    "episode": 4,
+    "prompt_variant": "exploration",
+    "file": "exploration_ramos_pfc_frontier_fe98b9cec3124b96_ep4.json",
+    "attempts": 4,
+    "context_error": false
+  }
+]

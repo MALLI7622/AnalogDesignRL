@@ -1,0 +1,40 @@
+song_dacfc_frontier_7b5de669b6d475c9 - controlled evaluation
+.include "/home/cheriearjun/AnalogDesignRL/circuits/benchmark_song_dacfc_pin_3/netlist.spice"
+.include "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_005/worker/a183acec2ad74088257eb4b50acef63e/evaluation_002/parameters.spice"
+.param mc_mm_switch=0 mc_pr_switch=0
+.include "/home/cheriearjun/AnalogDesignRL/.deps/sky130_pdk/libs.tech/ngspice/corners/tt.spice"
+.temp 27
+VDD vdd 0 1.8
+
+VIN signal 0 dc 0.3 ac 1
+* DC feedback biases the amplifier; at AC the inverting input is grounded.
+Lfeedback out inv 1T
+Cbreak inv 0 1T
+Xamp 0 vdd inv signal out song_dacfc_pin_3
+CL out 0 5e-10
+.control
+set noaskquit
+set numdgt=12
+set wr_vecnames
+set wr_singlescale
+
+op
+wrdata operating_point.tsv v(out) i(vdd)
+let check_power_result = -i(vdd)*1.8
+let check_dc_error_result = abs(v(out)-0.3)
+print check_power_result check_dc_error_result
+ac dec 100 0.1 1000000000.0
+let gain_db = db(v(out))
+let phase_rad = cph(v(out))
+wrdata ac.tsv gain_db phase_rad
+
+let check_magnitude = mag(v(out))
+let check_gain_db = db(v(out))
+let check_margin = 180 + cph(v(out))*57.29577951308232
+meas ac check_gain_db_result find check_gain_db at=0.1
+meas ac check_unity_hz_result when check_magnitude=1 fall=1
+meas ac check_margin_deg_result find check_margin when check_magnitude=1 fall=1
+
+quit
+.endc
+.end

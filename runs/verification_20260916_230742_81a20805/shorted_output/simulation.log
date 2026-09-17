@@ -1,0 +1,39 @@
+
+Note: No compatibility mode selected!
+
+
+Circuit: two_stage_amp test
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.
+
+Checking parameters for BSIM 4.5 model nmos
+Warning: ckappas = 0.01 is too small.
+Warning: ckappad = 0.01 is too small.
+Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.
+
+No. of Data Rows : 1
+v(net6) = 6.900342280447168e-08
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.
+
+Checking parameters for BSIM 4.5 model nmos
+Warning: ckappas = 0.01 is too small.
+Warning: ckappad = 0.01 is too small.
+Warning: toxe, toxp and dtox all given and toxe != toxp + dtox; dtox ignored.
+
+No. of Data Rows : 1001
+check_gain_db_result=  -9.38686e+01
+
+Error: measure  check_unity_hz_result  when(WHEN) : out of interval
+ meas ac check_unity_hz_result when check_magnitude=1 fall=1 failed!
+
+
+Error: measure  check_margin_deg_result  find(AT) : out of interval
+ meas ac check_margin_deg_result find check_margin when check_magnitude=1 fall=1 failed!
+
+ngspice-47 done

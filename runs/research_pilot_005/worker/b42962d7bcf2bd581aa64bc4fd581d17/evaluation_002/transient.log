@@ -1,0 +1,55 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: song_dacfc_frontier_7b5de669b6d475c9 - controlled evaluation
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        1.8
+signal                                     0.3
+xamp.net3                              1.75019
+xamp.net70                            0.785004
+xamp.net2                              1.75027
+xamp.dm_1                              0.75915
+xamp.voutn                            0.629444
+xamp.net4                             0.525023
+xamp.net050                            1.74394
+xamp.net5                                1.744
+xamp.net1                              1.24808
+xamp.net013                           0.853471
+xamp.net049                           0.670961
+xamp.net043                           0.714669
+out                                   0.303151
+xamp.net063                          0.0406969
+xamp.net31                             1.29094
+xamp.dm_2                            0.0410253
+xamp.vb3                              0.624181
+xamp.vb4                              0.568697
+xamp.net85                           0.0372903
+xamp.net69                           0.0380032
+xamp.net54                           0.0559504
+xamp.net56                           0.0571467
+vin#branch                                   0
+vdd#branch                        -5.44443e-05
+
+
+No. of Data Rows : 10020
+check_rise_cross_result=  9.04949e-06
+check_fall_cross_result=  2.73123e-05
+check_tracking_before_result=  3.15106e-03 at=  4.11640e-06
+check_tracking_high_result=  3.17961e-03 at=  2.00075e-05
+check_tracking_low_result=  3.15106e-03 at=  4.37625e-05
+ngspice-47 done

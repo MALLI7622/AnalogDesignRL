@@ -1,0 +1,5 @@
+E0917 03:00:46.143102  229041 hugepage_text.cc:344] RAW: File offset incorrectly aligned for file-backed THP: (600000 & ~ffffffffffe00000) = 0 != 1000 = (201000 & ~ffffffffffe00000)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 2241.74it/s]
+/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/qwix/_src/providers/lora.py:44: UserWarning: rngs must be provided for NNX models to initialize LoRA weights. Please specify rngs=nnx.Rngs(...) in apply_lora_to_model.
+  warnings.warn(
+Completed rollout: /home/cheriearjun/AnalogDesignRL/runs/research_pilot_007/baseline

@@ -1,0 +1,16 @@
+{
+  "research_pilot": true,
+  "pilot_manifest_sha256": "5b83d062316accac3222de9b1d56ddaee3db5bdce63dc6e1b9fb4ad2bf72bca0",
+  "independent_expert_review": "pending",
+  "qualified_training_approved": false,
+  "pilot_limits": {
+    "max_episodes": 16,
+    "max_evaluations_per_episode": 4,
+    "max_total_evaluations": 64
+  },
+  "pilot_expires_utc": "2026-09-17T04:13:39.290332+00:00",
+  "worker_output": "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_006/worker",
+  "episodes_reserved": 12,
+  "evaluations_reserved": 48,
+  "updated_utc": "2026-09-17T00:28:21.644766+00:00"
+}

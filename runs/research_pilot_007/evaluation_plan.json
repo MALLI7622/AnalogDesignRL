@@ -1,0 +1,15 @@
+{
+  "split": "validation",
+  "selection": "first two sorted validation IDs, unchanged split",
+  "episodes_per_task": 4,
+  "max_attempts_per_episode": 4,
+  "runs": [
+    "baseline",
+    "trained"
+  ],
+  "max_episodes": 16,
+  "max_evaluations": 64,
+  "seed": 42,
+  "temperature": 0.9,
+  "note": "Matched rollout harness and seed sequence; each model gets identical configuration and task order. Tiny within-topology pilot, not generalization evidence."
+}

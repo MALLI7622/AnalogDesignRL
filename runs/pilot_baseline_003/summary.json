@@ -1,0 +1,19 @@
+{
+  "status": "rollout_completed",
+  "model_actions": 4,
+  "successful_actions": 0,
+  "simulator_invocations": 0,
+  "rewards": [
+    -1.0,
+    -1.0,
+    -1.0,
+    -1.0
+  ],
+  "finding": "All responses used Markdown code fences and were rejected by the strict JSON action parser. No successful circuit-sizing behavior established.",
+  "optimizer_updates": 0,
+  "runtime_fixes": [
+    "Replicate Gemma 1B attention-head activations across TP because KV head count is one.",
+    "Pass integer sampler seed so donated PRNG arrays are not reused."
+  ],
+  "tests": "36 training/control/pilot tests passed; initial 31 pilot/bundle/control tests passed."
+}

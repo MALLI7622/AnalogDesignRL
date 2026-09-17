@@ -1,0 +1,32 @@
+ramos_pfc_frontier_08107b5a4a2972ca - controlled evaluation
+.include "/home/cheriearjun/AnalogDesignRL/circuits/benchmark_ramos_pfc_pin_3/netlist.spice"
+.include "/home/cheriearjun/AnalogDesignRL/runs/research_pilot_006/worker/1f61d7a1c09c29f7f2a78f8ba411384d/evaluation_001/parameters.spice"
+.param mc_mm_switch=0 mc_pr_switch=0
+.include "/home/cheriearjun/AnalogDesignRL/.deps/sky130_pdk/libs.tech/ngspice/corners/tt.spice"
+.temp 27
+VDD vdd 0 1.8
+
+VIN signal 0 pulse(0.4 0.6000000000000001 5e-06 1e-08 1e-08 2e-05 6e-05)
+Xamp 0 vdd out signal out ramos_pfc_pin_3
+CL out 0 1e-10
+.control
+set noaskquit
+set numdgt=12
+set wr_vecnames
+set wr_singlescale
+
+tran 5e-09 5e-05 0 5e-09
+wrdata transient.tsv v(signal) v(out) i(vdd)
+
+let check_rise_error = abs(v(out) - 0.6000000000000001)
+let check_fall_error = abs(v(out) - 0.4)
+let check_tracking_error = abs(v(out) - v(signal))
+meas tran check_rise_cross_result when check_rise_error=0.02 fall=last from=5e-06 to=2.5010000000000003e-05
+meas tran check_fall_cross_result when check_fall_error=0.02 fall=last from=2.5010000000000003e-05 to=5e-05
+meas tran check_tracking_before_result max check_tracking_error from=0 to=5e-06
+meas tran check_tracking_high_result max check_tracking_error from=2.00075e-05 to=2.5010000000000003e-05
+meas tran check_tracking_low_result max check_tracking_error from=4.3752500000000005e-05 to=5e-05
+
+quit
+.endc
+.end

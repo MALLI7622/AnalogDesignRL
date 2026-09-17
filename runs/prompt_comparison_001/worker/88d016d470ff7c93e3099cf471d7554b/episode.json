@@ -1,0 +1,110 @@
+{
+  "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+  "max_evaluations": 30,
+  "evaluations_used": 4,
+  "simulator_invocations": 0,
+  "success": false,
+  "done": false,
+  "trajectory": [
+    {
+      "evaluation": 1,
+      "action": "invalid JSON action",
+      "run_directory": "evaluation_001",
+      "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.000342290000844514,
+      "parameters": {
+        "CAPACITOR_0": 6.839e-11,
+        "CAPACITOR_1": 9.49e-12,
+        "CURRENT_0_BIAS": 5.526e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 146,
+        "MOSFET_23_1_M_gm3_NMOS": 486,
+        "MOSFET_8_2_M_gm1_PMOS": 38
+      },
+      "evaluations_remaining": 29,
+      "terminated": false,
+      "truncated": false,
+      "error": "An action must be a JSON object of parameter values."
+    },
+    {
+      "evaluation": 2,
+      "action": "invalid JSON action",
+      "run_directory": "evaluation_002",
+      "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.0004576499995891936,
+      "parameters": {
+        "CAPACITOR_0": 6.839e-11,
+        "CAPACITOR_1": 9.49e-12,
+        "CURRENT_0_BIAS": 5.526e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 146,
+        "MOSFET_23_1_M_gm3_NMOS": 486,
+        "MOSFET_8_2_M_gm1_PMOS": 38
+      },
+      "evaluations_remaining": 28,
+      "terminated": false,
+      "truncated": false,
+      "error": "An action must be a JSON object of parameter values."
+    },
+    {
+      "evaluation": 3,
+      "action": "invalid JSON action",
+      "run_directory": "evaluation_003",
+      "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.0003178289989591576,
+      "parameters": {
+        "CAPACITOR_0": 6.839e-11,
+        "CAPACITOR_1": 9.49e-12,
+        "CURRENT_0_BIAS": 5.526e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 146,
+        "MOSFET_23_1_M_gm3_NMOS": 486,
+        "MOSFET_8_2_M_gm1_PMOS": 38
+      },
+      "evaluations_remaining": 27,
+      "terminated": false,
+      "truncated": false,
+      "error": "An action must be a JSON object of parameter values."
+    },
+    {
+      "evaluation": 4,
+      "action": "invalid JSON action",
+      "run_directory": "evaluation_004",
+      "task_id": "ramos_pfc_frontier_f7e8fe21edc3b690",
+      "status": "failed",
+      "success": false,
+      "reward": -1.0,
+      "metrics": {},
+      "checks": {},
+      "simulator_invocations": 0,
+      "elapsed_s": 0.000304279998090351,
+      "parameters": {
+        "CAPACITOR_0": 6.839e-11,
+        "CAPACITOR_1": 9.49e-12,
+        "CURRENT_0_BIAS": 5.526e-05,
+        "MOSFET_10_1_M_gm2_PMOS": 146,
+        "MOSFET_23_1_M_gm3_NMOS": 486,
+        "MOSFET_8_2_M_gm1_PMOS": 38
+      },
+      "evaluations_remaining": 26,
+      "terminated": false,
+      "truncated": false,
+      "error": "An action must be a JSON object of parameter values."
+    }
+  ]
+}

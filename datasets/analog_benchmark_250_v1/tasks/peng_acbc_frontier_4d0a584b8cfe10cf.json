@@ -1,0 +1,158 @@
+{
+  "id": "peng_acbc_frontier_4d0a584b8cfe10cf",
+  "purpose": "Size the Peng_ACBC_Pin_3 amplifier using the permitted parameters. Meet all eight fixed nominal DC, AC, and transient requirements within 30 evaluations. The joint requirements are project-defined for this released circuit adaptation.",
+  "circuit_directory": "circuits/benchmark_peng_acbc_pin_3",
+  "subcircuit": "peng_acbc_pin_3",
+  "conditions": {
+    "corner": "tt",
+    "supply_v": 1.8,
+    "temperature_c": 27,
+    "common_mode_v": 0.3,
+    "load_f": 1e-10
+  },
+  "initial_parameters": {
+    "CAPACITOR_0": 4e-11,
+    "CAPACITOR_1": 1.715e-12,
+    "CURRENT_0_BIAS": 6.7e-06,
+    "MOSFET_11_1_M_gm2_PMOS": 1,
+    "MOSFET_25_1_M_gm3_NMOS": 12,
+    "MOSFET_9_2_M_gm1_PMOS": 4
+  },
+  "parameters": {
+    "CAPACITOR_0": {
+      "min": 2.5e-12,
+      "max": 4e-11,
+      "unit": "F",
+      "sampling_scale": "log",
+      "role": "compensation capacitance"
+    },
+    "CAPACITOR_1": {
+      "min": 7.5e-13,
+      "max": 1.2e-11,
+      "unit": "F",
+      "sampling_scale": "log",
+      "role": "compensation capacitance"
+    },
+    "CURRENT_0_BIAS": {
+      "min": 4.9999999999999996e-06,
+      "max": 7.999999999999999e-05,
+      "unit": "A",
+      "sampling_scale": "log",
+      "role": "bias reference current"
+    },
+    "MOSFET_11_1_M_gm2_PMOS": {
+      "min": 1,
+      "max": 16,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm2 stage transistor multiplicity",
+      "integer": true
+    },
+    "MOSFET_25_1_M_gm3_NMOS": {
+      "min": 1,
+      "max": 16,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm3 stage transistor multiplicity",
+      "integer": true
+    },
+    "MOSFET_9_2_M_gm1_PMOS": {
+      "min": 1,
+      "max": 16,
+      "unit": "multiplicity",
+      "sampling_scale": "log",
+      "role": "gm1 stage transistor multiplicity",
+      "integer": true
+    }
+  },
+  "ac": {
+    "points_per_decade": 100,
+    "start_hz": 0.1,
+    "stop_hz": 1000000000.0
+  },
+  "transient": {
+    "low_v": 0.3,
+    "high_v": 0.5,
+    "rise_start_s": 5e-06,
+    "edge_s": 1e-08,
+    "high_duration_s": 2e-05,
+    "period_s": 6e-05,
+    "stop_s": 5e-05,
+    "max_step_s": 5e-09,
+    "settling_tolerance_v": 0.02,
+    "minimum_hold_s": 2e-06
+  },
+  "constraints": {
+    "gain_db": {
+      "min": 89
+    },
+    "unity_gain_hz": {
+      "min": 200000.0
+    },
+    "phase_margin_deg": {
+      "min": 88
+    },
+    "power_w": {
+      "max": 0.00033
+    },
+    "dc_error_v": {
+      "max": 0.0068
+    },
+    "max_tracking_error_v": {
+      "max": 0.008199999999999999
+    },
+    "settling_rise_s": {
+      "max": 2.7e-06
+    },
+    "settling_fall_s": {
+      "max": 1.8e-06
+    }
+  },
+  "max_evaluations": 30,
+  "design_context": {
+    "topology": "Peng_ACBC_Pin_3",
+    "topology_family": "peng_ac_boosting",
+    "paper": {
+      "title": "AC Boosting Compensation Scheme for Low-Power Multistage Amplifiers",
+      "authors": [
+        "Xiaohong Peng",
+        "Willy Sansen"
+      ],
+      "year": 2004,
+      "doi": "10.1109/JSSC.2004.835811",
+      "source_url": "https://picture.iczhiku.com/resource/eetop/sHItHoErkwWsfMBC.pdf"
+    },
+    "circuit_description": "AC boosting auxiliary branch across intermediate stage, CAPACITOR_1 from net049 to net1; outer CAPACITOR_0 net050 to VOUT. AnalogGym paper Table6 reference numbers appear swapped for ACBC and IAC: title-based mapping here corrects this.",
+    "netlist": ".subckt peng_acbc_pin_3 gnda vdda vinn vinp vout\nxm59 net1 net1 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_59_1_L_ma1_PMOS' w='MOSFET_59_1_W_ma1_PMOS*1' m='MOSFET_59_1_M_ma1_PMOS'\nxm12 VOUT net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_12_1_L_gmf2_PMOS' w='MOSFET_12_1_W_gmf2_PMOS*1' m='MOSFET_12_1_M_gmf2_PMOS'\nxm7 net049 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm11 net043 net050 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_11_1_L_gm2_PMOS' w='MOSFET_11_1_W_gm2_PMOS*1' m='MOSFET_11_1_M_gm2_PMOS'\nxm6 net050 VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm5 VOUTN VOUTN VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm10 net063 VINP net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm9 DM_2 VINN net31 net31 sky130_fd_pr__pfet_01v8 l='MOSFET_9_2_L_gm1_PMOS' w='MOSFET_9_2_W_gm1_PMOS*1' m='MOSFET_9_2_M_gm1_PMOS'\nxm4 net31 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='2*MOSFET_0_8_M_BIASCM_PMOS'\nxm3 VB3 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm2 DM_1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm8 net1 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm1 VB4 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm0 net013 net013 VDDA VDDA sky130_fd_pr__pfet_01v8 l='MOSFET_0_8_L_BIASCM_PMOS' w='MOSFET_0_8_W_BIASCM_PMOS*1' m='MOSFET_0_8_M_BIASCM_PMOS'\nxm25 VOUT net049 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_25_1_L_gm3_NMOS' w='MOSFET_25_1_W_gm3_NMOS*1' m='MOSFET_25_1_M_gm3_NMOS'\nxm23 net049 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm22 net043 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_22_2_L_LOAD2_NMOS' w='MOSFET_22_2_W_LOAD2_NMOS*1' m='MOSFET_22_2_M_LOAD2_NMOS'\nxm20 DM_2 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm16 VOUTN VB3 DM_2 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm21 net063 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*8'\nxm17 net050 VB3 net063 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_17_7_L_BIASCM_NMOS' w='MOSFET_17_7_W_BIASCM_NMOS*1' m='MOSFET_17_7_M_BIASCM_NMOS*4'\nxm18 net54 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm24 net1 net043 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_24_1_L_gm4_NMOS' w='MOSFET_24_1_W_gm4_NMOS*1' m='MOSFET_24_1_M_gm4_NMOS'\nxm15 VB3 VB3 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS'\nxm13 VB4 VB3 net54 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm19 net56 VB4 GNDA GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nxm14 DM_1 VB3 net56 GNDA sky130_fd_pr__nfet_01v8 l='MOSFET_18_7_L_BIASCM_NMOS' w='MOSFET_18_7_W_BIASCM_NMOS*1' m='MOSFET_18_7_M_BIASCM_NMOS*4'\nI0 net013 GNDA 'CURRENT_0_BIAS'\nC1 net049 net1 'CAPACITOR_1'\nC0 net050 VOUT 'CAPACITOR_0'\n.ends Peng_ACBC_Pin_3\n",
+    "fixed_parameters": {
+      "MOSFET_0_8_L_BIASCM_PMOS": 1.0,
+      "MOSFET_0_8_M_BIASCM_PMOS": 4.0,
+      "MOSFET_0_8_W_BIASCM_PMOS": 1.0,
+      "MOSFET_11_1_L_gm2_PMOS": 1.0,
+      "MOSFET_11_1_W_gm2_PMOS": 1.0,
+      "MOSFET_12_1_L_gmf2_PMOS": 1.0,
+      "MOSFET_12_1_M_gmf2_PMOS": 4.0,
+      "MOSFET_12_1_W_gmf2_PMOS": 1.0,
+      "MOSFET_17_7_L_BIASCM_NMOS": 1.0,
+      "MOSFET_17_7_M_BIASCM_NMOS": 4.0,
+      "MOSFET_17_7_W_BIASCM_NMOS": 1.0,
+      "MOSFET_18_7_L_BIASCM_NMOS": 1.0,
+      "MOSFET_18_7_M_BIASCM_NMOS": 4.0,
+      "MOSFET_18_7_W_BIASCM_NMOS": 1.0,
+      "MOSFET_22_2_L_LOAD2_NMOS": 1.0,
+      "MOSFET_22_2_M_LOAD2_NMOS": 4.0,
+      "MOSFET_22_2_W_LOAD2_NMOS": 1.0,
+      "MOSFET_24_1_L_gm4_NMOS": 1.0,
+      "MOSFET_24_1_M_gm4_NMOS": 4.0,
+      "MOSFET_24_1_W_gm4_NMOS": 1.0,
+      "MOSFET_25_1_L_gm3_NMOS": 1.0,
+      "MOSFET_25_1_W_gm3_NMOS": 1.0,
+      "MOSFET_59_1_L_ma1_PMOS": 1.0,
+      "MOSFET_59_1_M_ma1_PMOS": 4.0,
+      "MOSFET_59_1_W_ma1_PMOS": 1.0,
+      "MOSFET_9_2_L_gm1_PMOS": 1.0,
+      "MOSFET_9_2_W_gm1_PMOS": 1.0
+    },
+    "scope": "Nominal SKY130 amplifier sizing; source architecture adapted by AnalogGym. Targets are project-generated."
+  }
+}

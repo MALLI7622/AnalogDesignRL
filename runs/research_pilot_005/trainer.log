@@ -1,0 +1,41 @@
+E0917 00:15:32.830886  191311 hugepage_text.cc:344] RAW: File offset incorrectly aligned for file-backed THP: (600000 & ~ffffffffffe00000) = 0 != 1000 = (201000 & ~ffffffffffe00000)
+Fetching 8 files:   0%|          | 0/8 [00:00<?, ?it/s]Fetching 8 files: 100%|██████████| 8/8 [00:00<00:00, 2000.74it/s]
+/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/qwix/_src/providers/lora.py:44: UserWarning: rngs must be provided for NNX models to initialize LoRA weights. Please specify rngs=nnx.Rngs(...) in apply_lora_to_model.
+  warnings.warn(
+ERROR:absl:Exception in _producer while processing batch: 'prompts'
+Traceback (most recent call last):
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 664, in _producer
+    train_examples = self._batch_to_train_example(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 601, in _batch_to_train_example
+    return self._process_results(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_grpo_learner.py", line 542, in _process_results
+    prompts=original_inputs["prompts"],
+            ~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'prompts'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 504, in <module>
+    main()
+  File "/home/cheriearjun/AnalogDesignRL/training/train.py", line 480, in main
+    learner.train(batches(train_tasks, config["max_updates"], config["seed"]), eval_dataset=validation)
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 1076, in train
+    _ = producer_future.result()
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.deps/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 664, in _producer
+    train_examples = self._batch_to_train_example(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_rl_learner.py", line 601, in _batch_to_train_example
+    return self._process_results(
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cheriearjun/AnalogDesignRL/.venv-tpu/lib/python3.12/site-packages/tunix/rl/agentic/agentic_grpo_learner.py", line 542, in _process_results
+    prompts=original_inputs["prompts"],
+            ~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'prompts'

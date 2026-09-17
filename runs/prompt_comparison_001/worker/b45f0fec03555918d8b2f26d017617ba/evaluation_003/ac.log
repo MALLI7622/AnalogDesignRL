@@ -1,0 +1,29 @@
+
+Note: Compatibility modes selected: hs a
+
+Warning: m=xx on .subckt line will override multiplier m hierarchy!
+
+
+Circuit: ramos_pfc_frontier_eaaf9a756498c26b - controlled evaluation
+
+option SCALE: Scale is set to 1e-06 for instance and model parameters
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+No. of Data Rows : 1
+check_power_result = 4.719137078829e-04
+check_dc_error_result = 6.876759871377e-05
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Using SPARSE 1.3 as Direct Linear Solver
+Note: Starting dynamic gmin stepping
+Note: Dynamic gmin stepping completed
+
+No. of Data Rows : 1001
+check_gain_db_result=  1.35846e+02
+check_unity_hz_result=  1.41718e+06
+check_margin_deg_result=  8.45563e+01
+ngspice-47 done
